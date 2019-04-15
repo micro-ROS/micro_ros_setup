@@ -33,3 +33,14 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
+
+include(ExternalProject)
+
+set(KCONFIG_SRC ${CMAKE_CURRENT_SOURCE_DIR}/tools/kconfig-frontends)
+ExternalProject_Add(kconfig
+  SOURCE_DIR ${KCONFIG_SRC}
+  CONFIGURE_COMMAND ${KCONFIG_SRC}/configure --enable-mconf --prefix=${CMAKE_INSTALL_PREFIX}
+  BUILD_COMMAND make
+  INSTALL_COMMAND make install
+)
