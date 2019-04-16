@@ -1,14 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>micro_ros_rtos</name>
+  <name>nuttx_kconfig_vendor</name>
   <version>0.0.0</version>
-  <description>Provides the micro-ROS Real-Time Operating System</description>
+  <description>Package to install autoconf-based NuttX kconfig</description>
   <maintainer email="ingo.luetkebohle@de.bosch.com">Ingo Lütkebohle</maintainer>
   <license>APL2</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <buildtool_depend>nuttx_kconfig_vendor</buildtool_depend>
+  <buildtool_depend>autoconf</buildtool_depend>
+  <buildtool_depend>libtool</buildtool_depend>
+
+  <build_depend>flex</build_depend>
+  <build_depend>bison</build_depend>
+  <build_depend>gperf</build_depend>
+  <build_depend>libncurses-dev</build_depend>
+
+  <exec_depend>libncurses</exec_depend> 
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

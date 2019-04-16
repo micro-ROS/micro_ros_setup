@@ -8,5 +8,5 @@
 	path = micro_ros_rtos/libcxx
 	url = https://bitbucket.org/acassis/libcxx.git
 [submodule "micro_ros_rtos/tools"]
-	path = micro_ros_rtos/tools
+	path = nuttx_kconfig_vendor/tools
 	url = https://bitbucket.org/nuttx/tools.git

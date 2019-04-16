@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(micro_ros_rtos)
+project(nuttx_kconfig_vendor)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -36,13 +36,10 @@ ament_package()
 
 include(ExternalProject)
 
-# TODO make this into a macro so that the user can inject an app
-set(NUTTX_SRC ${CMAKE_CURRENT_SOURCE_DIR}/NuttX)
-ExternalProject_Add(NuttX
-  SOURCE_DIR ${NUTTX_SRC}
-  CONFIGURE_COMMAND test -f ${NUTTX_SRC}/.config || ${NUTTX_SRC}/tools/configure.sh stm32f4discovery/cxxtest  
-  BUILD_IN_SOURCE 1
+set(KCONFIG_SRC ${CMAKE_CURRENT_SOURCE_DIR}/tools/kconfig-frontends)
+ExternalProject_Add(kconfig
+  SOURCE_DIR ${KCONFIG_SRC}
+  CONFIGURE_COMMAND ${KCONFIG_SRC}/configure --enable-mconf --prefix=${CMAKE_INSTALL_PREFIX}
   BUILD_COMMAND make
   INSTALL_COMMAND make install
 )
-#CONFIGURE_COMMAND ${NUTTX_SRC}/tools/configure.sh olimex-stm32-e407/drive_base
