@@ -1,12 +1,3 @@
-[submodule "micro_ros_rtos/NuttX"]
-	path = micro_ros_rtos/NuttX
-	url = https://github.com/micro-ROS/NuttX.git
-[submodule "micro_ros_rtos/apps"]
-	path = micro_ros_rtos/apps
-	url = https://github.com/micro-ROS/apps.git
-[submodule "micro_ros_rtos/libcxx"]
-	path = micro_ros_rtos/libcxx
-	url = https://bitbucket.org/acassis/libcxx.git
 [submodule "micro_ros_rtos/tools"]
 	path = nuttx_kconfig_vendor/tools
 	url = https://bitbucket.org/nuttx/tools.git
