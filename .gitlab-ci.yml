@@ -11,4 +11,5 @@ before_script:
   - ln -s . src
 
 colcon:
-  - colcon build
+  script:
+    - colcon build
