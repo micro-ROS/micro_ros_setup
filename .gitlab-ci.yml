@@ -7,7 +7,7 @@ before_script:
   - apt-get update
   - cp 20-default.list /etc/ros/rosdep/sources.list.d/
   - rosdep update
-  - rosdep install --from-paths . -i .
+  - rosdep install -y --from-paths . -i .
   - ln -s . src
 
 colcon:
