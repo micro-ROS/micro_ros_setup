@@ -9,6 +9,7 @@ before_script:
   - rosdep update
   - rosdep install -y --from-paths . -i .
   - ln -s . src
+  - apt install -y python3-colcon-ros
 
 colcon:
   script:
