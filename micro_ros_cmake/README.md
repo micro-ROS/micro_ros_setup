@@ -1,5 +1,9 @@
-# Build support for micro-ROS
 
+# WORK IN PROGRESS
+
+In particular, it does not yet work as described below!
+
+# Build support for micro-ROS
 This packages provides macros to build the micro-ROS RTOS (currently NuttX)
 and a user-defined application package.
 
