@@ -1,0 +1,5 @@
+# generic
+yaml https://raw.githubusercontent.com/micro-ROS/rosdistro/master/rosdep/base.yaml
+yaml https://raw.githubusercontent.com/micro-ROS/rosdistro/master/rosdep/python.yaml
+yaml https://raw.githubusercontent.com/micro-ROS/rosdistro/master/rosdep/ruby.yaml
+
