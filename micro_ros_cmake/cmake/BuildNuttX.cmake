@@ -15,7 +15,6 @@ macro(BuildNuttX board config)
       DEPENDEES download
       DEPENDERS build
       WORKING_DIRECTORY <BINARY_DIR>/libcxx
-      COMMAND pwd
-      COMMAND ./install.sh ../NuttX
+      COMMAND test -d ../NuttX/libs/libxx/libcxx || ./install.sh ../NuttX
     )
 endmacro()
