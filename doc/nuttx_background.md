@@ -1,5 +1,24 @@
 # Background Information
 
+## Building
+
+### Build Targets
+
+In order of invocation
+
+1) dirlinks: for linking arch and board dirs
+1) context: generates some source code
+1) depend: generate dependency information in Make.dep for each directory
+1) Make libraries: libsched.a, libdrivers.a, libconfigs.a, libc.a, libmm.a, libarch.a, libxx.a, libapps.a, libnet.a, libfs.a, 
+   * For libapps.a: `make all` in each dir in `apps`
+
+
+### Build Configuration
+
+The easiest way to override build variables is in `configs/<target>/scripts/Make.defs`.
+
+**Note:** Because of this, many people have dropped various special configurations in there, which are *not* always the same for the various boards.
+
 ## NuttX firmware modes
 
 NuttX has several different working modes with respect to [memory configurations](http://www.nuttx.org/doku.php?id=wiki:nxinternal:memconfigs):
