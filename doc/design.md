@@ -1,74 +1,43 @@
 # The short story
 
-My current verdict based on information reproduced below is that we have to use the flat build mode for now.
+My current verdict based on the [NuttX background information](nuttx_background.md)  is that we have to use the flat build mode for now. A consequence of this is that we also have to have the full micro-ROS app available during NuttX linkage.
 
-A consequence of this is that we also have to have the full micro-ROS app available during NuttX linkage.
+Therefore, I propose basically keeping the current approach, where micro-ROS is compiled as part of NuttX, but make it easier for users to use, and also more efficient (by modifying the current Makefiles to only do what's necessary in each step).
 
+# Assumptions
 
-# Firmware Architecture
-
-NuttX has several different working modes with respect to [memory configurations](http://www.nuttx.org/doku.php?id=wiki:nxinternal:memconfigs):
+ * We want to use the colcon workflow for micro-ROS as well
+ * We want to avoid having to modify the source packages to compile on micro-ROS (apart from general porting, of course, but the same code should compile on both regular ROS2 and micro-ROS, if it compiles on micro-ROS at all).
  
- 1) Flat mode: NuttX and the apps are in one firmware file and share the same memory space
- 2) Protected mode: Requires an MPU, and puts the kernel into a separate memory protection unit from the apps.
- 3) Address Environments: Each task has its own memory environment. Requires a MMU and is only fully supported on Cortex-A.
- 4) Kernel mode: A combination of 2 and 3. Also requires MMU.
+## Environment
 
- For the micro-ROS target architectures, only the first two options are available. Currently (May 2019), we use flat mode only.
+ * Due to the cross-compilation, we are using two different workspaces: 1) for the code that ends up on the micro-controller (MCU_WS) 2) for the code that ends up on the host (HOST_WS)
+ * To make it easier for the developer, and prevent mistakes, the MCU_WS is automatically created and maintained
+  * All dependencies must be compiled from source for now. We can think about how to do pre-compilation later on (because it depends on the NuttX config, it's not as easy)
  
-In addition, apps can be included in a number of ways:
+# Proposed Approach
 
- 1) Built-in. Included in and executed from the firmware
- 2) Loadable file, e.g. ELF or NXFLAT.
+*NOTE: This is proposed, not yet implemented*
 
-## Flat Mode
+  1) We have a configuration package that configures the firmware placed in the HOST_WS. This means
+    * Which target board and configuration to use
+    * Which packages to compile as apps
+    * Example, with board `olimex-stm32-e407`, configuration `drive_base` and app `kobuki`:
+    `add_microros_firmware(olimex-stm32-e407 drive_base kobuki)`
 
-Flat mode is the default and the easiest. Everything is one memory area, applications can access the kernel through a regular function call interface. Also, linkage is one step: Only symbols needed during linking are included.
+  1) On first run, this macro 
+     a) creates a workspace directory, MCU_WS
+     a) populates it with a NuttX checkout, by *symlinking* the apps packages, and all their dependent packages, from the HOST_WS
+        * Take care to only symlink the package dirs, not the repositories, as the repositories might contain other, unneeded (and potentially problematic) packages
+     a) checks out platform repositories that are not already present in the HOST_WS (and hence have not been symlinked, yet) into the MCU_WS
+        * The list of necessary platform packages is contained within the micro_ros_build repository.
+        * If the developer wants to work on these platform packages, they can be checked out in the HOST_WS, but they don't have to be.
+        * If they are, they would also be compiled for the host. This may not be the intention of the developer, so we should provide them with a means to ignore them (e.g., through an example colcon.meta-file).
+  1) Upon configuration of NuttX, a `toolchain.cmake` is placed in the MCU_WS, as well as a `colcon.meta` file to use it.
+     * This is based on a Makefile rule in `apps/micro-ROS/`, dependent on `NuttX/.config`, so it will automatically by updated as well.
+  1) When building the configuration package, it invokes a NuttX build in the MCU_WS. This NuttX build also performs the necessary build-steps for the MCU_WS and includes it during linking.
 
-Drawbacks:
-
- * There is no memory protection, applications can corrupt the kernel and/or other applications
- * When you add code, e.g., through a file system, later on, kernel symbols may be missing because nothing required them during initial linkage.
-
-
-## Protected mode
-
-Protected mode can work with a simple MPU to separate kernel and user memory. See [NuttX protected build](http://nuttx.org/doku.php?id=wiki:howtos:kernelbuild) (note that, despite the name of the page, this is *not* the kernel build option 4 mentione above).
-
-This is again available in two configurations
- 
-  1) Single heap (kernel+userspace allocations in one)
-  2) Dual heap (kernel separated from userspace allocations)
-
-**Advantages**
-
- * In the dual heap configuration, the kernel memory is protected from userspace
-
-
- **Drawbacks**
-
-  * The dual heap configuration has a lot of memory overhead due to alignment constraints.
-
-
-
-
-# Build support for micro-ROS
-
-This packages provides macros to build the micro-ROS RTOS (currently NuttX)
-and a user-defined application package.
-
-The steps for the build process are like this:
-
-0. Download RTOS and apps repositories
-1. Configure RTOS for the target board and (pre-defined) configuration.
-2. Create a toolchain file that configures CMake to use the RTOS-provided include and linker options
-3. Build the target node -- this results in a static archive
-4. Compile RTOS. This compiles a number of static libraries, one of which is the "apps" library. We have a "micro-ROS" app which, if enabled, pulls in the static archive with our target node built in the previous step 
-5. Link and flash firmware
-
-The main challenge is that, due to the interplay between these, we need to control the compile order a bit more closely than usual. I.e., we can't just compile one package entirely, we have to first configure everything and then compile in order.
-
-The second challenge is that we cannot just rely on rosdep to get all dependencies. We have to compile everything from sources, and thus need all the sources locally. Ideally, though, determining and downloading all dependencies should still be automatic.
+# Background
 
 ## Approaches
 
