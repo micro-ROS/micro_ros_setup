@@ -38,17 +38,24 @@ Therefore, I propose keeping the current approach (compiling micro-ROS code as p
 
 # Work to do
 
-To realize this approach, we need a few things
+## Minimal
 
  - [x] cmake macro to checkout and configure NuttX
  - [ ] cmake macro to define the target application
- - [ ] support for determining and linking all dependencies
- - [ ] support for downloading the base libraries
+ - [ ] support for creating the MCU workspace automatically
+    - [ ] determining and link all dependencies already present in the host workspace
+    - [ ] support for downloading the base libraries
  - [x] colcon calling support from NuttX build
- - [ ] generation of toolchain.cmake (a start of that is available, but it is not efficient)
 
+## Useful
 
+ - [ ] openocd vendor package (so that we can automatically build it with NuttX support and the right memory locations)
+ - [ ] colcon.meta generation, including toolchain.cmake (currently all options are given on each invocation, which is error prone)
 
+## Optimization
+
+ - [ ] colcon takes a long time to build the MCU workspace, even if very little needs to be done. look into ways to optimize this...
+ 
 # Background
 
 ## Approaches
