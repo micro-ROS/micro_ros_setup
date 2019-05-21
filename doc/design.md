@@ -36,6 +36,19 @@ Therefore, I propose keeping the current approach (compiling micro-ROS code as p
      * This is based on a Makefile rule in `apps/micro-ROS/`, dependent on `NuttX/.config`, so it will automatically by updated as well.
   1) When building the configuration package, it invokes a NuttX build in the MCU_WS. This NuttX build also performs the necessary build-steps for the MCU_WS and includes it during linking.
 
+# Work to do
+
+To realize this approach, we need a few things
+
+ - [x] cmake macro to checkout and configure NuttX
+ - [ ] cmake macro to define the target application
+ - [ ] support for determining and linking all dependencies
+ - [ ] support for downloading the base libraries
+ - [x] colcon calling support from NuttX build
+ - [ ] generation of toolchain.cmake (a start of that is available, but it is not efficient)
+
+
+
 # Background
 
 ## Approaches
