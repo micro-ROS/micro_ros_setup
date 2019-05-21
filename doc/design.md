@@ -1,18 +1,17 @@
 # The short story
 
-My current verdict based on the [NuttX background information](nuttx_background.md)  is that we have to use the flat build mode for now. A consequence of this is that we also have to have the full micro-ROS app available during NuttX linkage.
+My current thinking, based on the [NuttX background information](nuttx_background.md), is that the "flat" build mode is sufficient for now, and much easier to use than the rest. A consequence of this, however, is that we have to have the full micro-ROS app available during NuttX linkage.
 
-Therefore, I propose basically keeping the current approach, where micro-ROS is compiled as part of NuttX, but make it easier for users to use, and also more efficient (by modifying the current Makefiles to only do what's necessary in each step).
+Therefore, I propose keeping the current approach (compiling micro-ROS code as part of the NuttX build), but in contrast to now, set up the MCU workspace -- including NuttX -- *automatically*, based on configuration in a regular ROS package. Thus, the regular ROS developer can use colcon as before, and everything else is handled behind the scenes.
 
 # Assumptions
 
  * We want to use the colcon workflow for micro-ROS as well
- * We want to avoid having to modify the source packages to compile on micro-ROS (apart from general porting, of course, but the same code should compile on both regular ROS2 and micro-ROS, if it compiles on micro-ROS at all).
+ * Users should be able to set up their application as an ament-based ROS2 package -- NuttX build settings are then auto-generated from that.
  
 ## Environment
 
  * Due to the cross-compilation, we are using two different workspaces: 1) for the code that ends up on the micro-controller (MCU_WS) 2) for the code that ends up on the host (HOST_WS)
- * To make it easier for the developer, and prevent mistakes, the MCU_WS is automatically created and maintained
   * All dependencies must be compiled from source for now. We can think about how to do pre-compilation later on (because it depends on the NuttX config, it's not as easy)
  
 # Proposed Approach
