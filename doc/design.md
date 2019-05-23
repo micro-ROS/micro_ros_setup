@@ -41,6 +41,7 @@ Therefore, I propose keeping the current approach (compiling micro-ROS code as p
 ## Minimal
 
  - [x] (Bosch) cmake macro to checkout and configure NuttX
+ - [ ] (ALR) upstream additional drivers
  - [ ] cmake macro to define the target application
  - [ ] (eprosima, Bosch) support for creating the MCU workspace automatically
     - [ ] determining and link all dependencies already present in the host workspace
