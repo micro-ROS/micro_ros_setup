@@ -40,17 +40,18 @@ Therefore, I propose keeping the current approach (compiling micro-ROS code as p
 
 ## Minimal
 
- - [x] cmake macro to checkout and configure NuttX
+ - [x] (Bosch) cmake macro to checkout and configure NuttX
  - [ ] cmake macro to define the target application
- - [ ] support for creating the MCU workspace automatically
+ - [ ] (eprosima, Bosch) support for creating the MCU workspace automatically
     - [ ] determining and link all dependencies already present in the host workspace
     - [ ] support for downloading the base libraries
- - [x] colcon calling support from NuttX build
+ - [x] (Bosch) colcon calling support from NuttX build
 
 ## Useful
 
- - [ ] openocd vendor package (so that we can automatically build it with NuttX support and the right memory locations)
- - [ ] colcon.meta generation, including toolchain.cmake (currently all options are given on each invocation, which is error prone)
+ - [ ] (ALR) Standard configuration for Olimex STM32E-407 board with all drivers and hardware enabled and support for loading app from SD card 
+ - [ ] (Bosch) openocd vendor package (so that we can automatically build it with NuttX support and the right memory locations)
+ - [ ] (Bosch) colcon.meta generation, including toolchain.cmake (currently all options are given on each invocation, which is error prone)
 
 ## Optimization
 
