@@ -18,23 +18,21 @@ Therefore, I propose keeping the current approach (compiling micro-ROS code as p
 
 *NOTE: This is proposed, not yet implemented*
 
-  1) We have a configuration package that configures the firmware placed in the HOST_WS. This means
-  
-    * Which target board and configuration to use
-    * Which packages to compile as apps
-    * Example, with board `olimex-stm32-e407`, configuration `drive_base` and app `kobuki`:
-    `add_microros_firmware(olimex-stm32-e407 drive_base kobuki)`
+  1) We have a configuration package that configures the firmware placed in the HOST_WS. This means   
+      * Which target board and configuration to use
+      * Which packages to compile as apps
+      * Example, with board `olimex-stm32-e407`, configuration `drive_base` and app `kobuki`: `add_microros_firmware(olimex-stm32-e407 drive_base kobuki)`
 
   1) On first run, this macro 
-     a) creates a workspace directory, MCU_WS
-     a) populates it with a NuttX checkout, by *symlinking* the apps packages, and all their dependent packages, from the HOST_WS
-        * Take care to only symlink the package dirs, not the repositories, as the repositories might contain other, unneeded (and potentially problematic) packages
-     a) checks out platform repositories that are not already present in the HOST_WS (and hence have not been symlinked, yet) into the MCU_WS
-        * The list of necessary platform packages is contained within the micro_ros_build repository.
-        * If the developer wants to work on these platform packages, they can be checked out in the HOST_WS, but they don't have to be.
-        * If they are, they would also be compiled for the host. This may not be the intention of the developer, so we should provide them with a means to ignore them (e.g., through an example colcon.meta-file).
+      1) creates a workspace directory, MCU_WS
+      1) populates it with a NuttX checkout, by *symlinking* the apps packages, and all their dependent packages, from the HOST_WS
+         * Take care to only symlink the package dirs, not the repositories, as the repositories might contain other, unneeded (and potentially problematic) packages
+      1) checks out platform repositories that are not already present in the HOST_WS (and hence have not been symlinked, yet) into the MCU_WS
+         * The list of necessary platform packages is contained within the micro_ros_build repository.
+         * If the developer wants to work on these platform packages, they can be checked out in the HOST_WS, but they don't have to be.
+         * If they are, they would also be compiled for the host. This may not be the intention of the developer, so we should provide them with a means to ignore them (e.g., through an example colcon.meta-file).
   1) Upon configuration of NuttX, a `toolchain.cmake` is placed in the MCU_WS, as well as a `colcon.meta` file to use it.
-     * This is based on a Makefile rule in `apps/micro-ROS/`, dependent on `NuttX/.config`, so it will automatically by updated as well.
+       * This is based on a Makefile rule in `apps/micro-ROS/`, dependent on `NuttX/.config`, so it will automatically by updated as well.
   1) When building the configuration package, it invokes a NuttX build in the MCU_WS. This NuttX build also performs the necessary build-steps for the MCU_WS and includes it during linking.
 
 # Work to do
