@@ -19,6 +19,7 @@ Therefore, I propose keeping the current approach (compiling micro-ROS code as p
 *NOTE: This is proposed, not yet implemented*
 
   1) We have a configuration package that configures the firmware placed in the HOST_WS. This means
+  
     * Which target board and configuration to use
     * Which packages to compile as apps
     * Example, with board `olimex-stm32-e407`, configuration `drive_base` and app `kobuki`:
