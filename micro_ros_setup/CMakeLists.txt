@@ -40,5 +40,5 @@ install(
 
 install(
   PROGRAMS scripts/create_agent_ws.sh
-  DESTINATION bin
+  DESTINATION lib/${PROJECT_NAME}
 )
