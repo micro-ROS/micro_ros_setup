@@ -1,3 +1,4 @@
+repositories:
 # Micro XRCE-DDS
   eProsima/Micro-XRCE-DDS-Agent:
     type: git

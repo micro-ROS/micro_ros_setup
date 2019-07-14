@@ -39,6 +39,11 @@ install(
 )
 
 install(
-  PROGRAMS scripts/create_agent_ws.sh
+  PROGRAMS 
+    scripts/create_ws.sh 
+    scripts/create_agent_ws.sh 
+    scripts/create_client_ws.sh
+    scripts/create_dev_ws.sh
+    scripts/build_nuttx_uros.sh
   DESTINATION lib/${PROJECT_NAME}
 )
