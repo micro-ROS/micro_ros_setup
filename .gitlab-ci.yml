@@ -27,7 +27,7 @@ agent_ws:
 
 firmware:
   script:
-    - colcon build --packages-select="micro_ros_setup nuttx_kconfig_vendor"
+    - colcon build --packages-select micro_ros_setup nuttx_kconfig_vendor
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_firmware_ws.sh
     - cd firmware/NuttX
