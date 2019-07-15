@@ -8,7 +8,7 @@ before_script:
   - cp 20-default.list /etc/ros/rosdep/sources.list.d/
   - rosdep update
   - rosdep install -y --from-paths . -i .
-  - apt install -y python3-colcon-ros
+  - apt install -y python3-colcon-* ed
   - git submodule init
   - git submodule update
 
