@@ -1,8 +1,4 @@
-{ "names": {
-  "microxrcedds_client": { "cmake-args": [ "-DBUILD_SHARED_LIBS=ON" ], },
-  "rosidl_typesupport_microxrcedds_c": { "cmake-args": [ "-DBUILD_SHARED_LIBS=ON" ], },
-  "rosidl_typesupport_microxrcedds_cpp": { "cmake-args": [ "-DBUILD_SHARED_LIBS=ON" ], },
-  "builtin_interface": { "cmake-args": [ "-DBUILD_SHARED_LIBS=ON" ], },
-  "microcdr": { "cmake-args": [ "-DBUILD_SHARED_LIBS=ON" ], }
+l{ "names": {
+  "rcutils": { "cmake-args": [ "-DENABLE_TESTING=OFF" ], },
   }
 }
