@@ -10,3 +10,5 @@
   ros2/libyaml_vendor
   ros2/rclcpp
   ros2/rcl_interfaces
+  ros2/unique_identifier_msgs
+  ros2/rcl_logging

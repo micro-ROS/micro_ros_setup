@@ -25,7 +25,7 @@ export PATH=$(clean $PATH)
 # build and source dev workspace
 pushd $2
 colcon build
-source install/local_setup.bash
+. install/local_setup.sh
 popd
 
 pushd $1
