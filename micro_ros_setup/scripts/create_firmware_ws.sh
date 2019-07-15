@@ -21,7 +21,9 @@ pushd $FW_TARGETDIR
 
     mkdir mcu_ws
     ros2 run micro_ros_setup create_client_ws.sh mcu_ws
+    # ignore broken packages
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
+    touch mcu_ws/ros2/rcl/rcl_action/COLCON_IGNORE
     # in the event there are buildtools required, we also run rosdep on the client_ws
     rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro crystal --skip-keys="$SKIP"
     # turn off features which don't compile on NuttX currently
