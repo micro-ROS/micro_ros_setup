@@ -2,4 +2,4 @@
 
  CMake macros and vendor packages for building NuttX.
 
- See [design notes](documentation/design.md) for the general approach.
+ See [design notes](doc/design.md) for the general approach.
