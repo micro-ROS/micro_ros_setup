@@ -1,5 +1,5 @@
 # we use the xrce-dds agent from the installed package
-
+repositories:
 # MicroROS
   uros/uROS_agent:
     type: git
