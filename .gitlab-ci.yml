@@ -8,7 +8,7 @@ before_script:
   - cp 20-default.list /etc/ros/rosdep/sources.list.d/
   - rosdep update
   - rosdep install -y --from-paths . -i .
-  - apt install -y python3-colcon-ros
+  - apt install -y python3-colcon-* ed
   - git submodule init
   - git submodule update
 
@@ -24,3 +24,13 @@ agent_ws:
     - ros2 run micro_ros_setup create_agent_ws.sh ros2
     - rosdep install --from-paths ros2 -i . -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
     - colcon build 
+
+firmware:
+  script:
+    - colcon build --packages-select micro_ros_setup nuttx_kconfig_vendor
+    - . install/local_setup.sh
+    - ros2 run micro_ros_setup create_firmware_ws.sh
+    - cd firmware/NuttX
+    - tools/configure.sh configs/olimex-stm32-e407/drive_base
+    - cd ../
+    - ros2 run micro_ros_setup build_firmware.sh NuttX dev_ws
