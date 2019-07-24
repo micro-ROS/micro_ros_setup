@@ -15,6 +15,9 @@ before_script:
 colcon:
   script:
     - colcon build
+  only:
+    - master
+    - /.*build.*/
 
 agent_ws:
   script:
@@ -23,7 +26,10 @@ agent_ws:
     - mkdir ros2
     - ros2 run micro_ros_setup create_agent_ws.sh ros2
     - rosdep install --from-paths ros2 -i . -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
-    - colcon build 
+    - colcon build
+  only:
+    - master
+    - /.*agent.*/
 
 firmware:
   script:
@@ -34,3 +40,6 @@ firmware:
     - tools/configure.sh configs/olimex-stm32-e407/drive_base
     - cd ../
     - ros2 run micro_ros_setup build_firmware.sh NuttX dev_ws
+  only:
+    - master
+    - /.*firmware.*/
