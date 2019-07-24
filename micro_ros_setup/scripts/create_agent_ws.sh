@@ -1,40 +1,14 @@
 #! /bin/bash
 
-if [ $# -lt 1 ]
-then
-    echo "Syntax: $0 <targetdir>"
-    exit 255
-fi
+TARGETDIR=agent_ws
 
-if [ ! -d  $1 ]
-then
-    echo "Syntax: Target ('$1') must be a directory but isn't".
-    exit 255
-fi
+[ -d $TARGETDIR ] || mkdir $TARGETDIR
 
-OUR_PREFIX=$(ros2 pkg prefix micro_ros_setup)
-PACKAGES=${OUR_PREFIX}/config/agent_ros2_packages.txt
+# populate the workspace
+ros2 run micro_ros_setup create_ws.sh agent_ws agent_ros2_packages.txt agent_uros_packages.repos
 
-pushd $1
-if [ -f ros2.repos ]
-then
-    echo "Repo-file ros2.repos already present, ignoring $1"
-else
-  # ROS_DISTRO SPECIFIC
-  wget https://raw.githubusercontent.com/ros2/ros2/crystal/ros2.repos
-  vcs import --input ros2.repos
-  for dir in $(ls -d */*); do  
-    if grep -q $dir $PACKAGES
-    then  
-      echo $dir OK
-    else
-      echo Removing $dir
-      rm -rf $dir
-    fi
-  done
-  vcs import --input ${OUR_PREFIX}/config/agent_uros_packages.repos
-fi
+# add appropriate colcon.meta
+cp $(ros2 pkg prefix micro_ros_setup)/config/agent-colcon.meta agent_ws/colcon.meta
 
-popd
-
-echo "Repos imported, now run rosdep to ensure all dependencies are present."
+rosdep install --from-paths $TARGETDIR -i $TARGETDIR -y \
+  --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
