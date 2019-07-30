@@ -1,4 +1,4 @@
-#! /bin/bash -xe
+#! /bin/bash
 
 FW_TARGETDIR=firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
@@ -7,6 +7,7 @@ SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesup
 
 [ -d $FW_TARGETDIR ] || mkdir $FW_TARGETDIR
 pushd $FW_TARGETDIR
+    touch COLCON_IGNORE
 
     vcs import --input $PREFIX/config/uros_packages.repos
 
