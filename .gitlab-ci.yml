@@ -24,7 +24,7 @@ agent_ws:
     - colcon build --packages-select micro_ros_setup
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh
-    - rosdep install --from-paths agent_ws -i . -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
+    - rosdep install --from-paths . -i . -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
     - colcon build
   only:
     - master
@@ -37,8 +37,8 @@ firmware:
     - ros2 run micro_ros_setup create_firmware_ws.sh
     - cd firmware/NuttX
     - tools/configure.sh configs/olimex-stm32-e407/drive_base
-    - cd ../
-    - ros2 run micro_ros_setup build_firmware.sh NuttX dev_ws
+    - cd ../..
+    - ros2 run micro_ros_setup build_firmware.sh
   only:
     - master
     - /.*firmware.*/
