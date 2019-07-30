@@ -3,6 +3,7 @@
 TARGETDIR=agent_ws
 
 if [ $# -lt 1 ]
+then
   TARGETDIR=$1
 fi
 
