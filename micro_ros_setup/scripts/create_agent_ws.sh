@@ -2,6 +2,10 @@
 
 TARGETDIR=agent_ws
 
+if [ $# -lt 1 ]
+  TARGETDIR=$1
+fi
+
 [ -d $TARGETDIR ] || mkdir $TARGETDIR
 
 # populate the workspace
