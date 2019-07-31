@@ -2,7 +2,7 @@
 
 TARGETDIR=src
 
-if [ $# -lt 1 ]
+if [ $# -gt 0 ]
 then
   TARGETDIR=$1
 fi
@@ -10,7 +10,7 @@ fi
 [ -d $TARGETDIR ] || mkdir $TARGETDIR
 
 # populate the workspace
-ros2 run micro_ros_setup create_ws.sh src agent_ros2_packages.txt agent_uros_packages.repos
+ros2 run micro_ros_setup create_ws.sh $TARGETDIR agent_ros2_packages.txt agent_uros_packages.repos
 
 # add appropriate colcon.meta
 cp $(ros2 pkg prefix micro_ros_setup)/config/agent-colcon.meta $TARGETDIR/colcon.meta
