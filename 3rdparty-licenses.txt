@@ -1,0 +1,7 @@
+Third Party Licenses
+====================
+
+micro-ros-build does not directly contain 3rd party source code. 
+
+nuttx_kconfig_vendor includes [kconfig frontends](https://bitbucket.org/nuttx/tools/src/master/kconfig-frontends/) as a submodule, and the NuttX build started by this package will use it at compile time. No part of kconfig frontends will be included in the resulting binaries.
+
