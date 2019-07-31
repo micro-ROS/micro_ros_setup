@@ -1,5 +1,9 @@
 # micro-ROS build support
 
+This package contains submodules. Please clone it using
+
+```git clone --recursive ...```
+
 ## micro_ros_setup
 
 Support scripts for creating Micro-ROS agent and client workspaces,
