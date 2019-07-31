@@ -7,14 +7,6 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-if(BUILD_TESTING)
-  list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-  message(STATUS "Module path " ${CMAKE_MODULE_PATH})
-  include(BuildNuttX)
-
-  BuildNuttX(olimex-stm32-e407 nsh)
-endif()
-
 ament_package()
 
 install(
