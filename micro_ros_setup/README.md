@@ -2,13 +2,19 @@
 
 This package assists with setting up the workspaces for Micro-ROS to compile from source, which is currently the recommended way to install Micro-ROS.
 
-This version of the package targets  **ROS 2 Crystal**
+## Prerequisites
 
 Micro-ROS is a client-server system: The embedded micro-controller runs the client, and the "agent" runs on Linux (or potentially also Windows, though this package doesn't support that, yet).
 
 All subsequent instructions assume that you're running them in a colcon workspace. If you haven't used colcon, yet, you can probably just copy the instructions below as-is. I recommend [getting familiar with colcon](https://index.ros.org//doc/ros2/Tutorials/Colcon-Tutorial/), though, it has many useful options.
 
 I use `$` as the command prompt -- don't type it in ;-)
+
+## Concepts
+
+Micro-ROS is a client-server system: The embedded micro-controller runs the client, and the "agent" runs on Linux (or potentially also Windows, though this package doesn't support that, yet).
+Software on a microcontroller is usually called "firmware" and it is cross-compiled on the host and then flashed onto the microcontroller. The following structure image shows the individual parts:
+![structure image](doc/structure.png)
 
 ## Building this package
 
