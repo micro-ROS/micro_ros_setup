@@ -2,13 +2,38 @@
 
 This package assists with setting up the workspaces for Micro-ROS to compile from source, which is currently the recommended way to install Micro-ROS.
 
-This version of the package targets  **ROS 2 Crystal**
+## Prerequisites
+
+This version of the package targets  **ROS 2 Crystal** and has been tested on **Ubuntu 18.04** only! Other Linux distributions may work -- if you [find issues, please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
+
+For installing ROS 2, we recommend the [binary build of ROS 2](https://index.ros.org/doc/ros2/Installation/Crystal/). Note that if you use a non-package install, you may have to adjust some of the "source" commands below.
+
+We will use the standard ROS 2 meta build-tool, `colcon`, to compile. If you haven't used colcon, yet, you can probably just copy the instructions below as-is. I recommend [getting familiar with colcon](https://index.ros.org//doc/ros2/Tutorials/Colcon-Tutorial/), though, it has many useful options.
+
+I use `$` as the command prompt -- don't type it in ;-)
+
+## Concepts
 
 Micro-ROS is a client-server system: The embedded micro-controller runs the client, and the "agent" runs on Linux (or potentially also Windows, though this package doesn't support that, yet).
 
-All subsequent instructions assume that you're running them in a colcon workspace. If you haven't used colcon, yet, you can probably just copy the instructions below as-is. I recommend [getting familiar with colcon](https://index.ros.org//doc/ros2/Tutorials/Colcon-Tutorial/), though, it has many useful options.
+Software on a microcontroller is usually called "firmware" and it is cross-compiled on the host and then flashed onto the microcontroller. The following structure image shows the individual parts:
+![structure image](doc/structure.png)
 
-I use `$` as the command prompt -- don't type it in ;-)
+Correspondingly, in the micro-ROS build, we distinguish the firmware and the "regular" workspace for the server side. Since the regular workspace contains the agent, in other documentation it also sometimes called "agent workspace".
+
+## Setting up the workspace
+
+It is best to start with a fresh workspace, both to speed up compiles and to avoid unintended interference. 
+
+```shell
+$ source /opt/ros/crystal/setup.bash
+$ mkdir -p uros_ws/src
+$ cd uros_ws
+$ git clone --recursive https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+```
+
+All subsequent instructions assume that you're running them in the `uros_ws` directory. 
+
 
 ## Building this package
 

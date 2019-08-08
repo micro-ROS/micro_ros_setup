@@ -35,17 +35,9 @@ then
     echo "Repo-file ros2.repos already present, ignoring $1"
 else
   # ROS_DISTRO SPECIFIC
-  wget https://raw.githubusercontent.com/ros2/ros2/crystal/ros2.repos
-  vcs import --input ros2.repos
-  for dir in $(ls -d */*); do  
-    if grep -q $dir $PACKAGES
-    then  
-      echo $dir OK
-    else
-      echo Removing $dir
-      rm -rf $dir
-    fi
-  done
+  curl https://raw.githubusercontent.com/ros2/ros2/crystal/ros2.repos |\
+    ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
+    vcs import --input ros2.repos
   vcs import --input $REPOS
 fi
 

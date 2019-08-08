@@ -1,3 +1,4 @@
+keep:
   ros2/common_interfaces
   ros2/rcl_logging
   ros2/rcl

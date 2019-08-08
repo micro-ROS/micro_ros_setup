@@ -1,3 +1,4 @@
+keep:
   ament/ament_cmake
   ament/ament_index
   ament/ament_lint
