@@ -15,8 +15,25 @@ I use `$` as the command prompt -- don't type it in ;-)
 ## Concepts
 
 Micro-ROS is a client-server system: The embedded micro-controller runs the client, and the "agent" runs on Linux (or potentially also Windows, though this package doesn't support that, yet).
+
 Software on a microcontroller is usually called "firmware" and it is cross-compiled on the host and then flashed onto the microcontroller. The following structure image shows the individual parts:
 ![structure image](doc/structure.png)
+
+Correspondingly, in the micro-ROS build, we distinguish the firmware and the "regular" workspace for the server side. Since the regular workspace contains the agent, in other documentation it also sometimes called "agent workspace".
+
+## Setting up the workspace
+
+It is best to start with a fresh workspace, both to speed up compiles and to avoid unintended interference. 
+
+```shell
+$ source /opt/ros/crystal/setup.bash
+$ mkdir -p uros_ws/src
+$ cd uros_ws
+$ git clone --recursive https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+```
+
+All subsequent instructions assume that you're running them in the `uros_ws` directory. 
+
 
 ## Building this package
 
