@@ -8,12 +8,14 @@
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <buildtool_depend>wget</buildtool_depend>
+  <depend>curl</depend>
+  <depend>python</depend>
+  <depend>python3-yaml</depend>
   <!-- these are needed to build fastrtps -->
   <buildtool_depend>asio</buildtool_depend>
   <buildtool_depend>tinyxml2</buildtool_depend>
   <!-- end fastrtps deps -->
-  <buildtool_depend>clang-tidy</buildtool_depend>
+  <depend>clang-tidy</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

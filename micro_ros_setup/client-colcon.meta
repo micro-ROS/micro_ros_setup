@@ -1,0 +1,4 @@
+{ "names": {
+  "rcutils": { "cmake-args": [ "-DENABLE_TESTING=OFF" ], },
+  }
+}

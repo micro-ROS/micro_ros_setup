@@ -5,10 +5,23 @@
 # Syntax: $0 <NuttX-directory> <dev ws location>
 #
 
-if [ $# -lt 2 ]
+NUTTX_DIR=firmware/NuttX
+DEV_WS_DIR=firmware/dev_ws
+
+if [ $# -eq 1 ]
 then
-    echo "Syntax: $0 <Nuttx-dir> <dev-ws>"
-    exit 255
+  if [ -d $1/NuttX ]
+  then
+    NUTTX_DIR=$1/NuttX
+    DEV_WS_DIR=$1/dev_ws
+  else
+    NUTTX_DIR=$1
+  fi
+fi
+if [ $# -eq 2 ]
+then
+  NUTTX_DIR=$1
+  DEV_WS_DIR=$2
 fi
 
 function clean {
@@ -23,11 +36,11 @@ export PYTHONPATH=$(clean $PYTHONPATH)
 export PATH=$(clean $PATH)
 
 # build and source dev workspace
-pushd $2
+pushd $DEV_WS_DIR
 colcon build
 . install/local_setup.sh
 popd
 
-pushd $1
+pushd $NUTTX_DIR
 make
 popd 
