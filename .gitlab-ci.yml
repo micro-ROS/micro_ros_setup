@@ -1,7 +1,8 @@
-image: ros:crystal-ros-base
-
 variables:
   DOCKER_DRIVER: overlay2
+  ROS_DISTRO: crystal
+
+image: ros:${ROS_DISTRO}-ros-base
 
 before_script:
   - apt-get update
@@ -23,9 +24,10 @@ agent_ws:
   script:
     - colcon build --packages-select micro_ros_setup
     - . install/local_setup.sh
-    - ros2 run micro_ros_setup create_agent_ws.sh agent
-    - rosdep install --from-paths agent -i agent -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
-    - colcon build
+    - mkdir ros2
+    - ros2 run micro_ros_setup create_agent_ws.sh ros2
+    - rosdep install --from-paths ros2 -i . -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
+    - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
   only:
     - master
     - /.*agent.*/
