@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import yaml
 
@@ -8,7 +8,7 @@ import copy
 
 if __name__ == '__main__':
     repos_info = yaml.load(sys.stdin)
-    repos_keep = yaml.load(file(sys.argv[1]))
+    repos_keep = yaml.load(open(sys.argv[1]))
 
     target = {'repositories': {}}
 

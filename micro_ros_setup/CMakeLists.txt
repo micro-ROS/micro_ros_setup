@@ -46,5 +46,6 @@ install(
     scripts/create_dev_ws.sh
     scripts/create_firmware_ws.sh
     scripts/build_firmware.sh
+    scripts/yaml_filter.py
   DESTINATION lib/${PROJECT_NAME}
 )
