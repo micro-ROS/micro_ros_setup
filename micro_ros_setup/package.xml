@@ -9,7 +9,6 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>curl</depend>
-  <depend>python3</depend>
   <depend>python3-yaml</depend>
   <!-- these are needed to build fastrtps -->
   <buildtool_depend>asio</buildtool_depend>
