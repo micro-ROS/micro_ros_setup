@@ -4,6 +4,11 @@ variables:
 
 image: ros:${ROS_DISTRO}-ros-base
 
+stages:
+  - pkgonly
+  - single
+  - combined
+
 before_script:
   - apt-get update
   - cp 20-default.list /etc/ros/rosdep/sources.list.d/
@@ -14,6 +19,7 @@ before_script:
   - git submodule update
 
 colcon:
+  stage: pkgonly
   script:
     - colcon build
   only:
@@ -21,6 +27,7 @@ colcon:
     - /.*build.*/
 
 agent_ws:
+  stage: single
   script:
     - colcon build --packages-select micro_ros_setup
     - . install/local_setup.sh
@@ -32,6 +39,7 @@ agent_ws:
     - /.*agent.*/
 
 firmware:
+  stage: single
   script:
     - colcon build --packages-select micro_ros_setup nuttx_kconfig_vendor
     - . install/local_setup.sh
@@ -43,3 +51,17 @@ firmware:
   only:
     - master
     - /.*firmware.*/
+
+all:
+  stage: combined
+  script:
+    - colcon build --packages-select micro_ros_setup
+    - . install/local_setup.sh
+    - ros2 run micro_ros_setup create_agent_ws.sh src
+    - rosdep install --from-paths src -i src -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
+    - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
+    - ros2 run micro_ros_setup create_firmware_ws.sh
+    - cd firmware/NuttX
+    - tools/configure.sh configs/olimex-stm32-e407/drive_base
+    - cd ../..
+    - ros2 run micro_ros_setup build_firmware.sh
