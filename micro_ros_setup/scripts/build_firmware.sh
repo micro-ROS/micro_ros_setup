@@ -43,4 +43,7 @@ popd
 
 pushd $NUTTX_DIR
 make
+RET=$?
 popd 
+
+exit $RET

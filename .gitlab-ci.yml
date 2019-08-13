@@ -65,3 +65,4 @@ all:
     - tools/configure.sh configs/olimex-stm32-e407/drive_base
     - cd ../..
     - ros2 run micro_ros_setup build_firmware.sh
+    - test -f firmware/NuttX/nuttx
