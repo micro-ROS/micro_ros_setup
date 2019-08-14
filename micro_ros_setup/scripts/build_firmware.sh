@@ -5,6 +5,10 @@
 # Syntax: $0 <NuttX-directory> <dev ws location>
 #
 
+set -e
+set -o nounset
+set -o pipefail
+
 NUTTX_DIR=firmware/NuttX
 DEV_WS_DIR=firmware/dev_ws
 
@@ -40,14 +44,15 @@ unset AMENT_PREFIX_PATH
 unset COLCON_PREFIX_PATH
 
 # build and source dev workspace
-pushd $DEV_WS_DIR
+pushd $DEV_WS_DIR >/dev/null
 colcon build
-. install/local_setup.sh
-popd
+set +o nounset
+. install/setup.bash
+popd > /dev/null
 
-pushd $NUTTX_DIR
+pushd $NUTTX_DIR >/dev/null
 make
 RET=$?
-popd 
+popd >/dev/null
 
 exit $RET

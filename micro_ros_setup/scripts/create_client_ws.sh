@@ -1,5 +1,8 @@
 #! /bin/bash
 
+set -e
+set -o nounset
+
 # populate the workspace
 ros2 run micro_ros_setup create_ws.sh $1 client_ros2_packages.txt client_uros_packages.repos
 
