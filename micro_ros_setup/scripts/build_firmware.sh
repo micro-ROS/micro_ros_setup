@@ -24,16 +24,20 @@ then
   DEV_WS_DIR=$2
 fi
 
+PREFIXES_TO_CLEAN=$COLCON_PREFIX_PATH
+
 function clean {
-    echo $(echo $(echo $1 | sed 's/:/\n/g' | grep -v /opt/ros) | sed 's/ /:/g' )
+    echo $(echo $(echo $1 | sed 's/:/\n/g' | \
+      grep -v -E "($(echo $PREFIXES_TO_CLEAN | sed 's/:/\|/g'))" ) | sed 's/ /:/g' )
 }
 
 export LD_LIBRARY_PATH=$(clean $LD_LIBRARY_PATH)
-export AMENT_PREFIX_PATH=$(clean $AMENT_PREFIX_PATH)
 export CMAKE_PREFIX_PATH=$(clean $CMAKE_PREFIX_PATH)
-export COLCON_PREFIX_PATH=$(clean $COLCON_PREFIX_PATH)
 export PYTHONPATH=$(clean $PYTHONPATH)
 export PATH=$(clean $PATH)
+
+unset AMENT_PREFIX_PATH
+unset COLCON_PREFIX_PATH
 
 # build and source dev workspace
 pushd $DEV_WS_DIR
