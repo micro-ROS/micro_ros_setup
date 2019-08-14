@@ -1,5 +1,9 @@
 #! /bin/bash
 
+set -e
+set -o nounset
+set -o pipefail
+
 if [ $# -lt 3 ]
 then
     echo "Syntax: $0 <targetdir> <pkglist> <repolist>"
@@ -37,10 +41,8 @@ else
   # ROS_DISTRO SPECIFIC
   curl https://raw.githubusercontent.com/ros2/ros2/crystal/ros2.repos |\
     ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
-    vcs import --input ros2.repos
-  vcs import --input $REPOS
+  vcs import --input ros2.repos > /dev/null
+  vcs import --input $REPOS > /dev/null
 fi
 
 popd
-
-echo "Repos imported, now run rosdep to ensure all dependencies are present."
