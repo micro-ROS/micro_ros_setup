@@ -74,9 +74,9 @@ all:
 
 ci_base_image:
   stage: pkgonly
-  image: docker:stable
+  image: docker:19.03.1
   services:
-    - docker:dind
+    - docker:19.03.1-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
     - docker build -t ${base_image} -f Dockerfile.ci-base .
