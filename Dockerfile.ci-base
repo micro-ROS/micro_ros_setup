@@ -9,5 +9,5 @@ RUN rosdep install -y --from-paths . -i .
 RUN colcon build && . install/local_setup.sh && \
     ros2 run micro_ros_setup create_agent_ws.sh src && \
     ros2 run micro_ros_setup create_firmware_ws.sh && \
-    rm -rf src firmware micro-ros-build
+    rm -rf *
 

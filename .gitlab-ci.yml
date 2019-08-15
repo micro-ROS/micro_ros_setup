@@ -78,7 +78,8 @@ ci_base_image:
   services:
     - docker:dind
   script:
-    - docker build -t ${base_image} -f .ci-dockerfile .
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
+    - docker build -t ${base_image} -f Dockerfile.ci-base .
     - docker push ${base_image}
   only:
     - scheduled
