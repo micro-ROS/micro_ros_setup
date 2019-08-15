@@ -1,6 +1,7 @@
 variables:
   DOCKER_DRIVER: overlay2
   ROS_DISTRO: crystal
+  base_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/microros-crystal-ros-base-dev
 
 image: ros:${ROS_DISTRO}-ros-base
 
@@ -67,3 +68,14 @@ all:
     - cd ../..
     - ros2 run micro_ros_setup build_firmware.sh
     - test -f firmware/NuttX/nuttx
+
+ci_base_image:
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker build -t ${base_image} -f .ci-dockerfile .
+    - docker push ${base_image}
+  only:
+    - scheduled
+    - /.*ci-base-image.*/

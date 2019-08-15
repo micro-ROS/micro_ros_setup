@@ -1,0 +1,13 @@
+FROM ros:crystal-ros-base
+
+RUN apt-get update && apt install -y python-rosdep python3-colcon-*
+RUN rosdep update
+
+RUN rosdep install -y --from-paths . -i .
+# executing this will install a bunch of dependencies and then we remove 
+# the workspaces again so they do not end up in the container (but their deps will)
+RUN colcon build && . install/local_setup.sh && \
+    ros2 run micro_ros_setup create_agent_ws.sh src && \
+    ros2 run micro_ros_setup create_firmware_ws.sh && \
+    rm -rf src firmware micro-ros-build
+
