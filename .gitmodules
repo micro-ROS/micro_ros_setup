@@ -1,3 +1,0 @@
-[submodule "micro_ros_rtos/tools"]
-	path = nuttx_kconfig_vendor/tools
-	url = https://bitbucket.org/nuttx/tools.git

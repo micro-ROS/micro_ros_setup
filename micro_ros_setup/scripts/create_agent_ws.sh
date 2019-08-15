@@ -1,5 +1,9 @@
 #! /bin/bash
 
+set -e
+set -o nounset
+set -o pipefail
+
 TARGETDIR=src
 
 if [ $# -gt 0 ]

@@ -1,5 +1,9 @@
 #! /bin/bash
 
+set -e
+set -o nounset
+set -o pipefail
+
 if [ $# -lt 3 ]
 then
     echo "Syntax: $0 <targetdir> <pkglist> <repolist>"
@@ -29,18 +33,16 @@ then
 fi
 
 
-pushd $1
+pushd $1 >/dev/null
 if [ -f ros2.repos ]
 then
-    echo "Repo-file ros2.repos already present, ignoring $1"
-else
-  # ROS_DISTRO SPECIFIC
-  curl https://raw.githubusercontent.com/ros2/ros2/crystal/ros2.repos |\
-    ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
-    vcs import --input ros2.repos
-  vcs import --input $REPOS
+    echo "Repo-file ros2.repos already present, overwriting!"
 fi
 
-popd
+# ROS_DISTRO SPECIFIC
+curl -s https://raw.githubusercontent.com/ros2/ros2/crystal/ros2.repos |\
+    ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
+vcs import --input ros2.repos > /dev/null
+vcs import --input $REPOS > /dev/null
 
-echo "Repos imported, now run rosdep to ensure all dependencies are present."
+popd >/dev/null
