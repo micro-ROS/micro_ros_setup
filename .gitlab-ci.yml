@@ -70,6 +70,7 @@ all:
     - test -f firmware/NuttX/nuttx
 
 ci_base_image:
+  stage: pkgonly
   image: docker:stable
   services:
     - docker:dind
