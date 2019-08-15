@@ -8,7 +8,7 @@ ament_package()
 
 include(ExternalProject)
 
-set(TOOLS_SRC ${CMAKE_CURRENT_SOURCE_DIR}/tools)
+set(TOOLS_SRC ${CMAKE_CURRENT_BINARY_DIR}/tools)
 set(KCONFIG_SRC ${TOOLS_SRC}/kconfig-frontends)
 ExternalProject_Add(kconfig
   GIT_REPOSITORY https://bitbucket.org/nuttx/tools.git
