@@ -45,6 +45,7 @@ agent_ws:
   only:
     - master
     - /.*agent.*/
+    - /.*ccache.*/
 
 firmware:
   image: ${firmware_image}
@@ -61,6 +62,7 @@ firmware:
   only:
     - master
     - /.*firmware.*/
+    - /.*ccache.*/
 
 all:
   image: ${firmware_image}
@@ -80,6 +82,7 @@ all:
   only:
     - master
     - /.*build-all.*/
+    - /.*ccache.*/
 
 ci_base_image:
   stage: docker_base
