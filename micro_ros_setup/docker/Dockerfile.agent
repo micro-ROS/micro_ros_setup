@@ -1,5 +1,5 @@
 ARG CI_REGISTRY
-FROM ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-dev
+FROM ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-dev
 
 WORKDIR /tmp/micro-ros
 # executing this will install a bunch of dependencies and then we remove 

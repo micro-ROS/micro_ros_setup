@@ -1,9 +1,9 @@
 variables:
   DOCKER_DRIVER: overlay2
   ROS_DISTRO: crystal
-  base_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-dev
-  agent_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-agent-dev
-  firmware_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-firmware-dev
+  base_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-dev
+  agent_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-agent-dev
+  firmware_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-firmware-dev
 
 image: ros:${ROS_DISTRO}-ros-base
 
@@ -14,34 +14,45 @@ stages:
   - single
   - combined
 
+before_script:
+  - export PATH=/usr/lib/ccache:$PATH
+
 colcon:
   image: ${base_image}
   stage: pkgonly
   script:
+    - which gcc
     - rosdep install -y --from-paths . -i .
-    - colcon build
+    - colcon build --merge-install
+    - ccache -s
+    - test -f install/bin/kconfig && test -f install/lib/micro_ros_setup/build_firmware.sh
   only:
     - master
     - /.*build.*/
+    - /.*ccache.*/
 
 agent_ws:
   image: ${agent_image}
   stage: single
   script:
     - rosdep update
-    - colcon build --packages-select micro_ros_setup
+    - colcon build --merge-install --packages-select micro_ros_setup
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
-    - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
+    - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build --merge-install 
+    - ccache -s
+    - test -f install/lib/micro_ros_agent/micro_ros_agent
   only:
     - master
     - /.*agent.*/
+    - /.*ccache.*/
 
 firmware:
   image: ${firmware_image}
   stage: single
   script:
     - colcon build --packages-select micro_ros_setup nuttx_kconfig_vendor
+    - test -f install/bin/kconfig && test -f install/lib/micro_ros_setup/build_firmware.sh
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_firmware_ws.sh
     - cd firmware/NuttX
@@ -52,25 +63,29 @@ firmware:
   only:
     - master
     - /.*firmware.*/
+    - /.*ccache.*/
 
 all:
   image: ${firmware_image}
   stage: combined
   script:
-    - colcon build
+    - colcon build --merge-install
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
-    - . /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
+    - . /opt/ros/${ROS_DISTRO}/setup.bash && colcon build --merge-install
+    - test -f install/lib/micro_ros_agent/micro_ros_agent
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_firmware_ws.sh
     - cd firmware/NuttX
     - tools/configure.sh configs/olimex-stm32-e407/drive_base
     - cd ../..
     - ros2 run micro_ros_setup build_firmware.sh
+    - ccache -s
     - test -f firmware/NuttX/nuttx
   only:
     - master
     - /.*build-all.*/
+    - /.*ccache.*/
 
 ci_base_image:
   stage: docker_base
