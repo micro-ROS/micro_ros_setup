@@ -111,7 +111,7 @@ agent_base_image:
     - scheduled
     - /.*ci-base-image.*/
 
-agent_base_image:
+firmware_base_image:
   stage: docker
   image: docker:19.03.1
   services:
