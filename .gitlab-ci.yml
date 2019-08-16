@@ -91,11 +91,11 @@ ci_base_image:
     - docker:19.03.1-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
-    - docker build -t ${base_image} -f Dockerfile.ci-base .
+    - docker build -t ${base_image} -f micro_ros_setup/docker/Dockerfile.ci-base .
     - docker push ${base_image}
-    - docker build -t ${agent_image} -f Dockerfile.agent .
+    - docker build -t ${agent_image} -f micro_ros_setup/docker/Dockerfile.agent .
     - docker push ${agent_image}
-    - docker build -t ${firmware_image} -f Dockerfile.firmware .
+    - docker build -t ${firmware_image} -f micro_ros_setup/docker/Dockerfile.firmware .
     - docker push ${firmware_image}
   only:
     - scheduled
