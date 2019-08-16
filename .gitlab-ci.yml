@@ -18,6 +18,8 @@ colcon:
   image: ${base_image}
   stage: pkgonly
   script:
+    - ls $CCACHE_DIR
+    - which gcc
     - rosdep install -y --from-paths . -i .
     - colcon build
   only:
