@@ -1,11 +1,14 @@
 variables:
   DOCKER_DRIVER: overlay2
   ROS_DISTRO: crystal
-  base_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/microros-crystal-ros-base-dev
+  base_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-dev
+  agent_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-agent-dev
+  firmware_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-firmware-dev
 
 image: ros:${ROS_DISTRO}-ros-base
 
 stages:
+  - docker
   - pkgonly
   - single
   - combined
@@ -82,7 +85,7 @@ all:
     - /.*build-all.*/
 
 ci_base_image:
-  stage: pkgonly
+  stage: docker
   image: docker:19.03.1
   services:
     - docker:19.03.1-dind
@@ -90,6 +93,10 @@ ci_base_image:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
     - docker build -t ${base_image} -f Dockerfile.ci-base .
     - docker push ${base_image}
+    - docker build -t ${agent_image} -f Dockerfile.agent .
+    - docker push ${agent_image}
+    - docker build -t ${firmware_image} -f Dockerfile.firmware .
+    - docker push ${firmware_image}
   only:
     - scheduled
     - /.*ci-base-image.*/
