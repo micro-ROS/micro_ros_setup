@@ -24,8 +24,10 @@ colcon:
     - tail -3 /etc/profile
     - which gcc
     - export PATH=/usr/lib/ccache:$PATH
+    - which gcc
     - rosdep install -y --from-paths . -i .
     - colcon build
+    - ccache -s
   only:
     - master
     - /.*build.*/
