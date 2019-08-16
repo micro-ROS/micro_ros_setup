@@ -23,7 +23,7 @@ colcon:
   script:
     - which gcc
     - rosdep install -y --from-paths . -i .
-    - colcon build
+    - colcon build --merge-install
     - ccache -s
     - test -f install/bin/kconfig && test -f install/lib/micro_ros_setup/build_firmware.sh
   only:
@@ -36,10 +36,10 @@ agent_ws:
   stage: single
   script:
     - rosdep update
-    - colcon build --packages-select micro_ros_setup
+    - colcon build --merge-install --packages-select micro_ros_setup
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
-    - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
+    - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build --merge-install 
     - ccache -s
     - test -f install/lib/micro_ros_agent/micro_ros_agent
   only:
@@ -93,7 +93,6 @@ ci_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
-    - /.*ccache.*/
 
 agent_base_image:
   stage: docker
@@ -107,7 +106,6 @@ agent_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
-    - /.*ccache.*/
 
 firmware_base_image:
   stage: docker
@@ -121,4 +119,3 @@ firmware_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
-    - /.*ccache.*/
