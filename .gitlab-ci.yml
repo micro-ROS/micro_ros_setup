@@ -1,26 +1,26 @@
 variables:
   DOCKER_DRIVER: overlay2
   ROS_DISTRO: crystal
+  base_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-dev
+  agent_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-agent-dev
+  firmware_image: ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-firmware-dev
 
 image: ros:${ROS_DISTRO}-ros-base
 
 stages:
+  - docker_base
+  - docker
   - pkgonly
   - single
   - combined
 
-before_script:
-  - apt-get update
-  - cp 20-default.list /etc/ros/rosdep/sources.list.d/
-  - rosdep update
-  - rosdep install -y --from-paths . -i .
-  - apt install -y python3-colcon-* ed
-  - git submodule init
-  - git submodule update
-
 colcon:
   stage: pkgonly
   script:
+    - apt-get update
+    - rosdep update
+    - rosdep install -y --from-paths . -i .
+    - apt install -y python3-colcon-* ed
     - colcon build
   only:
     - master
@@ -29,6 +29,10 @@ colcon:
 agent_ws:
   stage: single
   script:
+    - apt-get update
+    - rosdep update
+    - rosdep install -y --from-paths . -i .
+    - apt install -y python3-colcon-* ed
     - colcon build --packages-select micro_ros_setup
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
@@ -41,6 +45,11 @@ agent_ws:
 firmware:
   stage: single
   script:
+    - apt-get update
+    - rosdep update
+    - rosdep install -y --from-paths . -i .
+    - apt install -y python3-colcon-* ed
+
     - colcon build --packages-select micro_ros_setup nuttx_kconfig_vendor
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_firmware_ws.sh
@@ -55,6 +64,11 @@ firmware:
 all:
   stage: combined
   script:
+    - apt-get update
+    - rosdep update
+    - rosdep install -y --from-paths . -i .
+    - apt install -y python3-colcon-* ed
+
     - colcon build
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
@@ -67,3 +81,45 @@ all:
     - cd ../..
     - ros2 run micro_ros_setup build_firmware.sh
     - test -f firmware/NuttX/nuttx
+  only:
+    - master
+    - /.*build-all.*/
+
+ci_base_image:
+  stage: docker_base
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
+    - docker build -t ${base_image} -f micro_ros_setup/docker/Dockerfile.ci-base .
+    - docker push ${base_image}
+  only:
+    - scheduled
+    - /.*ci-base-image.*/
+
+agent_base_image:
+  stage: docker
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
+    - docker build -t ${agent_image} --build-arg CI_REGISTRY=${CI_REGISTRY} -f micro_ros_setup/docker/Dockerfile.agent .
+    - docker push ${agent_image}
+  only:
+    - scheduled
+    - /.*ci-base-image.*/
+
+firmware_base_image:
+  stage: docker
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
+    - docker build -t ${firmware_image} --build-arg CI_REGISTRY=${CI_REGISTRY} -f micro_ros_setup/docker/Dockerfile.firmware .
+    - docker push ${firmware_image}
+  only:
+    - scheduled
+    - /.*ci-base-image.*/
