@@ -15,41 +15,32 @@ stages:
   - combined
 
 colcon:
+  image: ${base_image}
   stage: pkgonly
   script:
-    - apt-get update
-    - rosdep update
     - rosdep install -y --from-paths . -i .
-    - apt install -y python3-colcon-* ed
     - colcon build
   only:
     - master
     - /.*build.*/
 
 agent_ws:
+  image: ${agent_image}
   stage: single
   script:
-    - apt-get update
     - rosdep update
-    - rosdep install -y --from-paths . -i .
-    - apt install -y python3-colcon-* ed
     - colcon build --packages-select micro_ros_setup
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
-    - rosdep install --from-paths src -i src -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
     - source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
   only:
     - master
     - /.*agent.*/
 
 firmware:
+  image: ${firmware_image}
   stage: single
   script:
-    - apt-get update
-    - rosdep update
-    - rosdep install -y --from-paths . -i .
-    - apt install -y python3-colcon-* ed
-
     - colcon build --packages-select micro_ros_setup nuttx_kconfig_vendor
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_firmware_ws.sh
@@ -57,22 +48,18 @@ firmware:
     - tools/configure.sh configs/olimex-stm32-e407/drive_base
     - cd ../..
     - ros2 run micro_ros_setup build_firmware.sh
+    - test -f firmware/NuttX/nuttx
   only:
     - master
     - /.*firmware.*/
 
 all:
+  image: ${firmware_image}
   stage: combined
   script:
-    - apt-get update
-    - rosdep update
-    - rosdep install -y --from-paths . -i .
-    - apt install -y python3-colcon-* ed
-
     - colcon build
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_agent_ws.sh src
-    - rosdep install --from-paths src -i src -y --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
     - . /opt/ros/${ROS_DISTRO}/setup.bash && colcon build
     - . install/local_setup.sh
     - ros2 run micro_ros_setup create_firmware_ws.sh
