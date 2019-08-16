@@ -99,6 +99,7 @@ ci_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
+    - /.*ccache.*/
 
 agent_base_image:
   stage: docker
@@ -112,6 +113,7 @@ agent_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
+    - /.*ccache.*/
 
 firmware_base_image:
   stage: docker
@@ -125,3 +127,4 @@ firmware_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
+    - /.*ccache.*/
