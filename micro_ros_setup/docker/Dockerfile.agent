@@ -1,3 +1,4 @@
+ARG CI_REGISTRY
 FROM ${CI_REGISTRY}/micro-ros/ci-support/micro-ros-build/uros-crystal-dev
 
 WORKDIR /tmp/micro-ros
