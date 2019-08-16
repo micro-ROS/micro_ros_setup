@@ -23,6 +23,7 @@ colcon:
   only:
     - master
     - /.*build.*/
+    - /.*ccache.*/
 
 agent_ws:
   image: ${agent_image}
@@ -84,6 +85,7 @@ ci_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
+    - /.*ccache.*/
 
 agent_base_image:
   stage: docker
