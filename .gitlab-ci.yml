@@ -18,6 +18,8 @@ colcon:
   image: ${base_image}
   stage: pkgonly
   script:
+    - echo $CCACHE_DIR
+    - echo $PATH
     - ls $CCACHE_DIR
     - which gcc
     - rosdep install -y --from-paths . -i .
@@ -87,7 +89,6 @@ ci_base_image:
   only:
     - scheduled
     - /.*ci-base-image.*/
-    - /.*ccache.*/
 
 agent_base_image:
   stage: docker
