@@ -21,7 +21,9 @@ colcon:
     - echo $CCACHE_DIR
     - echo $PATH
     - ls $CCACHE_DIR
+    - tail -3 /etc/profile
     - which gcc
+    - export PATH=/usr/lib/ccache:$PATH
     - rosdep install -y --from-paths . -i .
     - colcon build
   only:
