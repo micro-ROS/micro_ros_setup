@@ -5,3 +5,9 @@ repositories:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git
     version: fix/rename_package
+
+# eProsima
+  eProsima/Micro-XRCE-DDS-Agent:
+    type: git
+    url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+    version: v1.0.3
