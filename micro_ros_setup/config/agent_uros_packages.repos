@@ -4,4 +4,4 @@ repositories:
   uros/uROS_agent:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git
-    version: fix/crystal-package-list
+    version: Crystal
