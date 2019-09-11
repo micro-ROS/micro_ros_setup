@@ -4,7 +4,7 @@ repositories:
   uros/uROS_agent:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git
-    version: fix/rename_package
+    version: Crystal
 
 # eProsima
   eProsima/Micro-XRCE-DDS-Agent:
