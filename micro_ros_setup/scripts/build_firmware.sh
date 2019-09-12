@@ -35,9 +35,41 @@ function clean {
       grep -v -E "($(echo $PREFIXES_TO_CLEAN | sed 's/:/\|/g'))" ) | sed 's/ /:/g' )
 }
 
-export LD_LIBRARY_PATH=$(clean $LD_LIBRARY_PATH)
-export CMAKE_PREFIX_PATH=$(clean $CMAKE_PREFIX_PATH)
-export PYTHONPATH=$(clean $PYTHONPATH)
+
+if [ ! -z ${LD_LIBRARY_PATH+x} ]
+then
+  MRS_TEMP_VAR=$(clean $LD_LIBRARY_PATH)
+  if [ ! -z "$MRS_TEMP_VAR" ]  
+  then
+    export LD_LIBRARY_PATH=$MRS_TEMP_VAR
+  else
+    unset LD_LIBRARY_PATH
+  fi
+  unset MRS_TEMP_VAR
+fi
+if [ ! -z ${CMAKE_PREFIX_PATH+x} ]
+then
+  MRS_TEMP_VAR=$(clean $CMAKE_PREFIX_PATH)
+  if [ ! -z "$MRS_TEMP_VAR" ]  
+  then
+    export CMAKE_PREFIX_PATH=$MRS_TEMP_VAR
+  else
+    unset CMAKE_PREFIX_PATH
+  fi
+  unset MRS_TEMP_VAR
+fi
+if [ ! -z ${PYTHONPATH+x} ]
+then
+  MRS_TEMP_VAR=$(clean $PYTHONPATH)
+  if [ ! -z "$MRS_TEMP_VAR" ]  
+  then
+    export PYTHONPATH=$MRS_TEMP_VAR
+  else
+    unset PYTHONPATH
+  fi
+  unset MRS_TEMP_VAR
+fi
+
 export PATH=$(clean $PATH)
 
 unset AMENT_PREFIX_PATH
