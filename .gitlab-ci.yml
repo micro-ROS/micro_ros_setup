@@ -109,7 +109,7 @@ ci_base_image:
     - docker build -t ${base_image} -f micro_ros_setup/docker/Dockerfile.ci-base .
     - docker push ${base_image}
   only:
-    - scheduled
+    - schedules
     - /.*ci-base-image.*/
 
 agent_base_image:
@@ -122,7 +122,7 @@ agent_base_image:
     - docker build -t ${agent_image} --build-arg CI_REGISTRY=${CI_REGISTRY} -f micro_ros_setup/docker/Dockerfile.agent .
     - docker push ${agent_image}
   only:
-    - scheduled
+    - schedules
     - /.*ci-base-image.*/
 
 firmware_base_image:
@@ -135,5 +135,5 @@ firmware_base_image:
     - docker build -t ${firmware_image} --build-arg CI_REGISTRY=${CI_REGISTRY} -f micro_ros_setup/docker/Dockerfile.firmware .
     - docker push ${firmware_image}
   only:
-    - scheduled
+    - schedules
     - /.*ci-base-image.*/
