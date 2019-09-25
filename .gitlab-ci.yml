@@ -27,7 +27,7 @@ colcon:
     - ccache -s
     - test -f install/bin/kconfig && test -f install/lib/micro_ros_setup/build_firmware.sh
   only:
-    - master
+    - crystal
     - /.*build.*/
     - /.*ccache.*/
 
@@ -43,7 +43,7 @@ agent_ws:
     - ccache -s
     - test -f install/lib/micro_ros_agent/micro_ros_agent
   only:
-    - master
+    - crystal
     - /.*agent.*/
     - /.*ccache.*/
 
@@ -61,7 +61,7 @@ firmware:
     - ros2 run micro_ros_setup build_firmware.sh
     - test -f firmware/NuttX/nuttx
   only:
-    - master
+    - crystal
     - /.*firmware.*/
     - /.*ccache.*/
 
@@ -83,7 +83,7 @@ all:
     - ccache -s
     - test -f firmware/NuttX/nuttx
   only:
-    - master
+    - crystal
     - /.*build-all.*/
     - /.*ccache.*/
 
