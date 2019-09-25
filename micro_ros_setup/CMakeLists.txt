@@ -43,6 +43,7 @@ install(
     scripts/create_ws.sh 
     scripts/create_agent_ws.sh 
     scripts/create_client_ws.sh
+    scripts/create_host_client_ws.sh
     scripts/create_dev_ws.sh
     scripts/create_firmware_ws.sh
     scripts/build_firmware.sh
