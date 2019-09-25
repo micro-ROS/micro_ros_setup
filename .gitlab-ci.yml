@@ -30,6 +30,9 @@ colcon:
     - crystal
     - /.*build.*/
     - /.*ccache.*/
+  except:
+    variables:
+      - SCHEDULE == "docker"
 
 agent_ws:
   image: ${agent_image}
@@ -46,6 +49,9 @@ agent_ws:
     - crystal
     - /.*agent.*/
     - /.*ccache.*/
+  except:
+    variables:
+      - SCHEDULE == "docker"
 
 firmware:
   image: ${firmware_image}
@@ -64,6 +70,9 @@ firmware:
     - crystal
     - /.*firmware.*/
     - /.*ccache.*/
+  except:
+    variables:
+      - SCHEDULE == "docker"
 
 all:
   image: ${firmware_image}
@@ -86,6 +95,9 @@ all:
     - crystal
     - /.*build-all.*/
     - /.*ccache.*/
+  except:
+    variables:
+      - SCHEDULE == "docker"
 
 ci_base_image:
   stage: docker_base
