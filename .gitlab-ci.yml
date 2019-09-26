@@ -80,9 +80,12 @@ host_client_ws:
     - test -f install/lib/string_subscriber_c/string_subscriber_c
     - test -f install/lib/string_subscriber_cpp/string_subscriber_cpp
   only:
-    - master
+    - crystal 
     - /.*client.*/
     - /.*ccache.*/
+  except:
+    variables:
+      - $SCHEDULE == "docker"
 
 firmware:
   image: ${firmware_image}
@@ -166,7 +169,7 @@ host_client_base_image:
     - docker build -t ${host_client_image} --build-arg CI_REGISTRY=${CI_REGISTRY} -f micro_ros_setup/docker/Dockerfile.host_client .
     - docker push ${host_client_image}
   only:
-    - scheduled
+    - schedules
     - /.*ci-base-image.*/
 
 firmware_base_image:
