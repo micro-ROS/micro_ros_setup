@@ -4,6 +4,7 @@ variables:
   base_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-dev
   agent_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-agent-dev
   firmware_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-firmware-dev
+  host_client_image: ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-host-client-dev
 
 image: ros:${ROS_DISTRO}-ros-base
 
@@ -52,6 +53,36 @@ agent_ws:
   except:
     variables:
       - $SCHEDULE == "docker"
+
+host_client_ws:
+  image: ${host_client_image}
+  stage: single
+  script:
+    - colcon build --merge-install --packages-slect micro_ros_setup
+    - . install/local_setup.sh
+    - ros2 run micro_ros_setup create_host_client_ws.sh
+    - source /opt/ros/${ROS_DISTRO}/setup.bash && rosdep install -y --from-paths src -i src --skip-keys="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
+    - source /opr/ros/${ROS_DISTRO}/setup.bash && colcon build --merge-install --metas src --cmake-args -DBUILD_SHARED_LIBS=ON
+    - test -f install/lib/complex_msg_publisher_c/complex_msg_publisher_c
+    - test -f install/lib/complex_msg_publisher_cpp/complex_msg_publisher_cpp
+    - test -f install/lib/complex_msg_subscriber_c/complex_msg_subscriber_c
+    - test -f install/lib/complex_msg_subscriber_cpp/complex_msg_subscriber_cpp
+    - test -f install/lib/int32_publisher_c/int32_publisher_c
+    - test -f install/lib/int32_publisher_cpp/int32_publisher_cpp
+    - test -f install/lib/int32_subscriber_c/int32_subscriber_c
+    - test -f install/lib/int32_subscriber_cpp/int32_subscriber_cpp
+    - test -f install/lib/rad0_actuator_c/rad0_actuator_c
+    - test -f install/lib/rad0_altitude_sensor_c/rad0_altitude_sensor_c
+    - test -f install/lib/rad0_control_cpp/rad0_control_cpp
+    - test -f install/lib/rad0_display_c/rad0_display_c
+    - test -f install/lib/string_publisher_c/string_publisher_c
+    - test -f install/lib/string_publisher_cpp/string_publisher_cpp
+    - test -f install/lib/string_subscriber_c/string_subscriber_c
+    - test -f install/lib/string_subscriber_cpp/string_subscriber_cpp
+  only:
+    - master
+    - /.*client.*/
+    - /.*ccache.*/
 
 firmware:
   image: ${firmware_image}
@@ -123,6 +154,19 @@ agent_base_image:
     - docker push ${agent_image}
   only:
     - schedules
+    - /.*ci-base-image.*/
+
+host_client_base_image:
+  stage: docker
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN ${CI_REGISTRY}
+    - docker build -t ${host_client_image} --build-arg CI_REGISTRY=${CI_REGISTRY} -f micro_ros_setup/docker/Dockerfile.host_client .
+    - docker push ${host_client_image}
+  only:
+    - scheduled
     - /.*ci-base-image.*/
 
 firmware_base_image:
