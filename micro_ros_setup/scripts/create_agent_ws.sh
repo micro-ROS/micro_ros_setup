@@ -5,6 +5,7 @@ set -o nounset
 set -o pipefail
 
 TARGETDIR=src
+SKIP="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
 
 if [ $# -gt 0 ]
 then
@@ -20,4 +21,4 @@ ros2 run micro_ros_setup create_ws.sh $TARGETDIR agent_ros2_packages.txt agent_u
 cp $(ros2 pkg prefix micro_ros_setup)/config/agent-colcon.meta $TARGETDIR/colcon.meta
 
 rosdep install --from-paths $TARGETDIR -i $TARGETDIR -y \
-  --skip-keys="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
+  --skip-keys="$SKIP"

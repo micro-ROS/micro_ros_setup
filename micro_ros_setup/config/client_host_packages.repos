@@ -22,3 +22,7 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
     version: release-crystal-20190312
+  uros/micro-ROS-demos:
+    type: git
+    url: https://github.com/micro-ROS/micro-ROS-demos.git
+    version: develop 
