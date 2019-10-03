@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 
 TARGETDIR=src
-SKIP="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp"
+SKIP="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp microxrcedds_agent"
 
 if [ $# -gt 0 ]
 then

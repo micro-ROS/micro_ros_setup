@@ -1,7 +1,11 @@
-# we use the xrce-dds agent from the installed package
+# Micro XRCE-DDS agent should be a dashing package
 repositories:
 # MicroROS
   uros/uROS_agent:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git
-    version: Crystal
+    version: feature/dashing_migration
+  eProsima/Micro-XRCE-DDS-Agent:
+    type: git
+    url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+    version: dashing
