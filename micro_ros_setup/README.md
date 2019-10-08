@@ -28,7 +28,7 @@ This is, overall, a four-step process.
 It is best to start with a fresh workspace, both to speed up compiles and to avoid unintended interference. 
 
 ```shell
-source /opt/ros/crystal/setup.bash
+source /opt/ros/dashing/setup.bash
 sudo apt install python-rosdep
 mkdir -p uros_ws/src
 cd uros_ws
