@@ -11,6 +11,18 @@ set -o pipefail
 
 NUTTX_DIR=firmware/NuttX
 DEV_WS_DIR=firmware/dev_ws
+MRS_MAKE=make
+
+UROS_FAST_BUILD=off
+if [ $# -gt 0 ]
+then
+	if [ "$1" = "-f" ]
+	then
+		UROS_FAST_BUILD=on
+		shift
+	fi
+fi
+export UROS_FAST_BUILD
 
 if [ $# -eq 1 ]
 then
@@ -76,14 +88,17 @@ unset AMENT_PREFIX_PATH
 unset COLCON_PREFIX_PATH
 
 # build and source dev workspace
-pushd $DEV_WS_DIR >/dev/null
-colcon build
-set +o nounset
-. install/setup.bash
-popd > /dev/null
+if [ "$UROS_FAST_BUILD" = "off" ]
+then
+	pushd $DEV_WS_DIR >/dev/null
+	/usr/bin/time --append --output=/home/lui3si/src/micro-ros/dev_ws.time colcon build
+	set +o nounset
+	. install/setup.bash
+	popd > /dev/null
+fi
 
 pushd $NUTTX_DIR >/dev/null
-make
+/usr/bin/time --append --output=/home/lui3si/src/micro-ros/nuttx.time $MRS_MAKE
 RET=$?
 popd >/dev/null
 
