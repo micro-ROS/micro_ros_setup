@@ -12,3 +12,5 @@ keep:
   ros2/rcl_interfaces
   ros2/unique_identifier_msgs
   ros2/rcl_logging
+  ros2/test_interface_files
+  ros2/tinydir_vendor
