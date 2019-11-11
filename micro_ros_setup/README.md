@@ -62,8 +62,14 @@ Note that, by default, the `create_agent_ws.sh` used below will add the packages
 ros2 run micro_ros_setup create_firmware_ws.sh
 cd firmware/NuttX
 tools/configure.sh configs/olimex-stm32-e407/drive_base # FOR EXAMPLE!
-cd ../..
-ros2 run micro_ros_setup build_firmware.sh
+```
+> :warning: The following shell commands should be run on a new shell. Do not source source `/opt/ros/dashing/setup.bash` as it will break cross-compilation with only C packages.
+
+In a new shell.
+
+```shell
+source install/local_setup.sh
+. install/micro_ros_setup/lib/micro_ros_setup/build_firmware.sh
 ```
 
 These commands create the firmware workspace and then configure an example NuttX build that uses Micro-ROS.
