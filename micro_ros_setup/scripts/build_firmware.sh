@@ -28,7 +28,7 @@ then
   DEV_WS_DIR=$2
 fi
 
-PREFIXES_TO_CLEAN=$COLCON_PREFIX_PATH
+PREFIXES_TO_CLEAN=$AMENT_PREFIX_PATH
 
 function clean {
     echo $(echo $(echo $1 | sed 's/:/\n/g' | \
