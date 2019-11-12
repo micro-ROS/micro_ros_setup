@@ -18,7 +18,8 @@ if [ $# -gt 0 ]
 then
 	if [ "$1" = "-f" ]
 	then
-		UROS_FAST_BUILD=on
+    echo "Fast-Build active,ROS workspace will not be re-built!"
+		export UROS_FAST_BUILD=y
 		shift
 	fi
 fi
@@ -91,14 +92,14 @@ unset COLCON_PREFIX_PATH
 if [ "$UROS_FAST_BUILD" = "off" ]
 then
 	pushd $DEV_WS_DIR >/dev/null
-	/usr/bin/time --append --output=/home/lui3si/src/micro-ros/dev_ws.time colcon build
+	colcon build
 	set +o nounset
 	. install/setup.bash
 	popd > /dev/null
 fi
 
 pushd $NUTTX_DIR >/dev/null
-/usr/bin/time --append --output=/home/lui3si/src/micro-ros/nuttx.time $MRS_MAKE
+$MRS_MAKE
 RET=$?
 popd >/dev/null
 
