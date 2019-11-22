@@ -1,0 +1,5 @@
+{ "names": {
+  "rcutils": { "cmake-args": [ "-DENABLE_TESTING=OFF" ], },
+  "microxrcedds_client": { "cmake-args": [ "-DUCLIENT_PIC=OFF", "-DUCLIENT_SUPERBUILD=OFF" ], },
+  }
+}
