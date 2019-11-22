@@ -7,34 +7,57 @@ set -o pipefail
 FW_TARGETDIR=firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
-SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
+print_available_platforms () {
+  echo "Available platforms:"
+  pushd $PREFIX/config >/dev/null
+  for rtos in $(ls -d */ | cut -f1 -d'/'); do 
+    echo ". $rtos"
+    pushd $rtos >/dev/null
+    for platform in $(ls -d */ | cut -f1 -d'/'); do 
+          echo "+-- $platform"
+    done
+    popd >/dev/null
+  done
+  popd >/dev/null
+}
 
-[ -d $FW_TARGETDIR ] || mkdir $FW_TARGETDIR
-pushd $FW_TARGETDIR >/dev/null
-    touch COLCON_IGNORE
+# Retrieving RTOS and Platform
 
-    vcs import --input $PREFIX/config/uros_packages.repos >/dev/null
+if [ $# -ge 1 ]; then
+    RTOS=$1
+else
+    echo "Syntax: ros2 run micro_ros_setup create_firmware_ws.sh <RTOS name> [<platform>]"
+    print_available_platforms
+    exit 1
+fi
 
-    # install uclibc
-    if [ ! -d "NuttX/libs/libxx/uClibc++" ]
-    then
-      pushd uclibc >/dev/null
-      ./install.sh ../NuttX
-      popd >/dev/null
-    fi
+if [ $# -ge 2 ]; then
+    PLATFORM=$2
+else
+    PLATFORM=Generic
+fi
 
-    [ -d dev_ws ] || mkdir dev_ws
-    ros2 run micro_ros_setup create_dev_ws.sh dev_ws
-    rosdep install -y --from-paths dev_ws -i dev_ws --rosdistro dashing --skip-keys="$SKIP"
+# Checking if firmware exists
+if [ -d $FW_TARGETDIR ]; then
+    echo "Firmware already created. Please delete $FW_TARGETDIR folder if you want a fresh installation."
+    exit 1
+fi
 
-    [ -d mcu_ws ] || mkdir mcu_ws
-    ros2 run micro_ros_setup create_client_ws.sh mcu_ws
-    # ignore broken packages
-    touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
-    touch mcu_ws/ros2/rcl/rcl_action/COLCON_IGNORE
-    # in the event there are buildtools required, we also run rosdep on the client_ws
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
-    # turn off features which don't compile on NuttX currently
-    echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null
-popd >/dev/null
+# Checking folders
+if [ -d $PREFIX/config/$RTOS/$PLATFORM ]; then
+    echo "Creating firmware for $RTOS platform $PLATFORM"
+    FOLDER=$PREFIX/config/$RTOS/$PLATFORM
+else
+    echo "Non valid RTOS/Platform: $RTOS/$PLATFORM"
+    print_available_platforms
+    exit 1 
+fi
+
+mkdir $FW_TARGETDIR
+
+echo $RTOS > $FW_TARGETDIR/PLATFORM
+echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
+
+# Creating specific firmware folder
+. $PREFIX/config/$RTOS/$PLATFORM/create.sh
 
