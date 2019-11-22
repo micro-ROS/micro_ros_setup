@@ -1,0 +1,5 @@
+{ "names": {
+    "rcutils": { "cmake-args": [ "-DENABLE_TESTING=OFF" ], },
+    "microxrcedds_client": { "cmake-args": [ "-DPLATFORM_EXTERNAL_TRANSPORT_HEADER=../../../crazyflie_microros_extensions/transports/crazyflie_transport.h", "-DPLATFORM_EXTERNAL_TRANSPORT=../../../crazyflie_microros_extensions/transports/crazyflie_transport.c" ], },
+  }
+}
