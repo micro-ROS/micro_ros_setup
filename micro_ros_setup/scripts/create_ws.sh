@@ -17,9 +17,9 @@ then
 fi
 
 
-OUR_PREFIX=$(ros2 pkg prefix micro_ros_setup)
-PACKAGES=${OUR_PREFIX}/config/$2
-REPOS=${OUR_PREFIX}/config/$3
+PACKAGES=$2
+REPOS=$3
+
 if [ ! -f ${PACKAGES} ]
 then
     echo "Error: Package list file $PACKAGES (expanded from $2) does not exist"
@@ -46,3 +46,4 @@ vcs import --input ros2.repos > /dev/null
 vcs import --input $REPOS > /dev/null
 
 popd >/dev/null
+
