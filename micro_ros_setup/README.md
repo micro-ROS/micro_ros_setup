@@ -50,7 +50,7 @@ Once the package is built, the firmware scripts are ready to run.
 Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, targeting FreeRTOS and Crazyflie 2.1:
 
 ```
-ros2 run micro_ros_setup create_firmware_ws.sh FreeRTOS Crazyflie21
+ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie21
 ```
 
 ## Configuring micro-ROS firmware
