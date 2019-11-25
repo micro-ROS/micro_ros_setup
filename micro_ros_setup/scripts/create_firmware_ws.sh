@@ -34,7 +34,7 @@ fi
 if [ $# -ge 2 ]; then
     PLATFORM=$2
 else
-    PLATFORM=Generic
+    PLATFORM=generic
 fi
 
 # Checking if firmware exists

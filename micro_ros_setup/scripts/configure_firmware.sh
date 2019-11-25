@@ -70,6 +70,6 @@ if [ -f $PREFIX/config/$RTOS/$PLATFORM/configure.sh ]; then
   echo "Configuring firmware for $RTOS platform $PLATFORM"
   . $PREFIX/config/$RTOS/$PLATFORM/configure.sh
 else
-  echo "No configuration step found for $RTOS platform $PLATFORM"
+  echo "No configuration step needed for $RTOS platform $PLATFORM"
 fi
 
