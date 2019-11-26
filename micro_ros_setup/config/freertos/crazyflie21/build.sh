@@ -1,12 +1,15 @@
 CF_DIR=$FW_TARGETDIR/crazyflie_firmware
 DEV_WS_DIR=$FW_TARGETDIR/dev_ws
 
-# build and source dev workspace
-pushd $DEV_WS_DIR >/dev/null
-colcon build
-set +o nounset
-. install/setup.bash
-popd > /dev/null
+if [ "$UROS_FAST_BUILD" = "off" ]
+then
+    # build and source dev workspace
+	pushd $DEV_WS_DIR >/dev/null
+	colcon build
+	set +o nounset
+	. install/setup.bash
+	popd > /dev/null
+fi
 
 pushd $CF_DIR >/dev/null
 git submodule init
