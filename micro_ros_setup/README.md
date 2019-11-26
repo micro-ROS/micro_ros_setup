@@ -34,7 +34,7 @@ sudo apt install python-rosdep curl
 Create a ROS 2 workspace and build this package:
 
 ```
-source /opt/ros/crystal/setup.bash
+source /opt/ros/dashing/setup.bash
 mkdir uros_ws
 cd uros_ws
 git clone --recursive -b feature/multiboard https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
