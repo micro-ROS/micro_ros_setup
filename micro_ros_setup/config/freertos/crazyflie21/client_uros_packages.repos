@@ -10,10 +10,14 @@ repositories:
 
 # MicroROS
   
+  uros/rcl:
+    type: git
+    url: https://github.com/micro-ROS/rcl
+    version: feature/remove_security_directory
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: microros_crazyflie
+    version: microros_crazyflie_dashing
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
