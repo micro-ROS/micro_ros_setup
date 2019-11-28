@@ -23,7 +23,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Dependencies
 
-This package targets **ROS 2 Crystal** installation. Some other prerequisites needed for building a firmware usign this package are:
+This package targets **ROS 2 Dashing** installation. Some other prerequisites needed for building a firmware usign this package are:
 
 ```
 sudo apt install python-rosdep curl
