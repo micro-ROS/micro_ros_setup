@@ -20,7 +20,7 @@ pushd $FW_TARGETDIR >/dev/null
     # Creating dev directory
     [ -d dev_ws ] || mkdir dev_ws
     ros2 run micro_ros_setup create_ws.sh dev_ws $PREFIX/config/dev_ros2_packages.txt  $PREFIX/config/dev_uros_packages.repos
-    rosdep install -y --from-paths dev_ws -i dev_ws --rosdistro crystal --skip-keys="$SKIP"
+    rosdep install -y --from-paths dev_ws -i dev_ws --rosdistro dashing --skip-keys="$SKIP"
 
     # Creating mcu directory
     [ -d mcu_ws ] || mkdir mcu_ws
@@ -32,7 +32,7 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rcl/rcl_action/COLCON_IGNORE
 
     # in the event there are buildtools required, we also run rosdep on the client_ws
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro crystal --skip-keys="$SKIP"
+    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
 
     # turn off features which don't compile on NuttX currently
     echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null
