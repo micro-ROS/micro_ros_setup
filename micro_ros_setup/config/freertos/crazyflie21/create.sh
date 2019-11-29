@@ -8,7 +8,7 @@ pushd $FW_TARGETDIR >/dev/null
     touch COLCON_IGNORE
 
     # Import repos
-    vcs import --input $PREFIX/config/$RTOS/$PLATFORM/uros_packages.repos >/dev/null
+    vcs import --input $PREFIX/config/$RTOS/$PLATFORM/crazyflie.repos >/dev/null
 
     # Creating dev directory
     mkdir dev_ws

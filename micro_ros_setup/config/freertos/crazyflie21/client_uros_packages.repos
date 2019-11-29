@@ -17,7 +17,7 @@ repositories:
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: microros_crazyflie_dashing
+    version: microros_crazyflie
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
