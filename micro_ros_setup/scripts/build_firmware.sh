@@ -13,7 +13,7 @@ if [ $# -gt 0 ]
 then
 	if [ "$1" = "-f" ]
 	then
-    echo "Fast-Build active,ROS workspace will not be re-built!"
+    echo "Fast-Build active, ROS workspace will not be re-built!"
 		export UROS_FAST_BUILD=y
 		shift
 	fi
