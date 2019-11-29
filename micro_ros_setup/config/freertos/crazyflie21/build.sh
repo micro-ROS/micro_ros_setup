@@ -1,19 +1,28 @@
 CF_DIR=$FW_TARGETDIR/crazyflie_firmware
+CF_EXTENSIONS_DIR=$FW_TARGETDIR/crazyflie_microros_extensions
 DEV_WS_DIR=$FW_TARGETDIR/dev_ws
 
-if [ "$UROS_FAST_BUILD" = "off" ]
-then
-    # build and source dev workspace
-	pushd $DEV_WS_DIR >/dev/null
+pushd $DEV_WS_DIR >/dev/null
+if [ "$UROS_FAST_BUILD" = "off" ] && [ -d "install" ]; then
+    # build workspace
 	colcon build
-	set +o nounset
-	. install/setup.bash
-	popd > /dev/null
 fi
+set +o nounset
+# source dev workspace
+. install/setup.bash
+popd > /dev/null
 
 pushd $CF_DIR >/dev/null
 git submodule init
 git submodule update
+popd >/dev/null
+
+pushd $CF_EXTENSIONS_DIR >/dev/null
 make clean
-make PLATFORM=cf2
+if [ "$UROS_FAST_BUILD" = "off" ] && [ -d "bin" ]; then
+    # build micro-ROS stack
+	make libmicroros
+fi
+# build crayflie firmware
+make PLATFORM=cf2 DEBUG=0 CLOAD=0
 popd >/dev/null
