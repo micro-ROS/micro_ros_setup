@@ -1,80 +1,51 @@
-#! /bin/bash
+cmake_minimum_required(VERSION 3.5)
+project(micro_ros_setup)
 
-set -e
-set -o nounset
-set -o pipefail
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
 
-PREFIXES_TO_CLEAN=$AMENT_PREFIX_PATH
-FW_TARGETDIR=firmware
-PREFIX=$(ros2 pkg prefix micro_ros_setup)
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
-UROS_FAST_BUILD=off
-if [ $# -gt 0 ]
-then
-	if [ "$1" = "-f" ]
-	then
-    echo "Fast-Build active, ROS workspace will not be re-built!"
-		export UROS_FAST_BUILD=y
-		shift
-	fi
-fi
-export UROS_FAST_BUILD
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-# Checking if firmware exists
-if [ -d $FW_TARGETDIR ]; then
-    RTOS=$(head -n1 $FW_TARGETDIR/PLATFORM)
-    PLATFORM=$(tail -n1 $FW_TARGETDIR/PLATFORM)
-else
-    echo "Firmware folder not found. Please use ros2 run micro_ros_setup create_firmware_ws.sh to create a new project."
-    exit 1
-fi
+# find dependencies
+find_package(ament_cmake REQUIRED)
+# uncomment the following section in order to fill in
+# further dependencies manually.
+# find_package(<dependency> REQUIRED)
 
-# Cleaning paths
-function clean {
-    echo $(echo $(echo $1 | sed 's/:/\n/g' | \
-      grep -v -E "($(echo $PREFIXES_TO_CLEAN | sed 's/:/\|/g'))" ) | sed 's/ /:/g' )
-}
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # uncomment the line when a copyright and license is not present in all source files
+  #set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # uncomment the line when this package is not in a git repo
+  #set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
+ament_package()
 
-if [ ! -z ${LD_LIBRARY_PATH+x} ]
-then
-  MRS_TEMP_VAR=$(clean $LD_LIBRARY_PATH)
-  if [ ! -z "$MRS_TEMP_VAR" ]  
-  then
-    export LD_LIBRARY_PATH=$MRS_TEMP_VAR
-  else
-    unset LD_LIBRARY_PATH
-  fi
-  unset MRS_TEMP_VAR
-fi
-if [ ! -z ${CMAKE_PREFIX_PATH+x} ]
-then
-  MRS_TEMP_VAR=$(clean $CMAKE_PREFIX_PATH)
-  if [ ! -z "$MRS_TEMP_VAR" ]  
-  then
-    export CMAKE_PREFIX_PATH=$MRS_TEMP_VAR
-  else
-    unset CMAKE_PREFIX_PATH
-  fi
-  unset MRS_TEMP_VAR
-fi
-if [ ! -z ${PYTHONPATH+x} ]
-then
-  MRS_TEMP_VAR=$(clean $PYTHONPATH)
-  if [ ! -z "$MRS_TEMP_VAR" ]  
-  then
-    export PYTHONPATH=$MRS_TEMP_VAR
-  else
-    unset PYTHONPATH
-  fi
-  unset MRS_TEMP_VAR
-fi
+install(
+  DIRECTORY config DESTINATION .
+)
 
-export PATH=$(clean $PATH)
-
-unset AMENT_PREFIX_PATH
-unset COLCON_PREFIX_PATH
-
-# Building specific firmware folder
-echo "Building firmware for $RTOS platform $PLATFORM"
-. $PREFIX/config/$RTOS/$PLATFORM/build.sh
+install(
+  PROGRAMS 
+    scripts/create_ws.sh 
+    scripts/create_agent_ws.sh 
+    scripts/create_firmware_ws.sh
+    scripts/configure_firmware.sh
+    scripts/flash_firmware.sh
+    scripts/build_firmware.sh
+    scripts/yaml_filter.py
+  DESTINATION lib/${PROJECT_NAME}
+)

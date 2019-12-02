@@ -4,7 +4,6 @@ set -e
 set -o nounset
 set -o pipefail
 
-PREFIXES_TO_CLEAN=$COLCON_PREFIX_PATH
 FW_TARGETDIR=firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
