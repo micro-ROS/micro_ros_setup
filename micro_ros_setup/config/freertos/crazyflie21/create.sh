@@ -1,5 +1,6 @@
 
-apt install -y ed flex bison libncurses5-dev gcc-arm-none-eabi clang clang-tidy usbutils dfu-util
+apt update
+apt install -y ed flex bison libncurses5-dev usbutils dfu-util curl
 
 SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
 
@@ -7,6 +8,13 @@ pushd $FW_TARGETDIR >/dev/null
 
     touch COLCON_IGNORE
 
+    # Install toolchain
+    mkdir toolchain
+
+    curl -fsSLO https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 
+    tar --strip-components=1 -xvjf gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -C toolchain  > /dev/null
+    rm gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2
+    
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/$PLATFORM/crazyflie.repos >/dev/null
 
