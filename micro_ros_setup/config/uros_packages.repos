@@ -11,3 +11,8 @@ repositories:
     type: git
     url:  https://github.com/micro-ROS/uclibc.git
     version: master
+  drive_base:
+    type: git
+    url: https://github.com/micro-ROS/drive_base.git
+    version: master
+
