@@ -24,5 +24,5 @@ if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "bin" ]; then
 	make libmicroros
 fi
 # build crayflie firmware
-make PLATFORM=cf2 DEBUG=0 CLOAD=0
+make PLATFORM=cf2 CLOAD=0
 popd >/dev/null
