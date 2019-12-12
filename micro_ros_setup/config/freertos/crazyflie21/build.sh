@@ -18,8 +18,10 @@ git submodule update
 popd >/dev/null
 
 pushd $CF_EXTENSIONS_DIR >/dev/null
-make clean
 if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "bin" ]; then
+    # clean build
+    make clean
+
     # build micro-ROS stack
 	make libmicroros
 fi
