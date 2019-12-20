@@ -35,7 +35,7 @@ function clean {
       grep -v -E "($(echo $PREFIXES_TO_CLEAN | sed 's/:/\|/g'))" ) | sed 's/ /:/g' )
 }
 
-if [ RTOS == "host" ]; then
+if [ $RTOS == "host" ]; then
   echo "Compiling for host environment: not cleaning path"
 else
   echo "Crosscompiled environment: cleaning path"
