@@ -1,4 +1,6 @@
-{ "names": {
-  "rcutils": { "cmake-args": [ "-DENABLE_TESTING=ON" ], },
+{
+  "names": {
+    "rcutils": { "cmake-args": [ "-DENABLE_TESTING=ON" ] },
+    "microxrcedds_client": { "cmake-args": [ "-DUCLIENT_MERGE_INSTALL=ON" ] }
   }
 }
