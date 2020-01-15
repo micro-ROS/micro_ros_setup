@@ -63,11 +63,10 @@ echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
 
 # Installing common packages
-apt install -y ed flex bison libncurses5-dev curl usbutils
+sudo apt install -y ed flex bison libncurses5-dev curl usbutils
 
 if [ $RTOS != "host" ]; then
     pushd $FW_TARGETDIR >/dev/null
-
         # Creating dev directory
         mkdir dev_ws
         ros2 run micro_ros_setup create_ws.sh dev_ws $PREFIX/config/dev_ros2_packages.txt  $PREFIX/config/dev_uros_packages.repos
@@ -77,10 +76,8 @@ if [ $RTOS != "host" ]; then
         mkdir mcu_ws
         ros2 run micro_ros_setup create_ws.sh mcu_ws $PREFIX/config/client_ros2_packages.txt $PREFIX/config/$RTOS/$PLATFORM/client_uros_packages.repos
         cp $PREFIX/config/$RTOS/$PLATFORM/client-colcon.meta mcu_ws/colcon.meta
-        rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
-
     popd >/dev/null
-else
+fi
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$PLATFORM/create.sh
