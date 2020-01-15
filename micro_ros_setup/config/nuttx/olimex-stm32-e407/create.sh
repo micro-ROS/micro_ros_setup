@@ -1,5 +1,3 @@
-sudo apt install -y gcc-arm-none-eabi clang clang-tidy
-
 [ -d $FW_TARGETDIR ] || mkdir $FW_TARGETDIR
 pushd $FW_TARGETDIR >/dev/null
 

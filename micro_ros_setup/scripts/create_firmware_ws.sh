@@ -54,7 +54,6 @@ else
 fi
 
 mkdir $FW_TARGETDIR
-touch $FW_TARGETDIR/COLCON_IGNORE
 
 echo $RTOS > $FW_TARGETDIR/PLATFORM
 echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
@@ -63,7 +62,8 @@ echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
 
 # Installing common packages
-sudo apt install -y ed flex bison libncurses5-dev curl usbutils
+rosdep update
+rosdep install -y --from-paths src -i src --rosdistro dashing --skip-keys="$SKIP"
 
 if [ $RTOS != "host" ]; then
     pushd $FW_TARGETDIR >/dev/null
@@ -78,6 +78,10 @@ if [ $RTOS != "host" ]; then
         cp $PREFIX/config/$RTOS/$PLATFORM/client-colcon.meta mcu_ws/colcon.meta
     popd >/dev/null
 fi
+
+cp $PREFIX/config/$RTOS/$PLATFORM/package.xml $FW_TARGETDIR/package.xml
+rosdep install -y --from-paths $FW_TARGETDIR -i $FW_TARGETDIR --rosdistro dashing --skip-keys="$SKIP"
+touch $FW_TARGETDIR/COLCON_IGNORE
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$PLATFORM/create.sh

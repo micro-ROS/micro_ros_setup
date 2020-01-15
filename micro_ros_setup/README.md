@@ -26,7 +26,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 This package targets **ROS 2 Dashing** installation. Some other prerequisites needed for building a firmware using this package are:
 
 ```
-sudo apt install python-rosdep curl
+sudo apt install python-rosdep
 ```
 
 # Building 
