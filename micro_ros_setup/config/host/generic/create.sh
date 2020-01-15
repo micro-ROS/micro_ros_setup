@@ -1,4 +1,4 @@
-apt install -y liblog4cxx-dev clang 
+sudo apt install -y liblog4cxx-dev clang 
 
 SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
 
