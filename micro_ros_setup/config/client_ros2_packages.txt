@@ -12,3 +12,4 @@ keep:
   ros2/rcl_logging
   ros2/test_interface_files
   ros2/tinydir_vendor
+  ros2/example_interfaces
