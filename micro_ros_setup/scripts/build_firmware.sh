@@ -11,12 +11,12 @@ PREFIX=$(ros2 pkg prefix micro_ros_setup)
 UROS_FAST_BUILD=off
 if [ $# -gt 0 ]
 then
-	if [ "$1" = "-f" ]
-	then
+  if [ "$1" = "-f" ]
+  then
     echo "Fast-Build active, ROS workspace will not be re-built!"
-		export UROS_FAST_BUILD=y
-		shift
-	fi
+    export UROS_FAST_BUILD=y
+    shift
+  fi
 fi
 export UROS_FAST_BUILD
 
@@ -75,6 +75,20 @@ else
   export PATH=$(clean $PATH)
   unset AMENT_PREFIX_PATH
   unset COLCON_PREFIX_PATH
+
+  # Build and source dev_ws
+  DEV_WS_DIR=$FW_TARGETDIR/dev_ws
+
+  pushd $DEV_WS_DIR >/dev/null
+    # Build if not built or if fast build disabled
+    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "install" ]; then
+      colcon build
+    fi
+    set +o nounset
+
+    # source dev workspace
+    . install/setup.bash
+  popd > /dev/null
 fi
 
 # Building specific firmware folder
