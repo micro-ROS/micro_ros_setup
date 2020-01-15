@@ -1,5 +1,3 @@
-sudo apt install -y dfu-util
-
 pushd $FW_TARGETDIR >/dev/null
     # Install toolchain
     mkdir toolchain

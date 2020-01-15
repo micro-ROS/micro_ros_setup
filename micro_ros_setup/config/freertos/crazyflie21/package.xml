@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>firmware</name>
+  <version>0.0.0</version>
+  <description>asdf</description>
+  <maintainer email="ingo.luetkebohle@de.bosch.com">sadf</maintainer>
+  <license>APL2</license>
+
+  <build_depend>dfu-util</build_depend>
+
+</package>

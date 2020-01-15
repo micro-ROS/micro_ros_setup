@@ -1,8 +1,6 @@
 NUTTX_DIR=$FW_TARGETDIR/NuttX
 MCU_WS_DIR=$FW_TARGETDIR/mcu_ws
 
-sudo apt install -y gperf openocd automake git
-
 if [ ! -d ~/tools/kconfig-frontends  ]; then
     git clone https://bitbucket.org/nuttx/tools.git ~/tools
 
