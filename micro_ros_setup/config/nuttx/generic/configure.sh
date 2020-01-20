@@ -1,7 +1,7 @@
 NUTTX_DIR=$FW_TARGETDIR/NuttX
 MCU_WS_DIR=$FW_TARGETDIR/mcu_ws
 
-if [ $# -le 1 ]; then
+if [ $# -lt 1 ]; then
     echo "Nuttx configure script need an argument. For example: ros2 run micro_ros_setup configure_firmware.sh configs/olimex-stm32-e407/uros"
     exit 1
 fi
