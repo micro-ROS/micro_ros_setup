@@ -2,11 +2,11 @@ repositories:
   eProsima/Micro-CDR:
     type: git
     url: https://github.com/eProsima/micro-CDR.git
-    version: v1.1.0
+    version: v1.1.2
   eProsima/Micro-XRCE-DDS-Client:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
-    version: v1.1.3
+    version: develop
 
 # MicroROS
   
