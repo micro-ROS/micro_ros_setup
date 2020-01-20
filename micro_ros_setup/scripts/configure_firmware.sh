@@ -68,7 +68,7 @@ unset COLCON_PREFIX_PATH
 # Configure specific firmware folder if needed
 if [ -f $PREFIX/config/$RTOS/$PLATFORM/configure.sh ]; then
   echo "Configuring firmware for $RTOS platform $PLATFORM"
-  . $PREFIX/config/$RTOS/$PLATFORM/configure.sh
+  . $PREFIX/config/$RTOS/$PLATFORM/configure.sh $@
 else
   echo "No configuration step needed for $RTOS platform $PLATFORM"
 fi

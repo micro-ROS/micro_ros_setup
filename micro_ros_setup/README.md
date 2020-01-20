@@ -15,11 +15,13 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 | RTOS | Platform |  |
 |-|-|-|
-| [Nuttx](https://nuttx.org/) | [Olimex STM32 e407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `nuttx olimex-stm32-e407` | 
 | [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
-| Linux / Windows | *Host** |
+| [Nuttx](https://nuttx.org/) | *Generic* ** | `nuttx` | 
+| Linux / Windows | *Host* * |
 
 *\* Support for compiling apps in native host for testing and debugging*
+
+**\* Configuration for different platforms through configure_firmware.sh*
 
 # Dependencies
 
