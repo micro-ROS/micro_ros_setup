@@ -20,7 +20,4 @@ pushd $FW_TARGETDIR >/dev/null
     # Turn off features MicroXRCEClient
     echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_UDP_TRANSPORT=TRUE/PROFILE_UDP_TRANSPORT=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null &>/dev/null
 
-    # Set custom transport on rmw_microxrce
-    echo -e ",s/CONFIG_MICRO_XRCEDDS_TRANSPORT=udp/CONFIG_MICRO_XRCEDDS_TRANSPORT=custom/g\nw" | ed $(find mcu_ws -name rmw_microxrcedds.config) >/dev/null &>/dev/null
-
 popd >/dev/null
