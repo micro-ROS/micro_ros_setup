@@ -21,7 +21,7 @@ repositories:
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: feature/dashing_migration
+    version: dashing
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils.git
