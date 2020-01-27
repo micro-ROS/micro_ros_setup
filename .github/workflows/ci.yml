@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - dashing
+    - crystal
+
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    container: microros/base:${{github.base_ref}}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build micro-ROS Agent 
+      run: |
+        rosdep update
+        colcon build --merge-install --packages-select micro_ros_setup
+        . install/local_setup.sh
+        ros2 run micro_ros_setup create_agent_ws.sh src
+
+  client_host:
+    runs-on: ubuntu-latest
+    container: microros/base:${{github.base_ref}}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Test web site changes
+      run: echo "Testing actions"
+
+   
