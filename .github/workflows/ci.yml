@@ -17,6 +17,7 @@ jobs:
     - name: Build micro-ROS Agent 
       run: |
         rosdep update
+        . /opt/ros/$ROS_DISTRO/setup.sh
         colcon build --merge-install --packages-select micro_ros_setup
         . install/local_setup.sh
         ros2 run micro_ros_setup create_agent_ws.sh src
