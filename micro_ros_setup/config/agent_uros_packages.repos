@@ -4,11 +4,11 @@ repositories:
   uros/uROS_agent:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git
-    version: feature/dashing_migration
+    version: 3b78eee980ab569b9ad4e2bd3d65d5c7e21e7fac
   eProsima/Micro-XRCE-DDS-Agent:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
-    version: v1.1.4
+    version: v1.1.6
   drive_base:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
