@@ -25,7 +25,15 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Dependencies
 
-This package targets **ROS 2 Dashing** installation. Some other prerequisites needed for building a firmware using this package are:
+This package targets **ROS 2** installation. ROS 2 supported distributions are:
+
+| ROS 2 Distro | State | Branch |
+|-|-|-|
+| Crystal | Supported | `crystal` |
+| Dashing | Supported | `dashing` |
+| Eloquent | *Work in progress* |  |
+
+Some other prerequisites needed for building a firmware using this package are:
 
 ```
 sudo apt install python-rosdep
@@ -35,11 +43,14 @@ sudo apt install python-rosdep
 
 Create a ROS 2 workspace and build this package:
 
-```
+```bash
 source /opt/ros/dashing/setup.bash
 mkdir uros_ws
 cd uros_ws
-git clone --recursive -b dashing https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+
+# Download the package branch for your ROS 2 Distro. Check table above.
+git clone -b [ROS 2 Distro] https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+
 colcon build --packages-select micro_ros_setup
 source install/local_setup.bash
 ```
