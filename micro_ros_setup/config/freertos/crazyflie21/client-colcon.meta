@@ -1,6 +1,6 @@
 { "names": {
     "rcutils": { "cmake-args": [ "-DENABLE_TESTING=OFF", "-DRCUTILS_NO_FILESYSTEM=ON", "-DRCUTILS_AVOID_DYNAMIC_ALLOCATION=ON" ], },
-    "microxrcedds_client": { "cmake-args": [ "-DUCLIENT_MERGE_INSTALL=ON", "-DUCLIENT_PIC=OFF", "-DUCLIENT_SUPERBUILD=OFF", "-DEXTERNAL_TRANSPORT_HEADER=../../../crazyflie_microros_extensions/src/crazyflie_transport.h", "-DEXTERNAL_TRANSPORT_SRC=../../../crazyflie_microros_extensions/src/crazyflie_transport.c" ], },
+    "microxrcedds_client": { "cmake-args": [ "-DUCLIENT_ISOLATED_INSTALL=OFF", "-DUCLIENT_PIC=OFF", "-DUCLIENT_SUPERBUILD=OFF", "-DEXTERNAL_TRANSPORT_HEADER=../../../crazyflie_microros_extensions/src/crazyflie_transport.h", "-DEXTERNAL_TRANSPORT_SRC=../../../crazyflie_microros_extensions/src/crazyflie_transport.c" ], },
     "rmw_microxrcedds": { "cmake-args": [ 
       "-DRMW_UXRCE_TRANSPORT=custom", 
       "-DRMW_UXRCE_MAX_NODES=1",
