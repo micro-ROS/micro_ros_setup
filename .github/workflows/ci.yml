@@ -127,6 +127,19 @@ jobs:
     container: microros/base:${{github.base_ref}}
     needs: micro_ros_build
 
+    strategy:
+      matrix:
+        rtos: [nuttx, freertos]
+        platform: [crazyflie21, generic]
+        exclude:
+          - rtos: freertos
+            platform: generic
+          - rtos: nuttx
+            platform: crazyflie21
+        include:
+          - ros: nuttx
+            configuration: configs/olimex-stm32-e407/drive_base
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -155,10 +168,8 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
-          ros2 run micro_ros_setup create_firmware_ws.sh
-          cd firmware/NuttX
-          tools/configure.sh configs/olimex-stm32-e407/drive_base
-          cd ../..
+          ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
+          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }}
           ros2 run micro_ros_setup build_firmware.sh
 
       - name: Test firmware
