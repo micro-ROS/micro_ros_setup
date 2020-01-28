@@ -26,10 +26,11 @@ jobs:
         rosdep install -y --from-paths . -i .
         colcon build --merge-install
 
-    - name: Test micro_ros_setup
-      run: |
-        test -f install/bin/kconfig
-        test -f install/lib/micro_ros_setup/build_firmware.sh
+    - name: Test micro_ros_setup build
+      uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      with:
+        path: 'install'
+        files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
@@ -69,8 +70,10 @@ jobs:
         ros2 run micro_ros_setup create_agent_ws.sh src
         colcon build --merge-install
 
-    - name: Test installation
-      run: test -f install/lib/micro_ros_agent/micro_ros_agent
+    - name: Test micro_ros_agent build
+      uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      with:
+        files: 'install/lib/micro_ros_agent/micro_ros_agent'
 
   client_host:
     runs-on: ubuntu-latest
@@ -104,23 +107,25 @@ jobs:
           colcon build --merge-install --metas src
 
       - name: Test installation
-        run: |
-          test -f install/lib/complex_msg_publisher_c/complex_msg_publisher_c
-          test -f install/lib/complex_msg_publisher_cpp/complex_msg_publisher_cpp
-          test -f install/lib/complex_msg_subscriber_c/complex_msg_subscriber_c
-          test -f install/lib/complex_msg_subscriber_cpp/complex_msg_subscriber_cpp
-          test -f install/lib/int32_publisher_c/int32_publisher_c
-          test -f install/lib/int32_publisher_cpp/int32_publisher_cpp
-          test -f install/lib/int32_subscriber_c/int32_subscriber_c
-          test -f install/lib/int32_subscriber_cpp/int32_subscriber_cpp
-          test -f install/lib/rad0_actuator_c/rad0_actuator_c
-          test -f install/lib/rad0_altitude_sensor_c/rad0_altitude_sensor_c
-          test -f install/lib/rad0_control_cpp/rad0_control_cpp
-          test -f install/lib/rad0_display_c/rad0_display_c
-          test -f install/lib/string_publisher_c/string_publisher_c
-          test -f install/lib/string_publisher_cpp/string_publisher_cpp
-          test -f install/lib/string_subscriber_c/string_subscriber_c
-          test -f install/lib/string_subscriber_cpp/string_subscriber_cpp
+        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        with:
+          path: 'install/lib'
+          files: 'complex_msg_publisher_c/complex_msg_publisher_c,
+                  complex_msg_publisher_cpp/complex_msg_publisher_cpp,
+                  complex_msg_subscriber_c/complex_msg_subscriber_c,
+                  complex_msg_subscriber_cpp/complex_msg_subscriber_cpp,
+                  int32_publisher_c/int32_publisher_c,
+                  int32_publisher_cpp/int32_publisher_cpp,
+                  int32_subscriber_c/int32_subscriber_c,
+                  int32_subscriber_cpp/int32_subscriber_cpp,
+                  rad0_actuator_c/rad0_actuator_c,
+                  rad0_altitude_sensor_c/rad0_altitude_sensor_c,
+                  rad0_control_cpp/rad0_control_cpp,
+                  rad0_display_c/rad0_display_c,
+                  string_publisher_c/string_publisher_c,
+                  string_publisher_cpp/string_publisher_cpp,
+                  string_subscriber_c/string_subscriber_c,
+                  string_subscriber_cpp/string_subscriber_cpp'
 
   client_firmware:
     runs-on: ubuntu-latest
@@ -128,6 +133,7 @@ jobs:
     needs: micro_ros_build
 
     strategy:
+      fail-fast: false
       matrix:
         rtos: [nuttx, freertos]
         platform: [crazyflie21, generic]
@@ -138,14 +144,19 @@ jobs:
             platform: crazyflie21
         include:
           - ros: nuttx
+            platform: generic
             configuration: configs/olimex-stm32-e407/drive_base
+            files: 'firmware/NuttX/nuttx'
 
     steps:
       - uses: actions/checkout@v2
         with:
           path: src/micro-ros-build
 
-      - name: rosdep
+      - name: Dependencies
+        run: apt-get install -y ed
+
+      - name: Rosdep
         run: rosdep update
 
       - name: Download artifact
@@ -172,5 +183,7 @@ jobs:
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }}
           ros2 run micro_ros_setup build_firmware.sh
 
-      - name: Test firmware
-        run: test -f firmware/NuttX/nuttx
+      - name: Test firmware build
+        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        with:
+          files: ${{ matrix.files }}
