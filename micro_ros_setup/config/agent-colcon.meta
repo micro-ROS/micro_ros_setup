@@ -1,4 +1,14 @@
-{ "names": {
-  "*": { "cmake-args": [ "-DCMAKE_BUILD_TYPE=RelWithDebInfo" ], },
-  }
+{
+    "names":{
+        "*":{
+            "cmake-args":[ 
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ] 
+        },
+        "microxrcedds_agent":{
+            "cmake-args":[
+                "-DUAGENT_ISOLATED_INSTALL=OFF"
+            ] 
+        }
+    }
 }
