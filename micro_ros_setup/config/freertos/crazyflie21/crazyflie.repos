@@ -1,0 +1,12 @@
+repositories:
+  crazyflie_firmware:
+    type: git
+    url: https://github.com/bitcraze/crazyflie-firmware
+    version: 5142cacdde8b2a21ae0bef0ae4d0a26088335bee
+
+  crazyflie_microros_extensions:
+    type: git
+    url: https://github.com/micro-ROS/crazyflie_extensions
+
+
+

@@ -1,80 +1,118 @@
-# micro-ros-setup
 
-This package assists with setting up the workspaces for Micro-ROS to compile from source, which is currently the recommended way to install Micro-ROS.
+This ROS 2 package is the entry point for building micro-ROS apps for different embedded platforms.
 
-## Prerequisites
+- [Supported platforms](#supported-platforms)
+- [Dependencies](#dependencies)
+- [Building](#building)
+  - [Creating micro-ROS firmware](#creating-micro-ros-firmware)
+  - [Configuring micro-ROS firmware](#configuring-micro-ros-firmware)
+  - [Building micro-ROS firmware](#building-micro-ros-firmware)
+  - [Flashing micro-ROS firmware](#flashing-micro-ros-firmware)
+- [Building micro-ROS Agent](#building-micro-ros-agent)
+- [Contributing](#contributing)
 
-This version of the package targets  **ROS 2 Crystal** and has been tested on **Ubuntu 18.04** only! Other Linux distributions may work -- if you find issues, [please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
+# Supported platforms
 
-For installing ROS 2, we recommend the [binary build of ROS 2](https://index.ros.org/doc/ros2/Installation/Crystal/). Note that if you use a non-package install, you may have to adjust some of the "source" commands below.
+| RTOS | Platform |  |
+|-|-|-|
+| [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
+| [Nuttx](https://nuttx.org/) | *Generic* ** | `nuttx` | 
+| Linux / Windows | *Host* * |
 
-We will use the standard ROS 2 meta build-tool, `colcon`, to compile. If you haven't used colcon, yet, you can probably just copy the instructions below as-is. I recommend [getting familiar with colcon](https://index.ros.org//doc/ros2/Tutorials/Colcon-Tutorial/), though, it has many useful options.
+*\* Support for compiling apps in native host for testing and debugging*
 
-## Concepts
+**\* Configuration for different platforms through configure_firmware.sh*
 
-Micro-ROS is a client-server system: The embedded micro-controller runs the client, and the "agent" runs on Linux (or potentially also Windows, though this package doesn't support that, yet).
+# Dependencies
 
-Software on a microcontroller is usually called "firmware" and it is cross-compiled on the host and then flashed onto the microcontroller. The following structure image shows the individual parts:
-![structure image](doc/structure.png)
+This package targets **ROS 2 Dashing** installation. Some other prerequisites needed for building a firmware using this package are:
 
-Correspondingly, in the micro-ROS build, we distinguish the firmware and the "regular" workspace for the server side. Since the regular workspace contains the agent, in other documentation it also sometimes called "agent workspace".
-
-# Installation
-
-This is, overall, a four-step process.
-
-## 1/4 Setting up the workspace
-
-It is best to start with a fresh workspace, both to speed up compiles and to avoid unintended interference. 
-
-```shell
-source /opt/ros/dashing/setup.bash
+```
 sudo apt install python-rosdep
-mkdir -p uros_ws/src
-cd uros_ws
-git clone --recursive https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 ```
 
-All subsequent instructions assume that you're running them in the `uros_ws` directory. 
+# Building 
 
+Create a ROS 2 workspace and build this package:
 
-## 2/4 Building this package
-
-```shell
+```
+source /opt/ros/dashing/setup.bash
+mkdir uros_ws
+cd uros_ws
+git clone --recursive -b dashing https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 colcon build --packages-select micro_ros_setup
 source install/local_setup.bash
 ```
 
-## 3/4 Building the Micro-ROS agent
+Once the package is built, the firmware scripts are ready to run.
 
-```shell
-ros2 run micro_ros_setup create_agent_ws.sh  # add agent packages
-colcon build
-source install/local_setup.sh
+
+## Creating micro-ROS firmware
+
+Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, targeting FreeRTOS and Crazyflie 2.1:
+
+```
+ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie21
 ```
 
-Note that, by default, the `create_agent_ws.sh` used below will add the packages to the `src` directory. This is easiest, but you can also create a separate workspace by giving it an argument, if you wish.
+## Configuring micro-ROS firmware
 
+By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step:
 
-## 4/4 Building the client (aka firmware)
+```
+ros2 run micro_ros_setup configure_firmware.sh
+```
 
-```shell
-ros2 run micro_ros_setup create_firmware_ws.sh
-cd firmware/NuttX
-tools/configure.sh configs/olimex-stm32-e407/drive_base # FOR EXAMPLE!
-cd ../..
+## Building micro-ROS firmware
+
+By running `build_firmware.sh` the firmware is built:
+
+```
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-These commands create the firmware workspace and then configure an example NuttX build that uses Micro-ROS.
+## Flashing micro-ROS firmware
 
-# Deployment and Usage
+In order to flash the target platform run `flash_firmware.sh` command. This step may need some platform specific procedure in order to boot the platform in flashing node: 
 
-## Flashing the firmware
-
-In contrast to software on the host, which is runnable from the workspace after you compiled it, to use the firmware you need to flash it to the microcontroller's built-in storage first.
-
-```shell
-cd firmware/NuttX
-scripts/flash.sh olimex-stm32-e407
 ```
+ros2 run micro_ros_setup flash_firmware.sh
+```
+
+# Building micro-ROS Agent
+
+Using this package is possible to install a ready to use **micro-ROS Agent**:
+
+```
+ros2 run micro_ros_setup create_agent_ws.sh
+colcon build
+source install/local_setup.sh
+ros2 run micro_ros_agent micro_ros_agent [parameters]
+```
+
+# Contributing
+
+As it is explained along this document, the firmware building system takes **four steps**: creating, configuring, building and flashing.
+
+New combinations of platforms and RTOS are intended to be included in `config` folder. For example, the scripts for building a **micro-ROS** app for **Crazyflie 2.1** using **FreeRTOS** is located in `config/freertos/crazyflie21`.
+
+This folder contains up to four scripts:
+- `create.sh`: gets a variable named `$FW_TARGETDIR` and installs in this path all the dependencies and code required for the firmware.
+- `configure.sh`: modifies and configure parameters of the installed dependencies. This step is **optional**.
+- `build.sh`: builds the firmware and create a platform specific linked binary.
+- `flash.sh`: flash the binary in the target platform.
+  
+Some other required files inside the folder can be accessed from these scripts usigg the following paths:
+
+```bash
+# Files inside platform folder
+$PREFIX/config/$RTOS/$PLATFORM/
+
+# Files inside config folder
+$PREFIX/config
+```
+
+
+
+If you find issues, [please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
+
