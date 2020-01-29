@@ -96,7 +96,7 @@ Using this package is possible to install a ready to use **micro-ROS Agent**:
 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
-colcon build
+colcon build --meta src
 source install/local_setup.sh
 ros2 run micro_ros_agent micro_ros_agent [parameters]
 ```
