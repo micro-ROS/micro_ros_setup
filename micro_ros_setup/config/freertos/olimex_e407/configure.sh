@@ -33,6 +33,8 @@ if [ "$TRANSPORT" == "udp" ] || [ "$TRANSPORT" == "tcp" ]; then
 fi
 
 if [ "$TRANSPORT" == "serial" ]; then
+      echo "Serial configuration not working yet. Work in Progress"
+      exit 1
       if [ $# -lt 2 ]; then
             echo "Serial configuration needs serial port. For example: ros2 run micro_ros_setup configure_firmware.sh serial [Serial port]"
             exit 1
