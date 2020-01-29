@@ -1,0 +1,32 @@
+repositories:
+  eProsima/Micro-CDR:
+    type: git
+    url: https://github.com/eProsima/micro-CDR.git
+    version: v1.1.2
+  eProsima/Micro-XRCE-DDS-Client:
+    type: git
+    url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
+    version: develop
+
+# MicroROS
+  
+  uros/rcl:
+    type: git
+    url: https://github.com/micro-ROS/rcl
+    version: dashing
+  uros/rcutils:
+    type: git
+    url: https://github.com/micro-ROS/rcutils
+    version: dashing
+  uros/rmw_microxrcedds:
+    type: git
+    url: https://github.com/micro-ROS/rmw-microxrcedds.git
+    version: feature/dashing_migration
+  uros/rosidl_typesupport_microxrcedds:
+    type: git
+    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
+    version: feature/dashing_migration
+  uros/rosidl_typesupport:
+    type: git
+    url: https://github.com/micro-ROS/rosidl_typesupport.git
+    version: dashing
