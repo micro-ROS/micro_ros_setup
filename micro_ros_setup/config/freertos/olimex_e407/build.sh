@@ -1,7 +1,6 @@
 OLIMEX_EXTENSIONS_DIR=$FW_TARGETDIR/olimex_e407_extensions
 
 pushd $OLIMEX_EXTENSIONS_DIR >/dev/null
-    make libmicroros
     if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "bin" ]; then
         # clean build
         make clean
