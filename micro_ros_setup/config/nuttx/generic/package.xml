@@ -14,5 +14,6 @@
   <build_depend>automake</build_depend>
   <build_depend>nuttx_kconfig_vendor</build_depend>
   <build_depend>git</build_depend>
+  <build_depend>openocd</build_depend>
 
 </package>

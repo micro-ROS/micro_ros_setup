@@ -7,6 +7,6 @@
   <maintainer email="ingo.luetkebohle@de.bosch.com">sadf</maintainer>
   <license>APL2</license>
 
-  <build_depend>dfu-util</build_depend>
+  <build_depend>openocd</build_depend>
 
 </package>
