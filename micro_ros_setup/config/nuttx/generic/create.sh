@@ -1,3 +1,10 @@
+#! /bin/bash
+
+set -e
+set -o nounset
+set -o pipefail
+
+
 [ -d $FW_TARGETDIR ] || mkdir $FW_TARGETDIR
 pushd $FW_TARGETDIR >/dev/null
 
