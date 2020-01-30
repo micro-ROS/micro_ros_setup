@@ -8,7 +8,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Agent:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
-    version: 75febfeb7c89d7767ea98d38aa7cfcfda52dd9a7
+    version: dashing
   drive_base:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
