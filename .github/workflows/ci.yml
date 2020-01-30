@@ -170,10 +170,11 @@ jobs:
           chmod +x -R install/lib/micro_ros_setup
           chmod +x -R install/bin
 
-      - name: Test artifact
-        run: |
-          test -f install/bin/kconfig
-          test -f install/lib/micro_ros_setup/build_firmware.sh
+      - name: Test micro_ros_agent build
+        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        with:
+          path: 'install'
+          files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
 
       - name: Create ws and build
         run: |
@@ -184,6 +185,7 @@ jobs:
           ros2 run micro_ros_setup build_firmware.sh
 
       - name: Test firmware build
+        if: matrix.files
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
           files: ${{ matrix.files }}
