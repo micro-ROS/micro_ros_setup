@@ -6,7 +6,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Client:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
-    version: develop
+    version: feature/posix_nopoll
 
 # MicroROS
   
@@ -21,7 +21,7 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: feature/dashing_migration
+    version: feature/custom_serial_selection
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
