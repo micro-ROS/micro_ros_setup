@@ -13,11 +13,13 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Supported platforms
 
-| RTOS | Platform |  |
+| RTOS | Platform | Example |
 |-|-|-|
+| [Nuttx](https://nuttx.org/) | Olimex STM32-E407, STM32F4Discovery | `nuttx olimex-stm32-e407` | 
 | [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
-| [Nuttx](https://nuttx.org/) | *Generic* ** | `nuttx` | 
 | Linux / Windows | *Host* * |
+
+Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
 
 *\* Support for compiling apps in native host for testing and debugging*
 
@@ -51,7 +53,7 @@ cd uros_ws
 # Download the package branch for your ROS 2 Distro. Check table above.
 git clone -b [ROS 2 Distro] https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
-colcon build --packages-select micro_ros_setup
+colcon build
 source install/local_setup.bash
 ```
 
@@ -60,19 +62,36 @@ Once the package is built, the firmware scripts are ready to run.
 
 ## Creating micro-ROS firmware
 
-Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, targeting FreeRTOS and Crazyflie 2.1:
+Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is
+
+```
+ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
+```
+
+If you are instead targeting FreeRTOS and Crazyflie 2.1, you would use
 
 ```
 ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie21
 ```
+
 
 ## Configuring micro-ROS firmware
 
 By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step:
 
 ```
-ros2 run micro_ros_setup configure_firmware.sh
+ros2 run micro_ros_setup configure_firmware.sh [configuration]
 ```
+
+For NuttX, several different configurations are supported.
+| NuttX Configuration | Features |
+|-|-|
+| uros |  Micro-ROS publisher & subscriber, Kobuki demo |
+| drive_base | Kobuki demo |
+| pingpong | Round-Trip-Time test over serial |
+| pingpong-eth | Round-Trip-Time test over Ethernet |
+
+Please note that these are only default configurations. Each RTOS has its own configuration approach that you might use for further customization of these base configurations.
 
 ## Building micro-ROS firmware
 
