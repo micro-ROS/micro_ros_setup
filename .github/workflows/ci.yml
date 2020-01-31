@@ -64,7 +64,6 @@ jobs:
 
     - name: Create ws and build
       run: |
-        chmod -R 777 install/bin
         . /opt/ros/$ROS_DISTRO/setup.sh
         . install/local_setup.sh
         ros2 run micro_ros_setup create_agent_ws.sh src
@@ -100,6 +99,7 @@ jobs:
       - run: |
           chmod +x -R install/lib/micro_ros_setup
           chmod +x -R install/bin
+          chmod +x install/config/host/generic/*.sh
 
       - name: Create ws and build
         run: |
@@ -147,7 +147,7 @@ jobs:
         include:
           - rtos: nuttx
             platform: generic
-            configuration: configs/olimex-stm32-e407/drive_base
+            configuration: olimex-stm32-e407/uros
             files: 'firmware/NuttX/nuttx'
           - rtos: freertos
             files: 'firmware/crazyflie_microros_extensions/cf2.elf'
@@ -173,6 +173,7 @@ jobs:
       - run: |
           chmod +x -R install/lib/micro_ros_setup
           chmod +x -R install/bin
+          chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
 
       - name: Test micro_ros_agent build
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
