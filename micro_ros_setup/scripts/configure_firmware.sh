@@ -4,7 +4,7 @@ set -e
 set -o nounset
 set -o pipefail
 
-export FW_TARGETDIR=firmware
+export FW_TARGETDIR=$(pwd)/firmware
 export PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
 # Checking if firmware exists

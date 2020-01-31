@@ -4,7 +4,7 @@ set -e
 set -o nounset
 set -o pipefail
 
-FW_TARGETDIR=firmware
+FW_TARGETDIR=$(pwd)/firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
 print_available_platforms () {
