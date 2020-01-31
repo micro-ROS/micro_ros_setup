@@ -143,10 +143,12 @@ jobs:
           - rtos: nuttx
             platform: crazyflie21
         include:
-          - ros: nuttx
+          - rtos: nuttx
             platform: generic
             configuration: configs/olimex-stm32-e407/drive_base
             files: 'firmware/NuttX/nuttx'
+          - rtos: freertos
+            files: 'firmware/crazyflie_microros_extensions/cf2.elf'
 
     steps:
       - uses: actions/checkout@v2
