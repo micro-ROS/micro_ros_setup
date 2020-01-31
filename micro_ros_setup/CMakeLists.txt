@@ -35,12 +35,18 @@ endif()
 ament_package()
 
 install(
-  DIRECTORY config DESTINATION .
+  DIRECTORY config DESTINATION . USE_SOURCE_PERMISSIONS
 )
 
 set(NUTTX_SUPPORTED_PLATFORMS olimex-stm32-e407 stm32f4discovery)
 foreach(NUTTX_PLATFORM ${NUTTX_SUPPORTED_PLATFORMS})
-  install(DIRECTORY config/nuttx/generic/ DESTINATION config/nuttx/${NUTTX_PLATFORM})
+  install(
+    DIRECTORY
+      config/nuttx/generic/
+    DESTINATION
+      config/nuttx/${NUTTX_PLATFORM}
+    USE_SOURCE_PERMISSIONS
+   )
 endforeach()
 
 install(
