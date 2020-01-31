@@ -34,3 +34,10 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
     version: master
+
+# interim, until crosscompile fix is available in dashing branch
+  ros2/tinydir_vendor:
+    type: git
+    url: https://github.com/ros2/tinydir_vendor.git
+    version: master
+
