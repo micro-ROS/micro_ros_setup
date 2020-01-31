@@ -3,8 +3,8 @@
 <package format="2">
   <name>firmware</name>
   <version>0.0.0</version>
-  <description>asdf</description>
-  <maintainer email="ingo.luetkebohle@de.bosch.com">sadf</maintainer>
+  <description>This is a dummy package to supply firmware build dependencies.</description>
+  <maintainer email="ingo.luetkebohle@de.bosch.com">Ingo Luetkebohle</maintainer>
   <license>APL2</license>
 
   <build_depend>gcc-arm-none-eabi</build_depend>
@@ -12,6 +12,7 @@
   <build_depend>clang-format</build_depend>
   <build_depend>gperf</build_depend>
   <build_depend>automake</build_depend>
+  <build_depend>nuttx_kconfig_vendor</build_depend>
   <build_depend>git</build_depend>
 
 </package>
