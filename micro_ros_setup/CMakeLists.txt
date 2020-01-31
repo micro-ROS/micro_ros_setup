@@ -35,7 +35,7 @@ endif()
 ament_package()
 
 install(
-  DIRECTORY config DESTINATION .
+  DIRECTORY config DESTINATION . USE_SOURCE_PERMISSIONS
 )
 
 set(NUTTX_SUPPORTED_PLATFORMS olimex-stm32-e407 stm32f4discovery)
