@@ -4,9 +4,8 @@ set -e
 set -o nounset
 set -o pipefail
 
-PREFIXES_TO_CLEAN=$COLCON_PREFIX_PATH
-FW_TARGETDIR=firmware
-PREFIX=$(ros2 pkg prefix micro_ros_setup)
+export FW_TARGETDIR=firmware
+export PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
 # Checking if firmware exists
 if [ -d $FW_TARGETDIR ]; then
@@ -20,7 +19,7 @@ fi
 # Configure specific firmware folder if needed
 if [ -f $PREFIX/config/$RTOS/$PLATFORM/configure.sh ]; then
   echo "Configuring firmware for $RTOS platform $PLATFORM"
-  . $PREFIX/config/$RTOS/$PLATFORM/configure.sh $@
+  exec $PREFIX/config/$RTOS/$PLATFORM/configure.sh $@
 else
   echo "No configuration step needed for $RTOS platform $PLATFORM"
 fi
