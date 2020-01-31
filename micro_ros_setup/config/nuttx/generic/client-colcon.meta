@@ -1,7 +1,7 @@
 {
-    "names":{
-        "rcutils":{
-            "cmake-args":[
+    "names": {
+        "rcutils": {
+            "cmake-args": [
                 "-DENABLE_TESTING=OFF"
             ]
         },
@@ -14,7 +14,14 @@
         },
         "microcdr":{
             "cmake-args":[
-                "-DUCDR_ISOLATED_INSTALL=OFF"
+                "-DUCDR_ISOLATED_INSTALL=OFF",
+                "-DRMW_UXRCE_MAX_NODES=1",
+                "-DRMW_UXRCE_MAX_PUBLISHERS_X_NODE=2",
+                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS_X_NODE=1",
+                "-DRMW_UXRCE_MAX_SERVICES_X_NODE=1",
+                "-DRMW_UXRCE_MAX_CLIENTS_X_NODE=1",
+                "-DRMW_UXRCE_MAX_HISTORY=4",
+                "-DRMW_UXRCE_XML_BUFFER_LENGTH=400"            
             ]
         }
     }
