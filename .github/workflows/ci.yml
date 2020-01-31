@@ -79,6 +79,8 @@ jobs:
     runs-on: ubuntu-latest
     container: microros/base:${{github.base_ref}}
     needs: micro_ros_build
+    # Temporary disable host build while fixing it
+    if: false
 
     steps:
       - uses: actions/checkout@v2
