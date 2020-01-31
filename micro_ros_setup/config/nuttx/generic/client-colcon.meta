@@ -7,14 +7,7 @@
         },
         "microxrcedds_client":{
             "cmake-args":[
-                "-DUCLIENT_ISOLATED_INSTALL=OFF",
                 "-DUCLIENT_PIC=OFF",
-                "-DUCLIENT_SUPERBUILD=OFF"
-            ]
-        },
-        "microcdr":{
-            "cmake-args":[
-                "-DUCDR_ISOLATED_INSTALL=OFF"
             ]
         },
         "rmw_microxrcedds":{

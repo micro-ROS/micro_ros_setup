@@ -9,16 +9,9 @@
         },
         "microxrcedds_client":{
             "cmake-args":[
-                "-DUCLIENT_ISOLATED_INSTALL=OFF",
                 "-DUCLIENT_PIC=OFF",
-                "-DUCLIENT_SUPERBUILD=OFF",
                 "-DEXTERNAL_TRANSPORT_HEADER=../../../crazyflie_microros_extensions/src/crazyflie_transport.h",
                 "-DEXTERNAL_TRANSPORT_SRC=../../../crazyflie_microros_extensions/src/crazyflie_transport.c"
-            ]
-        },
-        "microcdr":{
-            "cmake-args":[
-                "-DUCDR_ISOLATED_INSTALL=OFF"
             ]
         },
         "rmw_microxrcedds":{
