@@ -72,7 +72,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 If you are instead targeting FreeRTOS, you would use:
 
 ```
-ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex_e407
+ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex-stm32-e407
 ```
 
 
