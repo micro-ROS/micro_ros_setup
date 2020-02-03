@@ -30,6 +30,7 @@ if [ "$TRANSPORT" == "udp" ] || [ "$TRANSPORT" == "tcp" ]; then
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_IP="$IP
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_PORT="$PORT
 
+      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE="
       update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER_SERIAL="
       update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC_SERIAL="
 
