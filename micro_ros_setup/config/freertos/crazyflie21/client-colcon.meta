@@ -20,7 +20,7 @@
             "cmake-args":[
                 "-DUCDR_ISOLATED_INSTALL=OFF"
             ]
-        }
+        },
         "rmw_microxrcedds":{
             "cmake-args":[
                 "-DRMW_UXRCE_TRANSPORT=custom",
