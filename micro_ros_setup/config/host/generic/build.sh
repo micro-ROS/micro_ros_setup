@@ -1,1 +1,2 @@
-colcon build --metas src
+#!/bin/bash
+colcon build --metas src $@

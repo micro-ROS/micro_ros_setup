@@ -7,7 +7,7 @@
             ]
         },
         "rcutils":{
-            "cmake-args":[
+                "-DUCDR_ISOLATED_INSTALL=ON"
                 "-DENABLE_TESTING=ON"
             ]
         }
