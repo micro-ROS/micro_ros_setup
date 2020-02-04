@@ -1,0 +1,196 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - dashing
+    - crystal
+
+jobs:
+
+  micro_ros_build:
+    runs-on: ubuntu-latest
+    container: microros/base:${{github.base_ref}}
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: src/micro-ros-build
+
+    - name: rosdep
+      run: rosdep update
+
+    - name: Build micro_ros_setup
+      run: |
+        . /opt/ros/$ROS_DISTRO/setup.sh
+        rosdep install -y --from-paths . -i .
+        colcon build --merge-install
+
+    - name: Test micro_ros_setup build
+      uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      with:
+        path: 'install'
+        files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: micro_ros_build
+        path: install
+
+  agent:
+    runs-on: ubuntu-latest
+    container: microros/base:${{github.base_ref}}
+    needs: micro_ros_build
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: src/micro-ros-build
+
+    - name: rosdep
+      run: rosdep update
+
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: micro_ros_build
+        path: install
+
+    # Workaround https://github.com/actions/upload-artifact/issues/38
+    - run: |
+        chmod +x -R install/lib/micro_ros_setup
+        chmod +x -R install/bin
+
+    - name: Create ws and build
+      run: |
+        . /opt/ros/$ROS_DISTRO/setup.sh
+        . install/local_setup.sh
+        ros2 run micro_ros_setup create_agent_ws.sh src
+        colcon build --merge-install
+
+    - name: Test micro_ros_agent build
+      uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      with:
+        files: 'install/lib/micro_ros_agent/micro_ros_agent'
+
+  client_host:
+    runs-on: ubuntu-latest
+    container: microros/base:${{github.base_ref}}
+    needs: micro_ros_build
+    # Temporary disable host build while fixing it
+    if: false
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: src/micro-ros-build
+
+      - name: rosdep
+        run: rosdep update
+
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: micro_ros_build
+          path: install
+
+      # Workaround https://github.com/actions/upload-artifact/issues/38
+      - run: |
+          chmod +x -R install/lib/micro_ros_setup
+          chmod +x -R install/bin
+          chmod +x install/config/host/generic/*.sh
+
+      - name: Create ws and build
+        run: |
+          . /opt/ros/$ROS_DISTRO/setup.sh
+          . install/local_setup.sh
+          ros2 run micro_ros_setup create_host_client_ws.sh
+          colcon build --merge-install --metas src
+
+      - name: Test installation
+        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        with:
+          path: 'install/lib'
+          files: 'complex_msg_publisher_c/complex_msg_publisher_c,
+                  complex_msg_publisher_cpp/complex_msg_publisher_cpp,
+                  complex_msg_subscriber_c/complex_msg_subscriber_c,
+                  complex_msg_subscriber_cpp/complex_msg_subscriber_cpp,
+                  int32_publisher_c/int32_publisher_c,
+                  int32_publisher_cpp/int32_publisher_cpp,
+                  int32_subscriber_c/int32_subscriber_c,
+                  int32_subscriber_cpp/int32_subscriber_cpp,
+                  rad0_actuator_c/rad0_actuator_c,
+                  rad0_altitude_sensor_c/rad0_altitude_sensor_c,
+                  rad0_control_cpp/rad0_control_cpp,
+                  rad0_display_c/rad0_display_c,
+                  string_publisher_c/string_publisher_c,
+                  string_publisher_cpp/string_publisher_cpp,
+                  string_subscriber_c/string_subscriber_c,
+                  string_subscriber_cpp/string_subscriber_cpp'
+
+  client_firmware:
+    runs-on: ubuntu-latest
+    container: microros/base:${{github.base_ref}}
+    needs: micro_ros_build
+
+    strategy:
+      fail-fast: false
+      matrix:
+        rtos: [nuttx, freertos]
+        platform: [crazyflie21, generic]
+        exclude:
+          - rtos: freertos
+            platform: generic
+          - rtos: nuttx
+            platform: crazyflie21
+        include:
+          - rtos: nuttx
+            platform: generic
+            configuration: olimex-stm32-e407/uros
+            files: 'firmware/NuttX/nuttx'
+          - rtos: freertos
+            files: 'firmware/crazyflie_microros_extensions/cf2.elf'
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: src/micro-ros-build
+
+      - name: Dependencies
+        run: apt-get install -y ed
+
+      - name: Rosdep
+        run: rosdep update
+
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: micro_ros_build
+          path: install
+
+      # Workaround https://github.com/actions/upload-artifact/issues/38
+      - run: |
+          chmod +x -R install/lib/micro_ros_setup
+          chmod +x -R install/bin
+          chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
+
+      - name: Test micro_ros_agent build
+        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        with:
+          path: 'install'
+          files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
+
+      - name: Create ws and build
+        run: |
+          . /opt/ros/$ROS_DISTRO/setup.sh
+          . install/local_setup.sh
+          ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
+          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }}
+          ros2 run micro_ros_setup build_firmware.sh
+
+      - name: Test firmware build
+        if: matrix.files
+        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        with:
+          files: ${{ matrix.files }}

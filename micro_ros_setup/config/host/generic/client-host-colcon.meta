@@ -7,19 +7,8 @@
             ]
         },
         "rcutils":{
-            "cmake-args":[
-                "-DENABLE_TESTING=ON"
-            ]
-        },
-        "microxrcedds_client":{
-            "cmake-args":[
-                "-DUCLIENT_ISOLATED_INSTALL=OFF",
-                "-DUCLIENT_SUPERBUILD=OFF"
-            ]
-        },
-        "microcdr":{
-            "cmake-args":[
                 "-DUCDR_ISOLATED_INSTALL=ON"
+                "-DENABLE_TESTING=ON"
             ]
         }
     }
