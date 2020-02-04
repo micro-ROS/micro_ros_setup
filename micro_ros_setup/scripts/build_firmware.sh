@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 
 PREFIXES_TO_CLEAN=$AMENT_PREFIX_PATH
-FW_TARGETDIR=firmware
+FW_TARGETDIR=$(pwd)/firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
 UROS_FAST_BUILD=off

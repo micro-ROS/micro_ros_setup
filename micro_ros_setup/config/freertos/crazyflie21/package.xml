@@ -3,8 +3,8 @@
 <package format="2">
   <name>firmware</name>
   <version>0.0.0</version>
-  <description>asdf</description>
-  <maintainer email="ingo.luetkebohle@de.bosch.com">sadf</maintainer>
+  <description>Micro-ROS dependecies for FreeRTOS and Crazyflie 2.1</description>
+  <maintainer email="pablogarrido@eprosima.com">Pablo Garrido</maintainer>
   <license>APL2</license>
 
   <build_depend>dfu-util</build_depend>

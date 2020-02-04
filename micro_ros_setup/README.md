@@ -17,6 +17,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 |-|-|-|
 | [Nuttx](https://nuttx.org/) | Olimex STM32-E407, STM32F4Discovery | `nuttx olimex-stm32-e407` | 
 | [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
+| [FreeRTOS](https://www.freertos.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `freertos olimex_e407` | 
 | Linux / Windows | *Host* * |
 
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
@@ -62,22 +63,22 @@ Once the package is built, the firmware scripts are ready to run.
 
 ## Creating micro-ROS firmware
 
-Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is
+Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is:
 
 ```
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ```
 
-If you are instead targeting FreeRTOS and Crazyflie 2.1, you would use
+If you are instead targeting FreeRTOS, you would use:
 
 ```
-ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie21
+ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex-stm32-e407
 ```
 
 
 ## Configuring micro-ROS firmware
 
-By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step:
+By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step. Usually this command will show its usage if parameters are required:
 
 ```
 ros2 run micro_ros_setup configure_firmware.sh [configuration]

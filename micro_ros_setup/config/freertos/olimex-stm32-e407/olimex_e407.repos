@@ -1,0 +1,7 @@
+repositories:
+  olimex_e407_extensions:
+    type: git
+    url: https://github.com/micro-ROS/olimex_e407_extensions
+
+
+
