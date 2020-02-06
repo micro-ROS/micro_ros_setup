@@ -1,9 +1,23 @@
 {
     "names":{
-        "*":{
+        "microxrcedds_client":{
             "cmake-args":[
-                "-DBUILD_SHARED_LIBS=OFF",
-                "-DCMAKE_POSITION_INDEPENDENT_CODE:ON"
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "microcdr":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "rosidl_typesupport_microxrcedds_c":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "rosidl_typesupport_microxrcedds_cpp":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
             ]
         },
         "rcutils":{
@@ -13,3 +27,4 @@
         }
     }
 }
+
