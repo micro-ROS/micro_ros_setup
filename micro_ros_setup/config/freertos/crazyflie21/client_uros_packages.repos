@@ -26,10 +26,6 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
     version: dashing
-  uros/rosidl_typesupport:
-    type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport.git
-    version: dashing
 
 # interim, until crosscompile fix is available in dashing branch
   ros2/tinydir_vendor:

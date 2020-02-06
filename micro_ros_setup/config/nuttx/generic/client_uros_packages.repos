@@ -26,10 +26,6 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rcutils.git
     version: dashing
-  uros/rosidl_typesupport:
-    type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport.git
-    version: dashing
   drive_base:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
