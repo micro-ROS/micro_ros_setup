@@ -8,12 +8,12 @@ import copy
 
 if __name__ == '__main__':
     repos_info = yaml.load(sys.stdin)
-    repos_keep = yaml.load(open(sys.argv[1]))
+    repos_keep = yaml.load(open(sys.argv[1]))['keep'].split()
 
     target = {'repositories': {}}
 
     for key in repos_info["repositories"]:
-        if key in repos_keep['keep']:
+        if key in repos_keep:
             target['repositories'][key] = repos_info["repositories"][key]
 
     print(yaml.dump(target))
