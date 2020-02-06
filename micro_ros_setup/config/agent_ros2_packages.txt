@@ -1,16 +1,2 @@
 keep:
-  ros2/common_interfaces
-  ros2/rcl_logging
-  ros2/rcl
-  ros2/rcl_interfaces
-  ros2/rclcpp
-  ros2/rcutils
-  ros2/rmw
-  ros2/rmw_fastrtps
-  ros2/rmw_implementation
-  ros2/rosidl
-  ros2/rosidl_dds
-  ros2/rosidl_defaults
-  ros2/rosidl_typesupport
-  ros2/rosidl_typesupport_fastrtps
-  ros2/unique_identifier_msgs
+  none
