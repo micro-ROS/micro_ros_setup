@@ -1,0 +1,9 @@
+keep:
+  ament/ament_cmake
+  ament/ament_index
+  ament/ament_lint
+  ament/ament_package
+  ament/googletest
+  ament/osrf_pycommon
+  ament/uncrustify_vendor
+  ros2/ament_cmake_ros

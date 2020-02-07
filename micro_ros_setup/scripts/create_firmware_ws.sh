@@ -4,6 +4,7 @@ set -e
 set -o nounset
 set -o pipefail
 
+DEV_WS_DIR=dev_ws
 FW_TARGETDIR=$(pwd)/firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
@@ -54,6 +55,7 @@ else
 fi
 
 mkdir $FW_TARGETDIR
+touch $FW_TARGETDIR/COLCON_IGNORE
 
 echo $RTOS > $FW_TARGETDIR/PLATFORM
 echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
@@ -61,16 +63,17 @@ echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 # Setting common enviroment
 SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp"
 
-# Installing common packages
+# Installing common packages 
 rosdep update
 rosdep install -y --from-paths src -i src --rosdistro dashing --skip-keys="$SKIP"
 
 if [ $RTOS != "host" ]; then
     pushd $FW_TARGETDIR >/dev/null
         # Creating dev directory
-        mkdir dev_ws
-        ros2 run micro_ros_setup create_ws.sh dev_ws $PREFIX/config/dev_ros2_packages.txt  $PREFIX/config/dev_uros_packages.repos
-        rosdep install -y --from-paths dev_ws -i dev_ws --rosdistro dashing --skip-keys="$SKIP"
+        mkdir $DEV_WS_DIR
+        ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
+            $PREFIX/config/$RTOS/dev_uros_packages.repos
+        rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro dashing --skip-keys="$SKIP"
 
          # Creating mcu directory
         mkdir mcu_ws
@@ -79,9 +82,18 @@ if [ $RTOS != "host" ]; then
     popd >/dev/null
 fi
 
+# build the dev_ws
+. $(dirname $0)/clean_env.sh
+pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
+  colcon build
+  set +o nounset
+  # source dev workspace
+  . install/setup.bash
+popd > /dev/null
+
+
 cp $PREFIX/config/$RTOS/$PLATFORM/package.xml $FW_TARGETDIR/package.xml
 rosdep install -y --from-paths $FW_TARGETDIR -i $FW_TARGETDIR --rosdistro dashing --skip-keys="$SKIP"
-touch $FW_TARGETDIR/COLCON_IGNORE
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$PLATFORM/create.sh
