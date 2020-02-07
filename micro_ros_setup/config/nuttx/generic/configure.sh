@@ -33,6 +33,11 @@ then
     exit 1
 fi
 
+# source dev_ws for kconfig
+set +o nounset
+. $FW_TARGETDIR/dev_ws/install/setup.bash
+set -o nounset
+
 pushd $NUTTX_DIR >/dev/null
 make distclean
 tools/configure.sh $CONFIG

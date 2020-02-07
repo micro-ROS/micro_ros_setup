@@ -34,7 +34,9 @@ fi
 
 # source dev_ws
 DEV_WS_DIR=$FW_TARGETDIR/dev_ws
-. $DEV_WS_DIR/install/local_setup.bash
+set +o nounset
+. $DEV_WS_DIR/install/setup.bash
+set -o nounset
 
 # Building specific firmware folder
 echo "Building firmware for $RTOS platform $PLATFORM"
