@@ -22,7 +22,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
 
-*\* Support for compiling apps in native host for testing and debugging*
+*\* Support for compiling apps in a native host for testing and debugging*
 
 **\* Configuration for different platforms through configure_firmware.sh*
 
@@ -44,17 +44,19 @@ sudo apt install python-rosdep
 
 # Building 
 
-Create a ROS 2 workspace and build this package:
+Create a ROS 2 workspace and build this package for a given ROS 2 distro (see table above):
 
 ```bash
-source /opt/ros/dashing/setup.bash
-mkdir uros_ws
-cd uros_ws
+source /opt/ros/$ROS_DISTRO/setup.bash
 
-# Download the package branch for your ROS 2 Distro. Check table above.
-git clone -b [ROS 2 Distro] https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+mkdir uros_ws && cd uros_ws
+
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+
+rosdep update && rosdep install --from-path src --ignore-src -y
 
 colcon build
+
 source install/local_setup.bash
 ```
 
@@ -85,6 +87,7 @@ ros2 run micro_ros_setup configure_firmware.sh [configuration]
 ```
 
 For NuttX, several different configurations are supported.
+
 | NuttX Configuration | Features |
 |-|-|
 | uros |  Micro-ROS publisher & subscriber, Kobuki demo |
@@ -92,7 +95,7 @@ For NuttX, several different configurations are supported.
 | pingpong | Round-Trip-Time test over serial |
 | pingpong-eth | Round-Trip-Time test over Ethernet |
 
-Please note that these are only default configurations. Each RTOS has its own configuration approach that you might use for further customization of these base configurations.
+Please note that these are only default configurations. Each RTOS has its configuration approach that you might use for further customization of these base configurations.
 
 ## Building micro-ROS firmware
 
@@ -104,7 +107,7 @@ ros2 run micro_ros_setup build_firmware.sh
 
 ## Flashing micro-ROS firmware
 
-In order to flash the target platform run `flash_firmware.sh` command. This step may need some platform specific procedure in order to boot the platform in flashing node: 
+In order to flash the target platform run `flash_firmware.sh` command. This step may need some platform-specific procedure in order to boot the platform in flashing node:
 
 ```
 ros2 run micro_ros_setup flash_firmware.sh
@@ -130,10 +133,10 @@ New combinations of platforms and RTOS are intended to be included in `config` f
 This folder contains up to four scripts:
 - `create.sh`: gets a variable named `$FW_TARGETDIR` and installs in this path all the dependencies and code required for the firmware.
 - `configure.sh`: modifies and configure parameters of the installed dependencies. This step is **optional**.
-- `build.sh`: builds the firmware and create a platform specific linked binary.
+- `build.sh`: builds the firmware and create a platform-specific linked binary.
 - `flash.sh`: flash the binary in the target platform.
   
-Some other required files inside the folder can be accessed from these scripts usigg the following paths:
+Some other required files inside the folder can be accessed from these scripts using the following paths:
 
 ```bash
 # Files inside platform folder
