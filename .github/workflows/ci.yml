@@ -176,7 +176,7 @@ jobs:
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
           path: 'install'
-          files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
+          files: 'lib/micro_ros_setup/build_firmware.sh'
 
       - name: Create ws and build
         run: |
