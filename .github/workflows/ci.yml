@@ -59,8 +59,7 @@ jobs:
 
     # Workaround https://github.com/actions/upload-artifact/issues/38
     - run: |
-        chmod +x -R install/lib/micro_ros_setup
-        chmod +x -R install/bin
+        chmod +x -R install/lib/micro_ros_setup        
 
     - name: Create ws and build
       run: |
@@ -98,7 +97,6 @@ jobs:
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
           chmod +x -R install/lib/micro_ros_setup
-          chmod +x -R install/bin
           chmod +x install/config/host/generic/*.sh
 
       - name: Create ws and build
@@ -172,7 +170,6 @@ jobs:
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
           chmod +x -R install/lib/micro_ros_setup
-          chmod +x -R install/bin
           chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
 
       - name: Test micro_ros_agent build
