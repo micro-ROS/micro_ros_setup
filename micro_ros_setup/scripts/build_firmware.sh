@@ -9,14 +9,12 @@ FW_TARGETDIR=$(pwd)/firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
 UROS_FAST_BUILD=off
-if [ $# -gt 0 ]
-then
-  if [ "$1" = "-f" ]
-  then
-    echo "Fast-Build active, ROS workspace will not be re-built!"
-    export UROS_FAST_BUILD=y
-    shift
-  fi
+if [ $# -gt 0 ]; then
+    if [ "$1" = "-f" ]; then
+      echo "Fast-Build active, ROS workspace will not be re-built!"
+      export UROS_FAST_BUILD=y
+      shift
+    fi
 fi
 export UROS_FAST_BUILD
 
@@ -34,14 +32,10 @@ fi
 
 # source dev_ws
 if [ $RTOS != "host" ]; then
-  DEV_WS_DIR=$FW_TARGETDIR/dev_ws
-else
-  DEV_WS_DIR=$FW_TARGETDIR
+    set +o nounset
+    . $FW_TARGETDIR/dev_ws/install/setup.bash
+    set -o nounset
 fi
-
-set +o nounset
-. $DEV_WS_DIR/install/setup.bash
-set -o nounset
 
 # Building specific firmware folder
 echo "Building firmware for $RTOS platform $PLATFORM"
