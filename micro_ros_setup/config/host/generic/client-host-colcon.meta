@@ -24,6 +24,18 @@
             "cmake-args":[
                 "-DENABLE_TESTING=ON"
             ]
+        },
+        "rmw_microxrcedds":{
+            "cmake-args":[
+                "-DRMW_UXRCE_TRANSPORT=udp",
+                "-DRMW_UXRCE_MAX_NODES=1",
+                "-DRMW_UXRCE_MAX_PUBLISHERS_X_NODE=2",
+                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS_X_NODE=1",
+                "-DRMW_UXRCE_MAX_SERVICES_X_NODE=5",
+                "-DRMW_UXRCE_MAX_CLIENTS_X_NODE=5",
+                "-DRMW_UXRCE_MAX_HISTORY=10",
+                "-DRMW_UXRCE_XML_BUFFER_LENGTH=1000"
+            ]
         }
     }
 }
