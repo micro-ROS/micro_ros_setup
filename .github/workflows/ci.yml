@@ -77,8 +77,6 @@ jobs:
     runs-on: ubuntu-latest
     container: microros/base:${{github.base_ref}}
     needs: micro_ros_build
-    # Temporary disable host build while fixing it
-    if: false
 
     steps:
       - uses: actions/checkout@v2
@@ -103,8 +101,8 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
-          ros2 run micro_ros_setup create_host_client_ws.sh
-          colcon build --merge-install --metas src
+          ros2 run micro_ros_setup create_firmware_ws.sh host
+          ros2 run micro_ros_setup build_firmware.sh
 
       - name: Test installation
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
@@ -129,7 +127,7 @@ jobs:
 
   client_firmware:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    container: microros/ci:${{github.base_ref}}
     needs: micro_ros_build
 
     strategy:
