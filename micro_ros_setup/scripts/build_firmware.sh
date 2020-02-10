@@ -29,67 +29,14 @@ else
     exit 1
 fi
 
-# Cleaning paths
-function clean {
-    echo $(echo $(echo $1 | sed 's/:/\n/g' | \
-      grep -v -E "($(echo $PREFIXES_TO_CLEAN | sed 's/:/\|/g'))" ) | sed 's/ /:/g' )
-}
+# clean paths
+. $(dirname $0)/clean_env.sh
 
-if [ $RTOS == "host" ]; then
-  echo "Compiling for host environment: not cleaning path"
-else
-  echo "Crosscompiled environment: cleaning path"
-  if [ ! -z ${LD_LIBRARY_PATH+x} ]
-  then
-    MRS_TEMP_VAR=$(clean $LD_LIBRARY_PATH)
-    if [ ! -z "$MRS_TEMP_VAR" ]  
-    then
-      export LD_LIBRARY_PATH=$MRS_TEMP_VAR
-    else
-      unset LD_LIBRARY_PATH
-    fi
-    unset MRS_TEMP_VAR
-  fi
-  if [ ! -z ${CMAKE_PREFIX_PATH+x} ]
-  then
-    MRS_TEMP_VAR=$(clean $CMAKE_PREFIX_PATH)
-    if [ ! -z "$MRS_TEMP_VAR" ]  
-    then
-      export CMAKE_PREFIX_PATH=$MRS_TEMP_VAR
-    else
-      unset CMAKE_PREFIX_PATH
-    fi
-    unset MRS_TEMP_VAR
-  fi
-  if [ ! -z ${PYTHONPATH+x} ]
-  then
-    MRS_TEMP_VAR=$(clean $PYTHONPATH)
-    if [ ! -z "$MRS_TEMP_VAR" ]  
-    then
-      export PYTHONPATH=$MRS_TEMP_VAR
-    else
-      unset PYTHONPATH
-    fi
-    unset MRS_TEMP_VAR
-  fi
-  export PATH=$(clean $PATH)
-  unset AMENT_PREFIX_PATH
-  unset COLCON_PREFIX_PATH
-
-  # Build and source dev_ws
-  DEV_WS_DIR=$FW_TARGETDIR/dev_ws
-
-  pushd $DEV_WS_DIR >/dev/null
-    # Build if not built or if fast build disabled
-    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "install" ]; then
-      colcon build
-    fi
-    set +o nounset
-
-    # source dev workspace
-    . install/setup.bash
-  popd > /dev/null
-fi
+# source dev_ws
+DEV_WS_DIR=$FW_TARGETDIR/dev_ws
+set +o nounset
+. $DEV_WS_DIR/install/setup.bash
+set -o nounset
 
 # Building specific firmware folder
 echo "Building firmware for $RTOS platform $PLATFORM"

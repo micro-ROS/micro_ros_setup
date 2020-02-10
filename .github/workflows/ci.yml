@@ -30,7 +30,7 @@ jobs:
       uses: BorjaOuterelo/test-file-system-action@v0.0.1
       with:
         path: 'install'
-        files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
+        files: 'lib/micro_ros_setup/build_firmware.sh'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
@@ -59,8 +59,7 @@ jobs:
 
     # Workaround https://github.com/actions/upload-artifact/issues/38
     - run: |
-        chmod +x -R install/lib/micro_ros_setup
-        chmod +x -R install/bin
+        chmod +x -R install/lib/micro_ros_setup        
 
     - name: Create ws and build
       run: |
@@ -98,7 +97,6 @@ jobs:
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
           chmod +x -R install/lib/micro_ros_setup
-          chmod +x -R install/bin
           chmod +x install/config/host/generic/*.sh
 
       - name: Create ws and build
@@ -172,14 +170,13 @@ jobs:
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
           chmod +x -R install/lib/micro_ros_setup
-          chmod +x -R install/bin
           chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
 
       - name: Test micro_ros_agent build
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
           path: 'install'
-          files: 'bin/kconfig,lib/micro_ros_setup/build_firmware.sh'
+          files: 'lib/micro_ros_setup/build_firmware.sh'
 
       - name: Create ws and build
         run: |
