@@ -12,7 +12,11 @@ pushd $CF_EXTENSIONS_DIR >/dev/null
         make clean
 
         # build micro-ROS stack
-        make libmicroros
+        if [[ -v UROS_EXTERNAL_DEPS ]]; then
+            echo "Using external deps: $UROS_EXTERNAL_DEPS"
+            EXTRA="CROSS_COMPILE=$UROS_EXTERNAL_DEPS"
+        fi
+        make libmicroros $EXTRA
     fi
     # build crayflie firmware
     make PLATFORM=cf2 CLOAD=0
