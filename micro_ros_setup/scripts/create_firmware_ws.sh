@@ -91,8 +91,7 @@ pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
   . install/setup.bash
 popd > /dev/null
 
-
-cp $PREFIX/config/$RTOS/$PLATFORM/package.xml $FW_TARGETDIR/package.xml
+# CHECKME: this is probably no longer necessary
 rosdep install -y --from-paths $FW_TARGETDIR -i $FW_TARGETDIR --rosdistro dashing --skip-keys="$SKIP"
 
 # Creating specific firmware folder

@@ -28,3 +28,6 @@ pushd $FW_TARGETDIR >/dev/null
     echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null
 
 popd >/dev/null
+
+cp $PREFIX/config/$RTOS/$PLATFORM/package.xml $FW_TARGETDIR/apps/package.xml
+rosdep install -y --from-paths $FW_TARGETDIR/apps -i $FW_TARGETDIR/apps --rosdistro dashing
