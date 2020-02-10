@@ -129,7 +129,7 @@ jobs:
 
   client_firmware:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    container: microros/ci:${{github.base_ref}}
     needs: micro_ros_build
 
     strategy:
