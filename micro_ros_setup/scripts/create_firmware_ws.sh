@@ -67,6 +67,7 @@ SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesup
 rosdep update
 rosdep install -y --from-paths src -i src --rosdistro dashing --skip-keys="$SKIP"
 
+
 if [ $RTOS != "host" ]; then
     pushd $FW_TARGETDIR >/dev/null
         # Creating dev directory
@@ -84,7 +85,11 @@ fi
 
 # build the dev_ws
 . $(dirname $0)/clean_env.sh
-pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
+if [ $RTOS != "host" ]; then
+    pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
+else
+    pushd $FW_TARGETDIR >/dev/null
+fi
   colcon build
   set +o nounset
   # source dev workspace

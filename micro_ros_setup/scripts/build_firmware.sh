@@ -33,7 +33,12 @@ fi
 . $(dirname $0)/clean_env.sh
 
 # source dev_ws
-DEV_WS_DIR=$FW_TARGETDIR/dev_ws
+if [ $RTOS != "host" ]; then
+  DEV_WS_DIR=$FW_TARGETDIR/dev_ws
+else
+  DEV_WS_DIR=$FW_TARGETDIR
+fi
+
 set +o nounset
 . $DEV_WS_DIR/install/setup.bash
 set -o nounset
