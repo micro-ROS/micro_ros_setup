@@ -107,7 +107,7 @@ jobs:
       - name: Test micro_ros_demos_rcl
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
-          path: 'install/micro_ros_demos_rcl/lib/micro_ros_demos_rcl'
+          path: 'install/lib/micro_ros_demos_rcl'
           files: 'addtwoints_client/addtwoints_client,
                   addtwoints_server/addtwoints_server,
                   configured_publisher/configured_publisher,
@@ -123,7 +123,7 @@ jobs:
       - name: Test micro_ros_demos_rclc
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
-          path: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc'
+          path: 'install/lib/micro_ros_demos_rclc'
           files: 'complex_msg_publisher/complex_msg_publisher,
                   complex_msg_subscriber/complex_msg_subscriber,
                   int32_publisher/int32_publisher,
@@ -137,7 +137,7 @@ jobs:
       - name: Test micro_ros_demos_rclcpp
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
-          path: 'install/micro_ros_demos_rcl/lib/micro_ros_demos_rcl'
+          path: 'install/lib/micro_ros_demos_rclcpp'
           files: 'complex_msg_publisher/complex_msg_publisher,
                   complex_msg_subscriber/complex_msg_subscriber,
                   int32_publisher/int32_publisher,
