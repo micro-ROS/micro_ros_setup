@@ -67,11 +67,11 @@ SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesup
 rosdep update
 rosdep install -y --from-paths src -i src --rosdistro dashing --skip-keys="$SKIP"
 
+pushd $FW_TARGETDIR >/dev/null
+    # Creating dev directory
+    mkdir $DEV_WS_DIR
 
-if [ $RTOS != "host" ]; then
-    pushd $FW_TARGETDIR >/dev/null
-        # Creating dev directory
-        mkdir $DEV_WS_DIR
+    if [ $RTOS != "host" ]; then
         ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
             $PREFIX/config/$RTOS/dev_uros_packages.repos
         rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro dashing --skip-keys="$SKIP"
@@ -80,21 +80,19 @@ if [ $RTOS != "host" ]; then
         mkdir mcu_ws
         ros2 run micro_ros_setup create_ws.sh mcu_ws $PREFIX/config/client_ros2_packages.txt $PREFIX/config/$RTOS/$PLATFORM/client_uros_packages.repos
         cp $PREFIX/config/$RTOS/$PLATFORM/client-colcon.meta mcu_ws/colcon.meta
-    popd >/dev/null
-fi
+    fi
+popd >/dev/null
 
 # build the dev_ws
 . $(dirname $0)/clean_env.sh
 if [ $RTOS != "host" ]; then
     pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
-else
-    pushd $FW_TARGETDIR >/dev/null
+        colcon build
+        set +o nounset
+        # source dev workspace
+        . install/setup.bash
+    popd > /dev/null
 fi
-  colcon build
-  set +o nounset
-  # source dev workspace
-  . install/setup.bash
-popd > /dev/null
 
 # CHECKME: this is probably no longer necessary
 rosdep install -y --from-paths $FW_TARGETDIR -i $FW_TARGETDIR --rosdistro dashing --skip-keys="$SKIP"
