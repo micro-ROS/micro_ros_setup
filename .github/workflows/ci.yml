@@ -27,7 +27,7 @@ jobs:
         colcon build --merge-install
 
     - name: Test micro_ros_setup build
-      uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      uses: BorjaOuterelo/test-file-system-action@v0.0.2
       with:
         path: 'install'
         files: 'lib/micro_ros_setup/build_firmware.sh'
@@ -69,7 +69,7 @@ jobs:
         colcon build --merge-install
 
     - name: Test micro_ros_agent build
-      uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      uses: BorjaOuterelo/test-file-system-action@v0.0.2
       with:
         files: 'install/lib/micro_ros_agent/micro_ros_agent'
 
@@ -77,8 +77,6 @@ jobs:
     runs-on: ubuntu-latest
     container: microros/base:${{github.base_ref}}
     needs: micro_ros_build
-    # Temporary disable host build while fixing it
-    if: false
 
     steps:
       - uses: actions/checkout@v2
@@ -103,33 +101,54 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
-          ros2 run micro_ros_setup create_host_client_ws.sh
-          colcon build --merge-install --metas src
+          ros2 run micro_ros_setup create_firmware_ws.sh host
+          ros2 run micro_ros_setup build_firmware.sh --merge-install
 
-      - name: Test installation
-        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+      - name: Test micro_ros_demos_rcl
+        uses: BorjaOuterelo/test-file-system-action@v0.0.2
         with:
-          path: 'install/lib'
-          files: 'complex_msg_publisher_c/complex_msg_publisher_c,
-                  complex_msg_publisher_cpp/complex_msg_publisher_cpp,
-                  complex_msg_subscriber_c/complex_msg_subscriber_c,
-                  complex_msg_subscriber_cpp/complex_msg_subscriber_cpp,
-                  int32_publisher_c/int32_publisher_c,
-                  int32_publisher_cpp/int32_publisher_cpp,
-                  int32_subscriber_c/int32_subscriber_c,
-                  int32_subscriber_cpp/int32_subscriber_cpp,
-                  rad0_actuator_c/rad0_actuator_c,
-                  rad0_altitude_sensor_c/rad0_altitude_sensor_c,
-                  rad0_control_cpp/rad0_control_cpp,
-                  rad0_display_c/rad0_display_c,
-                  string_publisher_c/string_publisher_c,
-                  string_publisher_cpp/string_publisher_cpp,
-                  string_subscriber_c/string_subscriber_c,
-                  string_subscriber_cpp/string_subscriber_cpp'
+          path: 'install/lib/micro_ros_demos_rcl'
+          files: 'addtwoints_client/addtwoints_client,
+                  addtwoints_server/addtwoints_server,
+                  configured_publisher/configured_publisher,
+                  configured_subscriber/configured_subscriber,
+                  fibonacci_action_client/fibonacci_action_client,
+                  fibonacci_action_server/fibonacci_action_server,
+                  guard_condition/guard_condition,
+                  int32_multinode/int32_multinode,
+                  int32_publisher/int32_publisher,
+                  int32_publisher_subscriber/int32_publisher_subscriber,
+                  int32_subscriber/int32_subscriber'
+
+      - name: Test micro_ros_demos_rclc
+        uses: BorjaOuterelo/test-file-system-action@v0.0.2
+        with:
+          path: 'install/lib/micro_ros_demos_rclc'
+          files: 'complex_msg_publisher/complex_msg_publisher,
+                  complex_msg_subscriber/complex_msg_subscriber,
+                  int32_publisher/int32_publisher,
+                  int32_subscriber/int32_subscriber,
+                  rad0_actuator/rad0_actuator,
+                  rad0_altitude_sensor/rad0_altitude_sensor,
+                  rad0_display/rad0_display,
+                  string_publisher/string_publisher,
+                  string_subscriber/string_subscriber'
+
+      - name: Test micro_ros_demos_rclcpp
+        uses: BorjaOuterelo/test-file-system-action@v0.0.2
+        with:
+          path: 'install/lib/micro_ros_demos_rclcpp'
+          files: 'complex_msg_publisher/complex_msg_publisher,
+                  complex_msg_subscriber/complex_msg_subscriber,
+                  int32_publisher/int32_publisher,
+                  int32_subscriber/int32_subscriber,
+                  rad0_control/rad0_control,
+                  string_publisher/string_publisher,
+                  string_subscriber/string_subscriber'
 
   client_firmware:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    container: microros/ci:${{github.base_ref}}
     needs: micro_ros_build
 
     strategy:
@@ -173,7 +192,7 @@ jobs:
           chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
 
       - name: Test micro_ros_agent build
-        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        uses: BorjaOuterelo/test-file-system-action@v0.0.2
         with:
           path: 'install'
           files: 'lib/micro_ros_setup/build_firmware.sh'
@@ -188,6 +207,6 @@ jobs:
 
       - name: Test firmware build
         if: matrix.files
-        uses: BorjaOuterelo/test-file-system-action@v0.0.1
+        uses: BorjaOuterelo/test-file-system-action@v0.0.2
         with:
           files: ${{ matrix.files }}
