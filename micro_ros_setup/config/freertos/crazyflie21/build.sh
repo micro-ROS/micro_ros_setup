@@ -1,3 +1,5 @@
+set +o nounset
+
 CF_DIR=$FW_TARGETDIR/crazyflie_firmware
 CF_EXTENSIONS_DIR=$FW_TARGETDIR/crazyflie_microros_extensions
 

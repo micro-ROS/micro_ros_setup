@@ -1,3 +1,5 @@
+set +o nounset
+
 OLIMEX_EXTENSIONS_DIR=$FW_TARGETDIR/olimex_e407_extensions
 
 pushd $OLIMEX_EXTENSIONS_DIR >/dev/null
