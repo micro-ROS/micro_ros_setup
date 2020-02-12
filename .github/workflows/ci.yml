@@ -136,7 +136,7 @@ jobs:
       fail-fast: false
       matrix:
         rtos: [nuttx, freertos]
-        platform: [crazyflie21, generic]
+        platform: [crazyflie21, generic, olimex-stm32-e407]
         exclude:
           - rtos: freertos
             platform: generic
@@ -147,8 +147,17 @@ jobs:
             platform: generic
             configuration: olimex-stm32-e407/uros
             files: 'firmware/NuttX/nuttx'
+          - rtos: nuttx
+            platform: olimex-stm32-e407
+            configuration: uros
+            files: 'firmware/NuttX/nuttx'
           - rtos: freertos
+            platform: crazyflie21
             files: 'firmware/crazyflie_microros_extensions/cf2.elf'
+          - rtos: freertos
+            platform: olimex-stm32-e407
+            files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
+                    firmware/olimex_e407_extensions/build/micro-ROS.bin'
 
     steps:
       - uses: actions/checkout@v2
