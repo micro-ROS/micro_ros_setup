@@ -7,15 +7,17 @@ pushd $CF_DIR >/dev/null
 popd >/dev/null
 
 pushd $CF_EXTENSIONS_DIR >/dev/null
+
+    if [[ -v UROS_EXTERNAL_DEPS ]]; then
+        echo "Using external deps: $UROS_EXTERNAL_DEPS"
+        EXTRA="CROSS_COMPILE=$UROS_EXTERNAL_DEPS"
+    fi
+
     if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "bin" ]; then
         # clean build
         make clean
 
         # build micro-ROS stack
-        if [[ -v UROS_EXTERNAL_DEPS ]]; then
-            echo "Using external deps: $UROS_EXTERNAL_DEPS"
-            EXTRA="CROSS_COMPILE=$UROS_EXTERNAL_DEPS"
-        fi
         make libmicroros $EXTRA
     fi
     # build crayflie firmware
