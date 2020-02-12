@@ -6,7 +6,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Client:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
-    version: feature/posix_nopoll
+    version: dashing
 
 # MicroROS
   
@@ -21,7 +21,7 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: feature/custom_serial_selection
+    version: feture/bug_fix
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
@@ -35,3 +35,9 @@ repositories:
     type: git
     url: https://github.com/ros2/tinydir_vendor.git
     version: master
+
+# Remove this when https://github.com/ros2/rmw_implementation/pull/81 merged
+  uros/rmw_implementation:
+    type: git
+    url: https://github.com/pablogs9/rmw_implementation.git
+    version: feature/Thread_conditional

@@ -41,5 +41,8 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
 
+    # Remove this when https://github.com/ros2/rmw_implementation/pull/81 merged
+    touch mcu_ws/ros2/rmw_implementation/COLCON_IGNORE
+
     rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
 popd >/dev/null
