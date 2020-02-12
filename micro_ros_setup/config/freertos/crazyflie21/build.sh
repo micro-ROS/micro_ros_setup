@@ -19,5 +19,5 @@ pushd $CF_EXTENSIONS_DIR >/dev/null
         make libmicroros $EXTRA
     fi
     # build crayflie firmware
-    make PLATFORM=cf2 CLOAD=0
+    make PLATFORM=cf2 CLOAD=0 $EXTRA
 popd >/dev/null
