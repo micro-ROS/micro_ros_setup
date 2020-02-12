@@ -32,7 +32,7 @@ pushd $FW_TARGETDIR >/dev/null
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
     export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk-0.11.1
 
-    rm-rf zephyr-sdk-0.11.1-setup.run
+    rm -rf zephyr-sdk-0.11.1-setup.run
 
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/$PLATFORM/olimex_e407.repos >/dev/null

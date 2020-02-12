@@ -38,7 +38,7 @@ if [ "$TRANSPORT" == "udp" ] || [ "$TRANSPORT" == "tcp" ]; then
 
 elif [ "$TRANSPORT" == "serial" ]; then
       if [ $# -lt 2 ]; then
-            SERIAL="3"
+            SERIAL="1"
       else
             SERIAL=$2
       fi
@@ -46,9 +46,8 @@ elif [ "$TRANSPORT" == "serial" ]; then
 
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_TRANSPORT=custom"
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE="$SERIAL
-      echo "change the serial externals"
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER_SERIAL="$OLIMEX_EXTENSIONS_DIR"/Inc/olimex_e407_serial_transport.h"
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC_SERIAL="$OLIMEX_EXTENSIONS_DIR"/Src/olimex_e407_serial_transport.c"
+      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER_SERIAL="$OLIMEX_EXTENSIONS_DIR"/microros/olimex_e407_serial_transport.h"
+      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC_SERIAL="$OLIMEX_EXTENSIONS_DIR"/microros/olimex_e407_serial_transport.c"
 
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_IP="
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_PORT="
