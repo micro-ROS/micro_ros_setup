@@ -7,7 +7,3 @@ repositories:
   crazyflie_microros_extensions:
     type: git
     url: https://github.com/micro-ROS/crazyflie_extensions
-    version: feature/external_toolchain
-
-
-
