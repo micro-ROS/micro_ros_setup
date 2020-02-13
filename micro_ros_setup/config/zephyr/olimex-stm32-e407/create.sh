@@ -27,7 +27,7 @@ pushd $FW_TARGETDIR >/dev/null
     pushd zephyrproject/zephyr >/dev/null
         git remote add eprosima https://github.com/eProsima/zephyr
         git fetch --all
-        git checkout remotes/eprosima/feature/vl53l1
+        git checkout remotes/eprosima/feature/driver_vl53l1
     popd >/dev/null
 
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
