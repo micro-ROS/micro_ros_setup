@@ -7,7 +7,8 @@ sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update
 sudo apt install cmake -y
 
-pip3 install west
+pip3 install --user -U west
+export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
    
