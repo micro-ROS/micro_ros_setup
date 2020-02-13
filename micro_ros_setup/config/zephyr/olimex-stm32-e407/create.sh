@@ -5,7 +5,7 @@ sudo apt install --no-install-recommends git cmake ninja-build gperf ccache dfu-
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update
-sudo apt install cmake
+sudo apt install cmake -y
 
 pip3 install west
 
