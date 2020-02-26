@@ -31,7 +31,7 @@ cp -rf $WORK_DIR/ros2-performance/micro-ros_cc_ws $WORK_DIR
 
 #Download Micro-ROS Hardware Bridge Tool.
 cd $WORK_DIR
-wget https://raw.githubusercontent.com/micro-ROS/micro-ROS-bridge_RPI/new_bridge_tools/RPI_6lowpan/micro-ROS-HB.sh
+wget https://raw.githubusercontent.com/micro-ROS/micro-ROS-bridge_RPI/new_bridge_tools/micro-ROS-HB.sh
 chmod +wxr micro-ROS-HB.sh
 
 #Delete the cross-compilation tool
