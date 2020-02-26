@@ -17,8 +17,8 @@
                 "-DUCLIENT_ISOLATED_INSTALL=OFF",
                 "-DUCLIENT_PIC=OFF",
                 "-DUCLIENT_SUPERBUILD=OFF",
-                "-DEXTERNAL_TRANSPORT_HEADER=/workspaces/uros_ws_olimexzephyr/uros_ws/firmware/olimex_e407_extensions/microros/olimex_e407_serial_transport.h",
-                "-DEXTERNAL_TRANSPORT_SRC=/workspaces/uros_ws_olimexzephyr/uros_ws/firmware/olimex_e407_extensions/microros/olimex_e407_serial_transport.c"
+                "-DEXTERNAL_TRANSPORT_HEADER=/workspaces/uros_discovery/firmware/st-b-l475e-iot01a_extensions/microros/zephyr_usb_serial_transport.h",
+                "-DEXTERNAL_TRANSPORT_SRC=/workspaces/uros_discovery/firmware/st-b-l475e-iot01a_extensions/microros/zephyr_usb_serial_transport.c"
             ]
         },
         "rmw_microxrcedds": {

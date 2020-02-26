@@ -1,7 +1,7 @@
 repositories:
-  olimex_e407_extensions:
+  st-b-l475e-iot01a_extensions:
     type: git
-    url: https://github.com/micro-ROS/olimex_e407_extensions
+    url: https://github.com/micro-ROS/st-b-l475e-iot01a_extensions
     version: zephyr
 
 

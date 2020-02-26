@@ -1,5 +1,5 @@
 
-OLIMEX_EXTENSIONS_DIR=$FW_TARGETDIR/olimex_e407_extensions
+EXTENSIONS_DIR=$FW_TARGETDIR/st-b-l475e-iot01a_extensions
 
 function update_meta {
       python3 -c "import sys; import json; c = '$2'; s = json.loads(''.join([l for l in sys.stdin])); k = s['names']['$1']['cmake-args']; i = [c.startswith(v.split('=')[0]) for v in k]; k.pop(i.index(True)) if any(i) else None; k.append(c) if len(c.split('=')[1]) else None; print(json.dumps(s,indent=4))" < $FW_TARGETDIR/mcu_ws/colcon.meta > $FW_TARGETDIR/mcu_ws/colcon_new.meta
@@ -49,8 +49,8 @@ elif [ "$TRANSPORT" == "serial" ]; then
 
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_TRANSPORT=custom"
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE="$SERIAL
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER="$OLIMEX_EXTENSIONS_DIR"/microros/olimex_e407_serial_transport.h"
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC="$OLIMEX_EXTENSIONS_DIR"/microros/olimex_e407_serial_transport.c"
+      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER="$EXTENSIONS_DIR"/microros/olimex_e407_serial_transport.h"
+      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC="$EXTENSIONS_DIR"/microros/olimex_e407_serial_transport.c"
 
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_IP="
       update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_PORT="

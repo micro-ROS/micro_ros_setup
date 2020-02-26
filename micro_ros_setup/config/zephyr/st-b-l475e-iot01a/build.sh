@@ -11,6 +11,6 @@ pushd $FW_TARGETDIR >/dev/null
         rm -rf mcu_ws/build mcu_ws/install mcu_ws/log
     fi
 
-    west build -p auto olimex_e407_extensions -- -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON
+    west build -p auto st-b-l475e-iot01a_extensions -- -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON
     # west build -p auto -b olimex_stm32_e407 olimex_e407_extensions -- -G'Unix Makefiles'
 popd >/dev/null
