@@ -17,21 +17,18 @@
                 "-DUCLIENT_ISOLATED_INSTALL=OFF",
                 "-DUCLIENT_PIC=OFF",
                 "-DUCLIENT_SUPERBUILD=OFF",
-                "-DEXTERNAL_TRANSPORT_HEADER=/workspaces/uros_ws_olimexzephyr/uros_ws/firmware/olimex_e407_extensions/microros/olimex_e407_serial_transport.h",
-                "-DEXTERNAL_TRANSPORT_SRC=/workspaces/uros_ws_olimexzephyr/uros_ws/firmware/olimex_e407_extensions/microros/olimex_e407_serial_transport.c"
+                "-DEXTERNAL_TRANSPORT_HEADER=/workspaces/uros_discovery/firmware/st-b-l475e-iot01a_extensions/microros/zephyr_usb_serial_transport.h",
+                "-DEXTERNAL_TRANSPORT_SRC=/workspaces/uros_discovery/firmware/st-b-l475e-iot01a_extensions/microros/zephyr_usb_serial_transport.c"
             ]
         },
         "rmw_microxrcedds": {
             "cmake-args": [
                 "-DRMW_UXRCE_MAX_NODES=1",
-                "-DRMW_UXRCE_MAX_PUBLISHERS_X_NODE=3",
-                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS_X_NODE=3",
-                "-DRMW_UXRCE_MAX_SERVICES_X_NODE=1",
-                "-DRMW_UXRCE_MAX_CLIENTS_X_NODE=1",
+                "-DRMW_UXRCE_MAX_PUBLISHERS=1",
+                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=1",
+                "-DRMW_UXRCE_MAX_SERVICES=1",
+                "-DRMW_UXRCE_MAX_CLIENTS=1",
                 "-DRMW_UXRCE_MAX_HISTORY=4",
-                "-DRMW_UXRCE_XML_BUFFER_LENGTH=400",
-                "-DRMW_UXRCE_TRANSPORT=custom",
-                "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE=1"
             ]
         }
     }

@@ -7,7 +7,7 @@ sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update
 sudo apt install cmake -y
 
-pip3 install --user -U west
+# pip3 install --user -U west
 export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
@@ -41,6 +41,7 @@ pushd $FW_TARGETDIR >/dev/null
     # ignore broken packages
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
+    touch mcu_ws/ros2/rosidl_typesupport/COLCON_IGNORE
 
     # Remove this when https://github.com/ros2/rmw_implementation/pull/81 merged
     touch mcu_ws/ros2/rmw_implementation/COLCON_IGNORE
