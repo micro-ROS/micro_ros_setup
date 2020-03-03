@@ -17,7 +17,6 @@ fi
 
 # parse the platform from this script's path name
 PLATFORM=$(head -n2 $FW_TARGETDIR/PLATFORM | tail -n1)
-CONFIG_NAME=$1
 
 # for the "generic" platform, the user must supply both board and config
 if [ "$PLATFORM" = "generic" ]

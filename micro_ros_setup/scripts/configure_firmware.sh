@@ -16,6 +16,41 @@ else
     exit 1
 fi
 
+# Parsing micro-ROS arguments
+export CONFIG_NAME=$1
+shift
+
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+      -t|--transport)
+      export UROS_TRANSPORT="$2"
+      shift # past argument
+      shift # past value
+      ;;
+      -d|--dev)
+      export UROS_AGENT_DEVICE="$2"
+      shift # past argument
+      shift # past value
+      ;;
+      -i|--ip)
+      export UROS_AGENT_IP="$2"
+      shift # past argument
+      shift # past value
+      ;;
+      -p|--port)
+      export UROS_AGENT_PORT="$2"
+      shift # past argument
+      shift # past value
+      ;;
+      *)    # unknown option
+      echo "Unknown argument  $1"
+      exit 1
+      ;;
+  esac
+done
+
 # Configure specific firmware folder if needed
 if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
     if [ -f $PREFIX/config/$RTOS/generic/configure.sh ]; then
