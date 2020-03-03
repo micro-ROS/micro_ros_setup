@@ -1,7 +1,7 @@
 
 EXTENSIONS_DIR=$FW_TARGETDIR/zephyr_apps
 
-. $(dirname $0)/../../utils.sh
+. $PREFIX/config/utils.sh
 
 function help {
       echo "Configure script need an argument. For example: ros2 run micro_ros_setup configure_firmware.sh [udp | tcp | serial | serialusb] [IP address | Serial port] [IP port]"

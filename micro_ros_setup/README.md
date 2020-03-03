@@ -19,7 +19,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
 | [FreeRTOS](https://www.freertos.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `freertos olimex-stm32-e407` | 
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `zephyr olimex-stm32-e407` | 
-| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr st-b-l475e-iot01a` | 
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr discovery_l475_iot1` | 
 | Linux / Windows | *Host* * |
 
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
@@ -104,7 +104,7 @@ Please note that these are only default configurations. Each RTOS has its config
 By running `build_firmware.sh` the firmware is built:
 
 ```
-ros2 run micro_ros_setup build_firmware.sh
+ros2 run micro_ros_setup build_firmware.sh [app name]
 ```
 
 ## Flashing micro-ROS firmware
