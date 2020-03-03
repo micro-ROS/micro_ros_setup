@@ -13,11 +13,11 @@ print_available_platforms () {
   pushd $PREFIX/config >/dev/null
   for rtos in $(ls -d */ | cut -f1 -d'/'); do 
     echo ". $rtos"
+    if [ -f $PREFIX/config/$rtos/generic/supported_platforms ];then
 
-    if [ -f $PREFIX/config/generic/supported_platforms ];then
-        while IFS= read -r platform; do
-            echo "+-- $platform"
-        done < $PREFIX/config/generic/supported_platforms
+        while read line; do
+            echo "+-- $line"
+        done < $PREFIX/config/$rtos/generic/supported_platforms
     else
         pushd $rtos >/dev/null
         for platform in $(ls -d */ | cut -f1 -d'/'); do 
