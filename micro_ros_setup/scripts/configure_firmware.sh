@@ -17,6 +17,16 @@ else
 fi
 
 # Parsing micro-ROS arguments
+if [ $# -lt 1 ]; then
+  echo "micro-ROS application name must be provided: ros2 run micro_ros_setup configure_firmware.sh [app name] [options]"
+  # Check if RTOS has app listing funcions and source in case 
+  if [ -f $PREFIX/config/$RTOS/generic/list_apps.sh ]; then
+      . $PREFIX/config/$RTOS/generic/list_apps.sh
+      print_available_apps
+  fi
+  exit 1
+fi
+
 export CONFIG_NAME=$1
 shift
 

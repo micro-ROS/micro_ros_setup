@@ -4,10 +4,15 @@ EXTENSIONS_DIR=$FW_TARGETDIR/zephyr_apps
 . $PREFIX/config/utils.sh
 
 function help {
-      echo "Configure script need an argument. For example: ros2 run micro_ros_setup configure_firmware.sh [udp | tcp | serial | serialusb] [IP address | Serial port] [IP port]"
+      echo "Configure script need an argument."
+      echo "   --transport -t       udp, tcp, serial or serialusb"
+      echo "   --dev -d             agent string descriptor in a serial-like transport"
+      echo "   --ip -i              agent IP in a network-like transport"
+      echo "   --port -p            agent port in a network-like transport"
+
 }
 
-echo $CONFIG_NAME >> $FW_TARGETDIR/PLATFORM
+echo $CONFIG_NAME >> $FW_TARGETDIR/APP
 
 if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
       echo "Zephyr network support not available yet"

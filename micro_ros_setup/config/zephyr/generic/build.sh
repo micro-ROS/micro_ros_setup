@@ -1,33 +1,18 @@
-print_available_apps () {
-  echo "Available apps for :"
-  pushd $FW_TARGETDIR/zephyr_apps/apps >/dev/null
-  for app in $(ls -d */ | cut -f1 -d'/'); do 
-    echo "+-- $app"
-  done
-  popd >/dev/null
-}
-
 . $PREFIX/config/utils.sh
 
 pushd $FW_TARGETDIR >/dev/null
     source $FW_TARGETDIR/zephyrproject/zephyr/zephyr-env.sh
-    export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-    export ZEPHYR_SDK_INSTALL_DIR=$(pwd)/zephyr-sdk
 
+    export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+    export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
     export PATH=~/.local/bin:"$PATH"
 
 
     # Retrieve user app
     unset UROS_APP
-
-    if [ $# -lt 1 ]; then
-        echo "Please insert an app to build"
-        print_available_apps
-        exit 1
-    fi
             
-    UROS_APP=$(head -n3 $FW_TARGETDIR/PLATFORM | tail -n1)
-    UROS_APP_FOLDER="$FW_TARGETDIR/zephyr_apps/apps/$UROS_APP"
+    export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
+    export UROS_APP_FOLDER="$FW_TARGETDIR/zephyr_apps/apps/$UROS_APP"
 
     if [ -d "$UROS_APP_FOLDER" ]; then
         echo "Selected app: $UROS_APP"
@@ -53,11 +38,6 @@ pushd $FW_TARGETDIR >/dev/null
     else
         echo "Unrecognized board: $PLATFORM"
         exit 1
-    fi
-
-    # Run app configuration if any
-    if [ -f "$UROS_APP_FOLDER/micro-ros-conf.sh" ]; then
-        . "$UROS_APP_FOLDER/micro-ros-conf.sh"
     fi
 
     # Build Zephyr + app
