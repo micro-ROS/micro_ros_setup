@@ -1,5 +1,3 @@
-# DASHING SUPPORT IS WORK IN PROGRESS 
-
 # micro-ROS build support
 
 ## Installation and Building
@@ -7,8 +5,6 @@
 This package contains submodules. Please clone it using
 
 ```git clone --recursive ...```
-
-Building this package requires that you have [ROS 2 Crystal](https://index.ros.org/doc/ros2/Installation/Crystal/) installed first.
 
 ## micro_ros_setup
 
