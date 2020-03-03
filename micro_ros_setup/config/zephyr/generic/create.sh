@@ -19,9 +19,13 @@ pushd $FW_TARGETDIR >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
 
-    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.1/zephyr-sdk-0.11.1-setup.run
-    chmod +x zephyr-sdk-0.11.1-setup.run
-    ./zephyr-sdk-0.11.1-setup.run -- -d $(pwd)/zephyr-sdk-0.11.1 -y
+    export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
+    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
+    chmod +x $TOOLCHAIN_VERSION
+    ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
+
+    rm -rf $TOOLCHAIN_VERSION
+
 
     # Temporal until driver in mainstream
     pushd zephyrproject/zephyr >/dev/null
@@ -31,9 +35,7 @@ pushd $FW_TARGETDIR >/dev/null
     popd >/dev/null
 
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-    export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk-0.11.1
-
-    rm -rf zephyr-sdk-0.11.1-setup.run
+    export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
 
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/$PLATFORM/board.repos >/dev/null
