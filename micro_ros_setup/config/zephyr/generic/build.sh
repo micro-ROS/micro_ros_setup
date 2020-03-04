@@ -10,7 +10,7 @@ print_available_apps () {
 pushd $FW_TARGETDIR >/dev/null
     source $FW_TARGETDIR/zephyrproject/zephyr/zephyr-env.sh
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-    export ZEPHYR_SDK_INSTALL_DIR=$(pwd)/zephyr-sdk-0.11.1
+    export ZEPHYR_SDK_INSTALL_DIR=$(pwd)/zephyr-sdk
 
     export PATH=~/.local/bin:"$PATH"
 
