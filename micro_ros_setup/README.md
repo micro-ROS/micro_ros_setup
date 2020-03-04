@@ -26,6 +26,8 @@ Please note that NuttX with Olimex STM32-E407 board is the reference platform an
 
 **\* Configuration for different platforms through configure_firmware.sh*
 
+fadsf
+
 # Dependencies
 
 This package targets **ROS 2** installation. ROS 2 supported distributions are:
