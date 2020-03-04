@@ -36,9 +36,3 @@ repositories:
     type: git
     url: https://github.com/ros2/tinydir_vendor.git
     version: master
-
-# Remove this when https://github.com/ros2/rmw_implementation/pull/81 merged
-  uros/rmw_implementation:
-    type: git
-    url: https://github.com/pablogs9/rmw_implementation.git
-    version: feature/Thread_conditional
