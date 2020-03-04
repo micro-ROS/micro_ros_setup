@@ -5,7 +5,7 @@ EXTENSIONS_DIR=$FW_TARGETDIR/zephyr_apps
 
 function help {
       echo "Configure script need an argument."
-      echo "   --transport -t       udp, tcp, serial or serialusb"
+      echo "   --transport -t       udp, tcp, serial or serial-usb"
       echo "   --dev -d             agent string descriptor in a serial-like transport"
       echo "   --ip -i              agent IP in a network-like transport"
       echo "   --port -p            agent port in a network-like transport"
@@ -24,7 +24,7 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
       help
       exit 1
 
-elif [ "$UROS_TRANSPORT" == "serialusb" ]; then
+elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
       echo "Using USB serial device."
 
       update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
