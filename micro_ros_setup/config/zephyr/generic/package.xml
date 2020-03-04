@@ -7,6 +7,14 @@
   <maintainer email="pablogarrido@eprosima.com">Pablo Garrido</maintainer>
   <license>APL2</license>
 
-  <build_depend>openocd</build_depend>
+  <build_depend>ninja-build</build_depend>
+  <build_depend>gperf</build_depend>
+  <build_depend>dfu-util</build_depend>
+  <build_depend>wget</build_depend>
+  <build_depend>xz-utils</build_depend>
+  <build_depend>gcc-multilib</build_depend>
 
+  <!-- <build_depend>python-west-pip</build_depend>  https://github.com/ros/rosdistro/pull/23934 -->
+  <!-- <build_depend>software-properties-common</build_depend>  https://github.com/ros/rosdistro/pull/23950 -->
+  
 </package>

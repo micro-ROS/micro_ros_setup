@@ -94,8 +94,8 @@ if [ $RTOS != "host" ]; then
     popd > /dev/null
 fi
 
-# CHECKME: this is probably no longer necessary
-rosdep install -y --from-paths $FW_TARGETDIR -i $FW_TARGETDIR --rosdistro dashing --skip-keys="$SKIP"
+# Install dependecies for specific platform
+rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro dashing --skip-keys="$SKIP"
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$PLATFORM/create.sh
