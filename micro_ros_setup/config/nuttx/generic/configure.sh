@@ -10,11 +10,6 @@ set -o pipefail
 NUTTX_DIR=$FW_TARGETDIR/NuttX
 MCU_WS_DIR=$FW_TARGETDIR/mcu_ws
 
-if [ $# -lt 1 ]; then
-    echo "Syntax: configure.sh <config>"
-    exit 1
-fi
-
 # parse the platform from this script's path name
 PLATFORM=$(head -n2 $FW_TARGETDIR/PLATFORM | tail -n1)
 

@@ -12,7 +12,7 @@ function help {
 
 }
 
-echo $CONFIG_NAME >> $FW_TARGETDIR/APP
+echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
 if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
       echo "Zephyr network support not available yet"

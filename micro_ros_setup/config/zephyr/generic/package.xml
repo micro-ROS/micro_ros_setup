@@ -3,7 +3,7 @@
 <package format="2">
   <name>firmware</name>
   <version>0.0.0</version>
-  <description>Micro-ROS dependecies for FreeRTOS and Olimex STM32 E407</description>
+  <description>Micro-ROS dependecies for Zephyr RTOS</description>
   <maintainer email="pablogarrido@eprosima.com">Pablo Garrido</maintainer>
   <license>APL2</license>
 

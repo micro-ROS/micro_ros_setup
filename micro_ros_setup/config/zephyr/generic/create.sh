@@ -2,6 +2,7 @@
 
 sudo apt install --no-install-recommends software-properties-common -y # Remove when merged: https://github.com/ros/rosdistro/pull/23950
 
+# We need a version newer than the repo
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update

@@ -10,8 +10,6 @@
         "microxrcedds_client":{
             "cmake-args":[
                 "-DUCLIENT_PIC=OFF",
-                "-DEXTERNAL_TRANSPORT_HEADER=../../../freertos_apps/microros_crazyflie21_extensions/src/crazyflie_transport.h",
-                "-DEXTERNAL_TRANSPORT_SRC=../../../freertos_apps/microros_crazyflie21_extensions/src/crazyflie_transport.c"
             ]
         },
         "rmw_microxrcedds":{

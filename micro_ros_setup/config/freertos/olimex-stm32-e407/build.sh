@@ -2,26 +2,9 @@ EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_olimex_e407_extensions
 
 . $PREFIX/config/utils.sh
 
-print_available_apps () {
-  echo "Available apps for :"
-  pushd $FW_TARGETDIR/freertos_apps/apps >/dev/null
-  for app in $(ls -d */ | cut -f1 -d'/'); do 
-    echo "+-- $app"
-  done
-  popd >/dev/null
-}
+pushd $EXTENSIONS_DIR >/dev/null   
 
-pushd $EXTENSIONS_DIR >/dev/null
-
-    unset UROS_APP
-
-    if [ $# -lt 1 ]; then
-        echo "Please insert an app to build"
-        print_available_apps
-        exit 1
-    fi      
-
-    export UROS_APP=$1
+    export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
     export UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
 
     if [ -d "$UROS_APP_FOLDER" ]; then
@@ -41,11 +24,6 @@ pushd $EXTENSIONS_DIR >/dev/null
 
         # Build micro-ROS stack
         make libmicroros
-    fi
-
-    # Run app configuration if any
-    if [ -f "$UROS_APP_FOLDER/micro-ros-conf.sh" ]; then
-        . "$UROS_APP_FOLDER/micro-ros-conf.sh"
     fi
 
     # Build firmware
