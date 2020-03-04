@@ -11,7 +11,7 @@
             "cmake-args": [
                 "-DUCLIENT_ISOLATED_INSTALL=OFF",
                 "-DUCLIENT_PIC=OFF",
-                "-DUCLIENT_SUPERBUILD=OFF",
+                "-DUCLIENT_SUPERBUILD=OFF"
             ]
         },
         "rmw_microxrcedds": {

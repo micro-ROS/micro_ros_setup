@@ -27,6 +27,11 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
+if [ -f $PREFIX/config/$RTOS/list_apps.sh ]; then
+    . $PREFIX/config/$RTOS/list_apps.sh
+    check_available_app $1
+fi
+
 export CONFIG_NAME=$1
 shift
 
