@@ -8,8 +8,6 @@ sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update
 sudo apt install cmake -y
 
-pip3 install --user -U west # Remove when merged: https://github.com/ros/rosdistro/pull/23934
-
 export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
