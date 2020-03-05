@@ -69,23 +69,20 @@ Once the package is built, the firmware scripts are ready to run.
 
 Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is:
 
-```
+```bash
+# Creating a Nuttx + micro-ROS firmware workspace
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
-```
 
-If you are instead targeting FreeRTOS, you would use:
-
-```
+# Creating a FreeRTOS + micro-ROS firmware workspace
 ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex-stm32-e407
 ```
-
 
 ## Configuring micro-ROS firmware
 
 By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step. Usually this command will show its usage if parameters are required:
 
 ```
-ros2 run micro_ros_setup configure_firmware.sh [configuration]
+ros2 run micro_ros_setup configure_firmware.sh [configuration] [options]
 ```
 
 For NuttX, several different configurations are supported.
@@ -99,12 +96,18 @@ For NuttX, several different configurations are supported.
 
 Please note that these are only default configurations. Each RTOS has its configuration approach that you might use for further customization of these base configurations.
 
+Common options available at this configuration step are:
+  - `--transport` or `-t`: `udp`, `tcp`, `serial` or any hardware specific transport label
+  - `--dev` or `-d`: agent string descriptor in a serial-like transport
+  - `--ip` or `-i`: agent IP in a network-like transport
+  - `--port` or `-p`: agent port in a network-like transport
+
 ## Building micro-ROS firmware
 
 By running `build_firmware.sh` the firmware is built:
 
 ```
-ros2 run micro_ros_setup build_firmware.sh [app name]
+ros2 run micro_ros_setup build_firmware.sh
 ```
 
 ## Flashing micro-ROS firmware
