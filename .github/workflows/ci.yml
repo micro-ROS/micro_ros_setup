@@ -76,10 +76,9 @@ jobs:
 
   client_host:
     runs-on: ubuntu-latest
-    #container: microros/base:${{github.base_ref}}
     container: microros/base:dashing
     needs: micro_ros_build
-
+    
     steps:
       - uses: actions/checkout@v2
         with:
@@ -98,9 +97,8 @@ jobs:
       - run: |
           chmod +x -R install/lib/micro_ros_setup
           chmod +x install/config/host/generic/*.sh
-
-      # TODO: By now skip the RCLC packages, due to compilation errors on the CI docker.
-      - name: Create ws and build
+          
+      - name: Source required files
         run: |
           . /opt/ros/dashing/setup.sh
           . install/local_setup.sh
