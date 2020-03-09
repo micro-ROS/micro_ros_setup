@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     branches:
-    - improve_ci
+    - feature/improve_ci
 
 jobs:
 
