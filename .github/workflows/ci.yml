@@ -77,8 +77,6 @@ jobs:
     runs-on: ubuntu-latest
     container: microros/base:${{github.base_ref}}
     needs: micro_ros_build
-    # Temporary disable host build while fixing it
-    if: false
 
     steps:
       - uses: actions/checkout@v2
@@ -99,33 +97,28 @@ jobs:
           chmod +x -R install/lib/micro_ros_setup
           chmod +x install/config/host/generic/*.sh
 
+      # TODO: By now skip the RCLC packages, due to compilation errors on the CI docker.
       - name: Create ws and build
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_host_client_ws.sh
-          colcon build --merge-install --metas src
+          colcon build --merge-install --metas src --packages-skip rclc micro_ros_demos_rclc rclc_examples
 
-      - name: Test installation
-        uses: BorjaOuterelo/test-file-system-action@v0.0.1
-        with:
-          path: 'install/lib'
-          files: 'complex_msg_publisher_c/complex_msg_publisher_c,
-                  complex_msg_publisher_cpp/complex_msg_publisher_cpp,
-                  complex_msg_subscriber_c/complex_msg_subscriber_c,
-                  complex_msg_subscriber_cpp/complex_msg_subscriber_cpp,
-                  int32_publisher_c/int32_publisher_c,
-                  int32_publisher_cpp/int32_publisher_cpp,
-                  int32_subscriber_c/int32_subscriber_c,
-                  int32_subscriber_cpp/int32_subscriber_cpp,
-                  rad0_actuator_c/rad0_actuator_c,
-                  rad0_altitude_sensor_c/rad0_altitude_sensor_c,
-                  rad0_control_cpp/rad0_control_cpp,
-                  rad0_display_c/rad0_display_c,
-                  string_publisher_c/string_publisher_c,
-                  string_publisher_cpp/string_publisher_cpp,
-                  string_subscriber_c/string_subscriber_c,
-                  string_subscriber_cpp/string_subscriber_cpp'
+      # Check if the files exist
+      - name: Test file installation
+        run: |
+          (test -f install/lib/micro_ros_demos_rcl/int32_publisher/int32_publisher  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/int32_subscriber/int32_subscriber  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/int32_publisher_subscriber/int32_publisher_subscriber  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/int32_multinode/int32_multinode  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/guard_condition/guard_condition  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/fibonacci_action_server/fibonacci_action_server  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/fibonacci_action_client/fibonacci_action_client  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/configured_subscriber/configured_subscriber  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/configured_publisher/configured_publisher  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/addtwoints_server/addtwoints_server  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/addtwoints_client/addtwoints_client  && true) || false
 
   client_firmware:
     runs-on: ubuntu-latest
@@ -157,8 +150,7 @@ jobs:
           - rtos: freertos
             platform: olimex-stm32-e407
             configuration: serial
-            files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
-                    firmware/olimex_e407_extensions/build/micro-ROS.bin'
+            files: 'firmware/olimex_e407_extensions/build/micro-ROS.bin,
 
     steps:
       - uses: actions/checkout@v2
