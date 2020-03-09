@@ -1,7 +1,7 @@
 name: CI
 
 on:
-  pull:
+  pull_request:
     branches:
     - improve_ci
 
