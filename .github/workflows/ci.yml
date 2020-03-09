@@ -9,8 +9,9 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
-
+    #container: microros/base:${{github.base_ref}}
+    container: microros/base:dashing
+      
     steps:
     - uses: actions/checkout@v2
       with:
@@ -39,7 +40,8 @@ jobs:
 
   agent:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    #container: microros/base:${{github.base_ref}}
+    container: microros/base:dashing
     needs: micro_ros_build
 
     steps:
@@ -74,7 +76,8 @@ jobs:
 
   client_host:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    #container: microros/base:${{github.base_ref}}
+    container: microros/base:dashing
     needs: micro_ros_build
 
     steps:
