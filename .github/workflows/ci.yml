@@ -104,9 +104,8 @@ jobs:
         run: |
           . /opt/ros/dashing/setup.sh
           . install/local_setup.sh
-          ros2
-          ros2 run micro_ros_setup create_host_client_ws.sh
           apt-get update
+          ros2 run micro_ros_setup create_host_client_ws.sh
           colcon build --merge-install --metas src --packages-skip rclc micro_ros_demos_rclc rclc_examples
           
       # Check if the file exist
