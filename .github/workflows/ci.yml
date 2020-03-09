@@ -102,7 +102,7 @@ jobs:
       # TODO: By now skip the RCLC packages, due to compilation errors on the CI docker.
       - name: Create ws and build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/dashing/setup.sh
           . install/local_setup.sh
           apt-get update
           ros2 run micro_ros_setup create_host_client_ws.sh
@@ -125,7 +125,8 @@ jobs:
           
   client_firmware:
     runs-on: ubuntu-latest
-    container: microros/ci:${{github.base_ref}}
+    #container: microros/ci:${{github.base_ref}}
+    container: microros/ci:dashing
     needs: micro_ros_build
 
     strategy:
