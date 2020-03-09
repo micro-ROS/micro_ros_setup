@@ -150,7 +150,7 @@ jobs:
           - rtos: freertos
             platform: olimex-stm32-e407
             configuration: serial
-            files: 'firmware/olimex_e407_extensions/build/micro-ROS.bin,
+            files: 'firmware/olimex_e407_extensions/build/micro-ROS.bin'
 
     steps:
       - uses: actions/checkout@v2
