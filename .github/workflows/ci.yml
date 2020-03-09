@@ -100,11 +100,11 @@ jobs:
           
       - name: Source required files
         run: |
-          . /opt/ros/dashing/setup.sh
+          . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           apt-get update
           ros2 run micro_ros_setup create_firmware_ws.sh host
-          colcon build --merge-install --metas src - --packages-skip rclc micro_ros_demos_rclc rclc_examples
+          colcon build --metas src --packages-skip rclc micro_ros_demos_rclc rclc_examples
           
       # Check if the file exist
       - name: Test file installation
