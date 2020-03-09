@@ -102,9 +102,8 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
-          apt-get update
           ros2 run micro_ros_setup create_host_client_ws.sh
-          colcon build --merge-install --metas src --packages-skip rclc micro_ros_demos_rclc rclc_examples
+          colcon build --merge-install --metas src
 
   client_firmware:
     runs-on: ubuntu-latest
