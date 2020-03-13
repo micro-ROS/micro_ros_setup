@@ -209,10 +209,10 @@ ros2 run micro_ros_setup create_bridge_tools.sh
 
 This package could take more than an hour to finish the build process, but on later executions, this time will be reduced to around 5~10 minutes.
 Once the process is finished, it will return a folder on which contains the next:
-- Micro-ROS Agent for ARM.
-- Micro-ROS-HB: This is a script that simplifies the configuration of the hardware bridge and the usage of Micro-ROS Agent on the device.
+- micro-ROS Agent for ARM.
+- micro-ROS-HB: This is a script that simplifies the configuration of the hardware bridge and the usage of micro-ROS Agent on the device.
 
-You can find detail information about how to set-up the Micro-ROS Hardware Bridge on the next document: [Micro-ROS Hardware Bridge Set-up](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md)
+You can find detail information about how to set-up the micro-ROS Hardware Bridge on the next document: [micro-ROS Hardware Bridge Set-up](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md)
 
 
 # Contributing
