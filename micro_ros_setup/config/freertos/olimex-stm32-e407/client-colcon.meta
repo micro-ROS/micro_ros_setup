@@ -17,7 +17,7 @@
         "rmw_microxrcedds": {
             "cmake-args": [
                 "-DRMW_UXRCE_XML_BUFFER_LENGTH=400",
-                "-DRMW_UXRCE_TRANSPORT=custom",
+                "-DRMW_UXRCE_TRANSPORT=custom_serial",
                 "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE=3"
             ]
         }

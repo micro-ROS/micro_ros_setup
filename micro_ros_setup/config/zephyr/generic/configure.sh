@@ -27,9 +27,11 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
 elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
       echo "Using USB serial device."
 
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
-      update_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_HEADER="$EXTENSIONS_DIR"/microros_extensions/zephyr_usb_serial_transport.h"
-      update_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_SRC="$EXTENSIONS_DIR"/microros_extensions/zephyr_usb_serial_transport.c"
+      cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_usb_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
+      cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_usb_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
+
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
 
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
