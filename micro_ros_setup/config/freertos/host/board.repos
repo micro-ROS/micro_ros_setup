@@ -1,0 +1,12 @@
+repositories:
+  freertos_apps:
+    type: git
+    url: https://github.com/micro-ROS/freertos_apps
+    version: dashing
+  freertos:
+    type: git
+    url: https://github.com/FreeRTOS/FreeRTOS-Kernel
+    version: V10.3.1-kernel-only
+
+
+
