@@ -47,7 +47,7 @@ elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
       cp -f $EXTENSIONS_DIR/Inc/olimex_e407_usb_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
       update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
 
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
 
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
