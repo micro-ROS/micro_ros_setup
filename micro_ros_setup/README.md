@@ -201,7 +201,7 @@ ros2 run micro_ros_agent micro_ros_agent [parameters]
 
 # Building micro-ROS Hardware Bridge software
 
-The next package will return a set of tool which are required to set-up the Micro-ROS Hardware Bridge.
+The next package will return a set of tool which are required to set-up the micro-ROS Hardware Bridge.
 
 ```
 ros2 run micro_ros_setup create_bridge_tools.sh
