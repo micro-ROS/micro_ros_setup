@@ -14,7 +14,7 @@
         },
         "rmw_microxrcedds":{
             "cmake-args":[
-                "-DRMW_UXRCE_TRANSPORT=custom"
+                "-DRMW_UXRCE_TRANSPORT=custom_serial"
             ]
         }
     }
