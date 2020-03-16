@@ -18,6 +18,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [Nuttx](https://nuttx.org/) | Olimex STM32-E407, STM32F4Discovery ** | `nuttx olimex-stm32-e407` | 
 | [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
 | [FreeRTOS](https://www.freertos.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `freertos olimex-stm32-e407` | 
+| [FreeRTOS](https://www.freertos.org/) | host | `freertos host` | 
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `zephyr olimex-stm32-e407` | 
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr discovery_l475_iot1` | 
 | Linux / Windows | *Host* * |

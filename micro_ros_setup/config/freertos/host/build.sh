@@ -1,4 +1,4 @@
-EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_olimex_e407_extensions
+EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_host_extensions
 
 . $PREFIX/config/utils.sh
 
