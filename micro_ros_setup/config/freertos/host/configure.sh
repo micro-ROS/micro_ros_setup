@@ -24,35 +24,6 @@ if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
       remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_SRC_SERIAL"
 
       echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
-
-elif [ "$UROS_TRANSPORT" == "serial" ]; then
-      echo "Using serial device USART$UROS_AGENT_DEVICE."
-
-      cp -f $EXTENSIONS_DIR/Src/olimex_e407_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
-      cp -f $EXTENSIONS_DIR/Inc/olimex_e407_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
-      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
-
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE="$UROS_AGENT_DEVICE
-
-      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
-      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
-
-      echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
-
-elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
-      echo "Using serial USB device. EXPERIMENTAL."
-
-      cp -f $EXTENSIONS_DIR/Src/olimex_e407_usb_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
-      cp -f $EXTENSIONS_DIR/Inc/olimex_e407_usb_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
-      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
-
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
-
-      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
-      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
-
-      echo "Configured $UROS_TRANSPORT mode with agent"
 else
       help
 fi
