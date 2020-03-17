@@ -177,11 +177,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rtos: [freertos]
+        rtos: [freertos,zephyr]
         platform: [crazyflie21, generic, olimex-stm32-e407]
         exclude:
           - rtos: freertos
             platform: generic
+          - rtos: zephyr
+            platform: crazyflie21
+          - rtos: zephyr
+            platform: olimex-stm32-e407
 
         include:
           - rtos: freertos
@@ -193,6 +197,9 @@ jobs:
             configuration: olimex_ping_pong
             files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
                     firmware/olimex_e407_extensions/build/micro-ROS.bin'
+          - rtos: zephyr
+            platform: generic
+            configuration: sample_publisher
 
     steps:
       - uses: actions/checkout@v2
