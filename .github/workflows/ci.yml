@@ -1,16 +1,16 @@
 name: CI
 
 on:
-  pull_request:
+  push:
     branches:
-    - dashing
-    - crystal
+    - feature/gbs_ci
 
 jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    #container: microros/base:${{github.base_ref}}
+    container: microros/base:dashing
 
     steps:
     - uses: actions/checkout@v2
@@ -40,7 +40,8 @@ jobs:
 
   agent:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    #container: microros/base:${{github.base_ref}}
+    container: microros/base:dashing
     needs: micro_ros_build
 
     steps:
@@ -101,112 +102,23 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
+          apt-get update
           ros2 run micro_ros_setup create_firmware_ws.sh host
-          ros2 run micro_ros_setup build_firmware.sh --merge-install
-
-      - name: Test micro_ros_demos_rcl
-        uses: BorjaOuterelo/test-file-system-action@v0.0.2
-        with:
-          path: 'install/lib/micro_ros_demos_rcl'
-          files: 'addtwoints_client/addtwoints_client,
-                  addtwoints_server/addtwoints_server,
-                  configured_publisher/configured_publisher,
-                  configured_subscriber/configured_subscriber,
-                  fibonacci_action_client/fibonacci_action_client,
-                  fibonacci_action_server/fibonacci_action_server,
-                  guard_condition/guard_condition,
-                  int32_multinode/int32_multinode,
-                  int32_publisher/int32_publisher,
-                  int32_publisher_subscriber/int32_publisher_subscriber,
-                  int32_subscriber/int32_subscriber'
-
-      - name: Test micro_ros_demos_rclc
-        uses: BorjaOuterelo/test-file-system-action@v0.0.2
-        with:
-          path: 'install/lib/micro_ros_demos_rclc'
-          files: 'complex_msg_publisher/complex_msg_publisher,
-                  complex_msg_subscriber/complex_msg_subscriber,
-                  int32_publisher/int32_publisher,
-                  int32_subscriber/int32_subscriber,
-                  rad0_actuator/rad0_actuator,
-                  rad0_altitude_sensor/rad0_altitude_sensor,
-                  rad0_display/rad0_display,
-                  string_publisher/string_publisher,
-                  string_subscriber/string_subscriber'
-
-      - name: Test micro_ros_demos_rclcpp
-        uses: BorjaOuterelo/test-file-system-action@v0.0.2
-        with:
-          path: 'install/lib/micro_ros_demos_rclcpp'
-          files: 'complex_msg_publisher/complex_msg_publisher,
-                  complex_msg_subscriber/complex_msg_subscriber,
-                  int32_publisher/int32_publisher,
-                  int32_subscriber/int32_subscriber,
-                  rad0_control/rad0_control,
-                  string_publisher/string_publisher,
-                  string_subscriber/string_subscriber'
-
-  client_firmware:
-    runs-on: ubuntu-latest
-    container: microros/ci:${{github.base_ref}}
-    needs: micro_ros_build
-
-    strategy:
-      fail-fast: false
-      matrix:
-        rtos: [nuttx, freertos]
-        platform: [crazyflie21, generic]
-        exclude:
-          - rtos: freertos
-            platform: generic
-          - rtos: nuttx
-            platform: crazyflie21
-        include:
-          - rtos: nuttx
-            platform: generic
-            configuration: olimex-stm32-e407/uros
-            files: 'firmware/NuttX/nuttx'
-          - rtos: freertos
-            files: 'firmware/crazyflie_microros_extensions/cf2.elf'
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          path: src/micro-ros-build
-
-      - name: Dependencies
-        run: apt-get install -y ed
-
-      - name: Rosdep
-        run: rosdep update
-
-      - name: Download artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: micro_ros_build
-          path: install
-
-      # Workaround https://github.com/actions/upload-artifact/issues/38
-      - run: |
-          chmod +x -R install/lib/micro_ros_setup
-          chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
-
-      - name: Test micro_ros_agent build
-        uses: BorjaOuterelo/test-file-system-action@v0.0.2
-        with:
-          path: 'install'
-          files: 'lib/micro_ros_setup/build_firmware.sh'
-
-      - name: Create ws and build
+          colcon build --merge-install --metas src - --packages-skip rclc micro_ros_demos_rclc rclc_examples
+          
+      - name: Test file installation
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
-          . install/local_setup.sh
-          ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
-          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }}
-          ros2 run micro_ros_setup build_firmware.sh
+          (test -f install/lib/micro_ros_demos_rcl/int32_publisher/int32_publisher  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/int32_subscriber/int32_subscriber  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/int32_publisher_subscriber/int32_publisher_subscriber  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/int32_multinode/int32_multinode  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/guard_condition/guard_condition  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/fibonacci_action_server/fibonacci_action_server  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/fibonacci_action_client/fibonacci_action_client  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/configured_subscriber/configured_subscriber  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/configured_publisher/configured_publisher  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/addtwoints_server/addtwoints_server  && true) || false
+          (test -f install/lib/micro_ros_demos_rcl/addtwoints_client/addtwoints_client  && true) || false
 
-      - name: Test firmware build
-        if: matrix.files
-        uses: BorjaOuterelo/test-file-system-action@v0.0.2
-        with:
-          files: ${{ matrix.files }}
+
+  
