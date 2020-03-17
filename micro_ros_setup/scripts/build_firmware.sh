@@ -21,7 +21,7 @@ export UROS_FAST_BUILD
 # Checking if firmware exists
 if [ -d $FW_TARGETDIR ]; then
     RTOS=$(head -n1 $FW_TARGETDIR/PLATFORM)
-    PLATFORM=$(tail -n1 $FW_TARGETDIR/PLATFORM)
+    PLATFORM=$(head -n2 firmware/PLATFORM | tail -n1)
 else
     echo "Firmware folder not found. Please use ros2 run micro_ros_setup create_firmware_ws.sh to create a new project."
     exit 1
@@ -39,4 +39,10 @@ fi
 
 # Building specific firmware folder
 echo "Building firmware for $RTOS platform $PLATFORM"
-. $PREFIX/config/$RTOS/$PLATFORM/build.sh
+
+if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+    . $PREFIX/config/$RTOS/generic/build.sh
+else
+    . $PREFIX/config/$RTOS/$PLATFORM/build.sh
+fi
+

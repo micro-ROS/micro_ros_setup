@@ -17,11 +17,11 @@ repositories:
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: feature/zephyr_fixes
+    version: dashing
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: dashing
+    version: feature/xrce_session_management
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git

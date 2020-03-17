@@ -6,7 +6,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Client:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
-    version: feature/posix_nopoll
+    version: dashing
 
 # MicroROS
   
@@ -25,7 +25,7 @@ repositories:
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: feature/dashing_migration
+    version: dashing
 
 # Remove this when it returns to ros2.repos
   ros2/tinydir_vendor:

@@ -8,7 +8,7 @@ set -o pipefail
 [ -d $FW_TARGETDIR ] || mkdir $FW_TARGETDIR
 pushd $FW_TARGETDIR >/dev/null
 
-    vcs import --input $PREFIX/config/$RTOS/$PLATFORM/uros_packages.repos >/dev/null
+    vcs import --input $PREFIX/config/$RTOS/generic/uros_packages.repos >/dev/null
 
     # install uclibc
     if [ ! -d "NuttX/libs/libxx/uClibc++" ]
@@ -29,5 +29,5 @@ pushd $FW_TARGETDIR >/dev/null
 
 popd >/dev/null
 
-cp $PREFIX/config/$RTOS/$PLATFORM/package.xml $FW_TARGETDIR/apps/package.xml
+cp $PREFIX/config/$RTOS/generic/package.xml $FW_TARGETDIR/apps/package.xml
 rosdep install -y --from-paths $FW_TARGETDIR/apps -i $FW_TARGETDIR/apps --rosdistro dashing

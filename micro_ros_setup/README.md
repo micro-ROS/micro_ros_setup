@@ -19,7 +19,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
 | [FreeRTOS](https://www.freertos.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `freertos olimex-stm32-e407` | 
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `zephyr olimex-stm32-e407` | 
-| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr st-b-l475e-iot01a` | 
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr discovery_l475_iot1` | 
 | Linux / Windows | *Host* * |
 
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
@@ -69,23 +69,20 @@ Once the package is built, the firmware scripts are ready to run.
 
 Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is:
 
-```
+```bash
+# Creating a Nuttx + micro-ROS firmware workspace
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
-```
 
-If you are instead targeting FreeRTOS, you would use:
-
-```
+# Creating a FreeRTOS + micro-ROS firmware workspace
 ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex-stm32-e407
 ```
-
 
 ## Configuring micro-ROS firmware
 
 By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step. Usually this command will show its usage if parameters are required:
 
 ```
-ros2 run micro_ros_setup configure_firmware.sh [configuration]
+ros2 run micro_ros_setup configure_firmware.sh [configuration] [options]
 ```
 
 For NuttX, several different configurations are supported.
@@ -98,6 +95,12 @@ For NuttX, several different configurations are supported.
 | pingpong-eth | Round-Trip-Time test over Ethernet |
 
 Please note that these are only default configurations. Each RTOS has its configuration approach that you might use for further customization of these base configurations.
+
+Common options available at this configuration step are:
+  - `--transport` or `-t`: `udp`, `tcp`, `serial` or any hardware specific transport label
+  - `--dev` or `-d`: agent string descriptor in a serial-like transport
+  - `--ip` or `-i`: agent IP in a network-like transport
+  - `--port` or `-p`: agent port in a network-like transport
 
 ## Building micro-ROS firmware
 

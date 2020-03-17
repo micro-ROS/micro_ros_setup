@@ -25,7 +25,7 @@
                 "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=1",
                 "-DRMW_UXRCE_MAX_SERVICES=1",
                 "-DRMW_UXRCE_MAX_CLIENTS=1",
-                "-DRMW_UXRCE_MAX_HISTORY=4",
+                "-DRMW_UXRCE_MAX_HISTORY=4"
             ]
         }
     }

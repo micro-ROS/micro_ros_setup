@@ -10,14 +10,8 @@ set -o pipefail
 NUTTX_DIR=$FW_TARGETDIR/NuttX
 MCU_WS_DIR=$FW_TARGETDIR/mcu_ws
 
-if [ $# -lt 1 ]; then
-    echo "Syntax: configure.sh <config>"
-    exit 1
-fi
-
 # parse the platform from this script's path name
-PLATFORM=$(basename $(dirname $0))
-CONFIG_NAME=$1
+PLATFORM=$(head -n2 $FW_TARGETDIR/PLATFORM | tail -n1)
 
 # for the "generic" platform, the user must supply both board and config
 if [ "$PLATFORM" = "generic" ]

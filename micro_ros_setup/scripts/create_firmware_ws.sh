@@ -13,11 +13,18 @@ print_available_platforms () {
   pushd $PREFIX/config >/dev/null
   for rtos in $(ls -d */ | cut -f1 -d'/'); do 
     echo ". $rtos"
-    pushd $rtos >/dev/null
-    for platform in $(ls -d */ | cut -f1 -d'/'); do 
-          echo "+-- $platform"
-    done
-    popd >/dev/null
+    if [ -f $PREFIX/config/$rtos/generic/supported_platforms ];then
+
+        while read line; do
+            echo "+-- $line"
+        done < $PREFIX/config/$rtos/generic/supported_platforms
+    else
+        pushd $rtos >/dev/null
+        for platform in $(ls -d */ | cut -f1 -d'/'); do 
+            echo "+-- $platform"
+        done
+        popd >/dev/null
+    fi
   done
   popd >/dev/null
 }
@@ -45,7 +52,7 @@ if [ -d $FW_TARGETDIR ]; then
 fi
 
 # Checking folders
-if [ -d $PREFIX/config/$RTOS/$PLATFORM ]; then
+if [ -d $PREFIX/config/$RTOS/$PLATFORM ] || [ -d "$PREFIX/config/$RTOS/generic" ]; then
     echo "Creating firmware for $RTOS platform $PLATFORM"
     FOLDER=$PREFIX/config/$RTOS/$PLATFORM
 else
@@ -67,6 +74,13 @@ SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesup
 rosdep update
 rosdep install -y --from-paths src -i src --rosdistro dashing --skip-keys="$SKIP"
 
+# Check generic build
+if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+    TARGET_FOLDER=generic
+else
+    TARGET_FOLDER=$PLATFORM
+fi
+
 pushd $FW_TARGETDIR >/dev/null
     # Creating dev directory
     mkdir $DEV_WS_DIR
@@ -78,8 +92,8 @@ pushd $FW_TARGETDIR >/dev/null
 
          # Creating mcu directory
         mkdir mcu_ws
-        ros2 run micro_ros_setup create_ws.sh mcu_ws $PREFIX/config/client_ros2_packages.txt $PREFIX/config/$RTOS/$PLATFORM/client_uros_packages.repos
-        cp $PREFIX/config/$RTOS/$PLATFORM/client-colcon.meta mcu_ws/colcon.meta
+        ros2 run micro_ros_setup create_ws.sh mcu_ws $PREFIX/config/client_ros2_packages.txt $PREFIX/config/$RTOS/$TARGET_FOLDER/client_uros_packages.repos
+        cp $PREFIX/config/$RTOS/$TARGET_FOLDER/client-colcon.meta mcu_ws/colcon.meta
     fi
 popd >/dev/null
 
@@ -98,5 +112,5 @@ fi
 rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro dashing --skip-keys="$SKIP"
 
 # Creating specific firmware folder
-. $PREFIX/config/$RTOS/$PLATFORM/create.sh
+. $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
 
