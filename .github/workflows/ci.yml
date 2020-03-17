@@ -148,7 +148,7 @@ jobs:
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
           chmod +x -R install/lib/micro_ros_setup
-          chmod +x install/micro_ros_setup/config/nuttx/olimex-stm32-e407/*.sh
+          chmod +x install/config/nuttx/generic/*.sh
 
       - name: Create ws and build
         run: |
