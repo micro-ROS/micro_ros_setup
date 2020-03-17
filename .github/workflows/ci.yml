@@ -220,6 +220,11 @@ jobs:
         with:
           path: 'install'
           files: 'lib/micro_ros_setup/build_firmware.sh'
+      
+      - name: toolchain find
+          run: |
+            ls
+            ls toolchain
 
       - name: Create ws and build
         run: |
@@ -227,5 +232,5 @@ jobs:
           . install/local_setup.sh
           apt-get update
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
-          ros2 run micro_ros_setup configure_firmware.sh olimex_ping_pong -t serial -d /dev/ttyS0
+          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} -t serial -d /dev/ttyS0
           ros2 run micro_ros_setup build_firmware.sh
