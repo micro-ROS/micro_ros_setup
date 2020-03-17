@@ -154,6 +154,7 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
+          apt-get update
           ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
           cd firmware/NuttX
           git checkout -b fix/reorganize_defconfig
