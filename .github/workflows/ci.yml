@@ -220,11 +220,6 @@ jobs:
         with:
           path: 'install'
           files: 'lib/micro_ros_setup/build_firmware.sh'
-      
-      - name: toolchain find
-        run: |
-          ls
-          ls toolchain
 
       - name: Create ws and build
         run: |
