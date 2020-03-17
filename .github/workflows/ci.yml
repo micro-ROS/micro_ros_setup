@@ -154,6 +154,8 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
+          ls
+          ls firmware
           cd firmware/NuttX
           git checkout -b fix/reorganize_defconfig
           cd ../..
