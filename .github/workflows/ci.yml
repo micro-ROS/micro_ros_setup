@@ -166,7 +166,7 @@ jobs:
         run: |
           (test -f firmware/NuttX/nuttx.bin  && true) || false
 
-
+  
   #Build test for freeRTOS and Zephyr
   client_firmware:
     runs-on: ubuntu-latest
@@ -191,15 +191,18 @@ jobs:
           - rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d /dev/ttyS0
             files: 'firmware/crazyflie_microros_extensions/cf2.elf'
           - rtos: freertos
             platform: olimex-stm32-e407
             configuration: olimex_ping_pong
+            transport_arguments: -t serial -d /dev/ttyS0
             files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
                     firmware/olimex_e407_extensions/build/micro-ROS.bin'
           - rtos: zephyr
             platform: generic
             configuration: sample_publisher
+            transport_arguments: -t udp -i 192.168.1.1 -p 8888
 
     steps:
       - uses: actions/checkout@v2
@@ -234,5 +237,5 @@ jobs:
           . install/local_setup.sh
           apt-get update
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
-          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} -t serial -d /dev/ttyS0
+          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
           ros2 run micro_ros_setup build_firmware.sh
