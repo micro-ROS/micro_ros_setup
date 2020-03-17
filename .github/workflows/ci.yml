@@ -76,7 +76,8 @@ jobs:
 
   client_host:
     runs-on: ubuntu-latest
-    container: microros/base:${{github.base_ref}}
+    #container: microros/base:${{github.base_ref}}
+    container: microros/base:dashing
     needs: micro_ros_build
 
     steps:
@@ -97,7 +98,7 @@ jobs:
       - run: |
           chmod +x -R install/lib/micro_ros_setup
           chmod +x install/config/host/generic/*.sh
-
+      #Skip rclc packages due to build fail.
       - name: Create ws and build
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
@@ -119,6 +120,3 @@ jobs:
           (test -f install/lib/micro_ros_demos_rcl/configured_publisher/configured_publisher  && true) || false
           (test -f install/lib/micro_ros_demos_rcl/addtwoints_server/addtwoints_server  && true) || false
           (test -f install/lib/micro_ros_demos_rcl/addtwoints_client/addtwoints_client  && true) || false
-
-
-  
