@@ -107,7 +107,7 @@ jobs:
           ros2 run micro_ros_setup create_firmware_ws.sh host
           colcon build --merge-install --metas src - --packages-skip rclc micro_ros_demos_rclc rclc_examples
           
-      - name: Test file installation
+      - name: Test build file
         run: |
           (test -f install/lib/micro_ros_demos_rcl/int32_publisher/int32_publisher  && true) || false
           (test -f install/lib/micro_ros_demos_rcl/int32_subscriber/int32_subscriber  && true) || false
@@ -162,3 +162,6 @@ jobs:
           ros2 run micro_ros_setup configure_firmware.sh uros
           ros2 run micro_ros_setup build_firmware.sh
 
+    -name: Test build files
+        run: |
+          (test -f firmware/NuttX/nuttx.bin  && true) || false
