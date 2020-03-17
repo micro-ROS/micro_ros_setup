@@ -202,7 +202,7 @@ jobs:
           - rtos: zephyr
             platform: generic
             configuration: sample_publisher
-            transport_arguments: -t udp -i 192.168.1.1 -p 8888
+            transport_arguments: -t serial-usb -d /dev/ttyS0
 
     steps:
       - uses: actions/checkout@v2
