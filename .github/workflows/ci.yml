@@ -10,7 +10,7 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:dashing
+    container: ros:${{github.base_ref}}
 
     steps:
       - uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
 
   agent:
     runs-on: ubuntu-latest
-    container: ros:dashing
+    container: ros:${{github.base_ref}}
     needs: micro_ros_build
 
     steps:
@@ -77,7 +77,7 @@ jobs:
 
   client_host:
     runs-on: ubuntu-latest
-    container: ros:dashing
+    container: ros:${{github.base_ref}}
     needs: micro_ros_build
 
     steps:
@@ -127,7 +127,7 @@ jobs:
   # Temporary solution due to NuttX is no fully implemented on the generic build system
   client_nuttx_firmware:
     runs-on: ubuntu-latest
-    container: microros/ci:dashing
+    container: microros/ci:${{github.base_ref}}
     needs: micro_ros_build
 
     steps:
