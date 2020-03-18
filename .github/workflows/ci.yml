@@ -240,6 +240,7 @@ jobs:
           . /opt/ros/dashing/setup.sh
           . install/local_setup.sh
           apt-get update
+          colcon version-check
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
           ros2 run micro_ros_setup build_firmware.sh
