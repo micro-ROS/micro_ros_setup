@@ -1,58 +1,58 @@
 
-OLIMEX_EXTENSIONS_DIR=$FW_TARGETDIR/olimex_e407_extensions
+EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_olimex_e407_extensions
 
-function update_meta {
-      python3 -c "import sys; import json; c = '$2'; s = json.loads(''.join([l for l in sys.stdin])); k = s['names']['$1']['cmake-args']; i = [c.startswith(v.split('=')[0]) for v in k]; k.pop(i.index(True)) if any(i) else None; k.append(c) if len(c.split('=')[1]) else None; print(json.dumps(s,indent=4))" < $FW_TARGETDIR/mcu_ws/colcon.meta > $FW_TARGETDIR/mcu_ws/colcon_new.meta
-      mv $FW_TARGETDIR/mcu_ws/colcon_new.meta $FW_TARGETDIR/mcu_ws/colcon.meta
-}
+. $PREFIX/config/utils.sh
 
 function help {
-      echo "Configure script need an argument. For example: ros2 run micro_ros_setup configure_firmware.sh [udp | tcp | serial] [IP address | Serial port] [IP port]"
+      echo "Configure script need an argument."
+      echo "   --transport -t       udp, tcp, serial or serial-usb"
+      echo "   --dev -d             agent string descriptor in a serial-like transport"
+      echo "   --ip -i              agent IP in a network-like transport"
+      echo "   --port -p            agent port in a network-like transport"
 }
 
-if [ $# -lt 1 ]; then
-      help
-      exit 1
-fi
+echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
-TRANSPORT=$1
+if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
 
-if [ "$TRANSPORT" == "udp" ] || [ "$TRANSPORT" == "tcp" ]; then
-      if [ $# -lt 3 ]; then
-            echo "UDP or TCP configuration needs IP and port. For example: ros2 run micro_ros_setup configure_firmware.sh [udp | tcp] [IP address] [IP port]"
-            exit 1
-      fi
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT="$UROS_TRANSPORT
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP="$UROS_AGENT_IP
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT="$UROS_AGENT_PORT
 
-      IP=$2
-      PORT=$3
+      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE"
+      remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_HEADER_SERIAL"
+      remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_SRC_SERIAL"
 
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_TRANSPORT="$TRANSPORT
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_IP="$IP
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_PORT="$PORT
+      echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
 
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE="
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER_SERIAL="
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC_SERIAL="
+elif [ "$UROS_TRANSPORT" == "serial" ]; then
+      echo "Using serial device USART$UROS_AGENT_DEVICE."
 
-      echo "Configured $TRANSPORT mode with agent at $IP:$PORT"
+      cp -f $EXTENSIONS_DIR/Src/olimex_e407_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
+      cp -f $EXTENSIONS_DIR/Inc/olimex_e407_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
 
-elif [ "$TRANSPORT" == "serial" ]; then
-      if [ $# -lt 2 ]; then
-            SERIAL="3"
-      else
-            SERIAL=$2
-      fi
-      echo "Using serial device USART$SERIAL."
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE="$UROS_AGENT_DEVICE
 
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_TRANSPORT=custom"
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_SERIAL_DEVICE="$SERIAL
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_HEADER_SERIAL="$OLIMEX_EXTENSIONS_DIR"/Inc/olimex_e407_serial_transport.h"
-      update_meta "microxrcedds_client" "-DEXTERNAL_TRANSPORT_SRC_SERIAL="$OLIMEX_EXTENSIONS_DIR"/Src/olimex_e407_serial_transport.c"
+      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
+      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
 
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_IP="
-      update_meta "rmw_microxrcedds" "-DRMW_UXRCE_DEFAULT_UDP_PORT="
+      echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
 
-      echo "Configured $TRANSPORT mode with agent at USART$SERIAL"
+elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
+      echo "Using serial USB device. EXPERIMENTAL."
+
+      cp -f $EXTENSIONS_DIR/Src/olimex_e407_usb_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
+      cp -f $EXTENSIONS_DIR/Inc/olimex_e407_usb_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
+
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
+
+      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
+      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
+
+      echo "Configured $UROS_TRANSPORT mode with agent"
 else
       help
 fi

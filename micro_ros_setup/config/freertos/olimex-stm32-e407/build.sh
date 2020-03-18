@@ -1,14 +1,31 @@
-OLIMEX_EXTENSIONS_DIR=$FW_TARGETDIR/olimex_e407_extensions
+EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_olimex_e407_extensions
 
-pushd $OLIMEX_EXTENSIONS_DIR >/dev/null
+. $PREFIX/config/utils.sh
+
+pushd $EXTENSIONS_DIR >/dev/null   
+
+    export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
+    export UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
+
+    if [ -d "$UROS_APP_FOLDER" ]; then
+        echo "Selected app: $UROS_APP"
+    else
+        echo "App not found: $UROS_APP"
+        print_available_apps
+        exit 1
+    fi
+
     if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "build" ]; then
-        # clean build
+        # Clean micro-ROS build
+        rm -rf $FW_TARGETDIR/mcu_ws/build $FW_TARGETDIR/mcu_ws/install $FW_TARGETDIR/mcu_ws/log
+
+        # Clean build
         make clean
 
-        # build micro-ROS stack
+        # Build micro-ROS stack
         make libmicroros
     fi
 
-    # build firmware
-    make
+    # Build firmware
+    make UROS_APP_FOLDER=$UROS_APP_FOLDER
 popd >/dev/null

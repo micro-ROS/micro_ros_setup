@@ -2,7 +2,7 @@ repositories:
   eProsima/Micro-CDR:
     type: git
     url: https://github.com/eProsima/micro-CDR.git
-    version: v1.1.2
+    version: dashing
   eProsima/Micro-XRCE-DDS-Client:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
@@ -21,12 +21,12 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: feature/custom_serial_selection
+    version: feature/qos
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
     version: dashing
-
+    
 # Remove this when it returns to ros2.repos
   ros2/tinydir_vendor:
     type: git
