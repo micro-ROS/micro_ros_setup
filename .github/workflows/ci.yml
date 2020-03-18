@@ -205,7 +205,7 @@ jobs:
                     firmware/olimex_e407_extensions/build/micro-ROS.bin'
           - rtos: zephyr
             platform: discovery_l475_iot1
-            configuration: sample_publisher
+            configuration: sensors_publisher
             transport_arguments: -t serial-usb
 
     steps:
