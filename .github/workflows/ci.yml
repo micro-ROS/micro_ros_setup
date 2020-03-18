@@ -178,9 +178,13 @@ jobs:
       fail-fast: false
       matrix:
         rtos: [freertos,zephyr]
-        platform: [crazyflie21, generic, olimex-stm32-e407]
+        platform: [crazyflie21, generic, olimex-stm32-e407, discovery_l475_iot1]
         exclude:
           - rtos: freertos
+            platform: generic
+          - rtos: freertos
+            platform: discovery_l475_iot1
+          - rtos: zephyr
             platform: generic
           - rtos: zephyr
             platform: crazyflie21
@@ -200,8 +204,8 @@ jobs:
             files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
                     firmware/olimex_e407_extensions/build/micro-ROS.bin'
           - rtos: zephyr
-            platform: olimex-stm32-e407
-            configuration: sample_publisher
+            platform: discovery_l475_iot1
+            configuration: sensors_publisher
             transport_arguments: -t serial-usb
 
     steps:
@@ -224,7 +228,7 @@ jobs:
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
           chmod +x -R install/lib/micro_ros_setup
-          chmod +x install/config/${{ matrix.rtos }}/${{ matrix.platform }}/*.sh
+          chmod +x -R install/config
       - name: Test micro_ros_agent build
         uses: BorjaOuterelo/test-file-system-action@v0.0.1
         with:
