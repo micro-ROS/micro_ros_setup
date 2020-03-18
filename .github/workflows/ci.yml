@@ -1,6 +1,10 @@
 name: CI
 
 on:
+  pull_request:
+    branches:
+      - dashing
+      - crystal
   push:
     branches:
     - feature/gbs_ci
