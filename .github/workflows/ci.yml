@@ -5,9 +5,6 @@ on:
     branches:
       - dashing
       - crystal
-  push:
-    branches:
-    - feature/gbs_ci
 
 jobs:
 
