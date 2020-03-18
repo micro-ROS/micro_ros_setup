@@ -8,5 +8,6 @@
   <license>APL2</license>
 
   <build_depend>dfu-util</build_depend>
+  <build_depend>ed</build_depend>
 
 </package>
