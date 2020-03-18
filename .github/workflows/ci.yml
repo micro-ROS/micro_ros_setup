@@ -200,8 +200,8 @@ jobs:
             files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
                     firmware/olimex_e407_extensions/build/micro-ROS.bin'
           - rtos: zephyr
-            platform: olimex-stm32-e407
-            configuration: sample_publisher
+            platform: ST B-L475E-IOT01A
+            configuration: sensors_publisher
             transport_arguments: -t serial-usb -d /dev/ttyS0
 
     steps:
