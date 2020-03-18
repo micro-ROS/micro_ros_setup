@@ -200,7 +200,7 @@ jobs:
             files: 'firmware/olimex_e407_extensions/build/micro-ROS.elf,
                     firmware/olimex_e407_extensions/build/micro-ROS.bin'
           - rtos: zephyr
-            platform: generic
+            platform: olimex-stm32-e407
             configuration: sample_publisher
             transport_arguments: -t serial-usb -d /dev/ttyS0
 
