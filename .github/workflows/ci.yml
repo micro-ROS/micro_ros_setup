@@ -139,7 +139,6 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata
-          apt install -y ed
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
 
@@ -226,7 +225,6 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata
-          apt install -y ed
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
 
