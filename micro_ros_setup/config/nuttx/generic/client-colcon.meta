@@ -7,7 +7,7 @@
         },
         "microxrcedds_client":{
             "cmake-args":[
-                "-DUCLIENT_PIC=OFF",
+                "-DUCLIENT_PIC=OFF"
             ]
         },
         "rmw_microxrcedds":{
