@@ -15,5 +15,6 @@
   <build_depend>nuttx_kconfig_vendor</build_depend>
   <build_depend>git</build_depend>
   <build_depend>openocd</build_depend>
+  <build_depend>ed</build_depend>
 
 </package>
