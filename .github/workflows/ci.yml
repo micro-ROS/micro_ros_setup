@@ -9,7 +9,6 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    #container: microros/base:${{github.base_ref}}
     container: ros:dashing
 
     steps:
@@ -20,6 +19,7 @@ jobs:
       - name: dependencies
         run: |
           apt update
+          apt install -y python3-colcon-metadata
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
 
@@ -50,6 +50,7 @@ jobs:
 #      - name: dependencies
 #        run: |
 #          apt update
+#          apt install -y python3-colcon-metadata
 #          rosdep update
 #          rosdep install -y --from-paths src --ignore-src -y
 #
@@ -86,6 +87,7 @@ jobs:
 #      - name: dependencies
 #        run: |
 #          apt update
+#          apt install -y python3-colcon-metadata
 #          rosdep update
 #          rosdep install -y --from-paths src --ignore-src -y
 #
@@ -135,6 +137,7 @@ jobs:
 #      - name: dependencies
 #        run: |
 #          apt update
+#          apt install -y python3-colcon-metadata
 #          apt install -y ed
 #          rosdep update
 #          rosdep install -y --from-paths src --ignore-src -y
@@ -193,13 +196,12 @@ jobs:
             platform: crazyflie21
             configuration: crazyflie_position_publisher
             transport_arguments: -t serial -d /dev/ttyS0
-            files: 'firmware/crazyflie_microros_extensions/cf2.bin'
+            binary: 'firmware/crazyflie_microros_extensions/cf2.bin'
           - rtos: freertos
             platform: olimex-stm32-e407
             configuration: olimex_ping_pong
             transport_arguments: -t serial -d /dev/ttyS0
-            files: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf,
-                    firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.bin'
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
 #          - rtos: zephyr
 #            platform: generic
 #            configuration: sample_publisher
@@ -217,6 +219,7 @@ jobs:
       - name: dependencies
         run: |
           apt update
+          apt install -y python3-colcon-metadata
           apt install -y ed
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
@@ -241,4 +244,4 @@ jobs:
 
       - name: binaries
         run: |
-          for f in ${{ matrix.files }}; do (test -f $f) && true || false; done;
+          (test -f ${{ matrix.binary }}) && true || false
