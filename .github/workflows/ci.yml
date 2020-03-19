@@ -200,7 +200,7 @@ jobs:
 
           - rtos: freertos
             platform: olimex-stm32-e407
-            configuration: olimex_ping_pong
+            configuration: int32_publisher
             transport_arguments: -t serial -d /dev/ttyS0
             binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
 
