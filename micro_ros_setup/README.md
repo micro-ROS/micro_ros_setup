@@ -88,7 +88,7 @@ By running `configure_firmware.sh` command the installed firmware is configured 
 ros2 run micro_ros_setup configure_firmware.sh [configuration] [options]
 ```
 
-The following table shows the avaiable configurations for each RTOS/platform.
+The following table shows the available configurations for each RTOS/platform.
 For more information please visit the links.
 
 <table>
@@ -223,4 +223,3 @@ $PREFIX/config
 
 
 If you find issues, [please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
-
