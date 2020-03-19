@@ -8,7 +8,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
   - [Configuring micro-ROS firmware](#configuring-micro-ros-firmware)
   - [Building micro-ROS firmware](#building-micro-ros-firmware)
   - [Flashing micro-ROS firmware](#flashing-micro-ros-firmware)
-- [Building micro-ROS Agent](#building-micro-ros-agent)
+- [Building micro-ROS-Agent](#building-micro-ros-agent)
 - [Contributing](#contributing)
 
 # Supported platforms
@@ -70,11 +70,14 @@ Once the package is built, the firmware scripts are ready to run.
 Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is:
 
 ```bash
-# Creating a Nuttx + micro-ROS firmware workspace
+# Creating a NuttX + micro-ROS firmware workspace
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 
 # Creating a FreeRTOS + micro-ROS firmware workspace
 ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex-stm32-e407
+
+# Creating a Zephyr + micro-ROS firmware workspace
+ros2 run micro_ros_setup create_firmware_ws.sh zephyr olimex-stm32-e407
 ```
 
 ## Configuring micro-ROS firmware
@@ -85,14 +88,79 @@ By running `configure_firmware.sh` command the installed firmware is configured 
 ros2 run micro_ros_setup configure_firmware.sh [configuration] [options]
 ```
 
-For NuttX, several different configurations are supported.
+The following table shows the avaiable configurations for each RTOS/platform.
+For more information please visit the links.
 
-| NuttX Configuration | Features |
-|-|-|
-| uros |  Micro-ROS publisher & subscriber, Kobuki demo |
-| drive_base | Kobuki demo |
-| pingpong | Round-Trip-Time test over serial |
-| pingpong-eth | Round-Trip-Time test over Ethernet |
+<table>
+    <thead>
+        <tr>
+            <th>RTOS</th>
+            <th>Plafrom</th>
+            <th>Configuration</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4>nuttx</td>
+            <td rowspan=4>olimex-stm32-e407</td>
+            <td><a href="https://github.com/micro-ROS/micro-ROS_kobuki_demo">drive_base</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/micro-ROS-rtt">pingpong</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/micro-ROS-rtt">pingpong-eth</a></td>
+        </tr>
+        <tr>
+            <td>uros</td>
+        </tr>
+        <tr>
+            <td rowspan=6>freertos</td>
+            <td rowspan=2>crazyflie21</td>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/crazyflie_position_publisher/app.c">crazyflie_position_publisher</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/crazyflie_uros_sample/app.c">crazyflie_uros_sample</a></td>
+        </tr>
+        <tr>
+            <td rowspan=4>olimex-stm32-e407</td>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/add_two_ints/app.c">add_two_ints</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/ping_pong/app.c">ping_pong</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/olimex_uros_sample/app.c">olimex_uros_sample</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/int32_publisher/app.c">int32_publisher</a></td>
+        </tr>
+        <tr>
+            <td rowspan=7>zephyr</td>
+            <td rowspan=4>discovery_l475_iot1</td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/src/main.c">ping_pong</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/int32_publisher/src/main.c">int32_publisher</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/sensors_publisher/src/main.c">sensors_publisher</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/tof_ws2812/src/main.c">tof_ws2812</a></td>
+        </tr>
+        <tr>
+            <td rowspan=3>olimex-stm32-e407</td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/src/main.c">ping_pong</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/int32_publisher/src/main.c">int32_publisher</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/vl53l1x_tof_sensor/src/main.c">vl53l1x_tof_sensor</a></td>
+        </tr>
+    </tbody>
+</table>
 
 Please note that these are only default configurations. Each RTOS has its configuration approach that you might use for further customization of these base configurations.
 
@@ -112,15 +180,16 @@ ros2 run micro_ros_setup build_firmware.sh
 
 ## Flashing micro-ROS firmware
 
-In order to flash the target platform run `flash_firmware.sh` command. This step may need some platform-specific procedure in order to boot the platform in flashing node:
+In order to flash the target platform run `flash_firmware.sh` command.
+This step may need some platform-specific procedure to boot the platform in flashing node:
 
 ```
 ros2 run micro_ros_setup flash_firmware.sh
 ```
 
-# Building micro-ROS Agent
+# Building micro-ROS-Agent
 
-Using this package is possible to install a ready to use **micro-ROS Agent**:
+Using this package is possible to install a ready to use **micro-ROS-Agent**:
 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
