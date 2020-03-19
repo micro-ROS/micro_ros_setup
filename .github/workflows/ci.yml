@@ -206,13 +206,13 @@ jobs:
 
           - rtos: zephyr
             platform: olimex-stm32-e407
-            configuration: sample_publisher
+            configuration: int32_publisher
             transport_arguments: -t serial-usb
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - rtos: zephyr
             platform: discovery_l475_iot1
-            configuration: sample_publisher
+            configuration: int32_publisher
             transport_arguments: -t serial-usb
             binary: 'firmware/build/zephyr/zephyr.bin'
 
