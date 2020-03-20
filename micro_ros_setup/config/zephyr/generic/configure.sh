@@ -14,10 +14,12 @@ function help {
 
 echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
-if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
-      echo "Zephyr network support not available yet"
-      help
-      exit 1
+if [ "$UROS_TRANSPORT" == "udp" ]; then
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=$UROS_TRANSPORT"
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP=$UROS_AGENT_IP"
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT=$UROS_AGENT_PORT"
+
+      echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
 
 elif [ "$UROS_TRANSPORT" == "serial" ]; then
       echo "Zephyr UART serial support not available yet"
