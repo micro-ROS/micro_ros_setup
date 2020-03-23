@@ -221,7 +221,7 @@ jobs:
 
           - rtos: zephyr
             platform: host
-            configuration: int32_publisher
+            configuration: host_int32_publisher
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
 
