@@ -6,7 +6,7 @@ if sudo echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/source
     sudo apt update
     sudo apt install cmake -y
 else
-    echo "Error while installing CMake version >= 3.13.1"
+    echo "Error while installing CMake version >= 3.13.1. Check with cmake --version"
     echo "Please if not installed follow the instructions: https://docs.zephyrproject.org/latest/getting_started/index.html"
     sleep 2
 fi
