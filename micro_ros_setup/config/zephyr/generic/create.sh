@@ -2,11 +2,14 @@
 
 # We need a version newer than the repo
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-# sudo echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list
-sudo apt install software-properties-common
-sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-sudo apt update
-sudo apt install cmake -y
+if sudo echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list; then
+    sudo apt update
+    sudo apt install cmake -y
+else
+    echo "Error while installing CMake version >= 3.13.1"
+    echo "Please if not installed follow the instructions: https://docs.zephyrproject.org/latest/getting_started/index.html"
+    sleep 2
+fi
 
 export PATH=~/.local/bin:"$PATH"
 
