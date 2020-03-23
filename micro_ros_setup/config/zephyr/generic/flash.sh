@@ -28,6 +28,8 @@ elif [ "$PLATFORM" = "olimex-stm32-e407" ]; then
   else
     echo "build/zephyr/zephyr.bin not found: please compile before flashing."
   fi
+elif [ "$PLATFORM" = "host" ]; then
+  ./firmware/build/zephyr/zephyr.exe 
 else
   echo "Unrecognized board: $PLATFORM"
   exit 1

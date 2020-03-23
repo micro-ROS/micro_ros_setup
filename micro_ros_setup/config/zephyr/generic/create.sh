@@ -2,7 +2,7 @@
 
 # We need a version newer than the repo
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list
+sudo echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list
 sudo apt update
 sudo apt install cmake -y
 
@@ -17,7 +17,12 @@ pushd $FW_TARGETDIR >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
 
-    export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
+    if [ "$PLATFORM" = "host" ]; then
+        export TOOLCHAIN_VERSION=zephyr-sdk-0.11.2-setup.run
+    else
+        export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
+    fi
+    
     wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
     ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
