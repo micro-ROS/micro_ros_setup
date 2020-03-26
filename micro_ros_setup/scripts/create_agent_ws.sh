@@ -18,8 +18,5 @@ fi
 # populate the workspace
 ros2 run micro_ros_setup create_ws.sh $TARGETDIR $PREFIX/config/agent_ros2_packages.txt $PREFIX/config/agent_uros_packages.repos
 
-# add appropriate colcon.meta
-cp $PREFIX/config/agent-colcon.meta $TARGETDIR/colcon.meta
-
 rosdep install --from-paths $TARGETDIR -i $TARGETDIR -y \
   --skip-keys="$SKIP"
