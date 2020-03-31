@@ -2,7 +2,7 @@ repositories:
   NuttX:
     type: git
     url: https://github.com/micro-ROS/NuttX.git
-    version: drive_base
+    version: master
   apps:
     type: git
     url: https://github.com/micro-ROS/apps.git
