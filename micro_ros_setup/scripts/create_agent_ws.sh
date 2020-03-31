@@ -6,7 +6,7 @@ set -o pipefail
 
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 TARGETDIR=src
-SKIP="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp microxrcedds_agent"
+SKIP="microcdr microxrcedds_client rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp microxrcedds_agent"
 
 if [ $# -gt 0 ]
 then
