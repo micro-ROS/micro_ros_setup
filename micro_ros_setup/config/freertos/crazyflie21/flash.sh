@@ -1,4 +1,4 @@
-pushd $FW_TARGETDIR/crazyflie_microros_extensions > /dev/null
+pushd $FW_TARGETDIR/freertos_apps/microros_crazyflie21_extensions > /dev/null
 
 if [ -f cf2.bin ]; then
   echo "Flashing firmware for $RTOS platform $PLATFORM"
