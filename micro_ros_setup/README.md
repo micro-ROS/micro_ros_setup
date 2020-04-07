@@ -182,7 +182,7 @@ ros2 run micro_ros_setup build_firmware.sh
 ## Flashing micro-ROS firmware
 
 In order to flash the target platform run `flash_firmware.sh` command.
-This step may need some platform-specific procedure to boot the platform in flashing node:
+This step may need some platform-specific procedure to boot the platform in flashing mode:
 
 ```
 ros2 run micro_ros_setup flash_firmware.sh
