@@ -190,7 +190,7 @@ ros2 run micro_ros_setup flash_firmware.sh
 
 # Building micro-ROS-Agent
 
-Using this package is possible to install a ready to use **micro-ROS-Agent**:
+By using this package, it is possible to install a ready to use **micro-ROS-Agent**:
 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
