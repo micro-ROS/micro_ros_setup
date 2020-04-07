@@ -212,7 +212,7 @@ Once the process is finished, it will return a folder on which contains the foll
 - micro-ROS Agent for ARM.
 - micro-ROS-HB: This is a script that simplifies the configuration of the hardware bridge and the usage of micro-ROS Agent on the device.
 
-You can find detail information about how to set-up the micro-ROS Hardware Bridge on the next document: [micro-ROS Hardware Bridge Set-up](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md)
+You can find detailed information about how to set-up the micro-ROS Hardware Bridge in this document: [micro-ROS Hardware Bridge Set-up](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md)
 
 
 # Contributing
