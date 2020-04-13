@@ -15,6 +15,7 @@
   <buildtool_depend>tinyxml2</buildtool_depend>
   <!-- end fastrtps deps -->
   <depend>clang-tidy</depend>
+  <depend>wget</depend>
 
   <build_depend>flex</build_depend>
   <build_depend>bison</build_depend>
