@@ -35,6 +35,7 @@
                 "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=5",
                 "-DRMW_UXRCE_MAX_SERVICES=5",
                 "-DRMW_UXRCE_MAX_CLIENTS=5",
+                "-DRMW_UXRCE_STREAM_HISTORY=20",
                 "-DRMW_UXRCE_MAX_HISTORY=10",
                 "-DRMW_UXRCE_XML_BUFFER_LENGTH=1000"
             ]
