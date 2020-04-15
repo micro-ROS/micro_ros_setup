@@ -21,16 +21,16 @@ pushd $EXTENSIONS_DIR >/dev/null
         exit 1
     fi
 
-    if [ "$UROS_FAST_BUILD" = "off" ]; then
+    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "$FW_TARGETDIR/mcu_ws/build" ]; then
         # Clean micro-ROS build
         rm -rf $FW_TARGETDIR/mcu_ws/build $FW_TARGETDIR/mcu_ws/install $FW_TARGETDIR/mcu_ws/log
+
+        # Clean build
+        make clean
 
         # Build micro-ROS stack
         make libmicroros
     fi
-
-    # Clean build
-    make clean
 
     # build firmware
     make PLATFORM=cf2 CLOAD=0 UROS_APP_FOLDER=$UROS_APP_FOLDER
