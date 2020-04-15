@@ -2,7 +2,7 @@ repositories:
   crazyflie_firmware:
     type: git
     url: https://github.com/bitcraze/crazyflie-firmware
-    version: 5142cacdde8b2a21ae0bef0ae4d0a26088335bee
+    version: a2a26abd53a5f328374877bfbcb7b25ed38d8111
 
   freertos_apps:
     type: git
