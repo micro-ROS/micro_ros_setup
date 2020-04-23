@@ -11,7 +11,16 @@ pushd $FW_TARGETDIR >/dev/null
     fi
     vcs import --input raspbian_apps/$CONFIG_NAME/app.repos mcu_ws/
     if [ -d raspbian_apps/$CONFIG_NAME/app ]; then
-        cp -r raspbian_apps/$CONFIG_NAME/app mcu_ws
+        cp -r raspbian_apps/$CONFIG_NAME/app mcu_ws/
     fi
     cp raspbian_apps/$CONFIG_NAME/colcon.meta mcu_ws/
+    cp raspbian_apps/$CONFIG_NAME/app_info.sh mcu_ws/
+    if [ -d bin ]; then
+        rm -rf bin/*
+    else
+        mkdir -p bin
+    fi
+    if [ -d raspbian_apps/$CONFIG_NAME/bin ]; then
+        cp -r raspbian_apps/$CONFIG_NAME/bin mcu_ws/
+    fi
 popd >/dev/null
