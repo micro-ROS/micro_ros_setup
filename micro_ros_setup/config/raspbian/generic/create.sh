@@ -18,6 +18,6 @@ pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
 popd >/dev/null
 
 pushd $FW_TARGETDIR >/dev/null
-    git clone https://github.com/julibert/raspbian_apps.git
+    git clone https://github.com/micro-ROS/raspbian_apps.git
     cp raspbian_apps/toolchain.cmake mcu_ws/
 popd >/dev/null
