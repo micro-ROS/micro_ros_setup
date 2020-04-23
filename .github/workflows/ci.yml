@@ -173,24 +173,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rtos: [freertos,zephyr]
-        platform: [crazyflie21, generic, olimex-stm32-e407, discovery_l475_iot1, host]
-        exclude:
-          - rtos: freertos
-            platform: generic
-
-          - rtos: freertos
-            platform: discovery_l475_iot1
-
-          - rtos: freertos
-            platform: host
-
-          - rtos: zephyr
-            platform: generic
-
-          - rtos: zephyr
-            platform: crazyflie21
-
         include:
           - rtos: freertos
             platform: crazyflie21
@@ -221,6 +203,16 @@ jobs:
             configuration: host_int32_publisher
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
+
+          - rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
+
+          - rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
 
     steps:
       - uses: actions/checkout@v2
