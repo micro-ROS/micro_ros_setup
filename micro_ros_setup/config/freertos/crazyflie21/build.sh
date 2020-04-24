@@ -21,7 +21,7 @@ pushd $EXTENSIONS_DIR >/dev/null
         exit 1
     fi
 
-    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "build" ]; then
+    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "$FW_TARGETDIR/mcu_ws/build" ]; then
         # Clean micro-ROS build
         rm -rf $FW_TARGETDIR/mcu_ws/build $FW_TARGETDIR/mcu_ws/install $FW_TARGETDIR/mcu_ws/log
 
