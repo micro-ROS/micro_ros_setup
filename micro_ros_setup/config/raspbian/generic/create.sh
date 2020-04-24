@@ -19,5 +19,4 @@ popd >/dev/null
 
 pushd $FW_TARGETDIR >/dev/null
     git clone https://github.com/micro-ROS/raspbian_apps.git
-    cp raspbian_apps/toolchain.cmake mcu_ws/
 popd >/dev/null
