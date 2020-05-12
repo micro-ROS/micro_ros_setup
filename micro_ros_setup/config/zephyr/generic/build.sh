@@ -35,6 +35,8 @@ pushd $FW_TARGETDIR >/dev/null
         export BOARD="disco_l475_iot1"
     elif [ "$PLATFORM" = "olimex-stm32-e407" ]; then
         export BOARD="olimex_stm32_e407"
+    elif [ "$PLATFORM" = "nucleo_f401re" ]; then
+        export BOARD="nucleo_f401re"
     elif [ "$PLATFORM" = "host" ]; then
         export BOARD="native_posix"
     else
