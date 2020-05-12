@@ -22,7 +22,7 @@ if [ "$UROS_TRANSPORT" == "udp" ]; then
       echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
 
 elif [ "$UROS_TRANSPORT" == "serial" ]; then
-      echo "Using USB serial device."
+      echo "Using serial device."
 
       cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
       cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
