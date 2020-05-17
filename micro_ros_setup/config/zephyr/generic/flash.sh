@@ -1,6 +1,6 @@
 pushd $FW_TARGETDIR > /dev/null
 
-if [ "$PLATFORM" = "discovery_l475_iot1" ]; then
+if [ "$PLATFORM" = "discovery_l475_iot1" ] || [ "$PLATFORM" = "nucleo_f401re" ]; then
   export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
   export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
 
