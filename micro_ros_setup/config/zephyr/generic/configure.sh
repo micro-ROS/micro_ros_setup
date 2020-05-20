@@ -19,6 +19,8 @@ if [ "$UROS_TRANSPORT" == "udp" ]; then
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP=$UROS_AGENT_IP"
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT=$UROS_AGENT_PORT"
 
+      remove_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL"
+
       echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
 
 elif [ "$UROS_TRANSPORT" == "serial" ]; then
