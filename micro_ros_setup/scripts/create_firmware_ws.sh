@@ -72,7 +72,7 @@ SKIP="microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesup
 
 # Installing common packages 
 rosdep update
-rosdep install -y --from-paths src -i src --rosdistro dashing --skip-keys="$SKIP"
+rosdep install -y --from-paths src -i src --rosdistro foxy --skip-keys="$SKIP"
 
 # Check generic build
 if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
@@ -109,7 +109,7 @@ if [ $RTOS != "host" ]; then
 fi
 
 # Install dependecies for specific platform
-rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro dashing --skip-keys="$SKIP"
+rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro foxy --skip-keys="$SKIP"
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
