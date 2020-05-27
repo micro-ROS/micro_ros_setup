@@ -13,15 +13,15 @@ repositories:
   uros/rcl:
     type: git
     url: https://github.com/micro-ROS/rcl
-    version: dashing
+    version: feature/foxy_migration
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: dashing
+    version: feature/foxy_migration
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: dashing
+    version: feature/foxy_migration
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
