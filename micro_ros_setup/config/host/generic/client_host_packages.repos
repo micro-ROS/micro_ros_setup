@@ -17,11 +17,11 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: dashing
+    version: feature/foxy_migration
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: dashing
+    version: feature/foxy_migration
   uros/micro-ROS-demos:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-demos.git
