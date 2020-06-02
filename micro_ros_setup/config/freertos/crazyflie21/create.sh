@@ -15,6 +15,7 @@ pushd $FW_TARGETDIR >/dev/null
 
     # ignore broken packages
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
+    touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/rcl_action/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
 
