@@ -21,7 +21,4 @@ pushd $FW_TARGETDIR >/dev/null
 
     rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
 
-    # Turn off features MicroXRCEClient
-    echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_UDP_TRANSPORT=TRUE/PROFILE_UDP_TRANSPORT=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null &>/dev/null
-
 popd >/dev/null

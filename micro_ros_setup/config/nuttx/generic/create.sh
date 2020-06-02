@@ -25,9 +25,6 @@ pushd $FW_TARGETDIR >/dev/null
 
     rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
 
-    # turn off features which don't compile on NuttX currently
-    echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null
-
 popd >/dev/null
 
 cp $PREFIX/config/$RTOS/generic/package.xml $FW_TARGETDIR/apps/package.xml
