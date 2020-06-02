@@ -88,7 +88,7 @@ pushd $FW_TARGETDIR >/dev/null
     if [ $RTOS != "host" ]; then
         ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
             $PREFIX/config/$RTOS/dev_uros_packages.repos
-        rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro dashing --skip-keys="$SKIP"
+        rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro foxy --skip-keys="$SKIP"
 
          # Creating mcu directory
         mkdir mcu_ws

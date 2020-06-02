@@ -23,9 +23,9 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/rcl_action/COLCON_IGNORE
 
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
+    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro foxy --skip-keys="$SKIP"
 
 popd >/dev/null
 
 cp $PREFIX/config/$RTOS/generic/package.xml $FW_TARGETDIR/apps/package.xml
-rosdep install -y --from-paths $FW_TARGETDIR/apps -i $FW_TARGETDIR/apps --rosdistro dashing
+rosdep install -y --from-paths $FW_TARGETDIR/apps -i $FW_TARGETDIR/apps --rosdistro foxy

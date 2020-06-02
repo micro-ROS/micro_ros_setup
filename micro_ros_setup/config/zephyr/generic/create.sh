@@ -25,25 +25,13 @@ pushd $FW_TARGETDIR >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
 
-    if [ "$PLATFORM" = "host" ]; then
-        export TOOLCHAIN_VERSION=zephyr-sdk-0.11.2-setup.run
-    else
-        export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
-    fi
+    export TOOLCHAIN_VERSION=zephyr-sdk-0.11.3-setup.run
     
-    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
+    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.3/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
-    ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
+    echo "n" | ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y -norc
 
     rm -rf $TOOLCHAIN_VERSION
-
-
-    # Temporal until driver in mainstream
-    pushd zephyrproject/zephyr >/dev/null
-        git remote add eprosima https://github.com/eProsima/zephyr
-        git fetch --all
-        git checkout remotes/eprosima/feature/micro_ros
-    popd >/dev/null
 
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
     export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
@@ -58,5 +46,5 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
 
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
+    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro foxy --skip-keys="$SKIP"
 popd >/dev/null
