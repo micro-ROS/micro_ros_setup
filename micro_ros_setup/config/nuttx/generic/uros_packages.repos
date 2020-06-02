@@ -6,7 +6,7 @@ repositories:
   apps:
     type: git
     url: https://github.com/micro-ROS/apps.git
-    version: feature/client_config
+    version: feature/foxy_migration
   uclibc:
     type: git
     url:  https://github.com/micro-ROS/uclibc.git
