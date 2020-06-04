@@ -13,7 +13,9 @@
         },
         "rcl": {
             "cmake-args": [
-                "-DBUILD_TESTING=OFF"
+                "-DBUILD_TESTING=OFF",
+                "-DRCL_YAML_PARSER=OFF",
+                "-DRCL_LOGGING=OFF"
             ]
         }, 
         "rcutils": {
