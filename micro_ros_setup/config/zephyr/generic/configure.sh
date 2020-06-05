@@ -19,36 +19,66 @@ if [ "$UROS_TRANSPORT" == "udp" ]; then
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP=$UROS_AGENT_IP"
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT=$UROS_AGENT_PORT"
 
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=ON"
+
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_DISCOVERY=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=OFF"
+
       remove_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL"
 
       echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
+
+      echo $UROS_TRANSPORT > $FW_TARGETDIR/TRANSPORT
 
 elif [ "$UROS_TRANSPORT" == "serial" ]; then
       echo "Using serial device."
 
       cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
       cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
+      
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
       update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
 
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_DISCOVERY=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
+
       update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
+
+      if [ ! -z "$UROS_AGENT_DEVICE" ];then
+            update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE=$UROS_AGENT_DEVICE"      
+      fi
 
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
 
+      echo $UROS_TRANSPORT > $FW_TARGETDIR/TRANSPORT
 
 elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
       echo "Using USB serial device."
 
       cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_usb_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
       cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_usb_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
+      
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
       update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
+
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_DISCOVERY=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
 
       update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
 
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
+      remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE"
+
 
       echo "Configured $UROS_TRANSPORT mode with agent at USB serial"
+
+      echo $UROS_TRANSPORT > $FW_TARGETDIR/TRANSPORT
+
 else
       help
 fi

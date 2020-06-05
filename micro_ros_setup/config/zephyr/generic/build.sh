@@ -29,8 +29,7 @@ pushd $FW_TARGETDIR >/dev/null
         rm -rf mcu_ws/build mcu_ws/install mcu_ws/log
     fi
 
-
-    # Set platform for Zephyr
+    # Platform renaming for Zephyr
     if [ "$PLATFORM" = "discovery_l475_iot1" ]; then
         export BOARD="disco_l475_iot1"
     elif [ "$PLATFORM" = "olimex-stm32-e407" ]; then
@@ -44,6 +43,24 @@ pushd $FW_TARGETDIR >/dev/null
         exit 1
     fi
 
+    # Use transport specific conf if given and exists.
+    if [ -z "$TRANSPORT" ];then
+        export CONF_FILE="prj.conf"
+    else
+        if [ ! -f "$UROS_APP_FOLDER/$TRANSPORT.conf" ]; then
+            echo "Specific config for transport not found. Using prj.conf."
+            export CONF_FILE="prj.conf"
+        else
+            export CONF_FILE="$TRANSPORT.conf"
+        fi
+    fi
+
+    if [ "$PLATFORM" = "host" ]; then
+        echo "Zephyr native-posix detected. Using host-udp.conf."
+
+        export CONF_FILE="host-udp.conf"
+    fi
+
     # Build Zephyr + app
-    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON
+    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Debug
 popd >/dev/null
