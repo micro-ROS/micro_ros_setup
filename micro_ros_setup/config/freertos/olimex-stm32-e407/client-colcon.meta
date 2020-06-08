@@ -1,5 +1,11 @@
 {
     "names": {
+        "tracetools": {
+            "cmake-args": [
+                "-DTRACETOOLS_DISABLED=ON",
+                "-DTRACETOOLS_STATUS_CHECKING_TOOL=OFF"
+            ]
+        },
         "rcutils": {
             "cmake-args": [
                 "-DENABLE_TESTING=OFF",
