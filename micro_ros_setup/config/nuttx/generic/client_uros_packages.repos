@@ -13,7 +13,7 @@ repositories:
   uros/rclc:
     type: git
     url: https://github.com/micro-ROS/rclc.git
-    version: dashing
+    version: master
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
