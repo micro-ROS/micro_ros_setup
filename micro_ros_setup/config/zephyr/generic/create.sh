@@ -22,11 +22,15 @@ pushd $FW_TARGETDIR >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
 
-    export TOOLCHAIN_VERSION=zephyr-sdk-0.11.3-setup.run
+    if [ "$PLATFORM" = "host" ]; then
+        export TOOLCHAIN_VERSION=zephyr-sdk-0.11.2-setup.run
+    else
+        export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
+    fi
     
-    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.3/$TOOLCHAIN_VERSION
+    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
-    echo "n" | ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y -norc
+    ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
 
     rm -rf $TOOLCHAIN_VERSION
 
