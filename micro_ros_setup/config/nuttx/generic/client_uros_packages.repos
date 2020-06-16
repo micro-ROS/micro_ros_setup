@@ -10,6 +10,10 @@ repositories:
 
 # MicroROS
   
+  uros/rcl:
+    type: git
+    url: https://github.com/micro-ROS/rcl.git
+    version: feature/foxy_migration
   uros/rclc:
     type: git
     url: https://github.com/micro-ROS/rclc.git
@@ -17,10 +21,6 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: feature/foxy_migration
-  uros/rosidl_typesupport_microxrcedds:
-    type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
     version: feature/foxy_migration
   uros/rcutils:
     type: git
@@ -30,6 +30,18 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
     version: master
+  uros/tracetools:
+    type: git
+    url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
+    version: feature/foxy_migration
+  uros/rosidl_typesupport:
+    type: git
+    url: https://github.com/micro-ROS/rosidl_typesupport.git
+    version: feature/foxy_migration
+  uros/rosidl_typesupport_microxrcedds:
+    type: git
+    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
+    version: feature/foxy_migration
 
 # interim, until crosscompile fix is available in dashing branch
   ros2/tinydir_vendor:
