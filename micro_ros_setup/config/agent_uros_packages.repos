@@ -1,10 +1,10 @@
-# Micro XRCE-DDS agent should be a dashing package
 repositories:
 # MicroROS
   uros/micro-ROS-Agent:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git
     version: feature/foxy_migration
+  # TODO (pablogs9): Integrate Micro XRCE-DDS Agent dependency download in micro-ROS-Agent package
   eProsima/Micro-XRCE-DDS-Agent:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
