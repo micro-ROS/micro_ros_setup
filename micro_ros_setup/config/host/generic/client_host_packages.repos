@@ -25,4 +25,4 @@ repositories:
   uros/micro-ROS-demos:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-demos.git
-    version: dashing
+    version: feature/foxy_migration
