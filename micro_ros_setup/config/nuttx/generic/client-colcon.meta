@@ -8,7 +8,8 @@
         },
         "rcutils": {
             "cmake-args": [
-                "-DENABLE_TESTING=OFF"
+                "-DENABLE_TESTING=OFF",
+                "-DRCUTILS_NO_THREAD_SUPPORT=ON"
             ]
         },
         "rcl": {
