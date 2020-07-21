@@ -2,10 +2,8 @@ name: CI
 
 on:
   pull_request:
-    branches:
-      - dashing
-      - crystal
-      - foxy
+    branches: 
+      - '**'
 
 jobs:
 
