@@ -221,6 +221,8 @@ jobs:
 
       - name: dependencies
         run: |
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
+          echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list
           apt update
           apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update
