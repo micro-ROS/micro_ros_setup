@@ -37,7 +37,7 @@ This package targets **ROS 2** installation. ROS 2 supported distributions are:
 |-|-|-|
 | Crystal | Supported | `crystal` |
 | Dashing | Supported | `dashing` |
-| Eloquent | *Work in progress* |  |
+| Foxy    | Supported | `foxy`    |
 
 Some other prerequisites needed for building a firmware using this package are:
 
@@ -118,47 +118,53 @@ For more information please visit the links.
         <tr>
             <td rowspan=6>freertos</td>
             <td rowspan=2>crazyflie21</td>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/crazyflie_position_publisher/app.c">crazyflie_position_publisher</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/crazyflie_uros_sample/app.c">crazyflie_uros_sample</a></td>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/crazyflie_position_publisher/app.c">crazyflie_position_publisher</a></td>
         </tr>
         <tr>
             <td rowspan=4>olimex-stm32-e407</td>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/add_two_ints/app.c">add_two_ints</a></td>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/add_two_ints_service/app.c">add_two_ints_service</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/ping_pong/app.c">ping_pong</a></td>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/int32_publisher/app.c">int32_publisher</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/olimex_uros_sample/app.c">olimex_uros_sample</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/int32_publisher/app.c">int32_publisher</a></td>
+            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c">ping_pong</a></td>
         </tr>
         <tr>
             <td rowspan=7>zephyr</td>
             <td rowspan=4>discovery_l475_iot1</td>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/src/main.c">ping_pong</a></td>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_publisher/src/main.c">int32_publisher</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/int32_publisher/src/main.c">int32_publisher</a></td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_wifi_publisher/src/main.c">int32_wifi_publisher</a></td>
+        </tr>
+        </tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c">ping_pong</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/sensors_publisher/src/main.c">sensors_publisher</a></td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/sensors_publisher/src/main.c">sensors_publisher</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/tof_ws2812/src/main.c">tof_ws2812</a></td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/tof_ws2812/src/main.c">tof_ws2812</a></td>
         </tr>
         <tr>
             <td rowspan=3>olimex-stm32-e407</td>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/src/main.c">ping_pong</a></td>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/int32_publisher/src/main.c">int32_publisher</a></td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_publisher/src/main.c">int32_publisher</a></td>
         </tr>
         <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/vl53l1x_tof_sensor/src/main.c">vl53l1x_tof_sensor</a></td>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/openmanipulator_tof/src/main.c">openmanipulator_tof</a></td>
+        </tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c">ping_pong</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/vl53l1x_tof_sensor/src/main.c">vl53l1x_tof_sensor</a></td>
         </tr>
     </tbody>
 </table>
