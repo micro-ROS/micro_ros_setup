@@ -26,11 +26,6 @@
                 "-DRCUTILS_AVOID_DYNAMIC_ALLOCATION=ON"
             ]
         },
-        "tracetools": {
-            "cmake-args": [
-                "-DTRACETOOLS_DISABLED=ON"
-            ]
-        },
         "microxrcedds_client": {
             "cmake-args": [
                 "-DUCLIENT_PIC=OFF"
