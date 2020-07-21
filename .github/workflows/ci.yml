@@ -237,7 +237,7 @@ jobs:
 
       - name: build
         run: |
-          . /opt/ros/dashing/setup.sh
+          . /opt/ros/foxy/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
