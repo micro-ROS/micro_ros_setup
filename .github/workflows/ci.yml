@@ -5,6 +5,7 @@ on:
     branches:
       - dashing
       - crystal
+      - foxy
 
 jobs:
 
@@ -127,7 +128,7 @@ jobs:
   # Temporary solution due to NuttX is no fully implemented on the generic build system
   client_nuttx_firmware:
     runs-on: ubuntu-latest
-    container: microros/ci:${{github.base_ref}}
+    container: ros:${{github.base_ref}}
     needs: micro_ros_build
 
     steps:
@@ -167,7 +168,7 @@ jobs:
   #Build test for FreeRTOS and Zephyr
   client_firmware:
     runs-on: ubuntu-latest
-    container: microros/ci:dashing
+    container: ros:${{github.base_ref}}
     needs: micro_ros_build
 
     strategy:
