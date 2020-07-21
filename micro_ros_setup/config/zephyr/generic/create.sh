@@ -5,8 +5,11 @@ CMAKE_VERSION_MAJOR_NUMBER=$(echo $CMAKE_VERSION_NUMBER | cut -d '.' -f 1)
 CMAKE_VERSION_MINOR_NUMBER=$(echo $CMAKE_VERSION_NUMBER | cut -d '.' -f 2)
 CMAKE_VERSION_PATCH_NUMBER=$(echo $CMAKE_VERSION_NUMBER | cut -d '.' -f 3)
 
-if ! (( $CMAKE_VERSION_MAJOR_NUMBER >= 3 && $CMAKE_VERSION_MINOR_NUMBER >= 13 && $CMAKE_VERSION_PATCH_NUMBER >= 1 )); then
-    echo "Error while installing CMake version >= 3.13.1. Check with cmake --version"
+if ! (( $CMAKE_VERSION_MAJOR_NUMBER > 3 || \
+    $CMAKE_VERSION_MAJOR_NUMBER == 3 && $CMAKE_VERSION_MINOR_NUMBER > 13 || \
+    $CMAKE_VERSION_MAJOR_NUMBER == 3 && $CMAKE_VERSION_MINOR_NUMBER == 13 && $CMAKE_VERSION_PATCH_NUMBER >= 1 )); then
+    echo "Error: installed CMake version must be equal or greater than 3.13.1."
+    echo "Your current version is $CMAKE_VERSION_NUMBER."
     echo "Please if not installed follow the instructions: https://docs.zephyrproject.org/latest/getting_started/index.html"
     exit 1
 fi
