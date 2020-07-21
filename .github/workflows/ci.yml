@@ -199,7 +199,7 @@ jobs:
 
           - rtos: zephyr
             platform: host
-            configuration: int32_publisher
+            configuration: ping_pong
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
 
