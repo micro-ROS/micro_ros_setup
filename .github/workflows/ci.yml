@@ -20,7 +20,7 @@ jobs:
       - name: dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip cmake
+          apt install -y python3-colcon-metadata python3-pip
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
 
@@ -222,7 +222,7 @@ jobs:
       - name: dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip
+          apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
 
