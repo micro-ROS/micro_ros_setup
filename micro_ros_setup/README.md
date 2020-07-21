@@ -116,12 +116,12 @@ For more information please visit the links.
             <td>uros</td>
         </tr>
         <tr>
-            <td rowspan=6>freertos</td>
-            <td rowspan=2>crazyflie21</td>
+            <td rowspan=4>freertos</td>
+            <td rowspan=1>crazyflie21</td>
             <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/crazyflie_position_publisher/app.c">crazyflie_position_publisher</a></td>
         </tr>
         <tr>
-            <td rowspan=4>olimex-stm32-e407</td>
+            <td rowspan=3>olimex-stm32-e407</td>
             <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/add_two_ints_service/app.c">add_two_ints_service</a></td>
         </tr>
         <tr>
@@ -131,8 +131,8 @@ For more information please visit the links.
             <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c">ping_pong</a></td>
         </tr>
         <tr>
-            <td rowspan=7>zephyr</td>
-            <td rowspan=4>discovery_l475_iot1</td>
+            <td rowspan=11>zephyr</td>
+            <td rowspan=6>discovery_l475_iot1</td>
         <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
         <tr>
@@ -151,7 +151,7 @@ For more information please visit the links.
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/tof_ws2812/src/main.c">tof_ws2812</a></td>
         </tr>
         <tr>
-            <td rowspan=3>olimex-stm32-e407</td>
+            <td rowspan=5>olimex-stm32-e407</td>
         <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
         </tr>
