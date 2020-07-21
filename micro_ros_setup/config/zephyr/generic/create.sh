@@ -1,14 +1,14 @@
 # Reminder: Zephyr recommended dependecies are: git cmake ninja-build gperf ccache dfu-util device-tree-compiler wget python3-pip python3-setuptools python3-tk python3-wheel xz-utils file make gcc gcc-multilib software-properties-common -y
 
-# We need a version newer than the repo
-wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-if sudo echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list; then
-    sudo apt update
-    sudo apt install cmake -y
-else
+CMAKE_VERSION_NUMBER=$(cmake --version | grep "[0-9]*\.[0-9]*\.[0-9]*" | cut -d ' ' -f 3)
+CMAKE_VERSION_MAJOR_NUMBER=$(echo $CMAKE_VERSION_NUMBER | cut -d '.' -f 1)
+CMAKE_VERSION_MINOR_NUMBER=$(echo $CMAKE_VERSION_NUMBER | cut -d '.' -f 2)
+CMAKE_VERSION_PATCH_NUMBER=$(echo $CMAKE_VERSION_NUMBER | cut -d '.' -f 3)
+
+if ! (( $CMAKE_VERSION_MAJOR_NUMBER >= 3 && $CMAKE_VERSION_MINOR_NUMBER >= 13 && $CMAKE_VERSION_PATCH_NUMBER >= 1 )); then
     echo "Error while installing CMake version >= 3.13.1. Check with cmake --version"
     echo "Please if not installed follow the instructions: https://docs.zephyrproject.org/latest/getting_started/index.html"
-    sleep 2
+    exit 1
 fi
 
 export PATH=~/.local/bin:"$PATH"
