@@ -133,8 +133,8 @@ For more information please visit the links.
         <tr>
             <td rowspan=11>zephyr</td>
             <td rowspan=6>discovery_l475_iot1</td>
-        </tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
+        </tr>
         <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_publisher/src/main.c">int32_publisher</a></td>
         </tr>
