@@ -133,7 +133,7 @@ For more information please visit the links.
         <tr>
             <td rowspan=11>zephyr</td>
             <td rowspan=6>discovery_l475_iot1</td>
-        <tr>
+        </tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
         <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_publisher/src/main.c">int32_publisher</a></td>
@@ -141,7 +141,7 @@ For more information please visit the links.
         <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_wifi_publisher/src/main.c">int32_wifi_publisher</a></td>
         </tr>
-        </tr>
+        <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c">ping_pong</a></td>
         </tr>
         <tr>
@@ -152,7 +152,6 @@ For more information please visit the links.
         </tr>
         <tr>
             <td rowspan=5>olimex-stm32-e407</td>
-        <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
         </tr>
         <tr>
@@ -161,6 +160,7 @@ For more information please visit the links.
         <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/openmanipulator_tof/src/main.c">openmanipulator_tof</a></td>
         </tr>
+        <tr>
             <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c">ping_pong</a></td>
         </tr>
         <tr>
