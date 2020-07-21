@@ -37,7 +37,7 @@ repositories:
   uros/tracetools:
     type: git
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
-    version: foxy
+    version: feature/foxy_migration
 
 # Remove this when it returns to ros2.repos
   ros2/tinydir_vendor:
