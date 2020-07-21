@@ -221,6 +221,8 @@ jobs:
 
       - name: dependencies
         run: |
+          apt update
+          apt install -y wget
           wget -q -O - https://apt.kitware.com/keys/kitware-archive-latest.asc > kitware.key
           apt-key add kitware.key
           echo "deb https://apt.kitware.com/ubuntu/ bionic main" > /etc/apt/sources.list.d/kitware.list
