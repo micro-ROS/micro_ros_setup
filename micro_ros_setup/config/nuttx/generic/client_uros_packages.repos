@@ -25,7 +25,7 @@ repositories:
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils.git
-    version: foxy
+    version: feature/rebase_foxy
   drive_base:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
