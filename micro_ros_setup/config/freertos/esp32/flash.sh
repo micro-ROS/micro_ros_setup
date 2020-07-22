@@ -1,10 +1,8 @@
-export IDF_PATH=$FW_TARGETDIR/toolchain/esp-idf
-export IDF_TOOLS_PATH=$FW_TARGETDIR/toolchain/espressif
-export PATH=$PATH:$IDF_TOOLS_PATH/tools/xtensa-esp32-elf/esp-2020r1-8.2.0/xtensa-esp32-elf/bin
+EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_esp32_extensions
 
-pushd $FW_TARGETDIR/build > /dev/null
+pushd $EXTENSIONS_DIR/build > /dev/null
 
-  make flash $@
+  make flash/fast
 
 popd > /dev/null
 

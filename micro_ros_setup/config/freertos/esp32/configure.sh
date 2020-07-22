@@ -14,9 +14,6 @@ function help {
 echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
 if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
-    echo "TODO..." > &2
-    exit 1
-
     update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT="$UROS_TRANSPORT
     update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP="$UROS_AGENT_IP
     update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT="$UROS_AGENT_PORT
@@ -28,6 +25,11 @@ if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
     echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
 
 elif [ "$UROS_TRANSPORT" == "serial" ]; then
+    if [ "$UROS_AGENT_DEVICE" -gt 2 ]; then
+        echo ESP32 only supports USART0, USART1 or USART2
+        exit 1
+    fi
+
     echo "Using serial device USART$UROS_AGENT_DEVICE."
 
     cp -f $EXTENSIONS_DIR/serial_transport_external/esp32_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
@@ -43,4 +45,28 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
     echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
 else
     help
+    exit 1
 fi
+
+
+UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
+UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
+export IDF_PATH=$FW_TARGETDIR/toolchain/esp-idf
+export IDF_TOOLS_PATH=$FW_TARGETDIR/toolchain/espressif
+export PATH=$PATH:$IDF_TOOLS_PATH/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin
+
+if [ -d $EXTENSIONS_DIR/build ]; then
+    rm -r $EXTENSIONS_DIR/build
+fi
+mkdir -p $EXTENSIONS_DIR/build
+
+pushd $EXTENSIONS_DIR/build >/dev/null
+
+    cmake -G'Unix Makefiles' \
+        -DCMAKE_VERBOSE_MAKEFILE=ON \
+        -DUROS_APP_FOLDER=$UROS_APP_FOLDER \
+        -DIDF_PATH=$IDF_PATH \
+        -DUROS_APP=$UROS_APP \
+        $EXTENSIONS_DIR
+
+popd >/dev/null
