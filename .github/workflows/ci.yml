@@ -107,22 +107,28 @@ jobs:
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh host
-          colcon build --merge-install --metas src - --packages-skip rclc micro_ros_demos_rclc rclc_examples
+          ros2 run micro_ros_setup build_firmware.sh
 
       - name: installation
         run: |
-          (test -f install/lib/micro_ros_demos_rcl/int32_publisher/int32_publisher)                         && true || false
-          (test -f install/lib/micro_ros_demos_rcl/int32_subscriber/int32_subscriber)                       && true || false
-          (test -f install/lib/micro_ros_demos_rcl/int32_publisher_subscriber/int32_publisher_subscriber)   && true || false
-          (test -f install/lib/micro_ros_demos_rcl/int32_multinode/int32_multinode)                         && true || false
-          (test -f install/lib/micro_ros_demos_rcl/guard_condition/guard_condition)                         && true || false
-          (test -f install/lib/micro_ros_demos_rcl/fibonacci_action_server/fibonacci_action_server)         && true || false
-          (test -f install/lib/micro_ros_demos_rcl/fibonacci_action_client/fibonacci_action_client)         && true || false
-          (test -f install/lib/micro_ros_demos_rcl/configured_subscriber/configured_subscriber)             && true || false
-          (test -f install/lib/micro_ros_demos_rcl/configured_publisher/configured_publisher)               && true || false
-          (test -f install/lib/micro_ros_demos_rcl/addtwoints_server/addtwoints_server)                     && true || false
-          (test -f install/lib/micro_ros_demos_rcl/addtwoints_client/addtwoints_client)                     && true || false
-
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/addtwoints_client/addtwoints_client)                         && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/addtwoints_server/addtwoints_server)                         && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/complex_msg_publisher/complex_msg_publisher)                 && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/complex_msg_subscriber/complex_msg_subscriber)               && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/configured_publisher/configured_publisher)                   && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/configured_subscriber/configured_subscriber)                 && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/fibonacci_action_client/fibonacci_action_client)             && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/fibonacci_action_server/fibonacci_action_server)             && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/fragmented_publication/fragmented_publication)               && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/fragmented_subscription/fragmented_subscription)             && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_multinode/int32_multinode)                             && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher)                             && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher_subscriber/int32_publisher_subscriber)       && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_subscriber/int32_subscriber)                           && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/ping_pong/ping_pong)                                         && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/string_publisher/string_publisher)                           && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/string_subscriber/string_subscriber)                         && true || false
+        (test -f install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/timer/timer)                                                 && true || false
   # Temporary solution due to NuttX is no fully implemented on the generic build system
   client_nuttx_firmware:
     runs-on: ubuntu-latest
