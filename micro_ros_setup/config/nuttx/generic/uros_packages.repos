@@ -6,7 +6,7 @@ repositories:
   apps:
     type: git
     url: https://github.com/micro-ROS/apps.git
-    version: dashing 
+    version: foxy
   uclibc:
     type: git
     url:  https://github.com/micro-ROS/uclibc.git

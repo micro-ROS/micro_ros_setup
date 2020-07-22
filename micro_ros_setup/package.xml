@@ -21,6 +21,8 @@
   <build_depend>libncurses-dev</build_depend>
   <build_depend>usbutils</build_depend>
 
+  <exec_depend>python3-vcstool</exec_depend>
+   
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
