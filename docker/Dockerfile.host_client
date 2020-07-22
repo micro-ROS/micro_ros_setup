@@ -1,0 +1,10 @@
+ARG CI_REGISTRY
+FROM ${CI_REGISTRY}/micro-ros/ci/micro-ros-build/uros-crystal-dev
+
+WORKDIR /tmp/micro-ros
+# executing this will install a bunch of dependencies and then we remove 
+# the workspaces again so they do not end up in the container (but their deps will)
+RUN . /opt/ros/crystal/setup.sh && colcon build && . install/local_setup.sh && \
+    ros2 run micro_ros_setup create_host_client_ws.sh src \
+    rm -rf *
+

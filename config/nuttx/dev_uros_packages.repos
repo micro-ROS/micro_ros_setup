@@ -1,0 +1,6 @@
+repositories:
+  nuttx_kconfig_vendor:
+    type: git
+    url: https://github.com/micro-ROS/nuttx_kconfig_vendor.git
+    version: master
+

@@ -1,0 +1,8 @@
+FROM ros:crystal-ros-base
+
+RUN mkdir -p /tmp/micro-ros/micro-ros-build/src/micro-ros-build
+WORKDIR /tmp/micro-ros
+ADD . src/micro-ros-build
+RUN apt update && apt install -y python-rosdep python3-colcon-* ed ccache && \
+    rosdep update && rosdep install -y --from-paths . -i
+
