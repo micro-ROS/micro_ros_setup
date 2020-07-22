@@ -8,7 +8,7 @@ set -o pipefail
 [ -d $FW_TARGETDIR ] || mkdir $FW_TARGETDIR
 pushd $FW_TARGETDIR >/dev/null
 
-    vcs import --input $PREFIX/config/$RTOS/generic/uros_packages.repos >/dev/null
+    vcs import --input $PREFIX/config/$RTOS/generic/uros_packages.repos
 
     # install uclibc
     if [ ! -d "NuttX/libs/libxx/uClibc++" ]
