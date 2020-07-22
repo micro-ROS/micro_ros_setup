@@ -20,6 +20,12 @@
             "cmake-args":[
                 "-DRMW_UXRCE_TRANSPORT=custom_serial"
             ]
+        },
+        "tracetools": {
+            "cmake-args": [
+                "-DTRACETOOLS_DISABLED=ON",
+                "-DTRACETOOLS_STATUS_CHECKING_TOOL=OFF"
+            ]
         }
     }
 }
