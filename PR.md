@@ -1,5 +1,0 @@
-- What should we do with the documents under `doc` folder.
-- Removed `.gitlab-ci.yml` in foxy
-- Removed `.gitmodules` in since they don't exists
-- Removed `20-default.list` in since it is not used and its URL are 404 not found.
-- Modified `3rd-party-licenses.txt` to remove `nuttx_kconfig_vendor`
