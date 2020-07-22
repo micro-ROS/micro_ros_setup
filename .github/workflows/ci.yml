@@ -215,10 +215,10 @@ jobs:
             configuration: agent_lite
             binary: 'firmware/bin/micro_ros_agent_lite'
 
-           - rtos: raspbian
-             platform: buster_v7
-             configuration: weather_publisher
-             binary: 'firmware/bin/weather_publisher'
+          - rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
 
     steps:
       - uses: actions/checkout@v2
