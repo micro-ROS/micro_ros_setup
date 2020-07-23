@@ -15,36 +15,35 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Supported platforms
 
-| RTOS | Platform | Example |
-|-|-|-|
-| [Nuttx](https://nuttx.org/) | Olimex STM32-E407, STM32F4Discovery ** | `nuttx olimex-stm32-e407` | 
-| [FreeRTOS](https://www.freertos.org/) | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/) | `freertos crazyflie21` | 
-| [FreeRTOS](https://www.freertos.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `freertos olimex-stm32-e407` | 
-| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) | `zephyr olimex-stm32-e407` | 
-| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr discovery_l475_iot1` | 
-| [Zephyr](https://www.zephyrproject.org/) | Zephyr emulator | `zephyr host` | 
-| Linux / Windows | *Host* * |
+| RTOS                                     | Platform                                                                                             | Example                      |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [Nuttx](https://nuttx.org/)              | Olimex STM32-E407                                                                                    | `nuttx olimex-stm32-e407`    |
+| [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | `freertos crazyflie21`       |
+| [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | `freertos olimex-stm32-e407` |
+| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)                        | `freertos nucleo_f446ze`     |
+| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | `zephyr olimex-stm32-e407`   |
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr discovery_l475_iot1` |
+| [Zephyr](https://www.zephyrproject.org/) | Zephyr emulator                                                                                      | `zephyr host`                |
+| Linux / Windows                          | *Host* *                                                                                             |
 
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
 
-*\* Support for compiling apps in a native host for testing and debugging*
-
-**\* Configuration for different platforms through configure_firmware.sh*
+*\* Support for compiling apps in a native Linux host for testing and debugging*
 
 # Dependencies
 
 This package targets **ROS 2** installation. ROS 2 supported distributions are:
 
-| ROS 2 Distro | State | Branch |
-|-|-|-|
-| Crystal | Supported | `crystal` |
-| Dashing | Supported | `dashing` |
-| Foxy    | Supported | `foxy`    |
+| ROS 2 Distro | State     | Branch    |
+| ------------ | --------- | --------- |
+| Crystal      | Supported | `crystal` |
+| Dashing      | Supported | `dashing` |
+| Foxy         | Supported | `foxy`    |
 
 Some other prerequisites needed for building a firmware using this package are:
 
 ```
-sudo apt install python-rosdep
+sudo apt install python3-rosdep
 ```
 
 # Building 
@@ -66,6 +65,8 @@ source install/local_setup.bash
 ```
 
 Once the package is built, the firmware scripts are ready to run.
+
+You can find first steps tutorials in [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
 
 
 ## Creating micro-ROS firmware
@@ -91,93 +92,27 @@ By running `configure_firmware.sh` command the installed firmware is configured 
 ros2 run micro_ros_setup configure_firmware.sh [configuration] [options]
 ```
 
-The following table shows the available configurations for each RTOS/platform.
-For more information please visit the links.
-
-<table>
-    <thead>
-        <tr>
-            <th>RTOS</th>
-            <th>Plafrom</th>
-            <th>Configuration</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=4>nuttx</td>
-            <td rowspan=4>olimex-stm32-e407</td>
-            <td><a href="https://github.com/micro-ROS/micro-ROS_kobuki_demo">drive_base</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/micro-ROS-rtt">pingpong</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/micro-ROS-rtt">pingpong-eth</a></td>
-        </tr>
-        <tr>
-            <td>uros</td>
-        </tr>
-        <tr>
-            <td rowspan=4>freertos</td>
-            <td rowspan=1>crazyflie21</td>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/crazyflie_position_publisher/app.c">crazyflie_position_publisher</a></td>
-        </tr>
-        <tr>
-            <td rowspan=3>olimex-stm32-e407</td>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/add_two_ints_service/app.c">add_two_ints_service</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/int32_publisher/app.c">int32_publisher</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c">ping_pong</a></td>
-        </tr>
-        <tr>
-            <td rowspan=11>zephyr</td>
-            <td rowspan=6>discovery_l475_iot1</td>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_publisher/src/main.c">int32_publisher</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_wifi_publisher/src/main.c">int32_wifi_publisher</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c">ping_pong</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/sensors_publisher/src/main.c">sensors_publisher</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/tof_ws2812/src/main.c">tof_ws2812</a></td>
-        </tr>
-        <tr>
-            <td rowspan=5>olimex-stm32-e407</td>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/add_two_ints_service/src/main.c">add_two_ints_service</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/int32_publisher/src/main.c">int32_publisher</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/openmanipulator_tof/src/main.c">openmanipulator_tof</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c">ping_pong</a></td>
-        </tr>
-        <tr>
-            <td><a href="https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/vl53l1x_tof_sensor/src/main.c">vl53l1x_tof_sensor</a></td>
-        </tr>
-    </tbody>
-</table>
-
-Please note that these are only default configurations. Each RTOS has its configuration approach that you might use for further customization of these base configurations.
+By running this command without any argument the available demo applications and configurations will be shown.
 
 Common options available at this configuration step are:
-  - `--transport` or `-t`: `udp`, `tcp`, `serial` or any hardware specific transport label
+  - `--transport` or `-t`: `udp`, `serial` or any hardware specific transport label
   - `--dev` or `-d`: agent string descriptor in a serial-like transport
   - `--ip` or `-i`: agent IP in a network-like transport
   - `--port` or `-p`: agent port in a network-like transport
+
+
+Please note that each RTOS has its configuration approach that you might use for further customization of these base configurations. Visit [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) for a detailed information about RTOS configuration.
+
+In summary, the supported configurations for transports are:
+
+|                   |       NuttX        |     FreeRTOS      |       Zephyr       |
+| ----------------- | :----------------: | :---------------: | :----------------: |
+| Olimex STM32-E407 | USB, UART, Network |   UART, Network   |     USB, UART      |
+| ST B-L475E-IOT01A |  *Not supported*   |  *Not supported*  | USB, UART, Network |
+| Crazyflie 2.1     |  *Not supported*   | Custom Radio Link |  *Not supported*   |
+| ST Nucleo F446ZE* |  *Not supported*   |       UART        |  *Not supported*   |
+
+* Community supported, may have lack of official support 
 
 ## Building micro-ROS firmware
 
@@ -202,7 +137,7 @@ Using this package is possible to install a ready to use **micro-ROS-Agent**:
 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
-colcon build --meta src
+colcon build
 source install/local_setup.sh
 ros2 run micro_ros_agent micro_ros_agent [parameters]
 ```
