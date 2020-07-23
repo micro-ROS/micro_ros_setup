@@ -9,6 +9,12 @@ pushd $FW_TARGETDIR >/dev/null
     if [ -d mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx ]; then
         touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
     fi
+
+    if [ -d mcu_ws/ros2/rosidl ]; then
+        touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
+        touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
+    fi
+
     vcs import --input raspbian_apps/$CONFIG_NAME/app.repos mcu_ws/
     if [ -d raspbian_apps/$CONFIG_NAME/app ]; then
         cp -r raspbian_apps/$CONFIG_NAME/app mcu_ws/
