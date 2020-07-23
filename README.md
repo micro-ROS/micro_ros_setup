@@ -23,7 +23,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)                        | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.3.0               | `zephyr olimex-stm32-e407`   |
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.3.0               | `zephyr discovery_l475_iot1` |
-| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)                                                                                      | v2.3.0               | `zephyr host`                |
+| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.3.0               | `zephyr host`                |
 | Linux                                    | *Host* *                                                                                             | Ubuntu 18.04/20.04   | `host`                       |
 
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
@@ -105,12 +105,12 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
-|                   |       NuttX        |     FreeRTOS      |       Zephyr       |
-| ----------------- | :----------------: | :---------------: | :----------------: |
-| Olimex STM32-E407 | USB, UART, Network |   UART, Network   |     USB, UART      |
-| ST B-L475E-IOT01A |  *Not supported*   |  *Not supported*  | USB, UART, Network |
-| Crazyflie 2.1     |  *Not supported*   | Custom Radio Link |  *Not supported*   |
-| ST Nucleo F446ZE* |  *Not supported*   |       UART        |  *Not supported*   |
+|                    |       NuttX        |     FreeRTOS      |       Zephyr       |
+| ------------------ | :----------------: | :---------------: | :----------------: |
+| Olimex STM32-E407  | USB, UART, Network |   UART, Network   |     USB, UART      |
+| ST B-L475E-IOT01A  |         -          |         -         | USB, UART, Network |
+| Crazyflie 2.1      |         -          | Custom Radio Link |         -          |
+| ST Nucleo F446ZE * |         -          |       UART        |         -          |
 
 \* Community supported, may have lack of official support 
 
