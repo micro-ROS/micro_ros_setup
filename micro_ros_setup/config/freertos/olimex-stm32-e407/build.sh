@@ -27,5 +27,5 @@ pushd $EXTENSIONS_DIR >/dev/null
     fi
 
     # Build firmware
-    make UROS_APP_FOLDER=$UROS_APP_FOLDER
+    make -j$(nproc) UROS_APP_FOLDER=$UROS_APP_FOLDER
 popd >/dev/null
