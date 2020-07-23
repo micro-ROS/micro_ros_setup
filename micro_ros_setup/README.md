@@ -172,7 +172,7 @@ For more information please visit the links.
 Please note that these are only default configurations. Each RTOS has its configuration approach that you might use for further customization of these base configurations.
 
 Common options available at this configuration step are:
-  - `--transport` or `-t`: `udp`, `tcp`, `serial` or any hardware specific transport label
+  - `--transport` or `-t`: `udp`, `serial` or any hardware specific transport label
   - `--dev` or `-d`: agent string descriptor in a serial-like transport
   - `--ip` or `-i`: agent IP in a network-like transport
   - `--port` or `-p`: agent port in a network-like transport
