@@ -15,17 +15,16 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Supported platforms
 
-| RTOS                                     | Platform                                                                                             | Example                      |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [Nuttx](https://nuttx.org/)              | Olimex STM32-E407                                                                                    | `nuttx olimex-stm32-e407`    |
-| [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | `freertos crazyflie21`       |
-| [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | `freertos olimex-stm32-e407` |
-| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)                        | `freertos nucleo_f446ze`     |
-| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | `zephyr olimex-stm32-e407`   |
-| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | `zephyr discovery_l475_iot1` |
-| [Zephyr](https://www.zephyrproject.org/) | Zephyr emulator                                                                                      | `zephyr host`                |
-| Linux / Windows                          | *Host* *                                                                                             |
-
+| RTOS                                     | Platform                                                                                             | Version                                | Example                      |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------- |
+| [Nuttx](https://nuttx.org/)              | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v7.29                                  | `nuttx olimex-stm32-e407`    |
+| [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | FreeRTOS v10.2.1 - CF Firmware 2020.06 | `freertos crazyflie21`       |
+| [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | STM32CubeMX latest                     | `freertos olimex-stm32-e407` |
+| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)                        | STM32CubeMX latest                     | `freertos nucleo_f446ze`     |
+| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.3.0                                 | `zephyr olimex-stm32-e407`   |
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.3.0                                 | `zephyr discovery_l475_iot1` |
+| [Zephyr](https://www.zephyrproject.org/) | Zephyr emulator                                                                                      | v2.3.0                                 | `zephyr host`                |
+| Linux / Windows                          | *Host* *                                                                                             | Ubuntu 18.04/20.04                     | `host`                       |
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
 
 *\* Support for compiling apps in a native Linux host for testing and debugging*
