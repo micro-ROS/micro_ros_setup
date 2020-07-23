@@ -5,7 +5,7 @@ EXTENSIONS_DIR=$FW_TARGETDIR/zephyr_apps
 
 function help {
       echo "Configure script need an argument."
-      echo "   --transport -t       udp, tcp, serial or serial-usb"
+      echo "   --transport -t       udp, serial or serial-usb"
       echo "   --dev -d             agent string descriptor in a serial-like transport"
       echo "   --ip -i              agent IP in a network-like transport"
       echo "   --port -p            agent port in a network-like transport"
