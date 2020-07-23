@@ -17,8 +17,11 @@ if [ "$UROS_TRANSPORT" == "serial" ]; then
       cp -f $EXTENSIONS_DIR/uros_transport/stm32f446ze_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
       cp -f $EXTENSIONS_DIR/uros_transport/stm32f446ze_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
       update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
-
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
+      
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE="$UROS_AGENT_DEVICE
 
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
