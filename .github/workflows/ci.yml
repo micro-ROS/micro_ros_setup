@@ -68,7 +68,7 @@ jobs:
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_agent_ws.sh src
-          ros2 run micro_ros_setup build_agent.sh
+          ros2 run micro_ros_setup build_agent.sh --merge-install
 
       - name: installation
         run: |

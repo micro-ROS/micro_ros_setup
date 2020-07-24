@@ -8,4 +8,4 @@ echo "Building micro-ROS Agent"
 
 colcon build --cmake-args \
     "-DUAGENT_BUILD_EXECUTABLE=OFF" \
-    "--no-warn-unused-cli"
+    "--no-warn-unused-cli" $@
