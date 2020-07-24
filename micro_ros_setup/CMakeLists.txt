@@ -46,6 +46,7 @@ install(
     scripts/configure_firmware.sh
     scripts/flash_firmware.sh
     scripts/build_firmware.sh
+    scripts/build_agent.sh
     scripts/yaml_filter.py
     scripts/clean_env.sh
   DESTINATION lib/${PROJECT_NAME}
