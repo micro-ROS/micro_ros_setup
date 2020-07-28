@@ -1,8 +1,7 @@
 pushd $FW_TARGETDIR >/dev/null
     # Install toolchain
     mkdir toolchain
-    # install prerequesites for esp-idf
-    # sudo apt-get install -y git wget libncurses-dev flex bison gperf python python-pip python-setuptools cmake ninja-build ccache libffi-dev libssl-dev
+
     pushd toolchain >/dev/null
         git clone -b v4.0.1 --recursive https://github.com/espressif/esp-idf.git
         mkdir espressif
