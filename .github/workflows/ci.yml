@@ -158,6 +158,12 @@ jobs:
             transport_arguments: -t serial -d 1
             binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
 
+          - rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+
           - rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
