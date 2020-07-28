@@ -178,8 +178,7 @@ standards, e.g., ISO 26262.
 
 ## License
 
-micro-ROS Build System are open-sourced under the Apache-2.0 license. See the
-[LICENSE](LICENSE) file for details.
+This repository is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details.
 
 For a list of other open-source components included in ROS 2 system_modes,
 see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
