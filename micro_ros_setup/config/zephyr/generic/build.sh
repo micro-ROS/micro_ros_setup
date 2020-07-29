@@ -39,8 +39,8 @@ pushd $FW_TARGETDIR >/dev/null
     elif [ "$PLATFORM" = "host" ]; then
         export BOARD="native_posix"
     else
-        echo "Unrecognized board: $PLATFORM"
-        exit 1
+        echo "Unrecognized board: $PLATFORM, Trying to build"
+        export BOARD=$PLATFORM
     fi
 
     # Use transport specific conf if given and exists.
