@@ -43,6 +43,27 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
     remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
 
     echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
+
+elif [ "$UROS_TRANSPORT" == "udp" ]; then
+
+    update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT="$UROS_TRANSPORT
+    update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP="$UROS_AGENT_IP
+    update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT="$UROS_AGENT_PORT
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=OFF"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=ON"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
+    
+    remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE"
+    remove_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL"
+    remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_HEADER_SERIAL"
+    remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_SRC_SERIAL"
+
+    echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
+
+    #TODO (pablogs9): remove this patch and fix this issue
+    pushd $EXTENSIONS_DIR/../../toolchain/esp-idf > /dev/null
+        git apply $EXTENSIONS_DIR/lwip.patch
+    popd > /dev/null
 else
     help
     exit 1
@@ -70,3 +91,8 @@ pushd $EXTENSIONS_DIR/build >/dev/null
         $EXTENSIONS_DIR
 
 popd >/dev/null
+
+if [ "$UROS_TRANSPORT" == "udp" ]; then
+    echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
+    echo "You can configure your WiFi AP password running 'ros2 run micro_ros_setup build_firmware.sh menuconfig'"
+fi

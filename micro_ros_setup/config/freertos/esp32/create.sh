@@ -6,9 +6,15 @@ pushd $FW_TARGETDIR >/dev/null
         git clone -b v4.0.1 --recursive https://github.com/espressif/esp-idf.git
         mkdir espressif
         export IDF_TOOLS_PATH=$(pwd)/espressif
-        pushd esp-idf >/dev/null
-            ./install.sh
-        popd >/dev/null
+
+        echo "Installing ESP-IDF tools"
+        python3 esp-idf/tools/idf_tools.py install
+
+        python3 -m venv --system-site-packages python_env
+        export VIRTUAL_ENV=$(pwd)/python_env
+        export PATH="$VIRTUAL_ENV/bin:$PATH"
+
+        pip install -r esp-idf/requirements.txt
     popd >/dev/null
 
     # Import repos
