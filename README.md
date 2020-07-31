@@ -34,7 +34,7 @@ Please note that NuttX with Olimex STM32-E407 board is the reference platform an
 
 # Dependencies
 
-This package targets **ROS 2** installation. ROS 2 supported distributions are:
+This package targets the **ROS 2** installation. ROS 2 supported distributions are:
 
 | ROS 2 Distro | State     | Branch    |
 | ------------ | --------- | --------- |
