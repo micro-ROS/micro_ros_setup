@@ -68,7 +68,7 @@ source install/local_setup.bash
 
 Once the package is built, the firmware scripts are ready to run.
 
-You can find first steps tutorials in [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
+You can find tutorials for moving your first steps with micro-ROS on an RTOS in the [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
 
 
 ## Creating micro-ROS firmware
