@@ -155,7 +155,7 @@ This folder contains up to four scripts:
 - `create.sh`: gets a variable named `$FW_TARGETDIR` and installs in this path all the dependencies and code required for the firmware.
 - `configure.sh`: modifies and configure parameters of the installed dependencies. This step is **optional**.
 - `build.sh`: builds the firmware and create a platform-specific linked binary.
-- `flash.sh`: flash the binary in the target platform.
+- `flash.sh`: flashes the binary in the target platform.
   
 Some other required files inside the folder can be accessed from these scripts using the following paths:
 
