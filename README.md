@@ -88,7 +88,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh zephyr olimex-stm32-e407
 
 ## Configuring micro-ROS firmware
 
-By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step. Usually this command will show its usage if parameters are required:
+By running `configure_firmware.sh` command the installed firmware is configured and modified in a pre-build step. This command will show its usage if parameters are not provided:
 
 ```
 ros2 run micro_ros_setup configure_firmware.sh [configuration] [options]
