@@ -103,7 +103,7 @@ Common options available at this configuration step are:
   - `--port` or `-p`: agent port in a network-like transport
 
 
-Please note that each RTOS has its configuration approach that you might use for further customization of these base configurations. Visit [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) for a detailed information about RTOS configuration.
+Please note that each RTOS has its configuration approach that you might use for further customization of these base configurations. Visit the [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) for detailed information about RTOS configuration.
 
 In summary, the supported configurations for transports are:
 
