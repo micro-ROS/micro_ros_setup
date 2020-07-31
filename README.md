@@ -12,7 +12,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 - [Contributing](#contributing)
   - [Purpose of the Project](#purpose-of-the-project)
   - [License](#license)
-  - [Known Issues/Limitations](#known-issueslimitations)
+  - [Known Issues / Limitations](#known-issues--limitations)
 
 # Supported platforms
 
@@ -183,7 +183,7 @@ This repository is open-sourced under the Apache-2.0 license. See the [LICENSE](
 For a list of other open-source components included in ROS 2 system_modes,
 see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
-## Known Issues/Limitations
+## Known Issues / Limitations
 
 There are no known limitations.
 
