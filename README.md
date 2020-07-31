@@ -73,7 +73,7 @@ You can find tutorials for moving your first steps with micro-ROS on an RTOS in 
 
 ## Creating micro-ROS firmware
 
-Using `create_firmware_ws.sh [RTOS] [Platform]` command a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is:
+Using the `create_firmware_ws.sh [RTOS] [Platform]` command, a firmware folder will be created with the required code for building a micro-ROS app. For example, for our reference platform, the invocation is:
 
 ```bash
 # Creating a NuttX + micro-ROS firmware workspace
