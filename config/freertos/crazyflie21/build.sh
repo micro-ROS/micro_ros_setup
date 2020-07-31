@@ -33,5 +33,5 @@ pushd $EXTENSIONS_DIR >/dev/null
     fi
 
     # build firmware
-    make PLATFORM=cf2 CLOAD=0 UROS_APP_FOLDER=$UROS_APP_FOLDER PYTHON=python3
+    make -j$(nproc) PLATFORM=cf2 CLOAD=0 UROS_APP_FOLDER=$UROS_APP_FOLDER PYTHON=python3
 popd >/dev/null

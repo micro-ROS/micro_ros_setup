@@ -22,6 +22,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | v10.2.1 - CF 2020.06 | `freertos crazyflie21`       |
 | [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | STM32CubeMX latest   | `freertos olimex-stm32-e407` |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)                        | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
+| [FreeRTOS](https://www.freertos.org/)    | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                         | v8.2.0               | `freertos esp32`             |
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.3.0               | `zephyr olimex-stm32-e407`   |
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.3.0               | `zephyr discovery_l475_iot1` |
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.3.0               | `zephyr host`                |
@@ -111,6 +112,7 @@ In summary, the supported configurations for transports are:
 | Olimex STM32-E407  | USB, UART, Network |   UART, Network   |     USB, UART      |
 | ST B-L475E-IOT01A  |         -          |         -         | USB, UART, Network |
 | Crazyflie 2.1      |         -          | Custom Radio Link |         -          |
+| Espressif ESP32    |         -          |  UART, WiFI UDP   |         -          |
 | ST Nucleo F446ZE * |         -          |       UART        |         -          |
 
 \* Community supported, may have lack of official support 
@@ -138,7 +140,7 @@ Using this package is possible to install a ready to use **micro-ROS-Agent**:
 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
-colcon build
+ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.sh
 ros2 run micro_ros_agent micro_ros_agent [parameters]
 ```
@@ -165,8 +167,6 @@ $PREFIX/config/$RTOS/$PLATFORM/
 $PREFIX/config
 ```
 
-If you find issues, [please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
-
 ## Purpose of the Project
 
 This software is not ready for production use. It has neither been developed nor
@@ -186,3 +186,5 @@ see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 ## Known Issues/Limitations
 
 There are no known limitations.
+
+If you find issues, [please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
