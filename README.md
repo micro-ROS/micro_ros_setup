@@ -28,9 +28,9 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.3.0               | `zephyr host`                |
 | Linux                                    | *Host* *                                                                                             | Ubuntu 18.04/20.04   | `host`                       |
 
-Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
-
 *\* Support for compiling apps in a native Linux host for testing and debugging*
+
+Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
 
 # Dependencies
 
