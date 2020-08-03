@@ -5,7 +5,7 @@ EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_esp32_extensions
 
 function help {
       echo "Configure script need an argument."
-      echo "   --transport -t       udp, tcp or serial"
+      echo "   --transport -t       udp or serial"
       echo "   --dev -d             agent string descriptor in a serial-like transport"
       echo "   --ip -i              agent IP in a network-like transport"
       echo "   --port -p            agent port in a network-like transport"
@@ -42,7 +42,6 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
     remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
     remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
 
-    echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
 
 elif [ "$UROS_TRANSPORT" == "udp" ]; then
 
@@ -58,12 +57,6 @@ elif [ "$UROS_TRANSPORT" == "udp" ]; then
     remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_HEADER_SERIAL"
     remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_SRC_SERIAL"
 
-    echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
-
-    #TODO (pablogs9): remove this patch and fix this issue
-    pushd $EXTENSIONS_DIR/../../toolchain/esp-idf > /dev/null
-        git apply $EXTENSIONS_DIR/lwip.patch
-    popd > /dev/null
 else
     help
     exit 1
@@ -92,7 +85,10 @@ pushd $EXTENSIONS_DIR/build >/dev/null
 
 popd >/dev/null
 
-if [ "$UROS_TRANSPORT" == "udp" ]; then
+
+if [ "$UROS_TRANSPORT" == "serial" ]; then
+    echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
+elif [ "$UROS_TRANSPORT" == "udp" ]; then
     echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
     echo "You can configure your WiFi AP password running 'ros2 run micro_ros_setup build_firmware.sh menuconfig'"
 fi
