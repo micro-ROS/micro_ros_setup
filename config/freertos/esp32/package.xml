@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>firmware</name>
+  <version>0.0.0</version>
+  <description>Micro-ROS dependecies for FreeRTOS and ESP32</description>
+  <maintainer email="raphael.vogelgsang@de.bosch.com">Raphael Vogelgsang</maintainer>
+  <license>APL2</license>
+
+
+  <build_depend>git</build_depend>
+  <build_depend>wget</build_depend>
+  <build_depend>libncurses-dev</build_depend>
+  <build_depend>flex</build_depend>
+  <build_depend>bison</build_depend>
+  <build_depend>gperf</build_depend>
+  <build_depend>python3</build_depend>
+  <build_depend>python3-setuptools</build_depend>
+  <build_depend>cmake</build_depend>
+  <build_depend>libffi-dev</build_depend>
+  <build_depend>libssl-dev</build_depend>
+  <build_depend>python3-venv</build_depend>
+
+
+</package>

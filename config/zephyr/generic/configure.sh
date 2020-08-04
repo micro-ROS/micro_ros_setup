@@ -25,8 +25,6 @@ if [ "$UROS_TRANSPORT" == "udp" ]; then
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
       update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=OFF"
 
-      remove_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL"
-
       echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
 
       echo $UROS_TRANSPORT > $FW_TARGETDIR/TRANSPORT
