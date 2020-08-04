@@ -10,9 +10,9 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
   - [Flashing micro-ROS firmware](#flashing-micro-ros-firmware)
 - [Building micro-ROS-Agent](#building-micro-ros-agent)
 - [Contributing](#contributing)
-  - [Purpose of the Project](#purpose-of-the-project)
-  - [License](#license)
-  - [Known Issues / Limitations](#known-issues--limitations)
+- [Purpose of the Project](#purpose-of-the-project)
+- [License](#license)
+- [Known Issues / Limitations](#known-issues--limitations)
 
 # Supported platforms
 
@@ -57,7 +57,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 
 mkdir uros_ws && cd uros_ws
 
-git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 rosdep update && rosdep install --from-path src --ignore-src -y
 
@@ -187,4 +187,4 @@ see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
 There are no known limitations.
 
-If you find issues, [please report them](https://github.com/micro-ROS/micro-ros-build/issues). 
+If you find issues, [please report them](https://github.com/micro-ROS/micro_ros_setup/issues). 
