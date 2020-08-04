@@ -13,18 +13,7 @@ function help {
 
 echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
-if [ "$UROS_TRANSPORT" == "udp" ] || [ "$UROS_TRANSPORT" == "tcp" ]; then
-    update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT="$UROS_TRANSPORT
-    update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP="$UROS_AGENT_IP
-    update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT="$UROS_AGENT_PORT
-
-    remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE"
-    remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_HEADER_SERIAL"
-    remove_meta "microxrcedds_client" "EXTERNAL_TRANSPORT_SRC_SERIAL"
-
-    echo "Configured $UROS_TRANSPORT mode with agent at $UROS_AGENT_IP:$UROS_AGENT_PORT"
-
-elif [ "$UROS_TRANSPORT" == "serial" ]; then
+if [ "$UROS_TRANSPORT" == "serial" ]; then
     if [ "$UROS_AGENT_DEVICE" -gt 2 ]; then
         echo ESP32 only supports USART0, USART1 or USART2
         exit 1
@@ -35,8 +24,11 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
     cp -f $EXTENSIONS_DIR/serial_transport_external/esp32_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
     cp -f $EXTENSIONS_DIR/serial_transport_external/esp32_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
     update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
 
-    update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
+    update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
     update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE="$UROS_AGENT_DEVICE
 
     remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
@@ -65,14 +57,19 @@ fi
 
 UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
 UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
-export IDF_PATH=$FW_TARGETDIR/toolchain/esp-idf
+
 export IDF_TOOLS_PATH=$FW_TARGETDIR/toolchain/espressif
-export PATH=$PATH:$IDF_TOOLS_PATH/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin
+export IDF_PATH=$FW_TARGETDIR/toolchain/esp-idf
+
+export VIRTUAL_ENV="$FW_TARGETDIR/toolchain/python_env"
+export PATH="$VIRTUAL_ENV/bin:$PATH"
+
+. $IDF_PATH/export.sh
 
 if [ -d $EXTENSIONS_DIR/build ]; then
     rm -r $EXTENSIONS_DIR/build
 fi
-mkdir -p $EXTENSIONS_DIR/build
+mkdir $EXTENSIONS_DIR/build
 
 pushd $EXTENSIONS_DIR/build >/dev/null
 
