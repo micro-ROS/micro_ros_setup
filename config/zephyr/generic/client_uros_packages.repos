@@ -25,7 +25,7 @@ repositories:
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: foxy
+    version: feature/fix_atomics_64bits
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
