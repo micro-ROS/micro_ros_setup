@@ -1,14 +1,8 @@
-CF_DIR=$FW_TARGETDIR/crazyflie_firmware
-EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_crazyflie21_extensions
+EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_nucleo_f446ze_extensions
 
 . $PREFIX/config/utils.sh
 
-pushd $CF_DIR >/dev/null
-    git submodule init
-    git submodule update
-popd >/dev/null
-
-pushd $EXTENSIONS_DIR >/dev/null
+pushd $EXTENSIONS_DIR >/dev/null   
 
     export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
     export UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
@@ -21,7 +15,7 @@ pushd $EXTENSIONS_DIR >/dev/null
         exit 1
     fi
 
-    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "$FW_TARGETDIR/mcu_ws/build" ]; then
+    if [ "$UROS_FAST_BUILD" = "off" ] || [ ! -d "build" ]; then
         # Clean micro-ROS build
         rm -rf $FW_TARGETDIR/mcu_ws/build $FW_TARGETDIR/mcu_ws/install $FW_TARGETDIR/mcu_ws/log
 
@@ -32,6 +26,6 @@ pushd $EXTENSIONS_DIR >/dev/null
         make libmicroros
     fi
 
-    # build firmware
-    make PLATFORM=cf2 CLOAD=0 UROS_APP_FOLDER=$UROS_APP_FOLDER PYTHON=python3
+    # Build firmware
+    make -j$(nproc) UROS_APP_FOLDER=$UROS_APP_FOLDER
 popd >/dev/null

@@ -20,14 +20,19 @@ pushd $FW_TARGETDIR >/dev/null
 
     # ignore broken packages
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
+    touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/rcl_action/COLCON_IGNORE
 
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro dashing --skip-keys="$SKIP"
+    touch mcu_ws/ros2/rcl/COLCON_IGNORE
+    touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
+    touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
+    touch mcu_ws/ros2/rcpputils/COLCON_IGNORE
+    touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
+    touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 
-    # turn off features which don't compile on NuttX currently
-    echo -e ",s/PROFILE_DISCOVERY=TRUE/PROFILE_DISCOVERY=FALSE/\n,s/PROFILE_TCP_TRANSPORT=TRUE/PROFILE_TCP_TRANSPORT=FALSE/g\nw" | ed $(find mcu_ws -name client.config) >/dev/null
+    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro foxy --skip-keys="$SKIP"
 
 popd >/dev/null
 
 cp $PREFIX/config/$RTOS/generic/package.xml $FW_TARGETDIR/apps/package.xml
-rosdep install -y --from-paths $FW_TARGETDIR/apps -i $FW_TARGETDIR/apps --rosdistro dashing
+rosdep install -y --from-paths $FW_TARGETDIR/apps -i $FW_TARGETDIR/apps --rosdistro foxy
