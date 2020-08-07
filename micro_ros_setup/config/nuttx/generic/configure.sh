@@ -37,5 +37,3 @@ make distclean
 tools/configure.sh $CONFIG
 popd >/dev/null
 
-find $MCU_WS_DIR -name rmw_microxrcedds.config -exec \
-    sed -i "s/CONFIG_MICRO_XRCEDDS_TRANSPORT=udp/CONFIG_MICRO_XRCEDDS_TRANSPORT=serial/g" {} \;

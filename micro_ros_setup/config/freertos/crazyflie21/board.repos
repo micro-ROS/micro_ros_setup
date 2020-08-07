@@ -2,10 +2,10 @@ repositories:
   crazyflie_firmware:
     type: git
     url: https://github.com/bitcraze/crazyflie-firmware
-    version: a2a26abd53a5f328374877bfbcb7b25ed38d8111
+    version: 2020.06
 
   freertos_apps:
     type: git
     url: https://github.com/micro-ROS/freertos_apps
-    version: dashing
+    version: foxy
 

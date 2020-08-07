@@ -7,8 +7,8 @@ import sys
 import copy
 
 if __name__ == '__main__':
-    repos_info = yaml.load(sys.stdin)
-    repos_keep = yaml.load(open(sys.argv[1]))['keep'].split()
+    repos_info = yaml.safe_load(sys.stdin)
+    repos_keep = yaml.safe_load(open(sys.argv[1]))['keep'].split()
 
     target = {'repositories': {}}
 

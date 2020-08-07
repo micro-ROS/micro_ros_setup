@@ -4,7 +4,6 @@ keep:
   ros2/rosidl_defaults
   ros2/rosidl
   ros2/rosidl_dds
-  ros2/rosidl_typesupport
   ros2/rmw_implementation
   ros2/common_interfaces
   ros2/libyaml_vendor
@@ -13,3 +12,4 @@ keep:
   ros2/rcl_logging
   ros2/test_interface_files
   ros2/example_interfaces
+  ros2/rcpputils
