@@ -4,6 +4,10 @@ pushd $FW_TARGETDIR >/dev/null
 
     pushd toolchain >/dev/null
         git clone -b v4.0.1 --recursive https://github.com/espressif/esp-idf.git
+	pushd esp-idf/components
+	#add the esp32-camera reposirtoy to the components dircetory
+	git clone https://github.com/espressif/esp32-camera.git
+	popd
         mkdir espressif
         export IDF_TOOLS_PATH=$(pwd)/espressif
 
