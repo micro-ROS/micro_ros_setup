@@ -12,7 +12,12 @@ pushd $FW_TARGETDIR >/dev/null
     unset UROS_APP
             
     export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
-    export UROS_APP_FOLDER="$FW_TARGETDIR/zephyr_apps/apps/$UROS_APP"
+
+    if [ -v UROS_CUSTOM_APP_FOLDER ]; then
+        export UROS_APP_FOLDER="$UROS_CUSTOM_APP_FOLDER/$UROS_APP"
+    else
+        export UROS_APP_FOLDER="$FW_TARGETDIR/zephyr_apps/apps/$UROS_APP"
+    fi
 
     if [ -d "$UROS_APP_FOLDER" ]; then
         echo "Selected app: $UROS_APP"
