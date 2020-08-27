@@ -16,28 +16,28 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - name: dependencies
+      - name: Dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
           rosdep update
           rosdep install -y --from-paths src --ignore-src -y
 
-      - name: build
+      - name: Build
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
-          colcon build --merge-install
+          colcon build
 
-      - name: installation
+      - name: Install micro-ROS build system
         run: |
-            (test -f install/lib/micro_ros_setup/build_firmware.sh) && true || false
+            (test -f install/micro_ros_setup/lib/micro_ros_setup/build_firmware.sh) && true || false
 
       - uses: actions/upload-artifact@v1
         with:
           name: micro_ros_build
           path: install
 
-  agent:
+  micro_ros_agent:
     runs-on: ubuntu-latest
     container: ros:${{github.base_ref}}
     needs: micro_ros_build
@@ -61,77 +61,20 @@ jobs:
 
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
-          chmod +x -R install/lib/micro_ros_setup
+          chmod +x -R install
 
       - name: build
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
-          ros2 run micro_ros_setup create_agent_ws.sh src
-          ros2 run micro_ros_setup build_agent.sh --merge-install
+          ros2 run micro_ros_setup create_agent_ws.sh
+          ros2 run micro_ros_setup build_agent.sh
 
       - name: installation
         run: |
-            (test -f install/lib/micro_ros_agent/micro_ros_agent) && true || false
+            (test -f install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent) && true || false
 
-  client_host:
-    runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
-    needs: micro_ros_build
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          path: src/micro_ros_setup
-
-      - name: dependencies
-        run: |
-          apt update
-          apt install -y python3-colcon-metadata python3-pip
-          rosdep update
-          rosdep install -y --from-paths src --ignore-src -y
-
-      - uses: actions/download-artifact@v1
-        with:
-          name: micro_ros_build
-          path: install
-
-      # Workaround https://github.com/actions/upload-artifact/issues/38
-      - run: |
-          chmod +x -R install/lib/micro_ros_setup
-          chmod +x install/config/host/generic/*.sh
-
-      # Skip rclc packages due to build fail. Once the issues with rclc are solved will be back to CI.
-      - name: build
-        run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
-          . install/local_setup.sh
-          ros2 run micro_ros_setup create_firmware_ws.sh host
-          colcon build --merge-install --metas src
-
-      - name: installation
-        run: |
-          (test -f install/lib/micro_ros_demos_rclc/addtwoints_client/addtwoints_client)                         && true || false
-          (test -f install/lib/micro_ros_demos_rclc/addtwoints_server/addtwoints_server)                         && true || false
-          (test -f install/lib/micro_ros_demos_rclc/complex_msg_publisher/complex_msg_publisher)                 && true || false
-          (test -f install/lib/micro_ros_demos_rclc/complex_msg_subscriber/complex_msg_subscriber)               && true || false
-          (test -f install/lib/micro_ros_demos_rclc/configured_publisher/configured_publisher)                   && true || false
-          (test -f install/lib/micro_ros_demos_rclc/configured_subscriber/configured_subscriber)                 && true || false
-          (test -f install/lib/micro_ros_demos_rclc/fibonacci_action_client/fibonacci_action_client)             && true || false
-          (test -f install/lib/micro_ros_demos_rclc/fibonacci_action_server/fibonacci_action_server)             && true || false
-          (test -f install/lib/micro_ros_demos_rclc/fragmented_publication/fragmented_publication)               && true || false
-          (test -f install/lib/micro_ros_demos_rclc/fragmented_subscription/fragmented_subscription)             && true || false
-          (test -f install/lib/micro_ros_demos_rclc/int32_multinode/int32_multinode)                             && true || false
-          (test -f install/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher)                             && true || false
-          (test -f install/lib/micro_ros_demos_rclc/int32_publisher_subscriber/int32_publisher_subscriber)       && true || false
-          (test -f install/lib/micro_ros_demos_rclc/int32_subscriber/int32_subscriber)                           && true || false
-          (test -f install/lib/micro_ros_demos_rclc/ping_pong/ping_pong)                                         && true || false
-          (test -f install/lib/micro_ros_demos_rclc/string_publisher/string_publisher)                           && true || false
-          (test -f install/lib/micro_ros_demos_rclc/string_subscriber/string_subscriber)                         && true || false
-          (test -f install/lib/micro_ros_demos_rclc/timer/timer)                                                 && true || false
-  
-  #Build test for FreeRTOS and Zephyr
-  client_firmware:
+  micro_ros_client:
     runs-on: ubuntu-latest
     container: ros:${{github.base_ref}}
     needs: micro_ros_build
@@ -140,6 +83,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+
           - rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -203,7 +152,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - name: dependencies
+      - name: Dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
@@ -217,10 +166,9 @@ jobs:
 
       # Workaround https://github.com/actions/upload-artifact/issues/38
       - run: |
-          chmod +x -R install/lib/micro_ros_setup
-          chmod +x -R install/config
+          chmod +x -R install
 
-      - name: build
+      - name: Configure and build micro-ROS
         run: |
           . /opt/ros/foxy/setup.sh
           . install/local_setup.sh
@@ -228,6 +176,6 @@ jobs:
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
           ros2 run micro_ros_setup build_firmware.sh
 
-      - name: binaries
+      - name: Check binaries
         run: |
           (test -f ${{ matrix.binary }}) && true || false
