@@ -69,5 +69,5 @@ pushd $FW_TARGETDIR >/dev/null
     fi
 
     # Build Zephyr + app
-    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON
+    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON -DMICRO_ROS_FIRMWARE_DIR=$FW_TARGETDIR
 popd >/dev/null
