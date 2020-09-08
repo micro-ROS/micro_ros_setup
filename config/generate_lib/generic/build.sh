@@ -1,6 +1,12 @@
 . $PREFIX/config/utils.sh
 
-TOOLCHAIN=$(pwd)/$1
+if [ $# -ge 1 ]; then
+    TOOLCHAIN=$(pwd)/$1
+else
+    echo "Syntax: ros2 run micro_ros_setup build_firmware.sh <CMake toolchain file>"
+    exit 1
+fi
+
 BUILD_DIR=$FW_TARGETDIR/build
 
 pushd $FW_TARGETDIR/mcu_ws >/dev/null
