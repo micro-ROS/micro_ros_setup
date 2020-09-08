@@ -1,14 +1,28 @@
 function print_available_apps {
   echo "Available apps for Zephyr and $PLATFORM:"
-  pushd $FW_TARGETDIR/zephyr_apps/apps >/dev/null
-  for app in $(ls -d */ | cut -f1 -d'/'); do 
-    echo "+-- $app"
-  done
+
+  if [ -v UROS_CUSTOM_APP_FOLDER ]; then
+    UROS_ZEPHYR_APPS=$UROS_CUSTOM_APP_FOLDER
+  else
+    UROS_ZEPHYR_APPS=$FW_TARGETDIR/zephyr_apps/apps
+  fi
+
+  pushd $UROS_ZEPHYR_APPS >/dev/null
+    for app in $(ls -d */ | cut -f1 -d'/'); do 
+      echo "+-- $app"
+    done
   popd >/dev/null
 }
 
 function check_available_app {
-  pushd $FW_TARGETDIR/zephyr_apps/apps >/dev/null
+  
+  if [ -v UROS_CUSTOM_APP_FOLDER ]; then
+    UROS_ZEPHYR_APPS=$UROS_CUSTOM_APP_FOLDER
+  else
+    UROS_ZEPHYR_APPS=$FW_TARGETDIR/zephyr_apps/apps
+  fi
+
+  pushd $UROS_ZEPHYR_APPS >/dev/null
     if [ ! -d $1 ]; then
         echo "App $1 for Zephyr not available"
         print_available_apps
