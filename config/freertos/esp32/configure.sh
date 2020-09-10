@@ -61,8 +61,7 @@ UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
 export IDF_TOOLS_PATH=$FW_TARGETDIR/toolchain/espressif
 export IDF_PATH=$FW_TARGETDIR/toolchain/esp-idf
 
-export VIRTUAL_ENV="$FW_TARGETDIR/toolchain/python_env"
-export PATH="$VIRTUAL_ENV/bin:$PATH"
+eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
 
 . $IDF_PATH/export.sh
 

@@ -3,18 +3,25 @@ pushd $FW_TARGETDIR >/dev/null
     mkdir toolchain
 
     pushd toolchain >/dev/null
-        git clone -b v4.0.1 --recursive https://github.com/espressif/esp-idf.git
+        git clone -b v4.1 --recursive https://github.com/espressif/esp-idf.git
+
         mkdir espressif
         export IDF_TOOLS_PATH=$(pwd)/espressif
+        export IDF_PATH=$(pwd)/esp-idf
+        alias python=python3
 
         echo "Installing ESP-IDF tools"
         python3 esp-idf/tools/idf_tools.py install
+        
+        echo "Installing ESP-IDF virtualenv"
+        python3 esp-idf/tools/idf_tools.py install-python-env
 
-        python3 -m venv --system-site-packages python_env
-        export VIRTUAL_ENV=$(pwd)/python_env
-        export PATH="$VIRTUAL_ENV/bin:$PATH"
+        eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
 
-        pip install -r esp-idf/requirements.txt
+        . $IDF_PATH/export.sh
+
+        pip3 install catkin_pkg lark-parser empy
+
     popd >/dev/null
 
     # Import repos
