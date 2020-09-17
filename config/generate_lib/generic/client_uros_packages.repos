@@ -21,7 +21,7 @@ repositories:
   uros/tracetools:
     type: git
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
-    version: foxy
+    version: foxy_microros
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
