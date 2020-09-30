@@ -21,13 +21,14 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [Nuttx](https://nuttx.org/)              | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v7.29                | `nuttx olimex-stm32-e407`    |
 | [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | v10.2.1 - CF 2020.06 | `freertos crazyflie21`       |
 | [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | STM32CubeMX latest   | `freertos olimex-stm32-e407` |
-| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>                    | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
+| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
+| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f746zg`     |
 | [FreeRTOS](https://www.freertos.org/)    | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                         | v8.2.0               | `freertos esp32`             |
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.3.0               | `zephyr olimex-stm32-e407`   |
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.3.0               | `zephyr discovery_l475_iot1` |
 | [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.3.0               | `zephyr nucleo_h743zi`       |
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.3.0               | `zephyr host`                |
-| Linux                                    | *Host <sup>2</sup>*                                                                                             | Ubuntu 18.04/20.04   | `host`                       |
+| Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
@@ -110,14 +111,15 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
-|                    |       NuttX        |     FreeRTOS      |       Zephyr       |
-| ------------------ | :----------------: | :---------------: | :----------------: |
-| Olimex STM32-E407  | USB, UART, Network |   UART, Network   |     USB, UART      |
-| ST B-L475E-IOT01A  |         -          |         -         | USB, UART, Network |
-| Crazyflie 2.1      |         -          | Custom Radio Link |         -          |
-| Espressif ESP32    |         -          |  UART, WiFI UDP   |         -          |
+|                               |       NuttX        |     FreeRTOS      |       Zephyr       |
+| ----------------------------- | :----------------: | :---------------: | :----------------: |
+| Olimex STM32-E407             | USB, UART, Network |   UART, Network   |     USB, UART      |
+| ST B-L475E-IOT01A             |         -          |         -         | USB, UART, Network |
+| Crazyflie 2.1                 |         -          | Custom Radio Link |         -          |
+| Espressif ESP32               |         -          |  UART, WiFI UDP   |         -          |
 | ST Nucleo F446ZE <sup>1</sup> |         -          |       UART        |         -          |
-| ST Nucleo H743ZI <sup>1</sup> |         -          |       -        |         UART          |
+| ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
+| ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 

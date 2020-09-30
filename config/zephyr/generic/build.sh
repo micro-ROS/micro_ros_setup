@@ -10,7 +10,7 @@ pushd $FW_TARGETDIR >/dev/null
 
     # Retrieve user app
     unset UROS_APP
-            
+
     export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
 
     if [ -v UROS_CUSTOM_APP_FOLDER ]; then
@@ -35,7 +35,9 @@ pushd $FW_TARGETDIR >/dev/null
     fi
 
     # Platform renaming for Zephyr
-    if [ "$PLATFORM" = "discovery_l475_iot1" ]; then
+    if [ "$PLATFORM" = "nucleo_f746zg" ]; then
+        export BOARD="nucleo_f746zg"
+    elif [ "$PLATFORM" = "discovery_l475_iot1" ]; then
         export BOARD="disco_l475_iot1"
     elif [ "$PLATFORM" = "olimex-stm32-e407" ]; then
         export BOARD="olimex_stm32_e407"
