@@ -37,7 +37,7 @@ repositories:
   uros/tracetools:
     type: git
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
-    version: foxy
+    version: foxy_microros
 
 # interim, until crosscompile fix is available in foxy branch
   ros2/tinydir_vendor:

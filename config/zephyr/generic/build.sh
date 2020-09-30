@@ -12,7 +12,12 @@ pushd $FW_TARGETDIR >/dev/null
     unset UROS_APP
             
     export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
-    export UROS_APP_FOLDER="$FW_TARGETDIR/zephyr_apps/apps/$UROS_APP"
+
+    if [ -v UROS_CUSTOM_APP_FOLDER ]; then
+        export UROS_APP_FOLDER="$UROS_CUSTOM_APP_FOLDER/$UROS_APP"
+    else
+        export UROS_APP_FOLDER="$FW_TARGETDIR/zephyr_apps/apps/$UROS_APP"
+    fi
 
     if [ -d "$UROS_APP_FOLDER" ]; then
         echo "Selected app: $UROS_APP"
@@ -36,6 +41,8 @@ pushd $FW_TARGETDIR >/dev/null
         export BOARD="olimex_stm32_e407"
     elif [ "$PLATFORM" = "nucleo_f401re" ]; then
         export BOARD="nucleo_f401re"
+    elif [ "$PLATFORM" = "nucleo_h743zi" ]; then
+        export BOARD="nucleo_h743zi"
     elif [ "$PLATFORM" = "host" ]; then
         export BOARD="native_posix"
     else
@@ -62,5 +69,5 @@ pushd $FW_TARGETDIR >/dev/null
     fi
 
     # Build Zephyr + app
-    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON
+    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=ON -DMICRO_ROS_FIRMWARE_DIR=$FW_TARGETDIR
 popd >/dev/null

@@ -71,7 +71,6 @@ echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp ros-foxy-cyclonedds ros-foxy-rmw-cyclonedds-cpp"
 
 # Installing common packages 
-sudo apt update
 rosdep update
 rosdep install -y --from-paths src -i src --rosdistro foxy --skip-keys="$SKIP"
 
