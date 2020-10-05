@@ -1,12 +1,8 @@
 repositories:
-  osrf/rmw_zenoh:
-    type: git
-    url: https://github.com/osrf/rmw_zenoh.git
-    version: foxy
   eclipse-zenoh/zenoh-c:
     type: git
     url: https://github.com/eclipse-zenoh/zenoh-c.git
-    version: foxy
+    version: master
 
 # MicroROS
   
@@ -14,14 +10,14 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rclc.git
     version: master
-  uros/rmw_microxrcedds:
+  osrf/rmw_zenoh:
     type: git
-    url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: foxy
-  uros/rosidl_typesupport_microxrcedds:
+    url: https://github.com/osrf/rmw_zenoh.git
+    version: main
+  osrf/rosidl_typesupport_zenoh.git
     type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: foxy
+    url: https://github.com/osrf/rosidl_typesupport_zenoh.git
+    version: main
   uros/micro-ROS-demos:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-demos.git
