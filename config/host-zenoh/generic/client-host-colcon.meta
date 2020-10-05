@@ -1,11 +1,11 @@
 {
     "names":{
-        "microxrcedds_client":{
+        "rmw_zenoh":{
             "cmake-args":[
                 "-DBUILD_SHARED_LIBS=ON"
             ]
         },
-        "microcdr":{
+        "zenoh_c":{
             "cmake-args":[
                 "-DBUILD_SHARED_LIBS=ON"
             ]

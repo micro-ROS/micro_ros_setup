@@ -1,11 +1,11 @@
 repositories:
-  eProsima/Micro-CDR:
+  osrf/rmw_zenoh:
     type: git
-    url: https://github.com/eProsima/Micro-CDR.git
+    url: https://github.com/osrf/rmw_zenoh.git
     version: foxy
-  eProsima/Micro-XRCE-DDS-Client:
+  eclipse-zenoh/zenoh-c:
     type: git
-    url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
+    url: https://github.com/eclipse-zenoh/zenoh-c.git
     version: foxy
 
 # MicroROS

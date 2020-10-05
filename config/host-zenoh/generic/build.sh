@@ -1,6 +1,6 @@
 #!/bin/bash
-colcon build --packages-up-to rosidl_typesupport_microxrcedds_c --metas src $@
-colcon build --packages-up-to rosidl_typesupport_microxrcedds_cpp --metas src $@
+colcon build --packages-up-to rosidl_typesupport_zenoh_c --metas src $@
+colcon build --packages-up-to rosidl_typesupport_zenoh_cpp --metas src $@
 
 set +o nounset
 . /opt/ros/$ROS_DISTRO/setup.bash
