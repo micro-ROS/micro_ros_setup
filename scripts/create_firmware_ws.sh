@@ -85,7 +85,7 @@ pushd $FW_TARGETDIR >/dev/null
     # Creating dev directory
     mkdir $DEV_WS_DIR
 
-    if [ $RTOS != host* ]; then
+    if [ "${RTOS:0:4}" != "host" ]; then
         ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
             $PREFIX/config/$RTOS/dev_uros_packages.repos
         rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro foxy --skip-keys="$SKIP"
