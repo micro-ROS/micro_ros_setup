@@ -1,5 +1,5 @@
 repositories:
-  eclipse-zenoh/zenoh_c:
+  eclipse-zenoh/zenoh-c:
     type: git
     url: https://github.com/eclipse-zenoh/zenoh-c.git
     version: master
@@ -14,7 +14,7 @@ repositories:
     type: git
     url: https://github.com/osrf/rmw_zenoh.git
     version: main
-  osrf/rosidl_typesupport_zenoh.git
+  osrf/rosidl_typesupport_zenoh
     type: git
     url: https://github.com/osrf/rosidl_typesupport_zenoh.git
     version: main
