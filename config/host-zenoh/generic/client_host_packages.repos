@@ -1,5 +1,5 @@
 repositories:
-  eclipse-zenoh/zenoh-c:
+  eclipse-zenoh/zenoh_c:
     type: git
     url: https://github.com/eclipse-zenoh/zenoh-c.git
     version: master
