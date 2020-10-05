@@ -99,7 +99,7 @@ popd >/dev/null
 
 # build the dev_ws
 . $(dirname $0)/clean_env.sh
-if [ $RTOS != "host" ]; then
+if [ "${RTOS:0:4}" != "host" ]; then
     pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
         colcon build
         set +o nounset

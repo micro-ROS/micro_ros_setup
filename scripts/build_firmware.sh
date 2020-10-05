@@ -34,7 +34,7 @@ fi
 . $(dirname $0)/clean_env.sh
 
 # source dev_ws
-if [ $RTOS != "host" ]; then
+if [ "${RTOS:0:4}" != "host" ]; then
     set +o nounset
     . $FW_TARGETDIR/dev_ws/install/setup.bash
     set -o nounset
