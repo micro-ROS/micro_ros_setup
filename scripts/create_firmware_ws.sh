@@ -68,7 +68,7 @@ echo $RTOS > $FW_TARGETDIR/PLATFORM
 echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 
 # Setting common enviroment
-SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp ros-foxy-cyclonedds ros-foxy-rmw-cyclonedds-cpp "
+SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp ros-foxy-cyclonedds ros-foxy-rmw-cyclonedds-cpp google_benchmark_vendor"
 
 # Installing common packages 
 rosdep update
