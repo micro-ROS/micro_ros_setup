@@ -13,7 +13,7 @@ repositories:
   uros/rcl:
     type: git
     url: https://github.com/micro-ROS/rcl
-    version: foxy
+    version: feature/foxy_upgrade_09102020
   uros/rclc:
     type: git
     url: https://github.com/micro-ROS/rclc
@@ -21,15 +21,15 @@ repositories:
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: foxy
+    version: feature/foxy_upgrade_09102020
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
     version: foxy
   uros/rosidl_typesupport:
     type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport.git
-    version: foxy
+    url: https://github.com/micro-ROS/rosidl_typesupport
+    version: feature/foxy_upgrade_09102020
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
