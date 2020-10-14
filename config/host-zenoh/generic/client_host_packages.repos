@@ -20,8 +20,8 @@ repositories:
     version: main
   uros/micro-ROS-demos:
     type: git
-    url: https://github.com/micro-ROS/micro-ROS-demos.git
-    version: foxy
+    url: git@github.com:esteve/micro-ROS-demos.git
+    version: foxy-zenoh
 
 # Required messages packages
 
