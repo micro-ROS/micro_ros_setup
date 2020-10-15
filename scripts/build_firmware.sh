@@ -8,15 +8,27 @@ PREFIXES_TO_CLEAN=$AMENT_PREFIX_PATH
 FW_TARGETDIR=$(pwd)/firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
+# Parse cli arguments
 UROS_FAST_BUILD=off
-if [ $# -gt 0 ]; then
-    if [ "$1" = "-f" ]; then
-      echo "Fast-Build active, ROS workspace will not be re-built!"
-      export UROS_FAST_BUILD=y
-      shift
-    fi
-fi
+UROS_VERBOSE_BUILD=off
+for param in "$@"
+do
+  case $param in
+    "-f")
+        echo "Fast-Build active, ROS workspace will not be re-built!"
+        UROS_FAST_BUILD=on
+        shift
+        ;;
+      "-v")
+        echo "Building in verbose mode"
+        UROS_VERBOSE_BUILD=on
+        shift
+        ;;
+  esac
+done
+
 export UROS_FAST_BUILD
+export UROS_VERBOSE_BUILD
 
 # Checking if firmware exists
 if [ -d $FW_TARGETDIR ]; then
