@@ -1,0 +1,41 @@
+repositories:
+  eclipse-zenoh/zenoh-c:
+    type: git
+    url: https://github.com/eclipse-zenoh/zenoh-c.git
+    version: master
+
+# MicroROS
+  
+  uros/rclc:
+    type: git
+    url: https://github.com/micro-ROS/rclc.git
+    version: master
+  osrf/rmw_zenoh:
+    type: git
+    url: https://github.com/osrf/rmw_zenoh.git
+    version: main
+  osrf/rosidl_typesupport_zenoh:
+    type: git
+    url: https://github.com/osrf/rosidl_typesupport_zenoh.git
+    version: main
+  uros/micro-ROS-demos:
+    type: git
+    url: git@github.com:esteve/micro-ROS-demos.git
+    version: foxy-zenoh
+
+# Required messages packages
+
+  ros2/common_interfaces:
+    type: git
+    url: https://github.com/ros2/common_interfaces
+    version: foxy
+
+  ros2/example_interfaces:
+    type: git
+    url: https://github.com/ros2/example_interfaces
+    version: foxy
+
+  ros2/rcl_interfaces:
+    type: git
+    url: https://github.com/ros2/rcl_interfaces
+    version: foxy

@@ -1,0 +1,30 @@
+{
+    "names":{
+        "rmw_zenoh":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "zenoh_c":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "rosidl_typesupport_microxrcedds_c":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "rosidl_typesupport_microxrcedds_cpp":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
+        "rcutils":{
+            "cmake-args":[
+                "-DENABLE_TESTING=ON"
+            ]
+        }
+   }
+}
+
