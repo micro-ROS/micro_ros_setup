@@ -93,7 +93,7 @@ jobs:
             platform: null
             configuration: null
             transport_arguments: null
-            build_arguments: src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
             binary: 'firmware/build/libmicroros.a'
 
           - rtos: freertos
