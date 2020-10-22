@@ -10,17 +10,17 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rclc.git
     version: master
-  osrf/rmw_zenoh:
+  adlink/rmw_zenoh:
     type: git
-    url: https://github.com/osrf/rmw_zenoh.git
+    url: https://github.com/esteve/rmw_zenoh.git
     version: main
-  osrf/zenoh-pico_vendor:
+  adlink/zenoh-pico_vendor:
     type: git
     url: https://github.com/esteve/zenoh-pico_vendor.git
     version: main
-  osrf/rosidl_typesupport_zenoh:
+  adlink/rosidl_typesupport_zenoh:
     type: git
-    url: https://github.com/osrf/rosidl_typesupport_zenoh.git
+    url: https://github.com/esteve/rosidl_typesupport_zenoh.git
     version: main
   uros/micro-ROS-demos:
     type: git
