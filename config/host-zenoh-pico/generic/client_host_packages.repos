@@ -14,10 +14,10 @@ repositories:
     type: git
     url: git@github.com:esteve/rmw_zenoh.git
     version: zenoh-pico
-  adlink/zenoh-pico_vendor:
+  adlink/zenoh_pico_vendor:
     type: git
-    url: https://github.com/esteve/zenoh-pico_vendor.git
-    version: main
+    url: git@github.com:esteve/zenoh_pico_vendor.git
+    version: ci
   adlink/rosidl_typesupport_zenoh:
     type: git
     url: https://github.com/esteve/rosidl_typesupport_zenoh.git
