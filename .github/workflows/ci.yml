@@ -89,6 +89,13 @@ jobs:
             transport_arguments: null
             binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
 
+          - rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
+
           - rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -192,7 +199,7 @@ jobs:
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
-          ros2 run micro_ros_setup build_firmware.sh
+          ros2 run micro_ros_setup build_firmware.sh ${{ matrix.build_arguments }} 
 
       - name: Check binaries
         run: |
