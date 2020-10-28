@@ -8,6 +8,9 @@
 
 # Notes for ESP32-CAMERA 
 
-- SPIRAM is requierd only for ESP32-CAMERA and can cause a fatal error in ESP32 (Enable in  `menuconfig Component config > ESP32-specific` OR  add CONFIG_ESP32_SPIRAM_SUPPORT=y to `sdkconfig.defaults` file).
+- SPIRAM is requierd only for ESP32-CAMERA and can cause a fatal error in ESP32 (Enable in  `menuconfig Component config > ESP32-specific` OR  add `CONFIG_ESP32_SPIRAM_SUPPORT=y` to `sdkconfig.defaults` file).
 - Make sure that `rtc_gpio_desc` array is supported in `menuconfig: Component config > Driver configurations > RTCIO configuration` (set to TRUE)
+  OR write this line `CONFIG_RTCIO_SUPPORT_RTC_GPIO_DESC=y` to `sdk.defaults`.
 - Choose your camera pins configuration in `menuconfig Camera configuration > Camera pins`. (`BOARD_ESP32CAM_AITHINKER` is default).
+
+
