@@ -52,22 +52,23 @@ pushd $FW_TARGETDIR >/dev/null
         export BOARD=$PLATFORM
     fi
 
-    # Use transport specific conf if given and exists.
-    if [ -z "$TRANSPORT" ];then
+    # Choose configuration based on transport and host
+    if [ -z "$TRANSPORT" ]; then
+        echo "Configuration: No transport set, using prj.conf"
         export CONF_FILE="prj.conf"
+
+    elif [ "$PLATFORM" = "host" ]; then
+        echo "Configuration: Platform 'host' detected, using host-udp.conf"
+        export CONF_FILE="host-udp.conf"
+
     else
         if [ ! -f "$UROS_APP_FOLDER/$TRANSPORT.conf" ]; then
-            echo "Specific config for transport not found. Using prj.conf."
+            echo "Configuration: Specific config for transport $TRANSPORT not found, using prj.conf"
             export CONF_FILE="prj.conf"
         else
+            echo "Configuration: Using transport-specific $TRANSPORT.conf"
             export CONF_FILE="$TRANSPORT.conf"
         fi
-    fi
-
-    if [ "$PLATFORM" = "host" ]; then
-        echo "Zephyr native-posix detected. Using host-udp.conf."
-
-        export CONF_FILE="host-udp.conf"
     fi
 
     # Build Zephyr + app
