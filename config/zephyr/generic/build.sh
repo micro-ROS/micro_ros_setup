@@ -70,11 +70,6 @@ pushd $FW_TARGETDIR >/dev/null
         export CONF_FILE="host-udp.conf"
     fi
 
-    # Check build argument parameters
-    if [ -z "$UROS_VERBOSE_BUILD" ]; then
-      UROS_VERBOSE_BUILD=off
-    fi
-
     # Build Zephyr + app
     west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=$UROS_VERBOSE_BUILD -DMICRO_ROS_FIRMWARE_DIR=$FW_TARGETDIR
 popd >/dev/null
