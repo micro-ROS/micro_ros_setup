@@ -31,7 +31,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.3.0               | `zephyr discovery_l475_iot1` |
 | [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.3.0               | `zephyr nucleo_h743zi`       |
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.3.0               | `zephyr host`                |
-| -                                        | Standalone static library (.a) and headers (.h) <sup>3</sup>                                         | -                    | `generate_lib`               |
+| -                                        | Static library (.a) and headers (.h) <sup>3</sup>                                         | -                    | `generate_lib`               |
 | Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
 
 *<sup>1</sup> Community supported, may have lack of official support*
