@@ -14,6 +14,8 @@ pushd $FW_TARGETDIR >/dev/null
         python3 esp-idf/tools/idf_tools.py install
         
         echo "Installing ESP-IDF virtualenv"
+        apt install -y python3-pip
+        pip3 install virtualenv
         python3 esp-idf/tools/idf_tools.py install-python-env
 
         eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
