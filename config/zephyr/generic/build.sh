@@ -71,6 +71,33 @@ pushd $FW_TARGETDIR >/dev/null
         fi
     fi
 
-    # Build Zephyr + app
-    west build -b $BOARD -p auto $UROS_APP_FOLDER -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE -G'Unix Makefiles' -DCMAKE_VERBOSE_MAKEFILE=$UROS_VERBOSE_BUILD -DMICRO_ROS_FIRMWARE_DIR=$FW_TARGETDIR "${UROS_EXTRA_BUILD_ARGS[@]}"
+    UROS_BUILD_CMD="
+        west build
+          -b $BOARD
+          -p auto
+          $UROS_APP_FOLDER
+          -- -DCONF_FILE=$UROS_APP_FOLDER/$CONF_FILE
+             -G'Unix Makefiles'
+             -DCMAKE_VERBOSE_MAKEFILE=$UROS_VERBOSE_BUILD
+             -DMICRO_ROS_FIRMWARE_DIR=$FW_TARGETDIR
+             ${UROS_EXTRA_BUILD_ARGS[@]}"
+
+    if [ "$UROS_VERBOSE_BUILD" = "on" ]; then
+        echo ""
+        echo "-----------------------------"
+        echo "| Verbose build information |"
+        echo "-----------------------------"
+        echo "Fast build:                  $UROS_FAST_BUILD"
+        echo "App name:                    $UROS_APP"
+        echo "Full app path:               $UROS_APP_FOLDER"
+        echo "Zephyr board:                $BOARD"
+        echo "Zephyr configuration file:   $UROS_APP_FOLDER/$CONF_FILE"
+        echo "Extra build arguments:       ${UROS_EXTRA_BUILD_ARGS[@]}"
+        echo "Full build command:          "${UROS_BUILD_CMD[@]}
+        echo ""
+    fi
+
+    # Build zephyr + app
+    eval ${UROS_BUILD_CMD[@]}
+
 popd >/dev/null
