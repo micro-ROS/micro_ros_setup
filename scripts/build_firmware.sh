@@ -11,24 +11,38 @@ PREFIX=$(ros2 pkg prefix micro_ros_setup)
 # Parse cli arguments
 UROS_FAST_BUILD=off
 UROS_VERBOSE_BUILD=off
-for param in "$@"
+UROS_EXTRA_BUILD_ARGS=""
+
+while getopts "vf" o
 do
-  case $param in
-    "-f")
-        echo "Fast-Build active, ROS workspace will not be re-built!"
-        UROS_FAST_BUILD=on
-        shift
-        ;;
-      "-v")
-        echo "Building in verbose mode"
-        UROS_VERBOSE_BUILD=on
-        shift
-        ;;
+    case "$o" in
+        f)
+            echo "Fast-Build active, ROS workspace will not be re-built!"
+            UROS_FAST_BUILD=on
+            ;;
+        v)
+            echo "Building in verbose mode"
+            UROS_VERBOSE_BUILD=on
+            ;;
+        [?])
+            echo "Usage: ros2 run micro_ros_setup build_firmware.sh [options] -- [build_args]"
+            echo "Options:"
+            echo "  -v   Print verbose build output."
+            echo "  -f   Activate Fast-Build. Without this, mcu_ws will get rebuilt completely."
+            echo "Build args: These options will get directly forwarded to the build system (currently only supported for zephyr)."
+            exit 1
+            ;;
   esac
 done
+shift $((OPTIND-1))
+
+if [[ -n "$@" ]]; then
+    UROS_EXTRA_BUILD_ARGS=("$@")
+fi
 
 export UROS_FAST_BUILD
 export UROS_VERBOSE_BUILD
+export UROS_EXTRA_BUILD_ARGS
 
 # Checking if firmware exists
 if [ -d $FW_TARGETDIR ]; then
