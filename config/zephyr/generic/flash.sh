@@ -62,21 +62,15 @@ else
                 -c "flash write_image erase $ZEPHYR_BUILD_DIR/zephyr.bin 0x08000000" \
                 -c "reset run; exit"
 
-    elif [ "$PLATFORM" = "discovery_l475_iot1" ] || [ "$PLATFORM" = "nucleo_f401re" ]; then
+    else
 
         export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
         export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
+        export PATH=~/.local/bin:"$PATH"
 
         source $FW_TARGETDIR/zephyrproject/zephyr/zephyr-env.sh
 
-        export PATH=~/.local/bin:"$PATH"
-
         west flash
-
-    else
-
-        echo "Unrecognized board: $PLATFORM"
-        exit 1
 
     fi
 
