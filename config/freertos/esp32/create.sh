@@ -12,9 +12,13 @@ pushd $FW_TARGETDIR >/dev/null
 
         echo "Installing ESP-IDF tools"
         python3 esp-idf/tools/idf_tools.py install
-        
+
         echo "Installing ESP-IDF virtualenv"
-        apt install -y python3-pip
+        dpkg -s python3-pip > /dev/null
+        if [[ $? -ne 0 ]]; then
+            echo "Error: python3-pip package must be installed before continuing..."
+            exit 1
+        fi
         pip3 install virtualenv
         python3 esp-idf/tools/idf_tools.py install-python-env
 
