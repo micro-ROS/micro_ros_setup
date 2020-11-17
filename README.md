@@ -2,6 +2,7 @@
 This ROS 2 package is the entry point for building micro-ROS apps for different embedded platforms.
 
 - [Supported platforms](#supported-platforms)
+  - [Secondary build system tools](#secondary-build-system-tools)
 - [Dependencies](#dependencies)
 - [Building](#building)
   - [Creating micro-ROS firmware](#creating-micro-ros-firmware)
@@ -16,6 +17,8 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Supported platforms
 
+This package is the **official build system for micro-ROS**. It provides tools and utils to crosscompile micro-ROS with just the common ROS 2 tools for these platforms:
+
 | RTOS                                     | Platform                                                                                             | Version              | Example                      |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------- | ---------------------------- |
 | [Nuttx](https://nuttx.org/)              | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v7.29                | `nuttx olimex-stm32-e407`    |
@@ -24,17 +27,28 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f746zg`     |
 | [FreeRTOS](https://www.freertos.org/)    | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                         | v8.2.0               | `freertos esp32`             |
-| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.3.0               | `zephyr olimex-stm32-e407`   |
-| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.3.0               | `zephyr discovery_l475_iot1` |
-| [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.3.0               | `zephyr nucleo_h743zi`       |
-| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.3.0               | `zephyr host`                |
+| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.4.99              | `zephyr olimex-stm32-e407`   |
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.4.99              | `zephyr discovery_l475_iot1` |
+| [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.4.99              | `zephyr nucleo_h743zi`       |
+| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.4.99              | `zephyr host`                |
+| -                                        | Static library (.a) and headers (.h) <sup>3</sup>                                                    | -                    | `generate_lib`               |
 | Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
 *<sup>2</sup> Support for compiling apps in a native Linux host for testing and debugging*
 
+*<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
+
 Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
+
+## Secondary build system tools
+
+micro-ROS also offers some other ways to crosscompile it for different platforms. These other options are secondary tools and may not have full support for all features. Currently micro-ROS is also available as:
+
+- a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
+- a standalone **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.
+- a precompiled set of **[Arduino IDE libraries](https://github.com/micro-ROS/micro_ros_arduino)**: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.
 
 # Dependencies
 
