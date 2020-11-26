@@ -36,7 +36,7 @@ repositories:
     version: foxy_microros
   uros/rosidl_typesupport:
     type: git
-    https://github.com/micro-ROS/rosidl_typesupport.git
+    url: https://github.com/micro-ROS/rosidl_typesupport.git
     version: feature/foxy_upgrade_26112020
   uros/rosidl_typesupport_microxrcedds:
     type: git
