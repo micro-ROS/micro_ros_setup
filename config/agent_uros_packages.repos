@@ -15,7 +15,7 @@ repositories:
   uros/micro-ROS-Agent:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-Agent.git
-    version: foxy
+    version: feature/micro_ros_msgs_external_dep
 
 # Micro XRCE-DDS
   eprosima/Micro-CDR:
