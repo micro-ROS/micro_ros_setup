@@ -9,15 +9,18 @@ repositories:
     version: foxy
 
 # MicroROS
-  
   uros/rcl:
     type: git
-    url: https://github.com/micro-ROS/rcl.git
+    url: https://github.com/micro-ROS/rcl
     version: foxy
   uros/rclc:
     type: git
-    url: https://github.com/micro-ROS/rclc.git
+    url: https://github.com/micro-ROS/rclc
     version: master
+  uros/rcutils:
+    type: git
+    url: https://github.com/micro-ROS/rcutils
+    version: foxy
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
@@ -26,18 +29,6 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
     version: foxy
-  uros/rcutils:
-    type: git
-    url: https://github.com/micro-ROS/rcutils.git
-    version: foxy
-  drive_base:
-    type: git
-    url: https://github.com/micro-ROS/drive_base.git
-    version: master
-  uros/tracetools:
-    type: git
-    url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
-    version: foxy_microros
   uros/rosidl_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
@@ -46,10 +37,13 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
     version: foxy
+  uros/tracetools:
+    type: git
+    url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
+    version: foxy_microros
 
-# interim, until crosscompile fix is available in foxy branch
+# Remove this when it returns to ros2.repos
   ros2/tinydir_vendor:
     type: git
     url: https://github.com/ros2/tinydir_vendor.git
     version: master
-
