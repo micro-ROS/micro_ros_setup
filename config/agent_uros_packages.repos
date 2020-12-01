@@ -2,11 +2,11 @@ repositories:
 # MicroROS
   uros/micro_ros_msgs:
     type: git
-    url: https://github.com/microROS/micro_ros_msgs.git
+    url: https://github.com/micro-ROS/micro_ros_msgs.git
     version: foxy
   uros/micro-ROS-Agent:
     type: git
-    url: https://github.com/microROS/micro-ROS-Agent.git
+    url: https://github.com/micro-ROS/micro-ROS-Agent.git
     version: foxy
   # TODO (pablogs9): Integrate Micro XRCE-DDS Agent dependency download in micro-ROS-Agent package
   eProsima/Micro-XRCE-DDS-Agent:
