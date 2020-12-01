@@ -1,5 +1,9 @@
 repositories:
 # MicroROS
+  uros/rosidl_typesupport_microxrcedds:
+    type: git
+    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
+    version: foxy
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
