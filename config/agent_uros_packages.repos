@@ -1,5 +1,9 @@
 repositories:
 # MicroROS
+  uros/micro_ros_msgs:
+    type: git
+    url: https://github.com/microROS/micro_ros_msgs.git
+    version: foxy
   uros/micro-ROS-Agent:
     type: git
     url: https://github.com/microROS/micro-ROS-Agent.git

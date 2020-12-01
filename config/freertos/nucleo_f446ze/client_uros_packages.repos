@@ -1,7 +1,7 @@
 repositories:
   eProsima/Micro-CDR:
     type: git
-    url: https://github.com/eProsima/micro-CDR.git
+    url: https://github.com/eProsima/Micro-CDR.git
     version: foxy
   eProsima/Micro-XRCE-DDS-Client:
     type: git
@@ -9,7 +9,6 @@ repositories:
     version: foxy
 
 # MicroROS
-  
   uros/rcl:
     type: git
     url: https://github.com/micro-ROS/rcl
@@ -21,6 +20,10 @@ repositories:
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
+    version: foxy
+  uros/micro_ros_msgs:
+    type: git
+    url: https://github.com/micro-ROS/micro_ros_msgs.git
     version: foxy
   uros/rmw_microxrcedds:
     type: git
