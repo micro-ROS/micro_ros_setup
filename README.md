@@ -26,6 +26,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | STM32CubeMX latest   | `freertos olimex-stm32-e407` |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f746zg`     |
+| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F767ZI](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f767zi`     |
 | [FreeRTOS](https://www.freertos.org/)    | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                         | v8.2.0               | `freertos esp32`             |
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.4.99              | `zephyr olimex-stm32-e407`   |
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.4.99              | `zephyr discovery_l475_iot1` |
