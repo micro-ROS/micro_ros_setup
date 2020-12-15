@@ -19,7 +19,11 @@ if [ "$UROS_TRANSPORT" == "udp" ]; then
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP=$UROS_AGENT_IP"
       update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT=$UROS_AGENT_PORT"
 
+      cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_networking_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_external.c
+      cp -f $EXTENSIONS_DIR/microros_extensions/zephyr_networking_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/ip/udp/udp_transport_external.h
+
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=ON"
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_UDP=ON"
 
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_DISCOVERY=OFF"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
@@ -37,6 +41,7 @@ elif [ "$UROS_TRANSPORT" == "serial" ]; then
       
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
       update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_UDP=OFF"
 
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_DISCOVERY=OFF"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
@@ -65,6 +70,7 @@ elif [ "$UROS_TRANSPORT" == "serial-usb" ]; then
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_DISCOVERY=OFF"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
+      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_UDP=OFF"
 
       update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
 
