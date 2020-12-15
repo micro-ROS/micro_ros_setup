@@ -119,6 +119,12 @@ jobs:
             configuration: int32_publisher
             transport_arguments: -t serial -d 1
             binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+          
+          - rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
 
           - rtos: freertos
             platform: esp32
