@@ -135,6 +135,7 @@ In summary, the supported configurations for transports are:
 | ST Nucleo F446ZE <sup>1</sup> |         -          |       UART        |         -          |
 | ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
 | ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
+| ST Nucleo F767ZI <sup>1</sup> |         -          |       UART        |         -          |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
