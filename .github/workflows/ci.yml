@@ -109,6 +109,12 @@ jobs:
             binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
 
           - rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+
+          - rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
             transport_arguments: -t serial -d 1

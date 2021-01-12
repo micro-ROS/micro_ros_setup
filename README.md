@@ -24,6 +24,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [Nuttx](https://nuttx.org/)              | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v7.29                | `nuttx olimex-stm32-e407`    |
 | [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | v10.2.1 - CF 2020.06 | `freertos crazyflie21`       |
 | [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | STM32CubeMX latest   | `freertos olimex-stm32-e407` |
+| [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f446re`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f446ze`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f746zg`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F767ZI](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f767zi`     |
@@ -132,6 +133,7 @@ In summary, the supported configurations for transports are:
 | ST B-L475E-IOT01A             |         -          |         -         | USB, UART, Network |
 | Crazyflie 2.1                 |         -          | Custom Radio Link |         -          |
 | Espressif ESP32               |         -          |  UART, WiFI UDP   |         -          |
+| ST Nucleo F446RE <sup>1</sup> |         -          |       UART        |         -          |
 | ST Nucleo F446ZE <sup>1</sup> |         -          |       UART        |         -          |
 | ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
 | ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
