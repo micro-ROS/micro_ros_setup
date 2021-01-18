@@ -61,6 +61,7 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | Crystal      | Supported | `crystal` |
 | Dashing      | Supported | `dashing` |
 | Foxy         | Supported | `foxy`    |
+| Rolling      | Supported | `main`    |
 
 Some other prerequisites needed for building a firmware using this package are:
 
