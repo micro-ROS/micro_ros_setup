@@ -46,8 +46,3 @@ repositories:
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
     version: foxy_microros
 
-# Remove this when it returns to ros2.repos
-  ros2/tinydir_vendor:
-    type: git
-    url: https://github.com/ros2/tinydir_vendor.git
-    version: master
