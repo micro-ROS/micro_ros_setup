@@ -40,4 +40,4 @@ repositories:
   uros/tracetools:
     type: git
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
-    version: foxy_microros
+    version: master
