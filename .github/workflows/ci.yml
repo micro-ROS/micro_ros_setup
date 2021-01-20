@@ -9,7 +9,7 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
+    container: ros:rolling
 
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
+    container: ros:rolling
     needs: micro_ros_build
 
     steps:
@@ -76,7 +76,7 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
+    container: ros:rolling
     needs: micro_ros_build
 
     strategy:
@@ -207,7 +207,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/foxy/setup.sh
+          . /opt/ros/rolling/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
