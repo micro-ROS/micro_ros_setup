@@ -93,7 +93,7 @@ pushd $FW_TARGETDIR >/dev/null
          # Creating mcu directory
         mkdir mcu_ws
         ros2 run micro_ros_setup create_ws.sh mcu_ws $PREFIX/config/client_ros2_packages.txt $PREFIX/config/$RTOS/$TARGET_FOLDER/client_uros_packages.repos
-        cp $PREFIX/config/$RTOS/$TARGET_FOLDER/client-colcon.meta mcu_ws/colcon.meta
+        cp $PREFIX/config/$RTOS/$TARGET_FOLDER/client-colcon.meta mcu_ws/colcon.meta || :
     fi
 popd >/dev/null
 

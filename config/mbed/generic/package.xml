@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>firmware</name>
+  <version>0.0.0</version>
+  <description>Micro-ROS dependecies for Mbed RTOS</description>
+  <maintainer email="pablogarrido@eprosima.com">Pablo Garrido</maintainer>
+  <license>APL2</license>
+
+  <build_depend>gcc-arm-none-eabi</build_depend>
+  <build_depend>ninja-build</build_depend>
+  <build_depend>gperf</build_depend>
+  <build_depend>wget</build_depend>
+  <build_depend>xz-utils</build_depend>
+  <build_depend>gcc-multilib</build_depend>
+  <build_depend>g++-multilib</build_depend>
+  <build_depend>openocd</build_depend>
+  
+</package>

@@ -33,6 +33,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.4.99              | `zephyr discovery_l475_iot1` |
 | [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.4.99              | `zephyr nucleo_h743zi`       |
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.4.99              | `zephyr host`                |
+| [Mbed](https://os.mbed.com/)             | [ST B-L475E-IOT01A](https://os.mbed.com/platforms/ST-Discovery-L475E-IOT01A/)                        | v6.6                 | `mbed disco_l475vg_iot01a`   |
 | -                                        | Static library (.a) and headers (.h) <sup>3</sup>                                                    | -                    | `generate_lib`               |
 | Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
 
@@ -78,7 +79,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 
 mkdir uros_ws && cd uros_ws
 
-git clone -b master https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+git clone -b main https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 rosdep update && rosdep install --from-path src --ignore-src -y
 
@@ -128,17 +129,17 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
-|                               |       NuttX        |     FreeRTOS      |       Zephyr       |
-| ----------------------------- | :----------------: | :---------------: | :----------------: |
-| Olimex STM32-E407             | USB, UART, Network |   UART, Network   |     USB, UART      |
-| ST B-L475E-IOT01A             |         -          |         -         | USB, UART, Network |
-| Crazyflie 2.1                 |         -          | Custom Radio Link |         -          |
-| Espressif ESP32               |         -          |  UART, WiFI UDP   |         -          |
-| ST Nucleo F446RE <sup>1</sup> |         -          |       UART        |         -          |
-| ST Nucleo F446ZE <sup>1</sup> |         -          |       UART        |         -          |
-| ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
-| ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
-| ST Nucleo F767ZI <sup>1</sup> |         -          |       UART        |         -          |
+|                               |       NuttX        |     FreeRTOS      |       Zephyr       |        Mbed        |
+| ----------------------------- | :----------------: | :---------------: | :----------------: | :----------------: |
+| Olimex STM32-E407             | USB, UART, Network |   UART, Network   |     USB, UART      |         -          |
+| ST B-L475E-IOT01A             |         -          |         -         | USB, UART, Network |        UART        |
+| Crazyflie 2.1                 |         -          | Custom Radio Link |         -          |         -          |
+| Espressif ESP32               |         -          |  UART, WiFI UDP   |         -          |         -          |
+| ST Nucleo F446RE <sup>1</sup> |         -          |       UART        |         -          |         -          |
+| ST Nucleo F446ZE <sup>1</sup> |         -          |       UART        |         -          |         -          |
+| ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |         -          |
+| ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |         -          |
+| ST Nucleo F767ZI <sup>1</sup> |         -          |       UART        |         -          |         -          |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
