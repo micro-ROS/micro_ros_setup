@@ -26,5 +26,5 @@ pushd $FW_TARGETDIR >/dev/null
     popd >/dev/null
 
     # TODO (pablogs): Avoid current approach and rely on the standalone module
-    rm -rf dev_ws mcu_ws
+    # rm -rf dev_ws mcu_ws
 popd >/dev/null
