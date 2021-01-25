@@ -23,6 +23,7 @@ pushd $FW_TARGETDIR >/dev/null
 
     pushd micro_ros_mbed >/dev/null
         mbed-tools deploy
+        pip3 install -r mbed-os/requirements.txt
     popd >/dev/null
 
     # TODO (pablogs): Avoid current approach and rely on the standalone module
