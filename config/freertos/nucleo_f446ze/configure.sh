@@ -12,23 +12,20 @@ function help {
 echo $CONFIG_NAME > $FW_TARGETDIR/APP
 # TODO add USB-OTG support
 if [ "$UROS_TRANSPORT" == "serial" ]; then
-      echo "Using serial device USART$UROS_AGENT_DEVICE."
+      echo "Using serial device USART."
 
-      cp -f $EXTENSIONS_DIR/uros_transport/stm32f446ze_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
-      cp -f $EXTENSIONS_DIR/uros_transport/stm32f446ze_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
-      update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
-      update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_CUSTOM_TRANSPORT=ON"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_STREAM_FRAMING=ON"
+      update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=OFF"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
-      
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
-      update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE="$UROS_AGENT_DEVICE
+
+      update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
 
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
       remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
 
-      echo "Configured $UROS_TRANSPORT mode with agent at USART$UROS_AGENT_DEVICE"
-
+      echo "Configured $UROS_TRANSPORT mode with agent at USART"
 else
       help
 fi

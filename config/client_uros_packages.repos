@@ -28,7 +28,7 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: foxy
+    version: feature/refactor_external_transports
   uros/rosidl_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
