@@ -6,7 +6,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Client:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
-    version: feature/refactor_external_transports
+    version: foxy
 
 # MicroROS
   uros/rcl:
@@ -28,7 +28,7 @@ repositories:
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: feature/refactor_external_transports
+    version: foxy
   uros/rosidl_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
