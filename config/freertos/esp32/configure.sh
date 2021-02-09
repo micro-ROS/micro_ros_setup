@@ -14,26 +14,25 @@ function help {
 echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
 if [ "$UROS_TRANSPORT" == "serial" ]; then
-    if [ "$UROS_AGENT_DEVICE" -gt 2 ]; then
-        echo ESP32 only supports USART0, USART1 or USART2
-        exit 1
-    fi
+    # if [ "$UROS_AGENT_DEVICE" -gt 2 ]; then
+    #     echo ESP32 only supports USART0, USART1 or USART2
+    #     exit 1
+    # fi
 
-    echo "Using serial device USART$UROS_AGENT_DEVICE."
+    echo "Using serial device USART."
 
-    cp -f $EXTENSIONS_DIR/serial_transport_external/esp32_serial_transport.c $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/profile/transport/serial/serial_transport_external.c
-    cp -f $EXTENSIONS_DIR/serial_transport_external/esp32_serial_transport.h $FW_TARGETDIR/mcu_ws/eProsima/Micro-XRCE-DDS-Client/include/uxr/client/profile/transport/serial/serial_transport_external.h
-    update_meta "microxrcedds_client" "UCLIENT_EXTERNAL_SERIAL=ON"
-    update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=ON"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_CUSTOM_TRANSPORT=ON"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_STREAM_FRAMING=ON"
+    update_meta "microxrcedds_client" "UCLIENT_PROFILE_SERIAL=OFF"
     update_meta "microxrcedds_client" "UCLIENT_PROFILE_UDP=OFF"
     update_meta "microxrcedds_client" "UCLIENT_PROFILE_TCP=OFF"
 
-    update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom_serial"
-    update_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_SERIAL_DEVICE="$UROS_AGENT_DEVICE
+    update_meta "rmw_microxrcedds" "RMW_UXRCE_TRANSPORT=custom"
 
     remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_IP"
     remove_meta "rmw_microxrcedds" "RMW_UXRCE_DEFAULT_UDP_PORT"
 
+    echo "Configured $UROS_TRANSPORT mode with agent at USART"
 
 elif [ "$UROS_TRANSPORT" == "udp" ]; then
 

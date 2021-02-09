@@ -80,6 +80,7 @@ pushd $FW_TARGETDIR >/dev/null
              -G'Unix Makefiles'
              -DCMAKE_VERBOSE_MAKEFILE=$UROS_VERBOSE_BUILD
              -DMICRO_ROS_FIRMWARE_DIR=$FW_TARGETDIR
+             -DMICRO_ROS_TRANSPORT=$TRANSPORT
              ${UROS_EXTRA_BUILD_ARGS[@]}"
 
     if [ "$UROS_VERBOSE_BUILD" = "on" ]; then
