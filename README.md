@@ -118,9 +118,9 @@ By running this command without any argument the available demo applications and
 
 Common options available at this configuration step are:
   - `--transport` or `-t`: `udp`, `serial` or any hardware specific transport label
-  - `--dev` or `-d`: agent string descriptor in a serial-like transport
-  - `--ip` or `-i`: agent IP in a network-like transport
-  - `--port` or `-p`: agent port in a network-like transport
+  - `--dev` or `-d`: agent string descriptor in a serial-like transport (optional)
+  - `--ip` or `-i`: agent IP in a network-like transport (optional)
+  - `--port` or `-p`: agent port in a network-like transport (optional)
 
 
 Please note that each RTOS has its configuration approach that you might use for further customization of these base configurations. Visit the [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) for detailed information about RTOS configuration.

@@ -6,7 +6,6 @@ EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_nucleo_f767zi_extensions
 function help {
       echo "Configure script need an argument."
       echo "   --transport -t       udp, serial or serial-usb"
-      echo "   --dev -d             agent string descriptor in a serial-like transport"
       echo "   --ip -i              agent IP in a network-like transport"
       echo "   --port -p            agent port in a network-like transport"
 }
@@ -29,6 +28,9 @@ if [ "$UROS_TRANSPORT" == "udp" ]; then
 
 elif [ "$UROS_TRANSPORT" == "serial" ]; then
       echo "Using serial device USART."
+
+      echo "Please check firmware/freertos_apps/microros_nucleo_f767zi_extensions/Src/main.c"
+      echo "for configuring serial device before build."
 
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_CUSTOM_TRANSPORT=ON"
       update_meta "microxrcedds_client" "UCLIENT_PROFILE_STREAM_FRAMING=ON"
