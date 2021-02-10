@@ -14,12 +14,9 @@ function help {
 echo $CONFIG_NAME > $FW_TARGETDIR/APP
 
 if [ "$UROS_TRANSPORT" == "serial" ]; then
-    # if [ "$UROS_AGENT_DEVICE" -gt 2 ]; then
-    #     echo ESP32 only supports USART0, USART1 or USART2
-    #     exit 1
-    # fi
-
     echo "Using serial device USART."
+    echo "Please check firmware/freertos_apps/microros_esp32_extensions/main/main.c"
+    echo "for configuring serial device before build."
 
     update_meta "microxrcedds_client" "UCLIENT_PROFILE_CUSTOM_TRANSPORT=ON"
     update_meta "microxrcedds_client" "UCLIENT_PROFILE_STREAM_FRAMING=ON"
