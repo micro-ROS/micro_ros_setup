@@ -184,6 +184,9 @@ jobs:
             configuration: weather_publisher
             binary: 'firmware/bin/weather_publisher'
 
+          - rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/mbed-microros.bin'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -192,7 +195,12 @@ jobs:
       - name: Dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip
+          # Install last version of CMake
+          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+          apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          apt-get update
+          apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
 
