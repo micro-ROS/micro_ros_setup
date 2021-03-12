@@ -68,11 +68,11 @@ echo $RTOS > $FW_TARGETDIR/PLATFORM
 echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 
 # Setting common enviroment
-SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp ros-foxy-cyclonedds ros-foxy-rmw-cyclonedds-cpp google_benchmark_vendor performance_test_fixture"
+SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_connext_cpp rmw_opensplice_cpp ros-rolling-cyclonedds ros-rolling-rmw-cyclonedds-cpp google_benchmark_vendor performance_test_fixture rmw_connextdds rmw_cyclonedds_cpp"
 
 # Installing common packages 
 rosdep update
-rosdep install -y --from-paths src -i src --rosdistro foxy --skip-keys="$SKIP"
+rosdep install -y --from-paths src -i src --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
 # Check generic build
 if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
@@ -88,7 +88,7 @@ pushd $FW_TARGETDIR >/dev/null
     if [ $RTOS != "host" ]; then
         ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
             $PREFIX/config/$RTOS/dev_uros_packages.repos
-        rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro foxy --skip-keys="$SKIP"
+        rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
          # Creating mcu directory
         mkdir mcu_ws
@@ -109,7 +109,7 @@ if [ $RTOS != "host" ]; then
 fi
 
 # Install dependecies for specific platform
-rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro foxy --skip-keys="$SKIP"
+rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
