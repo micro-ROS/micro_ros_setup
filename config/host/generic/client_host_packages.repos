@@ -13,7 +13,7 @@ repositories:
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc.git
-    version: master
+    version: foxy
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
