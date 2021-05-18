@@ -12,7 +12,7 @@ assignees: ''
 - Hardware description: <!-- hardware where you are using micro-ROS -->
 - RTOS: <!-- RTOS where you are using micro-ROS -->
 - Installation type: <!-- micro_ros_setup, modules, etc  -->
-- Version or commit hash: <!-- version of micro-ROS used: foxy, rolling  -->
+- Version or commit hash: <!-- version of micro-ROS used: foxy, galactic, rolling  -->
 
 #### Steps to reproduce the issue
 <!-- Detailed instructions on how to reliably reproduce this issue http://sscce.org/-->

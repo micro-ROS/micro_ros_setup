@@ -13,42 +13,42 @@ repositories:
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc.git
-    version: foxy
+    version: galactic
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: main
+    version: galactic
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: main
+    version: galactic
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: main
+    version: galactic
   uros/micro-ROS-demos:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-demos.git
-    version: main
+    version: galactic
 
 # Required messages packages
 
   ros2/common_interfaces:
     type: git
     url: https://github.com/ros2/common_interfaces
-    version: foxy
+    version: galactic
 
   ros2/example_interfaces:
     type: git
     url: https://github.com/ros2/example_interfaces
-    version: foxy
+    version: galactic
 
   ros2/rcl_interfaces:
     type: git
     url: https://github.com/ros2/rcl_interfaces
-    version: foxy
+    version: galactic
 
   ros2/unique_identifier_msgs:
     type: git
     url: https://github.com/ros2/unique_identifier_msgs
-    version: foxy
+    version: galactic

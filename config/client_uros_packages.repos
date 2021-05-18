@@ -12,32 +12,32 @@ repositories:
   uros/rcl:
     type: git
     url: https://github.com/micro-ROS/rcl
-    version: master
+    version: galactic
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc
-    version: master
+    version: galactic
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: master
+    version: galactic
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: main
+    version: galactic
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: main
+    version: galactic
   uros/rosidl_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
-    version: master
+    version: galactic
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: main
+    version: galactic
   uros/tracetools:
     type: git
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
-    version: master
+    version: galactic
