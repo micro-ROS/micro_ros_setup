@@ -2,14 +2,14 @@ name: CI
 
 on:
   pull_request:
-    branches: 
+    branches:
       - '**'
 
 jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:galactic
+    container: ros:rolling
 
     steps:
       - uses: actions/checkout@v2
@@ -125,7 +125,7 @@ jobs:
             configuration: int32_publisher
             transport_arguments: -t serial -d 1
             binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
-          
+
           - rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -155,7 +155,7 @@ jobs:
             configuration: int32_publisher
             transport_arguments: -t serial -d 3
             binary: 'firmware/build/zephyr/zephyr.bin'
-          
+
           - rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -177,7 +177,7 @@ jobs:
             platform: buster_v7
             configuration: weather_publisher
             binary: 'firmware/bin/weather_publisher'
-          
+
           - rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/mbed-microros.bin'
@@ -212,8 +212,8 @@ jobs:
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
-          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
-          ros2 run micro_ros_setup build_firmware.sh ${{ matrix.build_arguments }} 
+          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
+          ros2 run micro_ros_setup build_firmware.sh ${{ matrix.build_arguments }}
 
       - name: Check binaries
         run: |
