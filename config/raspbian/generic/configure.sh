@@ -11,7 +11,6 @@ pushd $FW_TARGETDIR >/dev/null
     fi
 
     if [ -d mcu_ws/ros2/rosidl ]; then
-        touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
         touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
     fi
 
