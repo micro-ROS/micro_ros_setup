@@ -39,7 +39,7 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container: ros:galactic
+    container: ros:rolling
     needs: micro_ros_build
 
     steps:
