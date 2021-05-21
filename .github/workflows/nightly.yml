@@ -1,13 +1,13 @@
 name: Nightly
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       name:
         description: "Manual trigger"
   schedule:
     - cron:  '0 4 * * *'
-    
+
 jobs:
 
   micro_ros_build:
@@ -154,7 +154,7 @@ jobs:
             configuration: int32_publisher
             transport_arguments: -t serial -d 3
             binary: 'firmware/build/zephyr/zephyr.bin'
-          
+
           - distro: foxy
             branch: foxy
             rtos: zephyr
@@ -176,7 +176,7 @@ jobs:
             rtos: nuttx
             platform: olimex-stm32-e407
             configuration: drive_base
-            transport_arguments: 
+            transport_arguments:
             binary: 'firmware/NuttX/nuttx.bin'
 
           - distro: foxy
@@ -289,7 +289,7 @@ jobs:
             configuration: int32_publisher
             transport_arguments: -t serial -d 3
             binary: 'firmware/build/zephyr/zephyr.bin'
-          
+
           - distro: rolling
             branch: main
             rtos: zephyr
@@ -305,14 +305,6 @@ jobs:
             configuration: ping_pong
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
-
-          - distro: rolling
-            branch: main
-            rtos: nuttx
-            platform: olimex-stm32-e407
-            configuration: drive_base
-            transport_arguments: 
-            binary: 'firmware/NuttX/nuttx.bin'
 
           - distro: rolling
             branch: main
@@ -355,15 +347,15 @@ jobs:
           . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
-          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }} 
-          ros2 run micro_ros_setup build_firmware.sh ${{ matrix.build_arguments }} 
+          ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
+          ros2 run micro_ros_setup build_firmware.sh ${{ matrix.build_arguments }}
 
       - name: Check binaries
         run: |
           (test -f ${{ matrix.binary }}) && true || false
 
   micro_ros_agent:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -372,7 +364,7 @@ jobs:
             branch: foxy
           - distro: rolling
             branch: main
-    
+
     needs: micro_ros_build
     container: ros:${{ matrix.distro }}
 
