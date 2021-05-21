@@ -17,7 +17,7 @@ fi
 export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
-   
+
     west init zephyrproject
     pushd zephyrproject >/dev/null
         west update
@@ -30,7 +30,7 @@ pushd $FW_TARGETDIR >/dev/null
     else
         export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
     fi
-    
+
     wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
     ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
@@ -47,7 +47,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
     touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
-    touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
     touch mcu_ws/ros2/rcpputils/COLCON_IGNORE
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
