@@ -324,7 +324,7 @@ jobs:
             branch: main
             rtos: mbed
             platform: disco_l475vg_iot01a
-            binary: 'firmware/micro_ros_mbed/cmake_build/mbed-microros.bin'
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
     steps:
       - uses: actions/checkout@v2
         with:
