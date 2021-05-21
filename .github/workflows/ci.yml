@@ -168,12 +168,6 @@ jobs:
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
 
-          - rtos: nuttx
-            platform: olimex-stm32-e407
-            configuration: drive_base
-            transport_arguments:
-            binary: 'firmware/NuttX/nuttx.bin'
-
           - rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
