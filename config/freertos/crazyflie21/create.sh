@@ -2,7 +2,6 @@ pushd $FW_TARGETDIR >/dev/null
     # Install toolchain
     mkdir toolchain
 
-
     # Install toolchain
     echo "Downloading ARM compiler, this may take a while"
     curl -fsSLO https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2
@@ -16,7 +15,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
     touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
-    touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
     touch mcu_ws/ros2/rcpputils/COLCON_IGNORE
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
