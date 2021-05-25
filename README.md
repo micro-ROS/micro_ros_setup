@@ -22,6 +22,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | RTOS                                     | Platform                                                                                             | Version              | Example                      |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------- | ---------------------------- |
 | [Nuttx](https://nuttx.org/)              | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v7.29                | `nuttx olimex-stm32-e407`    |
+| [Nuttx](https://nuttx.org/)              | [Spresense](https://developer.sony.com/develop/spresense/)                                           | v2.2.0               | `nuttx spresense`            |
 | [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | v10.2.1 - CF 2020.06 | `freertos crazyflie21`       |
 | [FreeRTOS](https://www.freertos.org/)    | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | STM32CubeMX latest   | `freertos olimex-stm32-e407` |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f446re`     |
@@ -42,7 +43,9 @@ This package is the **official build system for micro-ROS**. It provides tools a
 
 *<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
 
-Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
+Please note that  
+- NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.  
+- NuttX with Spresense board is the reference platform and other platforms don't support this board.
 
 ## Secondary build system tools
 
@@ -138,6 +141,7 @@ In summary, the supported configurations for transports are:
 | ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
 | ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
 | ST Nucleo F767ZI <sup>1</sup> |         -          |       UART        |         -          |
+| Spresense                     |       WiFi         |        -          |         -          |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
