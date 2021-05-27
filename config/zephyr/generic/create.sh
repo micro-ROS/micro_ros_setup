@@ -17,9 +17,12 @@ fi
 export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
-   
+
     west init zephyrproject
     pushd zephyrproject >/dev/null
+        cd zephyr
+          git checkout zephyr-v2.5.0
+        cd ..
         west update
     popd >/dev/null
 
@@ -30,7 +33,7 @@ pushd $FW_TARGETDIR >/dev/null
     else
         export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
     fi
-    
+
     wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
     ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
@@ -53,5 +56,5 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro foxy --skip-keys="$SKIP"
+    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 popd >/dev/null
