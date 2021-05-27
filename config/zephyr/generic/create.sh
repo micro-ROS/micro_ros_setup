@@ -20,10 +20,10 @@ pushd $FW_TARGETDIR >/dev/null
 
     west init zephyrproject
     pushd zephyrproject >/dev/null
-        west update
         cd zephyr
           git checkout zephyr-v2.5.0
         cd ..
+        west update
     popd >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
