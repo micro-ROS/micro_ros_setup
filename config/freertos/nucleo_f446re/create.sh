@@ -21,5 +21,4 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 
-    rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 popd >/dev/null
