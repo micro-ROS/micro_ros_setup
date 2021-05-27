@@ -43,5 +43,5 @@ repositories:
     version: main
   uros/tracetools:
     type: git
-    url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing
+    url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing.git/
     version: master
