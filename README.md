@@ -42,6 +42,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 
 *<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
 
+
 ## Secondary build system tools
 
 micro-ROS also offers some other ways to crosscompile it for different platforms. These other options are secondary tools and may not have full support for all features. Currently micro-ROS is also available as:
@@ -55,12 +56,11 @@ micro-ROS also offers some other ways to crosscompile it for different platforms
 
 This package targets the **ROS 2** installation. ROS 2 supported distributions are:
 
-| ROS 2 Distro | State     | Branch    |
-| ------------ | --------- | --------- |
-| Crystal      | Supported | `crystal` |
-| Dashing      | Supported | `dashing` |
-| Foxy         | Supported | `foxy`    |
-| Rolling      | Supported | `main`    |
+| ROS 2 Distro | State     | Branch     |
+| ------------ | --------- | ---------- |
+| Foxy         | Supported | `foxy`     |
+| Galactic     | Supported | `galactic` |
+| Rolling      | Supported | `main`     |
 
 Some other prerequisites needed for building a firmware using this package are:
 
@@ -124,17 +124,17 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
-|                               |     FreeRTOS      |       Zephyr       |        Mbed        |
-| ----------------------------- | :---------------: | :----------------: | :----------------: |
-| Olimex STM32-E407             |   UART, Network   |     USB, UART      |         -          |
-| ST B-L475E-IOT01A             |         -         | USB, UART, Network |        UART        |
-| Crazyflie 2.1                 | Custom Radio Link |         -          |         -          |
-| Espressif ESP32               |  UART, WiFI UDP   |         -          |         -          |
-| ST Nucleo F446RE <sup>1</sup> |       UART        |         -          |         -          |
-| ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |         -          |
-| ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |         -          |
-| ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |         -          |
-| ST Nucleo F767ZI <sup>1</sup> |       UART        |         -          |         -          |
+|                               |     FreeRTOS      |       Zephyr       | Mbed  |
+| ----------------------------- | :---------------: | :----------------: | :---: |
+| Olimex STM32-E407             |   UART, Network   |     USB, UART      |   -   |
+| ST B-L475E-IOT01A             |         -         | USB, UART, Network | UART  |
+| Crazyflie 2.1                 | Custom Radio Link |         -          |   -   |
+| Espressif ESP32               |  UART, WiFI UDP   |         -          |   -   |
+| ST Nucleo F446RE <sup>1</sup> |       UART        |         -          |   -   |
+| ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |   -   |
+| ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |   -   |
+| ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |   -   |
+| ST Nucleo F767ZI <sup>1</sup> |       UART        |         -          |   -   |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 

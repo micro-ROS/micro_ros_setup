@@ -20,6 +20,8 @@ jobs:
             branch: foxy
           - distro: rolling
             branch: main
+          - distro: galactic
+            branch: galactic
     container: ros:${{ matrix.distro }}
 
     steps:
@@ -325,6 +327,139 @@ jobs:
             rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
+          - distro: galactic
+            branch: galactic
+            rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+
+          - distro: galactic
+            branch: galactic
+            rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: crazyflie21
+            configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: nucleo_f446ze
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
+
+          - distro: galactic
+            branch: galactic
+            rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+
+          - distro: galactic
+            branch: galactic
+            rtos: zephyr
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: galactic
+            branch: galactic
+            rtos: zephyr
+            platform: discovery_l475_iot1
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: galactic
+            branch: galactic
+            rtos: zephyr
+            platform: nucleo_h743zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: galactic
+            branch: galactic
+            rtos: zephyr
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: galactic
+            branch: galactic
+            rtos: zephyr
+            platform: host
+            configuration: ping_pong
+            transport_arguments: -t udp -i 192.168.1.1 -p 8080
+            binary: 'firmware/build/zephyr/zephyr.exe'
+
+          - distro: galactic
+            branch: galactic
+            rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
+
+          - distro: galactic
+            branch: galactic
+            rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
+
+          - distro: galactic
+            branch: galactic
+            rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -374,6 +509,8 @@ jobs:
             branch: foxy
           - distro: rolling
             branch: main
+          - distro: galactic
+            branch: galactic
 
     needs: micro_ros_build
     container: ros:${{ matrix.distro }}

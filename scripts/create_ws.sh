@@ -40,7 +40,7 @@ then
 fi
 
 # ROS_DISTRO SPECIFIC
-curl -s https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos |\
+curl -s https://raw.githubusercontent.com/ros2/ros2/galactic/ros2.repos |\
     ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
 vcs import --input ros2.repos
 vcs import --input $REPOS

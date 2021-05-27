@@ -209,7 +209,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/rolling/setup.sh
+          . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}

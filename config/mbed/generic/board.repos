@@ -2,4 +2,4 @@ repositories:
   micro_ros_mbed:
     type: git
     url: https://github.com/micro-ROS/micro_ros_mbed
-    version: main
+    version: galactic
