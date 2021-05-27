@@ -32,7 +32,7 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update
+          rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
 
       - name: Build
@@ -330,7 +330,7 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update
+          rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
@@ -378,7 +378,7 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update
+          rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
