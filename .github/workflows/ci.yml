@@ -9,7 +9,7 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container: ros:galactic
 
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container: ros:galactic
     needs: micro_ros_build
 
     steps:
@@ -76,7 +76,7 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container: ros:galactic
     needs: micro_ros_build
 
     strategy:
