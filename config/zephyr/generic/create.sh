@@ -17,10 +17,13 @@ fi
 export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
-   
+
     west init zephyrproject
     pushd zephyrproject >/dev/null
         west update
+        cd zephyr
+          git checkout zephyr-v2.5.0
+        cd ..
     popd >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
@@ -30,7 +33,7 @@ pushd $FW_TARGETDIR >/dev/null
     else
         export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
     fi
-    
+
     wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
     ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
