@@ -18,5 +18,5 @@ pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
 popd >/dev/null
 
 pushd $FW_TARGETDIR >/dev/null
-    git clone -b main https://github.com/micro-ROS/raspbian_apps.git
+    git clone -b galactic https://github.com/micro-ROS/raspbian_apps.git
 popd >/dev/null

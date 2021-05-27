@@ -3,19 +3,19 @@ repositories:
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: main
+    version: galactic
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: main
+    version: galactic
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: main
+    version: galactic
   uros/micro-ROS-Agent:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-Agent.git
-    version: main
+    version: galactic
   uros/drive_base:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
