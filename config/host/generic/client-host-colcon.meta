@@ -35,14 +35,13 @@
                 "-DRMW_UXRCE_TRANSPORT=udp",
                 "-DRMW_UXRCE_DEFAULT_UDP_IP=127.0.0.1",
                 "-DRMW_UXRCE_DEFAULT_UDP_PORT=8888",
-                "-DRMW_UXRCE_MAX_NODES=3",
-                "-DRMW_UXRCE_MAX_PUBLISHERS=5",
-                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=5",
-                "-DRMW_UXRCE_MAX_SERVICES=5",
-                "-DRMW_UXRCE_MAX_CLIENTS=5",
+                "-DRMW_UXRCE_MAX_NODES=15",
+                "-DRMW_UXRCE_MAX_PUBLISHERS=15",
+                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=15",
+                "-DRMW_UXRCE_MAX_SERVICES=15",
+                "-DRMW_UXRCE_MAX_CLIENTS=15",
                 "-DRMW_UXRCE_STREAM_HISTORY=32",
-                "-DRMW_UXRCE_MAX_HISTORY=10",
-                "-DRMW_UXRCE_XML_BUFFER_LENGTH=1000"
+                "-DRMW_UXRCE_MAX_HISTORY=10"
             ]
         }
     }

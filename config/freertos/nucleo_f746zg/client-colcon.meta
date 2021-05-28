@@ -22,7 +22,6 @@
         },
         "rmw_microxrcedds": {
             "cmake-args": [
-                "-DRMW_UXRCE_XML_BUFFER_LENGTH=400",
                 "-DRMW_UXRCE_TRANSPORT=custom"
             ]
         },
