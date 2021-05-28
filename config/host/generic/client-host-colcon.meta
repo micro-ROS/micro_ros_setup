@@ -20,6 +20,11 @@
                 "-DBUILD_SHARED_LIBS=ON"
             ]
         },
+        "rclc_parameter":{
+            "cmake-args":[
+                "-DBUILD_SHARED_LIBS=ON"
+            ]
+        },
         "rcutils":{
             "cmake-args":[
                 "-DENABLE_TESTING=ON"
