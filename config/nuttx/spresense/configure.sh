@@ -7,7 +7,7 @@ set -o nounset
 set -o pipefail
 
 
-# spresense use own sdk to config
+# spresense uses own sdk to config
 NUTTX_DIR=$FW_TARGETDIR/spresense/sdk
 MCU_WS_DIR=$FW_TARGETDIR/mcu_ws
 

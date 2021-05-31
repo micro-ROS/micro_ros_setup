@@ -5,6 +5,8 @@
   <version>0.0.1</version>
   <description>This is a dummy package to supply firmware build dependencies for spresense.</description>
   <maintainer email="ingo.luetkebohle@de.bosch.com">Ingo Luetkebohle</maintainer>
+  <maintainer email="Barry.Xu@sony.com">Barry Xu</maintainer>
+  <maintainer email="Tomoya.Fujita@sony.com">Tomoya Fujita</maintainer>
   <license>APL2</license>
 
   <build_depend>gcc-arm-none-eabi</build_depend>
