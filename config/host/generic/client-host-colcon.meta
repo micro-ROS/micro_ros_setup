@@ -2,7 +2,8 @@
     "names":{
         "microxrcedds_client":{
             "cmake-args":[
-                "-DBUILD_SHARED_LIBS=ON"
+                "-DBUILD_SHARED_LIBS=ON",
+                "-DUCLIENT_PROFILE_MULTITHREAD=ON"
             ]
         },
         "microcdr":{
@@ -43,7 +44,12 @@
                 "-DRMW_UXRCE_STREAM_HISTORY=32",
                 "-DRMW_UXRCE_MAX_HISTORY=10"
             ]
-        }
+        },
+        "micro_ros_demos_rclc":{
+            "cmake-args":[
+                "-DMULTITHREAD_EXAMPLE=ON"
+            ]
+        },
     }
 }
 
