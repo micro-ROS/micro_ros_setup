@@ -44,12 +44,6 @@
                 "-DRMW_UXRCE_STREAM_HISTORY=32",
                 "-DRMW_UXRCE_MAX_HISTORY=10"
             ]
-        },
-        "micro_ros_demos_rclc":{
-            "cmake-args":[
-                "-DMULTITHREAD_EXAMPLE=OFF"
-            ]
-        },
+        }
     }
 }
-
