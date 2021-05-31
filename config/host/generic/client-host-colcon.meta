@@ -3,7 +3,7 @@
         "microxrcedds_client":{
             "cmake-args":[
                 "-DBUILD_SHARED_LIBS=ON",
-                "-DUCLIENT_PROFILE_MULTITHREAD=ON"
+                "-DUCLIENT_PROFILE_MULTITHREAD=OFF"
             ]
         },
         "microcdr":{
@@ -47,7 +47,7 @@
         },
         "micro_ros_demos_rclc":{
             "cmake-args":[
-                "-DMULTITHREAD_EXAMPLE=ON"
+                "-DMULTITHREAD_EXAMPLE=OFF"
             ]
         },
     }
