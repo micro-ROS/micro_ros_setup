@@ -49,6 +49,7 @@ micro-ROS also offers some other ways to crosscompile it for different platforms
 - a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
 - a standalone **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
+- a standalone **[micro-ROS module for NuttX RTOS](https://github.com/micro-ROS/micro_ros_nuttx_app)**: this package enables the integration of micro-ROS in any NuttX RTOS workspace.
 - a precompiled set of **[Arduino IDE libraries](https://github.com/micro-ROS/micro_ros_arduino)**: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.
 
 # Dependencies
