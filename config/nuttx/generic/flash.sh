@@ -17,6 +17,9 @@ if [ "$PLATFORM" = "olimex-stm32-e407" ]; then
         PROGRAMMER=interface/ftdi/olimex-arm-usb-ocd.cfg
       elif lsusb -d 15BA:002b;then
         PROGRAMMER=interface/ftdi/olimex-arm-usb-ocd-h.cfg
+      elif lsusb -d 0483:3748;then
+        echo "Using ST-LINK.."
+        PROGRAMMER=interface/stlink-v2.cfg
       else
         echo "Error. Unsuported OpenOCD USB programmer"
         exit 1
