@@ -21,7 +21,7 @@ pushd $FW_TARGETDIR >/dev/null
     west init zephyrproject
     pushd zephyrproject >/dev/null
         cd zephyr
-          git checkout zephyr-v2.5.0
+          git checkout zephyr-v2.6.0
         cd ..
         west update
     popd >/dev/null
@@ -29,12 +29,12 @@ pushd $FW_TARGETDIR >/dev/null
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
 
     if [ "$PLATFORM" = "host" ]; then
-        export TOOLCHAIN_VERSION=zephyr-sdk-0.11.2-setup.run
+        export TOOLCHAIN_VERSION=zephyr-sdk-0.12.4-x86_64-linux-setup.run
     else
-        export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.11.2-setup.run
+        export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.12.4-x86_64-linux-setup.run
     fi
 
-    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.11.2/$TOOLCHAIN_VERSION
+    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.12.4/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
     ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
 
