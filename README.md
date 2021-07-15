@@ -29,10 +29,20 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f746zg`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F767ZI](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f767zi`     |
 | [FreeRTOS](https://www.freertos.org/)    | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                         | v8.2.0               | `freertos esp32`             |
+<<<<<<< HEAD
 | [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.4.99              | `zephyr olimex-stm32-e407`   |
 | [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.4.99              | `zephyr discovery_l475_iot1` |
 | [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.4.99              | `zephyr nucleo_h743zi`       |
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.4.99              | `zephyr host`                |
+=======
+| [FreeRTOS](https://www.freertos.org/)    | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                              | v10.2.1 - CF 2020.06 | `freertos crazyflie21`       |
+| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.6.0               | `zephyr olimex-stm32-e407`   |
+| [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>          | v2.6.0               | `zephyr nucleo_f446re`       |
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.6.0               | `zephyr discovery_l475_iot1` |
+| [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.6.0               | `zephyr nucleo_h743zi`       |
+| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.6.0               | `zephyr host`                |
+| [Mbed](https://os.mbed.com/)             | [ST B-L475E-IOT01A](https://os.mbed.com/platforms/ST-Discovery-L475E-IOT01A/)                        | v6.6                 | `mbed disco_l475vg_iot01a`   |
+>>>>>>> 535e745 (bump zephyr version to 2.6.0; zephyr-sdk version to 0.12.4 (#351))
 | -                                        | Static library (.a) and headers (.h) <sup>3</sup>                                                    | -                    | `generate_lib`               |
 | Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
 
@@ -127,6 +137,7 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
+<<<<<<< HEAD
 |                               |       NuttX        |     FreeRTOS      |       Zephyr       |
 | ----------------------------- | :----------------: | :---------------: | :----------------: |
 | Olimex STM32-E407             | USB, UART, Network |   UART, Network   |     USB, UART      |
@@ -138,6 +149,19 @@ In summary, the supported configurations for transports are:
 | ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
 | ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
 | ST Nucleo F767ZI <sup>1</sup> |         -          |       UART        |         -          |
+=======
+|                               |     FreeRTOS      |       Zephyr       |        Mbed        |
+| ----------------------------- | :---------------: | :----------------: | :----------------: |
+| Olimex STM32-E407             |   UART, Network   |     USB, UART      |         -          |
+| ST B-L475E-IOT01A             |         -         | USB, UART, Network |        UART        |
+| Crazyflie 2.1                 | Custom Radio Link |         -          |         -          |
+| Espressif ESP32               |  UART, WiFI UDP   |         -          |         -          |
+| ST Nucleo F446RE <sup>1</sup> |       UART        |        UART        |         -          |
+| ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |         -          |
+| ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |         -          |
+| ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |         -          |
+| ST Nucleo F767ZI <sup>1</sup> |       UART        |         -          |         -          |
+>>>>>>> 535e745 (bump zephyr version to 2.6.0; zephyr-sdk version to 0.12.4 (#351))
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
