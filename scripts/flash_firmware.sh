@@ -16,8 +16,10 @@ else
     exit 1
 fi
 
+export DEVICE_NAME=${1:-/dev/ttyUSB0}
+
 # Flash specific firmware folder if needed
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ $PLATFORM == "generic" ] || [ ! -d "$PREFIX/config/$RTOS/$PLATFORM" ]; then
     if [ -f $PREFIX/config/$RTOS/generic/flash.sh ]; then
       echo "Flashing firmware for $RTOS platform $PLATFORM"
       . $PREFIX/config/$RTOS/generic/flash.sh

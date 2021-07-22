@@ -17,7 +17,7 @@ else
 fi
 
 # Check if configure script exists
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ $PLATFORM == "generic" ] || [ ! -d "$PREFIX/config/$RTOS/$PLATFORM" ]; then
     if [ ! -f $PREFIX/config/$RTOS/generic/configure.sh ]; then
         echo "No configuration step needed for generic platform $PLATFORM"
         exit 0
@@ -80,7 +80,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Configure specific firmware folder if needed
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ $PLATFORM == "generic" ] || [ ! -d "$PREFIX/config/$RTOS/$PLATFORM" ]; then
     echo "Configuring firmware for $RTOS platform $PLATFORM"
     exec $PREFIX/config/$RTOS/generic/configure.sh $@
 else

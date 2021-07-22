@@ -75,7 +75,7 @@ rosdep update --rosdistro $ROS_DISTRO
 rosdep install -y --from-paths src -i src --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
 # Check generic build
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ $PLATFORM == "generic" ] || [ ! -d "$PREFIX/config/$RTOS/$PLATFORM" ]; then
     TARGET_FOLDER=generic
 else
     TARGET_FOLDER=$PLATFORM
