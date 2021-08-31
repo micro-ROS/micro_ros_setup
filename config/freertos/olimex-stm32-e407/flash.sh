@@ -11,6 +11,10 @@ pushd $OLIMEX_EXTENSIONS_DIR > /dev/null
         PROGRAMMER=interface/ftdi/olimex-arm-usb-ocd.cfg
       elif lsusb -d 15BA:002b;then
         PROGRAMMER=interface/ftdi/olimex-arm-usb-ocd-h.cfg
+      elif lsusb -d 0483:374b; then
+        PROGRAMMER=interface/stlink-v2-1.cfg
+      elif lsusb -d 0483:3748; then
+        PROGRAMMER=interface/stlink-v2.cfg
       else
         echo "Error. Unsuported OpenOCD USB programmer"
         exit 1
