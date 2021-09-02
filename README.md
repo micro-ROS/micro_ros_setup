@@ -2,7 +2,7 @@
 This ROS 2 package is the entry point for building micro-ROS apps for different embedded platforms.
 
 - [Supported platforms](#supported-platforms)
-  - [Secondary build system tools](#secondary-build-system-tools)
+  - [Standalone build system tools](#standalone-build-system-tools)
 - [Dependencies](#dependencies)
 - [Building](#building)
   - [Creating micro-ROS firmware](#creating-micro-ros-firmware)
@@ -43,15 +43,19 @@ This package is the **official build system for micro-ROS**. It provides tools a
 
 *<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
 
-## Secondary build system tools
+## Standalone build system tools
 
 micro-ROS also offers some other ways to crosscompile it for different platforms. These other options are secondary tools and may not have full support for all features. Currently micro-ROS is also available as:
 
+- a standalone **[micro-ROS component for Renesas e<sup>2</sup> studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)**: this package enables the integration of micro-ROS in Renesas e<sup>2</sup> studio and RA6M5 MCU family.
 - a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
 - a standalone **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
 - a standalone **[micro-ROS module for NuttX RTOS](https://github.com/micro-ROS/micro_ros_nuttx_app)**: this package enables the integration of micro-ROS in any NuttX RTOS workspace.
+- a standalone **[micro-ROS module for Microsoft Azure RTOS](https://github.com/micro-ROS/micro_ros_azure_rtos_app)**: this package enables the integration of micro-ROS in a Microsoft Azure RTOS workspace.
+- a standalone **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**: this package enables the integration of micro-ROS in STM32CubeMX and STM32CubeIDE.
 - a precompiled set of **[Arduino IDE libraries](https://github.com/micro-ROS/micro_ros_arduino)**: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.
+- a precompiled set of **[Raspberry Pi Pico SDK libraries](https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk)**: this package enables the integration of micro-ROS in the Raspberry Pi Pico SDK.
 
 # Dependencies
 
