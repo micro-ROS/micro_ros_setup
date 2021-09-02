@@ -29,10 +29,10 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f746zg`     |
 | [FreeRTOS](https://www.freertos.org/)    | [ST Nucleo F767ZI](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>          | STM32CubeMX latest   | `freertos nucleo_f767zi`     |
 | [FreeRTOS](https://www.freertos.org/)    | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                         | v8.2.0               | `freertos esp32`             |
-| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.6.0              | `zephyr olimex-stm32-e407`   |
-| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.6.0              | `zephyr discovery_l475_iot1` |
-| [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.6.0              | `zephyr nucleo_h743zi`       |
-| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.6.0              | `zephyr host`                |
+| [Zephyr](https://www.zephyrproject.org/) | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v2.6.0               | `zephyr olimex-stm32-e407`   |
+| [Zephyr](https://www.zephyrproject.org/) | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html) | v2.6.0               | `zephyr discovery_l475_iot1` |
+| [Zephyr](https://www.zephyrproject.org/) | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>           | v2.6.0               | `zephyr nucleo_h743zi`       |
+| [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.6.0               | `zephyr host`                |
 | -                                        | Static library (.a) and headers (.h) <sup>3</sup>                                                    | -                    | `generate_lib`               |
 | Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
 
@@ -42,26 +42,17 @@ This package is the **official build system for micro-ROS**. It provides tools a
 
 *<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
 
-<<<<<<< HEAD
-Please note that NuttX with Olimex STM32-E407 board is the reference platform and not everything might be supported on other platforms.
-
-## Secondary build system tools
-=======
 ## Standalone build system tools
->>>>>>> e13e64d (Update standalone build tools section (#380))
 
 micro-ROS also offers some other ways to crosscompile it for different platforms. These other options are secondary tools and may not have full support for all features. Currently micro-ROS is also available as:
 
 - a standalone **[micro-ROS component for Renesas e<sup>2</sup> studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)**: this package enables the integration of micro-ROS in Renesas e<sup>2</sup> studio and RA6M5 MCU family.
 - a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
 - a standalone **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.
-<<<<<<< HEAD
-=======
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
 - a standalone **[micro-ROS module for NuttX RTOS](https://github.com/micro-ROS/micro_ros_nuttx_app)**: this package enables the integration of micro-ROS in any NuttX RTOS workspace.
 - a standalone **[micro-ROS module for Microsoft Azure RTOS](https://github.com/micro-ROS/micro_ros_azure_rtos_app)**: this package enables the integration of micro-ROS in a Microsoft Azure RTOS workspace.
 - a set of **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**: this package enables the integration of micro-ROS in STM32CubeMX and STM32CubeIDE.
->>>>>>> e13e64d (Update standalone build tools section (#380))
 - a precompiled set of **[Arduino IDE libraries](https://github.com/micro-ROS/micro_ros_arduino)**: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.
 - a precompiled set of **[Raspberry Pi Pico SDK libraries](https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk)**: this package enables the integration of micro-ROS in the Raspberry Pi Pico SDK.
 
@@ -69,13 +60,6 @@ micro-ROS also offers some other ways to crosscompile it for different platforms
 
 This package targets the **ROS 2** installation. ROS 2 supported distributions are:
 
-<<<<<<< HEAD
-| ROS 2 Distro | State     | Branch    |
-| ------------ | --------- | --------- |
-| Crystal      | Supported | `crystal` |
-| Dashing      | Supported | `dashing` |
-| Foxy         | Supported | `foxy`    |
-=======
 | ROS 2 Distro | State     | Branch     |
 | ------------ | --------- | ---------- |
 | Crystal      | EOL       | `crystal`  |
@@ -83,7 +67,6 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | Foxy         | Supported | `foxy`     |
 | Galactic     | Supported | `galactic` |
 | Rolling      | Supported | `main`     |
->>>>>>> e13e64d (Update standalone build tools section (#380))
 
 Some other prerequisites needed for building a firmware using this package are:
 
@@ -91,7 +74,7 @@ Some other prerequisites needed for building a firmware using this package are:
 sudo apt install python3-rosdep
 ```
 
-# Building 
+# Building
 
 Create a ROS 2 workspace and build this package for a given ROS 2 distro (see table above):
 
@@ -150,7 +133,6 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
-<<<<<<< HEAD
 |                               |       NuttX        |     FreeRTOS      |       Zephyr       |
 | ----------------------------- | :----------------: | :---------------: | :----------------: |
 | Olimex STM32-E407             | USB, UART, Network |   UART, Network   |     USB, UART      |
@@ -162,19 +144,6 @@ In summary, the supported configurations for transports are:
 | ST Nucleo H743ZI <sup>1</sup> |         -          |         -         |        UART        |
 | ST Nucleo F746ZG <sup>1</sup> |         -          |       UART        |        UART        |
 | ST Nucleo F767ZI <sup>1</sup> |         -          |       UART        |         -          |
-=======
-|                               |     FreeRTOS      |       Zephyr       | Mbed  |
-| ----------------------------- | :---------------: | :----------------: | :---: |
-| Olimex STM32-E407             |   UART, Network   |     USB, UART      |   -   |
-| ST B-L475E-IOT01A             |         -         | USB, UART, Network | UART  |
-| Crazyflie 2.1                 | Custom Radio Link |         -          |   -   |
-| Espressif ESP32               |  UART, WiFI UDP   |         -          |   -   |
-| ST Nucleo F446RE <sup>1</sup> |       UART        |        UART        |   -   |
-| ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |   -   |
-| ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |   -   |
-| ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |   -   |
-| ST Nucleo F767ZI <sup>1</sup> |       UART        |         -          |   -   |
->>>>>>> e13e64d (Update standalone build tools section (#380))
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
@@ -217,7 +186,7 @@ This folder contains up to four scripts:
 - `configure.sh`: modifies and configure parameters of the installed dependencies. This step is **optional**.
 - `build.sh`: builds the firmware and create a platform-specific linked binary.
 - `flash.sh`: flashes the binary in the target platform.
-  
+
 Some other required files inside the folder can be accessed from these scripts using the following paths:
 
 ```bash
@@ -248,4 +217,4 @@ see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
 There are no known limitations.
 
-If you find issues, [please report them](https://github.com/micro-ROS/micro_ros_setup/issues). 
+If you find issues, [please report them](https://github.com/micro-ROS/micro_ros_setup/issues).
