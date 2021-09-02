@@ -42,12 +42,7 @@ This package is the **official build system for micro-ROS**. It provides tools a
 
 *<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
 
-<<<<<<< HEAD
-
-## Secondary build system tools
-=======
 ## Standalone build system tools
->>>>>>> e13e64d (Update standalone build tools section (#380))
 
 micro-ROS also offers some other ways to crosscompile it for different platforms. These other options are secondary tools and may not have full support for all features. Currently micro-ROS is also available as:
 
@@ -67,11 +62,8 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 
 | ROS 2 Distro | State     | Branch     |
 | ------------ | --------- | ---------- |
-<<<<<<< HEAD
-=======
 | Crystal      | EOL       | `crystal`  |
 | Dashing      | EOL       | `dashing`  |
->>>>>>> e13e64d (Update standalone build tools section (#380))
 | Foxy         | Supported | `foxy`     |
 | Galactic     | Supported | `galactic` |
 | Rolling      | Supported | `main`     |
@@ -144,11 +136,7 @@ In summary, the supported configurations for transports are:
 | ST B-L475E-IOT01A             |         -         | USB, UART, Network | UART  |
 | Crazyflie 2.1                 | Custom Radio Link |         -          |   -   |
 | Espressif ESP32               |  UART, WiFI UDP   |         -          |   -   |
-<<<<<<< HEAD
 | ST Nucleo F446RE <sup>1</sup> |       UART        |         -          |   -   |
-=======
-| ST Nucleo F446RE <sup>1</sup> |       UART        |        UART        |   -   |
->>>>>>> e13e64d (Update standalone build tools section (#380))
 | ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |   -   |
 | ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |   -   |
 | ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |   -   |
