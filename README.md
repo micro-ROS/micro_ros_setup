@@ -78,6 +78,7 @@ Some other prerequisites needed for building a firmware using this package are:
 ```
 sudo apt install python3-rosdep
 ```
+# Quick start
 
 Building for Android needs [Latest Android NDK](https://developer.android.com/ndk/downloads) to be installed and the following environment variables to be set:
 - ```ANDROID_ABI```: CPU variant, refer [here](https://developer.android.com/ndk/guides/abis) for details.
