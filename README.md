@@ -4,6 +4,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 - [Supported platforms](#supported-platforms)
   - [Standalone build system tools](#standalone-build-system-tools)
 - [Dependencies](#dependencies)
+- [Quick Start](#quick-start)
 - [Building](#building)
   - [Creating micro-ROS firmware](#creating-micro-ros-firmware)
   - [Configuring micro-ROS firmware](#configuring-micro-ros-firmware)
@@ -74,6 +75,9 @@ Some other prerequisites needed for building a firmware using this package are:
 ```
 sudo apt install python3-rosdep
 ```
+# Quick start
+
+Download [here](https://www.eprosima.com/index.php/downloads-all) the micro-ROS docker image that contains a pre-installed client and agent as well as some compiled examples.
 
 # Building
 
