@@ -6,7 +6,7 @@ repositories:
   uros/micro-ROS-Agent:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-Agent.git
-    version: feature/remove_xrce_dep
+    version: main
   uros/drive_base:
     type: git
     url: https://github.com/micro-ROS/drive_base.git
