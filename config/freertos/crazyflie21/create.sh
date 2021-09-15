@@ -12,7 +12,6 @@ pushd $FW_TARGETDIR >/dev/null
     vcs import --input $PREFIX/config/$RTOS/$PLATFORM/board.repos
 
     # ignore broken packages
-    touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
     touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
