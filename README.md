@@ -37,12 +37,15 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [Mbed](https://os.mbed.com/)                                                                                        | [ST B-L475E-IOT01A](https://os.mbed.com/platforms/ST-Discovery-L475E-IOT01A/)                                                                                                            | v6.6                         | `mbed disco_l475vg_iot01a`   |
 | -                                                                                                                   | Static library (.a) and headers (.h) <sup>3</sup>                                                                                                                                        | -                            | `generate_lib`               |
 | Linux                                                                                                               | *Host <sup>2</sup>*                                                                                                                                                                      | Ubuntu 18.04/20.04           | `host`                       |
+| Android                                                                                                             | [AOSP](https://source.android.com) <sup>4</sup>                                                                                                                                          | Latest                       | `android generic`            |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
 *<sup>2</sup> Support for compiling apps in a native Linux host for testing and debugging*
 
 *<sup>3</sup> a valid CMake toolchain with custom crosscompilation definition is required*
+
+*<sup>4</sup> Community supported, may have lack of official support*
 
 ## Standalone build system tools
 
@@ -75,6 +78,12 @@ Some other prerequisites needed for building a firmware using this package are:
 ```
 sudo apt install python3-rosdep
 ```
+
+Building for Android needs [Latest Android NDK](https://developer.android.com/ndk/downloads) to be installed and the following environment variables to be set:
+- ```ANDROID_ABI```: CPU variant, refer [here](https://developer.android.com/ndk/guides/abis) for details.
+- ```ANDROID_NATIVE_API_LEVEL```: Android platform version, refer [here](https://developer.android.com/ndk/guides/cmake#android_native_api_level) for details.
+- ```ANDROID_NDK```: root path of the installed NDK.
+
 # Quick start
 
 Download [here](https://www.eprosima.com/index.php/downloads-all) the micro-ROS docker image that contains a pre-installed client and agent as well as some compiled examples.
