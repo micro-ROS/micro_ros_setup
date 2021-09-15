@@ -6,9 +6,6 @@ pushd $FW_TARGETDIR >/dev/null
     curl -s https://raw.githubusercontent.com/ros2/ros2/galactic/ros2.repos |\
         ros2 run micro_ros_setup yaml_filter.py raspbian_apps/$CONFIG_NAME/ros2_repos.filter > ros2.repos
     vcs import --input ros2.repos mcu_ws/ && rm ros2.repos
-    if [ -d mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx ]; then
-        touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
-    fi
 
     if [ -d mcu_ws/ros2/rosidl ]; then
         touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
