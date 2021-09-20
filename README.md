@@ -4,7 +4,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 - [Supported platforms](#supported-platforms)
   - [Standalone build system tools](#standalone-build-system-tools)
 - [Dependencies](#dependencies)
-- [Quick Start](#quick-start)
+- [Quick start](#quick-start)
 - [Building](#building)
   - [Creating micro-ROS firmware](#creating-micro-ros-firmware)
   - [Configuring micro-ROS firmware](#configuring-micro-ros-firmware)
@@ -20,6 +20,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 This package is the **official build system for micro-ROS**. It provides tools and utils to crosscompile micro-ROS with just the common ROS 2 tools for these platforms:
 
+<<<<<<< HEAD
 | RTOS                                     | Platform                                                                                             | Version              | Example                      |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------- | ---------------------------- |
 | [Nuttx](https://nuttx.org/)              | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)          | v7.29                | `nuttx olimex-stm32-e407`    |
@@ -36,6 +37,25 @@ This package is the **official build system for micro-ROS**. It provides tools a
 | [Zephyr](https://www.zephyrproject.org/) | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)     | v2.6.0               | `zephyr host`                |
 | -                                        | Static library (.a) and headers (.h) <sup>3</sup>                                                    | -                    | `generate_lib`               |
 | Linux                                    | *Host <sup>2</sup>*                                                                                  | Ubuntu 18.04/20.04   | `host`                       |
+=======
+| RTOS                                                                                                                | Platform                                                                                                                                                                                 | Version                      | Example                      |
+| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------- |
+| [Azure RTOS](https://azure.microsoft.com/es-es/services/rtos/) / [FreeRTOS](https://www.freertos.org/) / Bare metal | [Renesas RA6M5](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra6m5-200mhz-arm-cortex-m33-trustzone-highest-integration-ethernet-and-can-fde) | Renesas e<sup>2</sup> studio | `renesas_ra ra6m5`           |
+| [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f446re`     |
+| [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f446ze`     |
+| [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f746zg`     |
+| [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F767ZI](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f767zi`     |
+| [FreeRTOS](https://www.freertos.org/)                                                                               | [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32/overview)                                                                                                             | v8.2.0                       | `freertos esp32`             |
+| [FreeRTOS](https://www.freertos.org/)                                                                               | [Crazyflie 2.1](https://www.bitcraze.io/crazyflie-2-1/)                                                                                                                                  | v10.2.1 - CF 2020.06         | `freertos crazyflie21`       |
+| [Zephyr](https://www.zephyrproject.org/)                                                                            | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)                                                                                              | v2.6.0                       | `zephyr olimex-stm32-e407`   |
+| [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>                                                                                              | v2.6.0                       | `zephyr nucleo_f446re`       |
+| [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html)                                                                                     | v2.6.0                       | `zephyr discovery_l475_iot1` |
+| [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>                                                                                               | v2.6.0                       | `zephyr nucleo_h743zi`       |
+| [Zephyr](https://www.zephyrproject.org/)                                                                            | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)                                                                                         | v2.6.0                       | `zephyr host`                |
+| [Mbed](https://os.mbed.com/)                                                                                        | [ST B-L475E-IOT01A](https://os.mbed.com/platforms/ST-Discovery-L475E-IOT01A/)                                                                                                            | v6.6                         | `mbed disco_l475vg_iot01a`   |
+| -                                                                                                                   | Static library (.a) and headers (.h) <sup>3</sup>                                                                                                                                        | -                            | `generate_lib`               |
+| Linux                                                                                                               | *Host <sup>2</sup>*                                                                                                                                                                      | Ubuntu 18.04/20.04           | `host`                       |
+>>>>>>> d27b83e (Add renesas RA6M5 (#390))
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
