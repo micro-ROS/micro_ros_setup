@@ -34,7 +34,7 @@ print_available_platforms () {
 if [ $# -ge 1 ]; then
     RTOS=$1
 else
-    echo "Syntax: ros2 run micro_ros_setup create_firmware_ws.sh <RTOS name> [<platform>]"
+    echo "Syntax: ros2 run micro_ros_setup create_firmware_ws.sh <package> [<platform>]"
     print_available_platforms
     exit 1
 fi
