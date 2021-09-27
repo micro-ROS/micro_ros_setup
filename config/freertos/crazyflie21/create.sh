@@ -10,6 +10,7 @@ pushd $FW_TARGETDIR >/dev/null
 
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/$PLATFORM/board.repos
+    git apply $PREFIX/config/$RTOS/$PLATFORM/patchs/0001-Add-tx-queue-utilities.patch --directory crazyflie_firmware
 
     # ignore broken packages
     touch mcu_ws/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
