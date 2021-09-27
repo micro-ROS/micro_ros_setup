@@ -1,0 +1,25 @@
+From df14a0e01528c304c758bb4f32b1f28cc5fecc19 Mon Sep 17 00:00:00 2001
+From: Antonio cuadros <acuadros1995@gmail.com>
+Date: Mon, 27 Sep 2021 10:05:54 +0200
+Subject: [PATCH] Remove assert
+
+---
+ src/hal/src/radiolink.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/hal/src/radiolink.c b/src/hal/src/radiolink.c
+index 738901f3..bfe07865 100644
+--- a/src/hal/src/radiolink.c
++++ b/src/hal/src/radiolink.c
+@@ -161,7 +161,7 @@ void radiolinkSyslinkDispatch(SyslinkPacket *slp)
+   {
+     slp->length--; // Decrease to get CRTP size.
+     // Assert that we are not dopping any packets
+-    ASSERT(xQueueSend(crtpPacketDelivery, &slp->length, 0) == pdPASS);
++    xQueueSend(crtpPacketDelivery, &slp->length, 0);
+     ledseqRun(&seq_linkUp);
+     // If a radio packet is received, one can be sent
+     if (xQueueReceive(txQueue, &txPacket, 0) == pdTRUE)
+-- 
+2.25.1
+
