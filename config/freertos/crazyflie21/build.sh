@@ -12,6 +12,7 @@ pushd $EXTENSIONS_DIR >/dev/null
 
     export UROS_APP=$(head -n1 $FW_TARGETDIR/APP | tail -n1)
     export UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
+    export RMW_IMPLEMENTATION=rmw_microxrcedds
 
     if [ -d "$UROS_APP_FOLDER" ]; then
         echo "Selected app: $UROS_APP"
