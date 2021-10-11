@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>firmware</name>
+  <version>0.0.0</version>
+  <description>Micro-ROS dependecies for Android</description>
+  <maintainer email="joel.cao@oppo.com">Joel Cao</maintainer>
+  <license>APL2</license>
+
+  <build_depend>gperf</build_depend>
+  <build_depend>wget</build_depend>
+</package>
