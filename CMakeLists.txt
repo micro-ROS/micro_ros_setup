@@ -45,6 +45,7 @@ install(
     scripts/create_firmware_ws.sh
     scripts/configure_firmware.sh
     scripts/flash_firmware.sh
+    scripts/reset_firmware.sh
     scripts/build_firmware.sh
     scripts/build_agent.sh
     scripts/yaml_filter.py
