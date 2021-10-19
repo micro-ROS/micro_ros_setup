@@ -47,9 +47,9 @@ export UROS_EXTRA_BUILD_ARGS
 # Checking if firmware exists
 if [ -d $FW_TARGETDIR ]; then
     RTOS=$(head -n1 $FW_TARGETDIR/PLATFORM)
-    PLATFORM=$(head -n2 firmware/PLATFORM | tail -n1)
+    PLATFORM=$(head -n2 $FW_TARGETDIR/PLATFORM | tail -n1)
     if [ -f $FW_TARGETDIR/TRANSPORT ]; then
-        TRANSPORT=$(head -n1 firmware/TRANSPORT)
+        TRANSPORT=$(head -n1 $FW_TARGETDIR/TRANSPORT)
     fi
 else
     echo "Firmware folder not found. Please use ros2 run micro_ros_setup create_firmware_ws.sh to create a new project."
