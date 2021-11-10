@@ -362,15 +362,8 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
-<<<<<<< HEAD
-          - distro: rolling
-            branch: main
-=======
           # - distro: rolling
           #  branch: main
-          - distro: galactic
-            branch: galactic
->>>>>>> 218170b (Temporal disable Rolling Agent CI (#408))
 
     needs: micro_ros_build
     container: ros:${{ matrix.distro }}
