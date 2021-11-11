@@ -68,7 +68,16 @@ echo $RTOS > $FW_TARGETDIR/PLATFORM
 echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 
 # Setting common enviroment
+<<<<<<< HEAD
 SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_opensplice_cpp ros-${ROS_DISTRO}-cyclonedds ros-${ROS_DISTRO}-rmw-cyclonedds-cpp google_benchmark_vendor performance_test_fixture ros-${ROS_DISTRO}-mimick-vendor rmw_cyclonedds_cpp rmw_connext_cpp"
+=======
+
+if [ -z ${EXTERNAL_SKIP+x} ]; then
+  EXTERNAL_SKIP=""
+fi
+
+SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_opensplice_cpp ros-${ROS_DISTRO}-cyclonedds  ros-${ROS_DISTRO}-rti-connext-dds-cmake-module ros-${ROS_DISTRO}-rmw-connextdds-common ros-${ROS_DISTRO}-rmw-connextdds ros-${ROS_DISTRO}-rmw-cyclonedds-cpp google_benchmark_vendor performance_test_fixture ros-${ROS_DISTRO}-mimick-vendor rmw_cyclonedds_cpp rmw_connext_cpp rti-connext-dds-5.3.1 rmw_connextdds $EXTERNAL_SKIP"
+>>>>>>> 3a28e75 (Fix rosdep (#414))
 
 # Check generic build
 if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
