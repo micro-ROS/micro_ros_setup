@@ -70,10 +70,6 @@ echo $PLATFORM >> $FW_TARGETDIR/PLATFORM
 # Setting common enviroment
 SKIP="microxrcedds_agent microxrcedds_client microcdr rosidl_typesupport_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_opensplice_cpp rosidl_typesupport_opensplice_c rmw_opensplice_cpp ros-${ROS_DISTRO}-cyclonedds ros-${ROS_DISTRO}-rmw-cyclonedds-cpp google_benchmark_vendor performance_test_fixture ros-${ROS_DISTRO}-mimick-vendor rmw_cyclonedds_cpp rmw_connext_cpp"
 
-# Installing common packages
-rosdep update --rosdistro $ROS_DISTRO
-rosdep install -y --from-paths src -i src --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
-
 # Check generic build
 if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
     TARGET_FOLDER=generic
