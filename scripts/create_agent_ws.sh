@@ -6,6 +6,11 @@ set -o pipefail
 
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 TARGETDIR=src
+
+if [ -z ${EXTERNAL_SKIP+x} ]; then
+  EXTERNAL_SKIP=""
+fi
+
 SKIP="rosidl_typesupport_opensplice_c rosidl_typesupport_opensplice_cpp rmw_opensplice_cpp rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp microxrcedds_agent microxrcedds_client microcdr rmw_connextdds $EXTERNAL_SKIP"
 
 if [ $# -gt 0 ]
