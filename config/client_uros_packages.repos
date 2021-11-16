@@ -16,7 +16,7 @@ repositories:
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc
-    version: master
+    version: fix/package_xml
   uros/micro_ros_utilities:
     type: git
     url: https://github.com/micro-ROS/micro_ros_utilities
