@@ -86,13 +86,6 @@ Building for Android needs [Latest Android NDK](https://developer.android.com/nd
 
 # Quick start
 
-Building for Android needs [Latest Android NDK](https://developer.android.com/ndk/downloads) to be installed and the following environment variables to be set:
-- ```ANDROID_ABI```: CPU variant, refer [here](https://developer.android.com/ndk/guides/abis) for details.
-- ```ANDROID_NATIVE_API_LEVEL```: Android platform version, refer [here](https://developer.android.com/ndk/guides/cmake#android_native_api_level) for details.
-- ```ANDROID_NDK```: root path of the installed NDK.
-
-# Quick start
-
 Download [here](https://www.eprosima.com/index.php/downloads-all) the micro-ROS docker image that contains a pre-installed client and agent as well as some compiled examples.
 
 # Building
