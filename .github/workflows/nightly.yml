@@ -339,7 +339,7 @@ jobs:
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
           apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           apt-get update
-          apt install -y python3-colcon-metadata python3-pip cmake-data=3.21.3-0kitware1ubuntu20.04.1 cmake
+          apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
 
