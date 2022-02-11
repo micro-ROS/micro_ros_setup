@@ -20,6 +20,7 @@ jobs:
 
       - name: Dependencies
         run: |
+          . /opt/ros/$ROS_DISTRO/setup.sh
           apt update
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
