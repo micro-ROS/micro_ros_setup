@@ -22,8 +22,6 @@
 
   <exec_depend>python3-vcstool</exec_depend>
 
-  <test_depend>ament_lint_auto</test_depend>
-
   <export>
     <build_type>ament_cmake</build_type>
   </export>
