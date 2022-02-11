@@ -194,6 +194,10 @@ jobs:
         run: |
           . /opt/ros/$ROS_DISTRO/setup.sh
           apt update
+          # Install last version of CMake
+          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+          apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro $ROS_DISTRO
@@ -210,7 +214,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/rolling/setup.sh
+          . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
