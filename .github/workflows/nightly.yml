@@ -34,8 +34,8 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
@@ -475,8 +475,8 @@ jobs:
           apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -525,8 +525,8 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
