@@ -32,8 +32,8 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
@@ -329,9 +329,20 @@ jobs:
       - name: Dependencies
         run: |
           apt update
+<<<<<<< HEAD
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
+=======
+          # Install last version of CMake
+          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+          apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          apt-get update
+          apt install -y python3-colcon-metadata python3-pip cmake
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+>>>>>>> d9950d7 (Fix CI (#453))
 
       - uses: actions/download-artifact@v1
         with:
@@ -378,8 +389,8 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
