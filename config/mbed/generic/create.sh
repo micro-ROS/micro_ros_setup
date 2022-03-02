@@ -15,15 +15,15 @@ fi
 export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
-    
+
     pip3 install mbed-tools
-    
+
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/generic/board.repos
 
     pushd micro_ros_mbed >/dev/null
+        echo https://github.com/ARMmbed/mbed-os/\#mbed-os-6.10.0 > mbed-os.lib
         mbed-tools deploy
-        pip3 install -r mbed-os/requirements.txt
     popd >/dev/null
 
     # TODO (pablogs): Avoid current approach and rely on the standalone module
