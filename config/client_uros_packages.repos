@@ -20,7 +20,11 @@ repositories:
   uros/micro_ros_utilities:
     type: git
     url: https://github.com/micro-ROS/micro_ros_utilities
+<<<<<<< HEAD
     version: main
+=======
+    version: galactic
+>>>>>>> a0725c9 (fix version tag in client_uros_packages.repos (#460))
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
