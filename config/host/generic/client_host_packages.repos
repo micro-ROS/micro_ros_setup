@@ -33,7 +33,6 @@ repositories:
   uros/micro_ros_utilities:
     type: git
     url: https://github.com/micro-ROS/micro_ros_utilities
-    version: main
     version: galactic
 
 # Required messages packages
