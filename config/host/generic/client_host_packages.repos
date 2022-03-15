@@ -9,7 +9,7 @@ repositories:
     version: foxy
 
 # MicroROS
-  
+
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc.git
@@ -29,15 +29,7 @@ repositories:
   uros/micro-ROS-demos:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-demos.git
-<<<<<<< HEAD
     version: foxy
-=======
-    version: galactic
-  uros/micro_ros_utilities:
-    type: git
-    url: https://github.com/micro-ROS/micro_ros_utilities
-    version: galactic
->>>>>>> 3136ad0 (build dynamic lib of rosidl_typesupport of (#473))
 
 # Required messages packages
 
