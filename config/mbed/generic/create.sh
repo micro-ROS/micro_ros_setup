@@ -17,6 +17,7 @@ export PATH=~/.local/bin:"$PATH"
 pushd $FW_TARGETDIR >/dev/null
 
     pip3 install mbed-tools
+    pip3 install markupsafe==2.0.1
 
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/generic/board.repos
