@@ -56,11 +56,9 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 
-<<<<<<< HEAD
     rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
-=======
+
     # Workaround. Remove when https://github.com/sphinx-doc/sphinx/issues/10291 and https://github.com/micro-ROS/micro_ros_zephyr_module/runs/5714546662?check_suite_focus=true
     pip3 install --upgrade Sphinx
 
->>>>>>> 0942f74 (Fix Zephyr CI (#480))
 popd >/dev/null
