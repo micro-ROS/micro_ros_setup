@@ -362,15 +362,10 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
-<<<<<<< HEAD
-          # - distro: rolling
-          #  branch: main
-=======
           - distro: rolling
            branch: main
           - distro: galactic
             branch: galactic
->>>>>>> 91ed371 (Enable rolling agent (#479))
 
     needs: micro_ros_build
     container: ros:${{ matrix.distro }}
