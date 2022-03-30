@@ -507,8 +507,8 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
-          # - distro: rolling
-          #  branch: main
+          - distro: rolling
+           branch: main
           - distro: galactic
             branch: galactic
 
