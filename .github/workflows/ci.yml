@@ -55,6 +55,7 @@ jobs:
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
+          apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
 
       - uses: actions/download-artifact@v1
         with:
@@ -194,6 +195,7 @@ jobs:
       - name: Dependencies
         run: |
           apt update
+          apt upgrade -y
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
