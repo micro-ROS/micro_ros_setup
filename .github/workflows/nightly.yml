@@ -362,8 +362,10 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
-          # - distro: rolling
-          #  branch: main
+          - distro: rolling
+           branch: main
+          - distro: galactic
+            branch: galactic
 
     needs: micro_ros_build
     container: ros:${{ matrix.distro }}
