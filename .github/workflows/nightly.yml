@@ -374,7 +374,7 @@ jobs:
           - distro: foxy
             branch: foxy
           - distro: rolling
-           branch: main
+            branch: main
           - distro: galactic
             branch: galactic
 
