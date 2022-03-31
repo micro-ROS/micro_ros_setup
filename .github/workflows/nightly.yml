@@ -469,17 +469,13 @@ jobs:
       - name: Dependencies
         run: |
           apt update
-<<<<<<< HEAD
+          apt upgrade -y
           # Install last version of CMake
           apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
           apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-=======
-          apt upgrade -y
-          apt install -y python3-colcon-metadata python3-pip
->>>>>>> 4a2e82c (Fix CI upgrade ROS docker (#489))
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
 
