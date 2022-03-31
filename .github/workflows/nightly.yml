@@ -329,6 +329,7 @@ jobs:
       - name: Dependencies
         run: |
           apt update
+          apt upgrade -y
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
