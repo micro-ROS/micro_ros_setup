@@ -334,6 +334,7 @@ jobs:
       - name: Dependencies
         run: |
           apt update
+          apt upgrade -y
           # Install last version of CMake
           apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
