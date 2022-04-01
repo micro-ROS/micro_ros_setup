@@ -1,9 +1,7 @@
 <br/>
-<a>
    <p align="center">
       <img width="40%" src=".images/microros_logo.png">
    </p>
-</a>
 <br/>
 
 This ROS 2 package is the entry point for building micro-ROS apps for different embedded platforms.
