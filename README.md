@@ -56,7 +56,7 @@ This package provides tools and utils to crosscompile micro-ROS with just the co
 
 ## Standalone build system tools
 
-micro-ROS also offers some other ways to crosscompile it for different platforms. These other options are secondary tools and may not have full support for all features. Currently micro-ROS is also available as:
+micro-ROS standalone module for specific platforms are:
 
 - a standalone **[micro-ROS component for Renesas e<sup>2</sup> studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)**: this package enables the integration of micro-ROS in Renesas e<sup>2</sup> studio and RA6M5 MCU family.
 - a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
