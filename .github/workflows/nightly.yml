@@ -20,6 +20,8 @@ jobs:
             branch: foxy
           - distro: rolling
             branch: main
+          - distro: galactic
+            branch: galactic
     container: ros:${{ matrix.distro }}
 
     steps:
@@ -330,9 +332,25 @@ jobs:
         run: |
           apt update
           apt upgrade -y
+<<<<<<< HEAD
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
+=======
+          # Install last version of CMake
+          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+          if [ $(lsb_release -sr) = "22.04" ]; then
+            echo "Using Ubuntu mainline CMake"
+          else
+            echo "Adding Kitware CMake repo to install CMake"
+            wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+            apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          fi
+          apt-get update
+          apt install -y python3-colcon-metadata python3-pip cmake
+          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
+          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+>>>>>>> 84bb9ab (Fix CMake install in jammy (#493))
 
       - uses: actions/download-artifact@v1
         with:
