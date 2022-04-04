@@ -199,8 +199,13 @@ jobs:
           apt install -y python3.9-dev
           # Install last version of CMake
           apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
-          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-          apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          if [ $(lsb_release -sr) = "22.04" ]; then
+            echo "Using Ubuntu mainline CMake"
+          else
+            echo "Adding Kitware CMake repo to install CMake"
+            wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+            apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro $ROS_DISTRO
