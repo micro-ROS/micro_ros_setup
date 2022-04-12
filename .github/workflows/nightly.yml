@@ -380,8 +380,6 @@ jobs:
       - name: dependencies
         run: |
           apt update
-          # Workaround. Remove when https://discourse.ros.org/t/preparing-for-rolling-sync-delayed-by-python-3-10-transition/24521 solved
-          apt install -y python3.9-dev
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro $ROS_DISTRO
           rosdep install -y --from-paths src --ignore-src -y
