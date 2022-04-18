@@ -15,6 +15,8 @@ if ! (( $CMAKE_VERSION_MAJOR_NUMBER > 3 || \
 fi
 
 export PATH=~/.local/bin:"$PATH"
+export ZEPHYR_VERSION="v0.12.4"
+export ARCH=$(uname -m)
 
 pushd $FW_TARGETDIR >/dev/null
 
@@ -29,12 +31,22 @@ pushd $FW_TARGETDIR >/dev/null
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
 
     if [ "$PLATFORM" = "host" ]; then
-        export TOOLCHAIN_VERSION=zephyr-sdk-0.12.4-x86_64-linux-setup.run
+        if [ "$ARCH" = "aarch64" ]; then
+            export TOOLCHAIN_VERSION=zephyr-sdk-0.13.1-linux-aarch64-setup.run
+            export ZEPHYR_VERSION="v0.13.1"
+        else
+            export TOOLCHAIN_VERSION=zephyr-sdk-0.12.4-x86_64-linux-setup.run
+        fi
     else
-        export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.12.4-x86_64-linux-setup.run
+        if [ "$ARCH" = "aarch64" ]; then
+            export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.13.1-linux-aarch64-setup.run
+            export ZEPHYR_VERSION="v0.13.1"
+        else
+            export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.12.4-x86_64-linux-setup.run
+        fi
     fi
 
-    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.12.4/$TOOLCHAIN_VERSION
+    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/$ZEPHYR_VERSION/$TOOLCHAIN_VERSION
     chmod +x $TOOLCHAIN_VERSION
     ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
 
