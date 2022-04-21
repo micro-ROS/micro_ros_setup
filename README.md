@@ -64,6 +64,7 @@ micro-ROS standalone module for specific platforms are:
 - a standalone **[micro-ROS module for Microsoft Azure RTOS](https://github.com/micro-ROS/micro_ros_azure_rtos_app)**: this package enables the integration of micro-ROS in a Microsoft Azure RTOS workspace.
 - a standalone **[micro-ROS app for TI Tiva™ C Series](https://github.com/micro-ROS/micro_ros_tivac_launchpad_app)**: this package enables the integration of micro-ROS in a exas Instruments Tiva™ C Series.
 - a set of **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**: this package enables the integration of micro-ROS in STM32CubeMX and STM32CubeIDE.
+- a library builder for **[PlatformIO](https://github.com/micro-ROS/micro_ros_platformio)**: this package enables the integration of micro-ROS in PlatformIO.
 - a precompiled set of **[Arduino IDE libraries](https://github.com/micro-ROS/micro_ros_arduino)**: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.
 - a precompiled set of **[Raspberry Pi Pico SDK libraries](https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk)**: this package enables the integration of micro-ROS in the Raspberry Pi Pico SDK.
 
