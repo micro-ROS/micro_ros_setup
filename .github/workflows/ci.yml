@@ -11,7 +11,7 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container: ros:humble
 
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,8 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
@@ -41,7 +41,7 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container: ros:humble
     needs: micro_ros_build
 
     steps:
@@ -54,8 +54,8 @@ jobs:
           apt update
           apt install -y python3-colcon-metadata python3-pip
           apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -79,7 +79,7 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container: ros:humble
     needs: micro_ros_build
 
     strategy:
@@ -193,19 +193,10 @@ jobs:
         run: |
           apt update
           apt upgrade -y
-          # Install last version of CMake
-          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
-          if [ $(lsb_release -sr) = "22.04" ]; then
-            echo "Using Ubuntu mainline CMake"
-          else
-            echo "Adding Kitware CMake repo to install CMake"
-            wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-            apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-          fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:

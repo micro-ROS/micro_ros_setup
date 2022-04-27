@@ -22,6 +22,8 @@ jobs:
             branch: main
           - distro: galactic
             branch: galactic
+          - distro: humble
+            branch: humble
     container: ros:${{ matrix.distro }}
 
     steps:
@@ -34,8 +36,8 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
@@ -327,6 +329,272 @@ jobs:
             rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+
+          - distro: humble
+            branch: humble
+            rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: crazyflie21
+            configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f446ze
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: discovery_l475_iot1
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: nucleo_h743zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: host
+            configuration: ping_pong
+            transport_arguments: -t udp -i 192.168.1.1 -p 8080
+            binary: 'firmware/build/zephyr/zephyr.exe'
+
+          - distro: humble
+            branch: humble
+            rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
+
+          - distro: humble
+            branch: humble
+            rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
+
+          - distro: humble
+            branch: humble
+            rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+
+          - distro: humble
+            branch: humble
+            rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: crazyflie21
+            configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f446ze
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: discovery_l475_iot1
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: nucleo_h743zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            rtos: zephyr
+            platform: host
+            configuration: ping_pong
+            transport_arguments: -t udp -i 192.168.1.1 -p 8080
+            binary: 'firmware/build/zephyr/zephyr.exe'
+
+          - distro: humble
+            branch: humble
+            rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
+
+          - distro: humble
+            branch: humble
+            rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
+
+          - distro: humble
+            branch: humble
+            rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -348,8 +616,8 @@ jobs:
           fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -398,9 +666,9 @@ jobs:
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install -y --from-paths src --ignore-src -y
           apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
