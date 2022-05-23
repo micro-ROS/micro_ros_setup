@@ -47,7 +47,7 @@ jobs:
           apt update
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro ${{ matrix.distro }}
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
