@@ -763,7 +763,7 @@ jobs:
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro ${{ matrix.distro }}
           rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
-          apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
+          apt install -y ros-${{ matrix.distro }}-rmw-fastrtps-cpp
 
       - uses: actions/download-artifact@v1
         with:
