@@ -6,6 +6,8 @@ on:
       - 'README.md'
     branches:
       - '**'
+env:
+  ROS_DISTRO: "humble"
 
 jobs:
 
@@ -15,9 +17,6 @@ jobs:
       image: ubuntu:jammy
     strategy:
       fail-fast: false
-      matrix:
-        ros_distribution: [ humble ]
-
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,18 +25,18 @@ jobs:
       - uses: ros-tooling/setup-ros@0.3.2
         with:
           use-ros2-testing: true
-          required-ros-distributions: ${{ matrix.ros_distribution }}
+          required-ros-distributions: $ROS_DISTRO
 
       - name: Dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro ${{ matrix.ros_distribution }}
-          rosdep install --rosdistro ${{ matrix.ros_distribution }} -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install --rosdistro $ROS_DISTRO -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
-          . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
+          . /opt/ros/$ROS_DISTRO/setup.sh
           colcon build
 
       - name: Install micro-ROS build system
@@ -55,8 +54,6 @@ jobs:
       image: ubuntu:jammy
     strategy:
       fail-fast: false
-      matrix:
-        ros_distribution: [ humble ]
     needs: micro_ros_build
 
     steps:
@@ -67,15 +64,15 @@ jobs:
       - uses: ros-tooling/setup-ros@0.3.2
         with:
           use-ros2-testing: true
-          required-ros-distributions: ${{ matrix.ros_distribution }}
+          required-ros-distributions: $ROS_DISTRO
 
       - name: dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          apt install -y ros-${{ matrix.ros_distribution }}-rmw-fastrtps-cpp
-          rosdep update --rosdistro ${{ matrix.ros_distribution }}
-          rosdep install --rosdistro ${{ matrix.ros_distribution }} -y --from-paths src --ignore-src -y
+          apt install -y ros-$ROS_DISTRO-rmw-fastrtps-cpp
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install --rosdistro $ROS_DISTRO -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -88,7 +85,7 @@ jobs:
 
       - name: build
         run: |
-          . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
+          . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_agent_ws.sh
           ros2 run micro_ros_setup build_agent.sh
@@ -105,7 +102,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ros_distribution: [ humble ]
         include:
           - rtos: host
             platform: null
@@ -214,7 +210,7 @@ jobs:
       - uses: ros-tooling/setup-ros@0.3.2
         with:
           use-ros2-testing: true
-          required-ros-distributions: ${{ matrix.ros_distribution }}
+          required-ros-distributions: $ROS_DISTRO
 
       - name: Dependencies
         run: |
@@ -222,8 +218,8 @@ jobs:
           apt upgrade -y
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-          rosdep update --rosdistro ${{ matrix.ros_distribution }}
-          rosdep install --rosdistro ${{ matrix.ros_distribution }} -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro $ROS_DISTRO
+          rosdep install --rosdistro $ROS_DISTRO -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -236,7 +232,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
+          . /opt/ros/$ROS_DISTRO/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
