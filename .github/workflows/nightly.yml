@@ -12,20 +12,24 @@ jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
     strategy:
       fail-fast: false
       matrix:
         include:
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
           - distro: galactic
             branch: galactic
+            image: ubuntu:20.04
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
+    container:
+      image: ${{ matrix.image }}
 
     steps:
       - uses: actions/checkout@v2
@@ -61,8 +65,6 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
     needs: micro_ros_build
 
     strategy:
@@ -71,6 +73,7 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: host
             platform: null
             configuration: null
@@ -79,6 +82,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: generate_lib
             platform: null
             configuration: null
@@ -88,6 +92,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -96,6 +101,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -104,6 +110,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f446re
             configuration: int32_publisher
@@ -112,6 +119,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
@@ -120,6 +128,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -128,6 +137,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -136,6 +146,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: esp32
             configuration: int32_publisher
@@ -144,6 +155,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -152,6 +164,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: discovery_l475_iot1
             configuration: int32_publisher
@@ -160,6 +173,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: nucleo_h743zi
             configuration: int32_publisher
@@ -168,6 +182,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -176,6 +191,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: host
             configuration: ping_pong
@@ -184,6 +200,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: nuttx
             platform: olimex-stm32-e407
             configuration: drive_base
@@ -192,6 +209,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -199,6 +217,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: raspbian
             platform: buster_v7
             configuration: weather_publisher
@@ -206,6 +225,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: host
             platform: null
             configuration: null
@@ -214,6 +234,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: generate_lib
             platform: null
             configuration: null
@@ -223,6 +244,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -231,6 +253,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -239,6 +262,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446re
             configuration: int32_publisher
@@ -247,6 +271,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
@@ -255,6 +280,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -263,6 +289,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -271,6 +298,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: esp32
             configuration: int32_publisher
@@ -279,6 +307,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -287,6 +316,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: discovery_l475_iot1
             configuration: int32_publisher
@@ -295,6 +325,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_h743zi
             configuration: int32_publisher
@@ -303,6 +334,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -311,6 +343,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: host
             configuration: ping_pong
@@ -319,6 +352,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -326,6 +360,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: weather_publisher
@@ -333,12 +368,14 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: host
             platform: null
             configuration: null
@@ -347,6 +384,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: generate_lib
             platform: null
             configuration: null
@@ -356,6 +394,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -364,6 +403,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -372,6 +412,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446re
             configuration: int32_publisher
@@ -380,6 +421,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
@@ -388,6 +430,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -396,6 +439,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -404,6 +448,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: esp32
             configuration: int32_publisher
@@ -412,6 +457,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -420,6 +466,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: discovery_l475_iot1
             configuration: int32_publisher
@@ -428,6 +475,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_h743zi
             configuration: int32_publisher
@@ -436,6 +484,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -444,6 +493,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: host
             configuration: ping_pong
@@ -452,6 +502,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -459,6 +510,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: weather_publisher
@@ -466,12 +518,14 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: host
             platform: null
             configuration: null
@@ -480,6 +534,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: generate_lib
             platform: null
             configuration: null
@@ -489,6 +544,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -497,6 +553,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -505,6 +562,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446re
             configuration: int32_publisher
@@ -513,6 +571,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
@@ -521,6 +580,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -529,6 +589,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -537,6 +598,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: freertos
             platform: esp32
             configuration: int32_publisher
@@ -545,6 +607,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -553,6 +616,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: discovery_l475_iot1
             configuration: int32_publisher
@@ -561,6 +625,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_h743zi
             configuration: int32_publisher
@@ -569,6 +634,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -577,6 +643,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: zephyr
             platform: host
             configuration: ping_pong
@@ -585,6 +652,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -592,6 +660,7 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: weather_publisher
@@ -599,9 +668,12 @@ jobs:
 
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
             rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+    container:
+      image: ${{ matrix.image }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -654,20 +726,24 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
     strategy:
       fail-fast: false
       matrix:
         include:
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
           - distro: galactic
             branch: galactic
+            image: ubuntu:20.04
           - distro: humble
             branch: humble
+            image: ubuntu:jammy
+    container:
+      image: ${{ matrix.image }}
     needs: micro_ros_build
 
     steps:
