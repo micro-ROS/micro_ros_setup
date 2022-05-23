@@ -28,7 +28,7 @@ pushd $FW_TARGETDIR >/dev/null
         west update
     popd >/dev/null
 
-    pip3 install -r zephyrproject/zephyr/scripts/requirements.txt
+    pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
 
     if [ "$PLATFORM" = "host" ]; then
         if [ "$ARCH" = "aarch64" ]; then
