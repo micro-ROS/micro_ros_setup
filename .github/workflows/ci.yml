@@ -33,7 +33,7 @@ jobs:
           apt update
           apt install -y python3-colcon-metadata python3-pip
           rosdep update --rosdistro ${{ matrix.ros_distribution }}
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep install --rosdistro ${{ matrix.ros_distribution }} -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
@@ -75,7 +75,7 @@ jobs:
           apt install -y python3-colcon-metadata python3-pip
           apt install -y ros-${{ matrix.ros_distribution }}-rmw-fastrtps-cpp
           rosdep update --rosdistro ${{ matrix.ros_distribution }}
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep install --rosdistro ${{ matrix.ros_distribution }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -224,7 +224,7 @@ jobs:
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro ${{ matrix.ros_distribution }}
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep install --rosdistro ${{ matrix.ros_distribution }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
