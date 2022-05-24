@@ -24,7 +24,7 @@ jobs:
 
       - uses: ros-tooling/setup-ros@0.3.2
         with:
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: Dependencies
@@ -63,7 +63,7 @@ jobs:
 
       - uses: ros-tooling/setup-ros@0.3.2
         with:
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: dependencies
@@ -209,7 +209,7 @@ jobs:
 
       - uses: ros-tooling/setup-ros@0.3.2
         with:
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: Dependencies
