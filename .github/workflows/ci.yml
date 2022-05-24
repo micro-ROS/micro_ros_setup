@@ -6,28 +6,37 @@ on:
       - 'README.md'
     branches:
       - '**'
+env:
+  ROS_DISTRO: humble
 
 jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:rolling
-
+    container:
+      image: ubuntu:jammy
+    strategy:
+      fail-fast: false
     steps:
       - uses: actions/checkout@v2
         with:
           path: src/micro_ros_setup
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: true
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
       - name: Dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
           colcon build
 
       - name: Install micro-ROS build system
@@ -41,7 +50,10 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container: ros:rolling
+    container:
+      image: ubuntu:jammy
+    strategy:
+      fail-fast: false
     needs: micro_ros_build
 
     steps:
@@ -49,13 +61,18 @@ jobs:
         with:
           path: src/micro_ros_setup
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: true
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
       - name: dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          apt install -y ros-${{ env.ROS_DISTRO }}-rmw-fastrtps-cpp
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -68,7 +85,7 @@ jobs:
 
       - name: build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_agent_ws.sh
           ros2 run micro_ros_setup build_agent.sh
@@ -79,9 +96,9 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container: ros:rolling
     needs: micro_ros_build
-
+    container:
+      image: ubuntu:jammy
     strategy:
       fail-fast: false
       matrix:
@@ -184,28 +201,25 @@ jobs:
           - rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
     steps:
       - uses: actions/checkout@v2
         with:
           path: src/micro_ros_setup
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: true
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
       - name: Dependencies
         run: |
           apt update
           apt upgrade -y
-          # Install last version of CMake
-          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
-          if [ $(lsb_release -sr) = "22.04" ]; then
-            echo "Using Ubuntu mainline CMake"
-          else
-            echo "Adding Kitware CMake repo to install CMake"
-            wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-            apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-          fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -218,7 +232,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}

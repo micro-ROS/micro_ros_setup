@@ -2,12 +2,8 @@ repositories:
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: main
+    version: humble
   uros/micro-ROS-Agent:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-Agent.git
-    version: main
-  uros/drive_base:
-    type: git
-    url: https://github.com/micro-ROS/drive_base.git
-    version: master
+    version: humble
