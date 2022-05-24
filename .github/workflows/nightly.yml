@@ -39,7 +39,7 @@ jobs:
 
       - uses: ros-tooling/setup-ros@0.3.2
         with:
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
 
       - name: Dependencies
@@ -682,7 +682,7 @@ jobs:
 
       - uses: ros-tooling/setup-ros@0.3.2
         with:
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
 
       - name: Dependencies
@@ -754,7 +754,7 @@ jobs:
 
       - uses: ros-tooling/setup-ros@0.3.2
         with:
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
 
       - name: dependencies
