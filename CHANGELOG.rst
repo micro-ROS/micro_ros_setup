@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.0 (2022-05-25)
+------------------
 * Fix PyYaml unistall error (`#521 <https://github.com/micro-ROS/micro-ros-build/issues/521>`_)
 * Add renesas dummy meta (`#516 <https://github.com/micro-ROS/micro-ros-build/issues/516>`_) (`#517 <https://github.com/micro-ROS/micro-ros-build/issues/517>`_)
 * Add platformIO to Readme (`#510 <https://github.com/micro-ROS/micro-ros-build/issues/510>`_) (`#511 <https://github.com/micro-ROS/micro-ros-build/issues/511>`_)
