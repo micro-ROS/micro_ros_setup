@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.1.0 (2022-05-25)
+------------------
 * Revert ROS2 test sources (`#524 <https://github.com/micro-ROS/micro-ros-build/issues/524>`_)
 * Humble release (`#513 <https://github.com/micro-ROS/micro-ros-build/issues/513>`_)
 * Add renesas dummy meta (`#516 <https://github.com/micro-ROS/micro-ros-build/issues/516>`_)
