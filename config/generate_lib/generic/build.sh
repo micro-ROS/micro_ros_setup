@@ -51,11 +51,14 @@ pushd $FW_TARGETDIR/mcu_ws >/dev/null
 	cd ..; rm -rf libmicroros;
 
 	######## Fix include paths  ########
-	INCLUDE_ROS2_PACKAGES=$(colcon list | awk '{print $1}' | awk -v d=" " '{s=(NR==1?s:s d)$0}END{print s}')
+	INCLUDE_ROS2_PACKAGES=$(cd $FW_TARGETDIR/mcu_ws && colcon list | awk '{print $1}' | awk -v d=" " '{s=(NR==1?s:s d)$0}END{print s}')
 
 	for var in ${INCLUDE_ROS2_PACKAGES}; do
-		rsync -r $BUILD_DIR/include/${var}/${var}/* $BUILD_DIR/include/${var}/
-		rm -rf $BUILD_DIR/include/${var}/${var}/
+		if [ -d "$BUILD_DIR/include/${var}/${var}" ]
+		then
+			rsync -r $BUILD_DIR/include/${var}/${var}/* $BUILD_DIR/include/${var}/ || true
+			rm -rf $BUILD_DIR/include/${var}/${var}/
+		fi
 	done
 
 popd >/dev/null
