@@ -22,7 +22,7 @@ BUILD_DIR=$FW_TARGETDIR/build
 pushd $FW_TARGETDIR/mcu_ws >/dev/null
 
 	rm -rf build install log
-	
+
    	colcon build \
 		--merge-install \
 		--packages-ignore-regex=.*_cpp \
@@ -49,5 +49,13 @@ pushd $FW_TARGETDIR/mcu_ws >/dev/null
 	ar rc libmicroros.a $(ls *.o *.obj 2> /dev/null); mkdir -p $BUILD_DIR; cp libmicroros.a $BUILD_DIR; ranlib $BUILD_DIR/libmicroros.a; \
     cp -R $FW_TARGETDIR/mcu_ws/install/include $BUILD_DIR/; \
 	cd ..; rm -rf libmicroros;
+
+	######## Fix include paths  ########
+	INCLUDE_ROS2_PACKAGES=$(colcon list | awk '{print $1}' | awk -v d=" " '{s=(NR==1?s:s d)$0}END{print s}')
+
+	for var in ${INCLUDE_ROS2_PACKAGES}; do
+		rsync -r $BUILD_DIR/include/${var}/${var}/* $BUILD_DIR/include/${var}/
+		rm -rf $BUILD_DIR/include/${var}/${var}/
+	done
 
 popd >/dev/null

@@ -690,7 +690,7 @@ jobs:
           apt update
           apt upgrade -y
           # Install last version of CMake
-          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+          apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget rsync
           if [ $(lsb_release -sr) = "22.04" ]; then
             echo "Using Ubuntu mainline CMake"
           else
