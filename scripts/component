@@ -1,0 +1,109 @@
+#! /usr/bin/env python3
+
+import sys
+from textwrap import wrap
+import os
+
+MAX_CHARACTERS = 80
+
+COMPONENTS = [
+    {
+        "name": "renesas_e2_studio",
+        "description": "micro-ROS component for Renesas e2 studio and RA6M5: this package enables the integration of micro-ROS in Renesas e2 studio for RA6M5 and RA6T2 MCUs.",
+        "url" : "https://github.com/micro-ROS/micro_ros_renesas2estudio_component"
+    },
+    {
+        "name": "esp_idf",
+        "description": "micro-ROS component for ESP-IDF: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.",
+        "url" : "https://github.com/micro-ROS/micro_ros_espidf_component"
+    },
+    {
+        "name": "zephyr_rtos",
+        "description": "micro-ROS module for Zephyr RTOS: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.",
+        "url" : "https://github.com/micro-ROS/micro_ros_zephyr_module"
+    },
+    {
+        "name": "mbed_rtos",
+        "description": "micro-ROS module for Mbed RTOS: this package enables the integration of micro-ROS in any Mbed RTOS workspace.",
+        "url" : "https://github.com/micro-ROS/micro_ros_mbed"
+    },
+    {
+        "name": "nuttx_rtos",
+        "description": "micro-ROS module for NuttX RTOS: this package enables the integration of micro-ROS in any NuttX RTOS workspace.",
+        "url" : "https://github.com/micro-ROS/micro_ros_nuttx_app"
+    },
+    {
+        "name": "azure_rtos",
+        "description": "micro-ROS module for Microsoft Azure RTOS: this package enables the integration of micro-ROS in a Microsoft Azure RTOS workspace.",
+        "url" : "https://github.com/micro-ROS/micro_ros_azure_rtos_app"
+    },
+    {
+        "name": "tiva_c_series",
+        "description": "micro-ROS app for TI Tiva™ C Series: this package enables the integration of micro-ROS in Texas Instruments Tiva™ C Series.",
+        "url" : "https://github.com/micro-ROS/micro_ros_tivac_launchpad_app"
+    },
+    {
+        "name": "stm32cube",
+        "description": "micro-ROS utils for STM32CubeMX and STM32CubeIDE: this package enables the integration of micro-ROS in STM32CubeMX and STM32CubeIDE.",
+        "url" : "https://github.com/micro-ROS/micro_ros_stm32cubemx_utils"
+    },
+    {
+        "name": "platformio",
+        "description": "micro-ROS module for PlatformIO: this package enables the integration of micro-ROS in PlatformIO.",
+        "url" : "https://github.com/micro-ROS/micro_ros_platformio"
+    },
+    {
+        "name": "arduino",
+        "description": "Arduino IDE & CLI libraries for micro-ROS: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.",
+        "url" : "https://github.com/micro-ROS/micro_ros_arduino"
+    },
+    {
+        "name": "raspberry_pi_pico",
+        "description": "Raspberry Pi Pico SDK libraries for micro-ROS: this package enables the integration of micro-ROS in the Raspberry Pi Pico SDK.",
+        "url" : "https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk"
+    }
+]
+
+def print_help(extended = False):
+    if extended:
+        print("Usage: ros2 run micro_ros_setup component <component_name>")
+        print("")
+        for component in COMPONENTS:
+            description = "\n\t".join(wrap(component["description"], MAX_CHARACTERS))
+            print("[{}] \n\t{}\n".format(component["name"], description))
+    else:
+        print("Usage: ros2 run micro_ros_setup component <component_name>")
+        print("Available components: {}".format(", ".join([c["name"] for c in COMPONENTS])))
+
+# No arguments
+if len(sys.argv) < 2:
+    print_help()
+    sys.exit(0)
+
+# User asks for help
+if "-h" in sys.argv or "--help" in sys.argv:
+    print_help(True)
+    sys.exit(0)
+
+# Component select
+component_name = sys.argv[1]
+if component_name in [x["name"] for x in COMPONENTS]:
+    component = [x for x in COMPONENTS if x["name"] == component_name][0]
+    repo_folder_name = os.getcwd() + "/" + component["url"].split("/")[-1]
+
+    print("Using micro-ROS {} component".format(component_name))
+    print("\t{}".format("\n\t".join(wrap(component["description"], MAX_CHARACTERS))))
+    print("")
+
+    if os.path.exists(repo_folder_name):
+        print("Folder {} already exists!".format(repo_folder_name))
+    else:
+        print("Cloning repository...")
+        os.system("git clone {} > /dev/null 2>&1".format(component["url"]))
+        print("{} repository cloned at {}".format(component_name, repo_folder_name))
+    print("")
+
+    print("FOR USAGE INSTRUCTIONS VISIT: {}".format(component["url"] + "#readme"))
+else:
+    print("Unknown component: {}".format(component_name))
+    print_help(True)
