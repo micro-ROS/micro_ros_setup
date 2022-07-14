@@ -54,6 +54,13 @@ This package provides tools and utils to crosscompile micro-ROS with just the co
 
 ## Standalone build system tools
 
+`micro_ros_setup` provides access to standalone build system tools using the `component` command.
+After [building this package](#building) just run:
+
+```bash
+ros2 run micro_ros_setup component --help
+```
+
 micro-ROS standalone module for specific platforms are:
 
 - a standalone **[micro-ROS component for Renesas e<sup>2</sup> studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)**: this package enables the integration of micro-ROS in Renesas e<sup>2</sup> studio and RA6M5 MCU family.
