@@ -2,6 +2,11 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add component command (`#540 <https://github.com/micro-ROS/micro_ros_setup/issues/540>`_) (`#541 <https://github.com/micro-ROS/micro_ros_setup/issues/541>`_)
+* Fix CI host (`#535 <https://github.com/micro-ROS/micro_ros_setup/issues/535>`_) (`#536 <https://github.com/micro-ROS/micro_ros_setup/issues/536>`_)
+
 4.0.0 (2022-05-25)
 ------------------
 * Fix PyYaml unistall error (`#521 <https://github.com/micro-ROS/micro-ros-build/issues/521>`_) (`#522 <https://github.com/micro-ROS/micro-ros-build/issues/522>`_)
