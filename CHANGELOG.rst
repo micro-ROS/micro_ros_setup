@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.1.1 (2022-07-14)
+------------------
 * Add component command (`#540 <https://github.com/micro-ROS/micro_ros_setup/issues/540>`_)
 * Fix CI host (`#535 <https://github.com/micro-ROS/micro_ros_setup/issues/535>`_)
 
