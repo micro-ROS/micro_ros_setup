@@ -66,13 +66,13 @@ COMPONENTS = [
 
 def print_help(extended = False):
     if extended:
-        print("Usage: python3 component.py <component_name>")
+        print("Usage: ros2 run micro_ros_setup component <component_name>")
         print("")
         for component in COMPONENTS:
             description = "\n\t".join(wrap(component["description"], MAX_CHARACTERS))
             print("[{}] \n\t{}\n".format(component["name"], description))
     else:
-        print("Usage: python3 component.py <component_name>")
+        print("Usage: ros2 run micro_ros_setup component <component_name>")
         print("Available components: {}".format(", ".join([c["name"] for c in COMPONENTS])))
 
 # No arguments
