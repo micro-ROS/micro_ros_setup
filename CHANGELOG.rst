@@ -2,6 +2,11 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add component command (`#540 <https://github.com/micro-ROS/micro_ros_setup/issues/540>`_)
+* Fix CI host (`#535 <https://github.com/micro-ROS/micro_ros_setup/issues/535>`_)
+
 3.1.0 (2022-05-25)
 ------------------
 * Revert ROS2 test sources (`#524 <https://github.com/micro-ROS/micro-ros-build/issues/524>`_)
