@@ -9,7 +9,7 @@ MAX_CHARACTERS = 80
 COMPONENTS = [
     {
         "name": "renesas_e2_studio",
-        "description": "micro-ROS component for Renesas e2 studio and RA6M5: this package enables the integration of micro-ROS in Renesas e2 studio and RA6M5 MCU family.",
+        "description": "micro-ROS component for Renesas e2 studio and RA6M5: this package enables the integration of micro-ROS in Renesas e2 studio for RA6M5 and RA6T2 MCUs.",
         "url" : "https://github.com/micro-ROS/micro_ros_renesas2estudio_component"
     },
     {
@@ -39,7 +39,7 @@ COMPONENTS = [
     },
     {
         "name": "tiva_c_series",
-        "description": "micro-ROS app for TI Tiva™ C Series: this package enables the integration of micro-ROS in a exas Instruments Tiva™ C Series.",
+        "description": "micro-ROS app for TI Tiva™ C Series: this package enables the integration of micro-ROS in Texas Instruments Tiva™ C Series.",
         "url" : "https://github.com/micro-ROS/micro_ros_tivac_launchpad_app"
     },
     {
