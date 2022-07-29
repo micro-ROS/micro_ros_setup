@@ -220,7 +220,7 @@ jobs:
           apt install -y python3-colcon-metadata python3-pip cmake
 
           # Temporal fix until libc6 packages are released on 2.35-0ubuntu3.1
-          apt install -y --allow-downgrades libc6=2.35-0ubuntu3 libc-bin=2.35-0ubuntu3
+          apt install -y libc6-dev-i386=2.35-0ubuntu3.1 libc6-dev-x32=2.35-0ubuntu3.1 libc6-x32=2.35-0ubuntu3.1
 
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
