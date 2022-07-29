@@ -700,6 +700,10 @@ jobs:
           fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
+
+          # Temporal fix until libc6 packages are released on 2.35-0ubuntu3.1
+          apt install -y libc6-dev-i386=2.35-0ubuntu3.1 libc6-dev-x32=2.35-0ubuntu3.1 libc6-x32=2.35-0ubuntu3.1
+
           rosdep update --rosdistro ${{ matrix.distro }}
           rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
 
