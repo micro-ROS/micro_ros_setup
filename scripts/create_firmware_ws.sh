@@ -89,7 +89,7 @@ pushd $FW_TARGETDIR >/dev/null
     if [ $RTOS != "host" ]; then
         ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
             $PREFIX/config/$RTOS/dev_uros_packages.repos
-        rosdep install --os=ubuntu:jammy -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
+        rosdep install -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
          # Creating mcu directory
         mkdir mcu_ws
@@ -110,7 +110,7 @@ if [ $RTOS != "host" ]; then
 fi
 
 # Install dependecies for specific platform
-rosdep install --os=ubuntu:jammy -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
+rosdep install -y --from-paths $PREFIX/config/$RTOS/$TARGET_FOLDER -i $PREFIX/config/$RTOS/$TARGET_FOLDER --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh

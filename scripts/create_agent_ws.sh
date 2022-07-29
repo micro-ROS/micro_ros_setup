@@ -23,4 +23,4 @@ fi
 # populate the workspace
 ros2 run micro_ros_setup create_ws.sh $TARGETDIR $PREFIX/config/agent_ros2_packages.txt $PREFIX/config/agent_uros_packages.repos
 
-rosdep install --os=ubuntu:jammy --from-paths $TARGETDIR -i $TARGETDIR -y --skip-keys="$SKIP"
+rosdep install --from-paths $TARGETDIR -i $TARGETDIR -y --skip-keys="$SKIP"
