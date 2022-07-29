@@ -16,9 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
           - distro: humble
             branch: humble
             image: ubuntu:jammy
@@ -65,77 +62,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: host
-            platform: null
-            configuration: null
-            transport_arguments: null
-            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: generate_lib
-            platform: null
-            configuration: null
-            transport_arguments: null
-            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
-            binary: 'firmware/build/libmicroros.a'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: zephyr
-            platform: olimex-stm32-e407
-            configuration: int32_publisher
-            transport_arguments: -t serial-usb
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: zephyr
-            platform: discovery_l475_iot1
-            configuration: int32_publisher
-            transport_arguments: -t serial-usb
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: zephyr
-            platform: nucleo_h743zi
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 3
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: zephyr
-            platform: nucleo_f746zg
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 3
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: zephyr
-            platform: host
-            configuration: ping_pong
-            transport_arguments: -t udp -i 192.168.1.1 -p 8080
-            binary: 'firmware/build/zephyr/zephyr.exe'
-
-          - distro: rolling
-            branch: main
-            image: ubuntu:jammy
-            rtos: mbed
-            platform: disco_l475vg_iot01a
-            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
 
           - distro: humble
             branch: humble
