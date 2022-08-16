@@ -17,7 +17,7 @@ else
 fi
 
 # Flash specific firmware folder if needed
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ -d "$PREFIX/config/$RTOS/generic" ]; then
     if [ -f $PREFIX/config/$RTOS/generic/flash.sh ]; then
       echo "Flashing firmware for $RTOS platform $PLATFORM"
       . $PREFIX/config/$RTOS/generic/flash.sh
