@@ -69,7 +69,8 @@ fi
 # Building specific firmware folder
 echo "Building firmware for $RTOS platform $PLATFORM"
 
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+# Use the generic platform if directory found
+if [ -d "$PREFIX/config/$RTOS/generic" ]; then
     . $PREFIX/config/$RTOS/generic/build.sh
 else
     . $PREFIX/config/$RTOS/$PLATFORM/build.sh
