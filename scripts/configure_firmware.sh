@@ -1,4 +1,4 @@
-#! /bin/bash 
+#! /bin/bash
 
 set -e
 set -o nounset
@@ -17,7 +17,7 @@ else
 fi
 
 # Check if configure script exists
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ -d "$PREFIX/config/$RTOS/generic" ]; then
     if [ ! -f $PREFIX/config/$RTOS/generic/configure.sh ]; then
         echo "No configuration step needed for generic platform $PLATFORM"
         exit 0
@@ -32,7 +32,7 @@ fi
 # Parsing micro-ROS arguments
 if [ $# -lt 1 ]; then
   echo "micro-ROS application name must be provided: ros2 run micro_ros_setup configure_firmware.sh [app name] [options]"
-  # Check if RTOS has app listing funcions and source in case 
+  # Check if RTOS has app listing funcions and source in case
   if [ -f $PREFIX/config/$RTOS/list_apps.sh ]; then
       . $PREFIX/config/$RTOS/list_apps.sh
       print_available_apps
@@ -80,7 +80,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Configure specific firmware folder if needed
-if [ $PLATFORM != "generic" ] && [ -d "$PREFIX/config/$RTOS/generic" ]; then
+if [ -d "$PREFIX/config/$RTOS/generic" ]; then
     echo "Configuring firmware for $RTOS platform $PLATFORM"
     exec $PREFIX/config/$RTOS/generic/configure.sh $@
 else
