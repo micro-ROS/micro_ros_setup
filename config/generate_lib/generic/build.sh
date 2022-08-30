@@ -22,7 +22,7 @@ BUILD_DIR=$FW_TARGETDIR/build
 pushd $FW_TARGETDIR/mcu_ws >/dev/null
 
 	rm -rf build install log
-	
+
 	colcon build \
 		--merge-install \
 		--packages-ignore-regex=.*_cpp \
