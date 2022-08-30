@@ -45,7 +45,7 @@ pushd $FW_TARGETDIR/mcu_ws >/dev/null
 	echo "SAVE" >> $FW_TARGETDIR/libmicroros/ar_script.m; \
 	echo "END" >> $FW_TARGETDIR/libmicroros/ar_script.m; \
 	ar -M < $FW_TARGETDIR/libmicroros/ar_script.m; \
-	mkdir -p $BUILD_DIR; cp libmicroros.a $BUILD_DIR; ranlib $BUILD_DIR/libmicroros.a; \
+	mkdir -p $BUILD_DIR; cp libmicroros.a $BUILD_DIR; \
     cp -R $FW_TARGETDIR/mcu_ws/install/include $BUILD_DIR/; \
 	cd ..; rm -rf libmicroros;
 
