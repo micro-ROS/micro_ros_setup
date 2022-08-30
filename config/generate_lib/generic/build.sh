@@ -38,15 +38,14 @@ pushd $FW_TARGETDIR/mcu_ws >/dev/null
 		-DCMAKE_VERBOSE_MAKEFILE=ON; \
 
     mkdir -p $FW_TARGETDIR/libmicroros; cd $FW_TARGETDIR/libmicroros; \
-	for file in $(find $FW_TARGETDIR/mcu_ws/install/lib/ -name '*.a'); do \
-		folder=$(echo $file | sed -E "s/(.+)\/(.+).a/\2/"); \
-		mkdir -p $folder; cd $folder; ar x $file; \
-		for f in *; do \
-			mv $f ../$folder-$f; \
-		done; \
-		cd ..; rm -rf $folder; \
+	echo "CREATE libmicroros.a" > $FW_TARGETDIR/libmicroros/ar_script.m; \
+	for file in $(find "$FW_TARGETDIR/install/lib/" -name '*.a'); do \
+		echo "ADDLIB ${file}" >> $FW_TARGETDIR/libmicroros/ar_script.m; \
 	done ; \
-	ar rc libmicroros.a $(ls *.o *.obj 2> /dev/null); mkdir -p $BUILD_DIR; cp libmicroros.a $BUILD_DIR; ranlib $BUILD_DIR/libmicroros.a; \
+	echo "SAVE" >> $FW_TARGETDIR/libmicroros/ar_script.m; \
+	echo "END" >> $FW_TARGETDIR/libmicroros/ar_script.m; \
+	ar -M < $FW_TARGETDIR/libmicroros/ar_script.m; \
+	mkdir -p $BUILD_DIR; cp libmicroros.a $BUILD_DIR; ranlib $BUILD_DIR/libmicroros.a; \
     cp -R $FW_TARGETDIR/mcu_ws/install/include $BUILD_DIR/; \
 	cd ..; rm -rf libmicroros;
 
