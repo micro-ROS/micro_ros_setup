@@ -2,11 +2,11 @@
 
 ## Overview
 
-This file is the entry point for building micro-ROS apps for [RT-thread](https://github.com/RT-Thread/rt-thread). RT-Thread was born in 2006, it is an open source, neutral, and community-based real-time operating system (RTOS). Now, it It already supports many architectures  boards. 
+This file is the entry point for building micro-ROS apps for [RT-thread](https://github.com/RT-Thread/rt-thread). RT-Thread was born in 2006, it is an open source, neutral, and community-based real-time operating system (RTOS). Now, it It already supports many architectures and  boards. 
 
 This project comes from   [Open Source Promotion Plan](https://summer-ospp.ac.cn/#/org/prodetail/22f330436) (OSPP) 2022.  The goal is to hope that micrROS can support RT-Thread real-time system.
 
-Now， The publisher and subscriber can be used normally in the RT-Thread system through serial transport.   The publisher  is ok hrough UDP transport and The publisher  has a little [problem](https://github.com/micro-ROS/micro_ros_setup/issues/576). 
+Now，The publisher and subscriber can be used normally in the RT-Thread system through serial transport.   The publisher  is ok hrough UDP transport and The publisher  has a little [problem](https://github.com/micro-ROS/micro_ros_setup/issues/576). 
 
 ## Support
 
