@@ -2,6 +2,10 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix logic for generic platform (backport `#553 <https://github.com/micro-ROS/micro-ros-build/issues/553>`_) (`#566 <https://github.com/micro-ROS/micro-ros-build/issues/566>`_)
+
 2.1.0 (2022-05-25)
 ------------------
 * Fix PyYaml unistall error (`#521 <https://github.com/micro-ROS/micro-ros-build/issues/521>`_) (`#523 <https://github.com/micro-ROS/micro-ros-build/issues/523>`_)
