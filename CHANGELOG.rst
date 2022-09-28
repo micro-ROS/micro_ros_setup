@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+4.0.2 (2022-09-28)
+------------------
 * Add rosidl_core (`#573 <https://github.com/micro-ROS/micro-ros-build/issues/573>`_)
 * Remove unnessary check (`#553 <https://github.com/micro-ROS/micro-ros-build/issues/553>`_)
 * Fix Nightly CMake (`#555 <https://github.com/micro-ROS/micro-ros-build/issues/555>`_) (`#556 <https://github.com/micro-ROS/micro-ros-build/issues/556>`_)
