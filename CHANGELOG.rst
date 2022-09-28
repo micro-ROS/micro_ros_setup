@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.1 (2022-09-28)
+------------------
 * Fix logic for generic platform (backport `#553 <https://github.com/micro-ROS/micro-ros-build/issues/553>`_) (`#566 <https://github.com/micro-ROS/micro-ros-build/issues/566>`_)
 
 2.1.0 (2022-05-25)
