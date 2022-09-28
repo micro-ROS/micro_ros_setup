@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.1.2 (2022-09-28)
+------------------
 * Fix humble repos (`#572 <https://github.com/micro-ROS/micro-ros-build/issues/572>`_)
 * Fix mbed cmake version on CI (`#569 <https://github.com/micro-ROS/micro-ros-build/issues/569>`_)
 * Remove unnessary check (`#553 <https://github.com/micro-ROS/micro-ros-build/issues/553>`_) (`#565 <https://github.com/micro-ROS/micro-ros-build/issues/565>`_)
