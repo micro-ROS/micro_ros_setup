@@ -2,6 +2,10 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove unnessary check (`#553 <https://github.com/micro-ROS/micro-ros-build/issues/553>`_) (`#567 <https://github.com/micro-ROS/micro-ros-build/issues/567>`_)
+
 1.1.0 (2022-05-25)
 ------------------
 * Fix PyYaml unistall error (`#521 <https://github.com/micro-ROS/micro-ros-build/issues/521>`_)
