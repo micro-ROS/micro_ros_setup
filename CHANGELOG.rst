@@ -2,6 +2,13 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix humble repos (`#572 <https://github.com/micro-ROS/micro-ros-build/issues/572>`_)
+* Fix mbed cmake version on CI (`#569 <https://github.com/micro-ROS/micro-ros-build/issues/569>`_)
+* Remove unnessary check (`#553 <https://github.com/micro-ROS/micro-ros-build/issues/553>`_) (`#565 <https://github.com/micro-ROS/micro-ros-build/issues/565>`_)
+* Fix Nightly CMake (`#555 <https://github.com/micro-ROS/micro-ros-build/issues/555>`_)
+
 3.1.1 (2022-07-14)
 ------------------
 * Add component command (`#540 <https://github.com/micro-ROS/micro_ros_setup/issues/540>`_)
