@@ -69,6 +69,7 @@ micro-ROS standalone module for specific platforms are:
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
 - a standalone **[micro-ROS module for NuttX RTOS](https://github.com/micro-ROS/micro_ros_nuttx_app)**: this package enables the integration of micro-ROS in any NuttX RTOS workspace.
 - a standalone **[micro-ROS module for Microsoft Azure RTOS](https://github.com/micro-ROS/micro_ros_azure_rtos_app)**: this package enables the integration of micro-ROS in a Microsoft Azure RTOS workspace.
+- a standalone **[micro-ROS module for RT-Thread RTOS](https://github.com/micro-ROS/micro_ros_rtthread_component)**: this package enables the integration of micro-ROS in a RT-Thread workspace.
 - a standalone **[micro-ROS app for TI Tiva™ C Series](https://github.com/micro-ROS/micro_ros_tivac_launchpad_app)**: this package enables the integration of micro-ROS in a exas Instruments Tiva™ C Series.
 - a set of **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**: this package enables the integration of micro-ROS in STM32CubeMX and STM32CubeIDE.
 - a library builder for **[PlatformIO](https://github.com/micro-ROS/micro_ros_platformio)**: this package enables the integration of micro-ROS in PlatformIO.
