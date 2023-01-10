@@ -54,6 +54,7 @@ micro-ROS also offers some other ways to crosscompile it for different platforms
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
 - a standalone **[micro-ROS module for NuttX RTOS](https://github.com/micro-ROS/micro_ros_nuttx_app)**: this package enables the integration of micro-ROS in any NuttX RTOS workspace.
 - a standalone **[micro-ROS module for Microsoft Azure RTOS](https://github.com/micro-ROS/micro_ros_azure_rtos_app)**: this package enables the integration of micro-ROS in a Microsoft Azure RTOS workspace.
+- a standalone **[micro-ROS module for RT-Thread RTOS](https://github.com/micro-ROS/micro_ros_rtthread_component)**: this package enables the integration of micro-ROS in a RT-Thread workspace.
 - a set of **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**: this package enables the integration of micro-ROS in STM32CubeMX and STM32CubeIDE.
 - a library builder for **[PlatformIO](https://github.com/micro-ROS/micro_ros_platformio)**: this package enables the integration of micro-ROS in PlatformIO.
 - a precompiled set of **[Arduino IDE libraries](https://github.com/micro-ROS/micro_ros_arduino)**: this package enables the integration of micro-ROS in the Arduino IDE for some hardware platforms.
