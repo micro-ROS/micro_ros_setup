@@ -244,3 +244,25 @@ see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 There are no known limitations.
 
 If you find issues, [please report them](https://github.com/micro-ROS/micro_ros_setup/issues).
+
+# Papers
+
+If you want to cite micro-ROS, please cite the following book chapter ([PDF available at Springer Link](https://doi.org/10.1007/978-3-031-09062-2_2)):
+
+Kaiwalya Belsare, Antonio Cuadros Rodriguez, Pablo Garrido Sánchez, Juanjo Hierro, Tomasz Kołcon, Ralph Lange, Ingo Lütkebohle, Alexandre Malki, Jaime Martin Losa, Francisco Melendez, Maria Merlan Rodriguez, Arne Nordmann, Jan Staschulat, and Julian von Mendel: Micro-ROS. In: _Anis Koubaa (ed.) Robot Operating System (ROS): The Complete Reference (Volume 7),_ Springer, pp. 3–55, 2023. (Online since 2 February 2023.)
+
+```bibtex
+@INBOOK{Belsare_et_al_2023_Micro-ROS,
+  author = {Kaiwalya Belsare and Antonio Cuadros Rodriguez and Pablo Garrido S\'{a}nchez and Juanjo Hierro
+            and Tomasz Ko\l{}con and Ralph Lange and Ingo L\"{u}tkebohle and Alexandre Malki
+            and Jaime Martin Losa and Francisco Melendez and Maria Merlan Rodriguez and Arne Nordmann
+            and Jan Staschulat and and Julian von Mendel},
+  title = {Micro-ROS},
+  editor = {Anis Koubaa},
+  booktitle = {Robot Operating System (ROS): The Complete Reference (Volume 7)},
+  year = {2023},
+  publisher = {Springer},
+  pages = {3--55},
+  doi = {10.1007/978-3-031-09062-2_2}
+}
+```
