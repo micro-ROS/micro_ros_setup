@@ -20,7 +20,16 @@ jobs:
             branch: foxy
           - distro: rolling
             branch: main
+<<<<<<< HEAD
     container: ros:${{ matrix.distro }}
+=======
+            image: ubuntu:jammy
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+    container:
+      image: ${{ matrix.image }}
+>>>>>>> 1b6e296 (Remove galactic from CI (#624))
 
     steps:
       - uses: actions/checkout@v2
@@ -320,6 +329,168 @@ jobs:
             configuration: weather_publisher
             binary: 'firmware/bin/weather_publisher'
 
+<<<<<<< HEAD
+=======
+          - distro: rolling
+            branch: main
+            image: ubuntu:jammy
+            rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: crazyflie21
+            configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f446ze
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: discovery_l475_iot1
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: nucleo_h743zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: host
+            configuration: ping_pong
+            transport_arguments: -t udp -i 192.168.1.1 -p 8080
+            binary: 'firmware/build/zephyr/zephyr.exe'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
+
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+            rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
+    container:
+      image: ${{ matrix.image }}
+>>>>>>> 1b6e296 (Remove galactic from CI (#624))
     steps:
       - uses: actions/checkout@v2
         with:
@@ -365,9 +536,18 @@ jobs:
             branch: foxy
           - distro: rolling
             branch: main
+<<<<<<< HEAD
           - distro: galactic
             branch: galactic
 
+=======
+            image: ubuntu:jammy
+          - distro: humble
+            branch: humble
+            image: ubuntu:jammy
+    container:
+      image: ${{ matrix.image }}
+>>>>>>> 1b6e296 (Remove galactic from CI (#624))
     needs: micro_ros_build
     container: ros:${{ matrix.distro }}
 
