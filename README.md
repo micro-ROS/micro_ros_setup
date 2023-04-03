@@ -15,6 +15,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 - [Purpose of the Project](#purpose-of-the-project)
 - [License](#license)
 - [Known Issues / Limitations](#known-issues--limitations)
+- [Papers](#papers)
 
 # Supported platforms
 
@@ -69,7 +70,12 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | Crystal      | EOL       | `crystal`  |
 | Dashing      | EOL       | `dashing`  |
 | Foxy         | Supported | `foxy`     |
+<<<<<<< HEAD
 | Galactic     | Supported | `galactic` |
+=======
+| Galactic     | EOL       | `galactic` |
+| Humble       | Supported | `humble`   |
+>>>>>>> 1b6e296 (Remove galactic from CI (#624))
 | Rolling      | Supported | `main`     |
 
 Some other prerequisites needed for building a firmware using this package are:
