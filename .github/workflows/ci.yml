@@ -2,30 +2,41 @@ name: CI
 
 on:
   pull_request:
+    paths-ignore:
+      - 'README.md'
     branches:
       - '**'
+env:
+  ROS_DISTRO: foxy
 
 jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
-
+    container:
+      image: ubuntu:20.04
+    strategy:
+      fail-fast: false
     steps:
       - uses: actions/checkout@v2
         with:
           path: src/micro_ros_setup
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
       - name: Dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
           colcon build
 
       - name: Install micro-ROS build system
@@ -39,7 +50,10 @@ jobs:
 
   micro_ros_agent:
     runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
+    container:
+      image: ubuntu:20.04
+    strategy:
+      fail-fast: false
     needs: micro_ros_build
 
     steps:
@@ -47,13 +61,18 @@ jobs:
         with:
           path: src/micro_ros_setup
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
       - name: dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
-          apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
+          apt install -y ros-${{ env.ROS_DISTRO }}-rmw-fastrtps-cpp
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -66,7 +85,7 @@ jobs:
 
       - name: build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_agent_ws.sh
           ros2 run micro_ros_setup build_agent.sh
@@ -77,9 +96,9 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container: ros:${{github.base_ref}}
     needs: micro_ros_build
-
+    container:
+      image: ubuntu:20.04
     strategy:
       fail-fast: false
       matrix:
@@ -169,12 +188,6 @@ jobs:
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
 
-          - rtos: nuttx
-            platform: olimex-stm32-e407
-            configuration: drive_base
-            transport_arguments:
-            binary: 'firmware/NuttX/nuttx.bin'
-
           - rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -185,18 +198,28 @@ jobs:
             configuration: weather_publisher
             binary: 'firmware/bin/weather_publisher'
 
+          - rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
     steps:
       - uses: actions/checkout@v2
         with:
           path: src/micro_ros_setup
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
       - name: Dependencies
         run: |
           apt update
           apt upgrade -y
-          apt install -y python3-colcon-metadata python3-pip
-          rosdep update --rosdistro $ROS_DISTRO
-          rosdep install -y --from-paths src --ignore-src -y
+          apt-get update
+          apt install -y python3-colcon-metadata python3-pip cmake
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -209,7 +232,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/foxy/setup.sh
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
