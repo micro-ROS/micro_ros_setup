@@ -18,20 +18,18 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
           - distro: rolling
             branch: main
-<<<<<<< HEAD
+            image: ubuntu:jammy
           - distro: galactic
             branch: galactic
-    container: ros:${{ matrix.distro }}
-=======
-            image: ubuntu:jammy
+            image: ubuntu:20.04
           - distro: humble
             branch: humble
             image: ubuntu:jammy
     container:
       image: ${{ matrix.image }}
->>>>>>> 1b6e296 (Remove galactic from CI (#624))
 
     steps:
       - uses: actions/checkout@v2
@@ -39,16 +37,21 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ matrix.distro }}
+
       - name: Dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro ${{ matrix.distro }}
+          rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
 
       - name: Build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ matrix.distro }}/setup.sh
           colcon build
 
       - name: Install micro-ROS build system
@@ -62,7 +65,6 @@ jobs:
 
   micro_ros_client:
     runs-on: ubuntu-latest
-    container: ros:${{ matrix.distro }}
     needs: micro_ros_build
 
     strategy:
@@ -71,6 +73,7 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: host
             platform: null
             configuration: null
@@ -79,6 +82,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: generate_lib
             platform: null
             configuration: null
@@ -88,6 +92,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -96,6 +101,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -104,6 +110,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f446re
             configuration: int32_publisher
@@ -112,6 +119,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
@@ -120,6 +128,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -128,6 +137,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -136,6 +146,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: freertos
             platform: esp32
             configuration: int32_publisher
@@ -144,6 +155,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -152,6 +164,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: discovery_l475_iot1
             configuration: int32_publisher
@@ -160,6 +173,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: nucleo_h743zi
             configuration: int32_publisher
@@ -168,6 +182,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -176,6 +191,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: zephyr
             platform: host
             configuration: ping_pong
@@ -184,6 +200,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: nuttx
             platform: olimex-stm32-e407
             configuration: drive_base
@@ -192,6 +209,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -199,6 +217,7 @@ jobs:
 
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
             rtos: raspbian
             platform: buster_v7
             configuration: weather_publisher
@@ -206,6 +225,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: host
             platform: null
             configuration: null
@@ -214,6 +234,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: generate_lib
             platform: null
             configuration: null
@@ -223,6 +244,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: crazyflie21
             configuration: crazyflie_position_publisher
@@ -231,6 +253,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -239,6 +262,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446re
             configuration: int32_publisher
@@ -247,6 +271,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446ze
             configuration: int32_publisher
@@ -255,6 +280,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -263,6 +289,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f767zi
             configuration: int32_publisher
@@ -271,6 +298,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: freertos
             platform: esp32
             configuration: int32_publisher
@@ -279,6 +307,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: olimex-stm32-e407
             configuration: int32_publisher
@@ -287,6 +316,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: discovery_l475_iot1
             configuration: int32_publisher
@@ -295,6 +325,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_h743zi
             configuration: int32_publisher
@@ -303,6 +334,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_f746zg
             configuration: int32_publisher
@@ -311,6 +343,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: zephyr
             platform: host
             configuration: ping_pong
@@ -319,6 +352,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: agent_lite
@@ -326,6 +360,7 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
             configuration: weather_publisher
@@ -333,11 +368,10 @@ jobs:
 
           - distro: rolling
             branch: main
+            image: ubuntu:jammy
             rtos: mbed
             platform: disco_l475vg_iot01a
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
-<<<<<<< HEAD
-=======
 
           - distro: humble
             branch: humble
@@ -491,22 +525,34 @@ jobs:
 
     container:
       image: ${{ matrix.image }}
->>>>>>> 1b6e296 (Remove galactic from CI (#624))
     steps:
       - uses: actions/checkout@v2
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ matrix.distro }}
+
       - name: Dependencies
         run: |
           apt update
           apt upgrade -y
           # Install last version of CMake
+          if [ ${{ matrix.rtos }} = "mbed" ] &&  [ $(lsb_release -sr) = "20.04" ]; then
+            echo "Adding Kitware CMake repo to install latest CMake"
+            apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+            wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+            apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          else
+            echo "Using Ubuntu mainline CMake"
+          fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro ${{ matrix.distro }}
+          rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
 
       - uses: actions/download-artifact@v1
         with:
@@ -519,7 +565,7 @@ jobs:
 
       - name: Configure and build micro-ROS
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ matrix.distro }}/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_firmware_ws.sh ${{ matrix.rtos }} ${{ matrix.platform }}
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
@@ -537,22 +583,19 @@ jobs:
         include:
           - distro: foxy
             branch: foxy
+            image: ubuntu:20.04
           - distro: rolling
             branch: main
-<<<<<<< HEAD
+            image: ubuntu:jammy
           - distro: galactic
             branch: galactic
-
-=======
-            image: ubuntu:jammy
+            image: ubuntu:20.04
           - distro: humble
             branch: humble
             image: ubuntu:jammy
     container:
       image: ${{ matrix.image }}
->>>>>>> 1b6e296 (Remove galactic from CI (#624))
     needs: micro_ros_build
-    container: ros:${{ matrix.distro }}
 
     steps:
       - uses: actions/checkout@v2
@@ -560,13 +603,18 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
+      - uses: ros-tooling/setup-ros@0.3.2
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ matrix.distro }}
+
       - name: dependencies
         run: |
           apt update
           apt install -y python3-colcon-metadata python3-pip
-          apt install -y ros-${ROS_DISTRO}-rmw-fastrtps-cpp
-          rosdep update --os=ubuntu:jammy --rosdistro $ROS_DISTRO
-          rosdep install --os=ubuntu:jammy -y --from-paths src --ignore-src -y
+          rosdep update --rosdistro ${{ matrix.distro }}
+          rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
+          apt install -y ros-${{ matrix.distro }}-rmw-fastrtps-cpp
 
       - uses: actions/download-artifact@v1
         with:
@@ -579,7 +627,7 @@ jobs:
 
       - name: build
         run: |
-          . /opt/ros/$ROS_DISTRO/setup.sh
+          . /opt/ros/${{ matrix.distro }}/setup.sh
           . install/local_setup.sh
           ros2 run micro_ros_setup create_agent_ws.sh
           ros2 run micro_ros_setup build_agent.sh
