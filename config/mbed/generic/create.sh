@@ -26,9 +26,6 @@ pushd $FW_TARGETDIR >/dev/null
         mbed-tools deploy
     popd >/dev/null
 
-    # ignore broken packages
-    touch mcu_ws/ros2/ros2_tracing/test_tracetools/COLCON_IGNORE
-
     # TODO (pablogs): Avoid current approach and rely on the standalone module
     # rm -rf dev_ws mcu_ws
 popd >/dev/null
