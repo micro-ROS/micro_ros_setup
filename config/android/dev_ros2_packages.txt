@@ -7,3 +7,4 @@ keep:
   ament/osrf_pycommon
   ament/uncrustify_vendor
   ros2/ament_cmake_ros
+  ros2/ros2_tracing
