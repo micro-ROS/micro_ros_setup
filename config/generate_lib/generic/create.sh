@@ -5,6 +5,7 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
     touch mcu_ws/ros2/rcpputils/COLCON_IGNORE
+    touch mcu_ws/ros2/ros2_tracing/test_tracetools/COLCON_IGNORE
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 

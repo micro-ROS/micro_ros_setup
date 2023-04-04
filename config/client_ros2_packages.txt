@@ -14,3 +14,4 @@ keep:
   ros2/example_interfaces
   ros2/rcpputils
   ros2/rosidl_core
+  ros2/ros2_tracing
