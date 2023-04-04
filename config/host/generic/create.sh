@@ -10,4 +10,3 @@ rosdep install -y --from-paths src -i src --skip-keys="$SKIP" -r
 
 touch src/uros/rclc/rclc_examples/COLCON_IGNORE
 touch src/uros/rclc/rclc_lifecycle/COLCON_IGNORE
-touch src/ros2_tracing/test_tracetools/COLCON_IGNORE
