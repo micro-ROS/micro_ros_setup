@@ -14,8 +14,7 @@
         "rcl": {
             "cmake-args": [
                 "-DBUILD_TESTING=OFF",
-                "-DRCL_COMMAND_LINE_ENABLED=OFF",
-                "-DRCL_LOGGING_ENABLED=OFF"
+                "-DRCL_MICROROS=ON"
             ]
         }, 
         "rcutils": {
