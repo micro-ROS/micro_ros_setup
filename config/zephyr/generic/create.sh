@@ -30,6 +30,9 @@ pushd $FW_TARGETDIR >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
 
+    # Downgrade setuptools (https://github.com/pypa/setuptools/issues/3452)
+    pip install --force-reinstall setuptools==59.5.0
+
     if [ "$PLATFORM" = "host" ]; then
         if [ "$ARCH" = "aarch64" ]; then
             export TOOLCHAIN_VERSION=zephyr-sdk-0.13.1-linux-aarch64-setup.run
