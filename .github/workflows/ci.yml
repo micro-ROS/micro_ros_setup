@@ -217,7 +217,7 @@ jobs:
           apt update
           apt upgrade -y
           apt-get update
-          apt install -y python3-colcon-metadata python3-pip cmake ros-${{ env.ROS_DISTRO }}-rosidl-pycommon
+          apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
