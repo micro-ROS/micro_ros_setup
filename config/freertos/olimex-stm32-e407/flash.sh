@@ -15,6 +15,8 @@ pushd $OLIMEX_EXTENSIONS_DIR > /dev/null
         PROGRAMMER=interface/stlink-v2-1.cfg
       elif lsusb -d 0483:3748; then
         PROGRAMMER=interface/stlink-v2.cfg
+      elif lsusb -d 1366:0101 || lsusb -d 1366:0105; then
+        PROGRAMMER=interface/jlink.cfg
       else
         echo "Error. Unsuported OpenOCD USB programmer"
         exit 1
@@ -26,4 +28,5 @@ pushd $OLIMEX_EXTENSIONS_DIR > /dev/null
   fi
 
 popd > /dev/null
+
 
