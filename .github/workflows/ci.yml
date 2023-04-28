@@ -48,51 +48,51 @@ jobs:
           name: micro_ros_build
           path: install
 
-  # micro_ros_agent:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ubuntu:jammy
-  #   strategy:
-  #     fail-fast: false
-  #   needs: micro_ros_build
+  micro_ros_agent:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:jammy
+    strategy:
+      fail-fast: false
+    needs: micro_ros_build
 
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         path: src/micro_ros_setup
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: src/micro_ros_setup
 
-  #     - uses: ros-tooling/setup-ros@0.6.1
-  #       with:
-  #         use-ros2-testing: false
-  #         required-ros-distributions: ${{ env.ROS_DISTRO }}
+      - uses: ros-tooling/setup-ros@0.6.1
+        with:
+          use-ros2-testing: false
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
 
-  #     - name: dependencies
-  #       run: |
-  #         apt update
-  #         apt install -y python3-colcon-metadata python3-pip
-  #         apt install -y ros-${{ env.ROS_DISTRO }}-rmw-fastrtps-cpp
-  #         rosdep update --rosdistro ${{ env.ROS_DISTRO }}
-  #         rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
+      - name: dependencies
+        run: |
+          apt update
+          apt install -y python3-colcon-metadata python3-pip
+          apt install -y ros-${{ env.ROS_DISTRO }}-rmw-fastrtps-cpp
+          rosdep update --rosdistro ${{ env.ROS_DISTRO }}
+          rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
-  #     - uses: actions/download-artifact@v1
-  #       with:
-  #         name: micro_ros_build
-  #         path: install
+      - uses: actions/download-artifact@v1
+        with:
+          name: micro_ros_build
+          path: install
 
-  #     # Workaround https://github.com/actions/upload-artifact/issues/38
-  #     - run: |
-  #         chmod +x -R install
+      # Workaround https://github.com/actions/upload-artifact/issues/38
+      - run: |
+          chmod +x -R install
 
-  #     - name: build
-  #       run: |
-  #         . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
-  #         . install/local_setup.sh
-  #         ros2 run micro_ros_setup create_agent_ws.sh
-  #         ros2 run micro_ros_setup build_agent.sh
+      - name: build
+        run: |
+          . /opt/ros/${{ env.ROS_DISTRO }}/setup.sh
+          . install/local_setup.sh
+          ros2 run micro_ros_setup create_agent_ws.sh
+          ros2 run micro_ros_setup build_agent.sh
 
-  #     - name: installation
-  #       run: |
-  #           (test -f install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent) && true || false
+      - name: installation
+        run: |
+            (test -f install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent) && true || false
 
   micro_ros_client:
     runs-on: ubuntu-latest
@@ -103,60 +103,60 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - rtos: host
-          #   platform: null
-          #   configuration: null
-          #   transport_arguments: null
-          #   binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+          - rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
 
-          # - rtos: generate_lib
-          #   platform: null
-          #   configuration: null
-          #   transport_arguments: null
-          #   build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
-          #   binary: 'firmware/build/libmicroros.a'
+          - rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
 
-          # - rtos: freertos
-          #   platform: crazyflie21
-          #   configuration: crazyflie_position_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
+          - rtos: freertos
+            platform: crazyflie21
+            configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
 
-          # - rtos: freertos
-          #   platform: olimex-stm32-e407
-          #   configuration: int32_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
+          - rtos: freertos
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
 
-          # - rtos: freertos
-          #   platform: nucleo_f446re
-          #   configuration: int32_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+          - rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
 
-          # - rtos: freertos
-          #   platform: nucleo_f446ze
-          #   configuration: int32_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
+          - rtos: freertos
+            platform: nucleo_f446ze
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
 
-          # - rtos: freertos
-          #   platform: nucleo_f746zg
-          #   configuration: int32_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+          - rtos: freertos
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
 
-          # - rtos: freertos
-          #   platform: nucleo_f767zi
-          #   configuration: int32_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
+          - rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
 
-          # - rtos: freertos
-          #   platform: esp32
-          #   configuration: int32_publisher
-          #   transport_arguments: -t serial -d 1
-          #   binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+          - rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
 
           - rtos: zephyr
             platform: olimex-stm32-e407
@@ -188,19 +188,19 @@ jobs:
             transport_arguments: -t udp -i 192.168.1.1 -p 8080
             binary: 'firmware/build/zephyr/zephyr.exe'
 
-          # - rtos: raspbian
-          #   platform: buster_v7
-          #   configuration: agent_lite
-          #   binary: 'firmware/bin/micro_ros_agent_lite'
+          - rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
 
-          # - rtos: raspbian
-          #   platform: buster_v7
-          #   configuration: weather_publisher
-          #   binary: 'firmware/bin/weather_publisher'
+          - rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
 
-          # - rtos: mbed
-          #   platform: disco_l475vg_iot01a
-          #   binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+          - rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
 
     steps:
       - uses: actions/checkout@v2
