@@ -71,6 +71,6 @@ pushd $FW_TARGETDIR >/dev/null
     pip3 install --upgrade Sphinx
 
     # Downgrade setuptools (https://github.com/pypa/setuptools/issues/3452)
-    pip3 install --force-reinstall setuptools==59.5.0
+    # pip3 install --force-reinstall setuptools==59.5.0
 
 popd >/dev/null
