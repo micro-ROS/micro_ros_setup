@@ -30,9 +30,6 @@ pushd $FW_TARGETDIR >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
 
-    # Downgrade setuptools (https://github.com/pypa/setuptools/issues/3452)
-    pip install --force-reinstall setuptools==59.5.0
-
     if [ "$PLATFORM" = "host" ]; then
         if [ "$ARCH" = "aarch64" ]; then
             export TOOLCHAIN_VERSION=zephyr-sdk-0.13.1-linux-aarch64-setup.run
@@ -72,5 +69,8 @@ pushd $FW_TARGETDIR >/dev/null
 
     # Workaround. Remove when https://github.com/sphinx-doc/sphinx/issues/10291 and https://github.com/micro-ROS/micro_ros_zephyr_module/runs/5714546662?check_suite_focus=true
     pip3 install --upgrade Sphinx
+
+    # Downgrade setuptools (https://github.com/pypa/setuptools/issues/3452)
+    pip3 install --force-reinstall setuptools==59.5.0
 
 popd >/dev/null
