@@ -59,7 +59,6 @@ pushd $FW_TARGETDIR >/dev/null
     vcs import --input $PREFIX/config/$RTOS/generic/board.repos
 
     # ignore broken packages
-    touch mcu_ws/ros2/rosidl/rosidl_cli/COLCON_IGNORE
     touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
@@ -68,6 +67,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 
     # Workaround. Remove when https://github.com/sphinx-doc/sphinx/issues/10291 and https://github.com/micro-ROS/micro_ros_zephyr_module/runs/5714546662?check_suite_focus=true
-    pip3 install --upgrade Sphinx
+    # pip3 install --upgrade Sphinx
 
 popd >/dev/null
