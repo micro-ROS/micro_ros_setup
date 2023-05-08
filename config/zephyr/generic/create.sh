@@ -70,7 +70,7 @@ pushd $FW_TARGETDIR >/dev/null
 
     rosdep install -y --from-paths mcu_ws -i mcu_ws --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
 
-    # Workaround. Remove when https://github.com/sphinx-doc/sphinx/issues/10291 and https://github.com/micro-ROS/micro_ros_zephyr_module/runs/5714546662?check_suite_focus=true
-    pip3 install --upgrade Sphinx
+    # Upgrade sphinx
+    pip install --force-reinstall Sphinx==4.2.0
 
 popd >/dev/null
