@@ -29,7 +29,7 @@ jobs:
       image: ${{ matrix.image }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.2
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
@@ -523,12 +523,12 @@ jobs:
     container:
       image: ${{ matrix.image }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.2
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.3.2
+      - uses: ros-tooling/setup-ros@0.6.1
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -592,12 +592,12 @@ jobs:
     needs: micro_ros_build
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.2
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.3.2
+      - uses: ros-tooling/setup-ros@0.6.1
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
