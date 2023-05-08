@@ -37,7 +37,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.3.2
+      - uses: ros-tooling/setup-ros@0.6.1
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
