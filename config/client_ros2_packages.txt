@@ -3,7 +3,6 @@ keep:
   ros2/rmw
   ros2/rosidl_defaults
   ros2/rosidl
-  ros2/rosidl_dynamic_typesupport
   ros2/rosidl_dds
   ros2/rmw_implementation
   ros2/common_interfaces
