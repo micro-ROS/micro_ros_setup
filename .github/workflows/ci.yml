@@ -22,7 +22,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -61,7 +61,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -207,7 +207,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
