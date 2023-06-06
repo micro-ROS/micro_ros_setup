@@ -12,36 +12,36 @@ repositories:
   uros/rcl:
     type: git
     url: https://github.com/micro-ROS/rcl
-    version: master
+    version: iron
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc
-    version: master
+    version: iron
   uros/micro_ros_utilities:
     type: git
     url: https://github.com/micro-ROS/micro_ros_utilities
-    version: main
+    version: iron
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: master
+    version: iron
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: main
+    version: iron
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: main
+    version: iron
   uros/rosidl_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
-    version: master
+    version: iron
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: main
+    version: iron
   uros/rosidl_dynamic_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_dynamic_typesupport.git
-    version: rolling
+    version: iron
