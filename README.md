@@ -85,10 +85,11 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | ------------ | --------- | ---------- |
 | Crystal      | EOL       | `crystal`  |
 | Dashing      | EOL       | `dashing`  |
-| Foxy         | Supported | `foxy`     |
+| Foxy         | EOL       | `foxy`     |
 | Galactic     | EOL       | `galactic` |
 | Humble       | Supported | `humble`   |
-| Rolling      | Supported | `main`     |
+| Iron         | Supported | `iron`     |
+| Rolling      | Supported | `rolling`  |
 
 Some other prerequisites needed for building a firmware using this package are:
 
@@ -114,7 +115,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 
 mkdir uros_ws && cd uros_ws
 
-git clone -b main https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+git clone -b rolling https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 rosdep update && rosdep install --from-paths src --ignore-src -y
 

@@ -18,11 +18,11 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -57,11 +57,11 @@ jobs:
     needs: micro_ros_build
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -203,11 +203,11 @@ jobs:
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
