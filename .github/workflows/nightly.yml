@@ -20,7 +20,7 @@ jobs:
             branch: rolling
             image: ubuntu:jammy
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
           - distro: humble
             branch: humble
@@ -219,7 +219,7 @@ jobs:
             binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: host
             platform: null
@@ -228,7 +228,7 @@ jobs:
             binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: generate_lib
             platform: null
@@ -238,7 +238,7 @@ jobs:
             binary: 'firmware/build/libmicroros.a'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: crazyflie21
@@ -247,7 +247,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: olimex-stm32-e407
@@ -256,7 +256,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446re
@@ -265,7 +265,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446ze
@@ -274,7 +274,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f746zg
@@ -283,7 +283,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f767zi
@@ -292,7 +292,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: freertos
             platform: esp32
@@ -301,7 +301,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: zephyr
             platform: olimex-stm32-e407
@@ -310,7 +310,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: zephyr
             platform: discovery_l475_iot1
@@ -319,7 +319,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_h743zi
@@ -328,7 +328,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_f746zg
@@ -337,7 +337,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: zephyr
             platform: host
@@ -346,7 +346,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.exe'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
@@ -354,7 +354,7 @@ jobs:
             binary: 'firmware/bin/micro_ros_agent_lite'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
@@ -362,7 +362,7 @@ jobs:
             binary: 'firmware/bin/weather_publisher'
 
           - distro: iron
-            branch: release/iron
+            branch: iron
             image: ubuntu:jammy
             rtos: mbed
             platform: disco_l475vg_iot01a
