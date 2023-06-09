@@ -16,15 +16,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
-          - distro: galactic
-            branch: galactic
-            image: ubuntu:20.04
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
           - distro: humble
             branch: humble
             image: ubuntu:jammy
@@ -32,12 +29,12 @@ jobs:
       image: ${{ matrix.image }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.6.1
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -71,160 +68,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: host
-            platform: null
-            configuration: null
-            transport_arguments: null
-            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: generate_lib
-            platform: null
-            configuration: null
-            transport_arguments: null
-            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
-            binary: 'firmware/build/libmicroros.a'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: crazyflie21
-            configuration: crazyflie_position_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: olimex-stm32-e407
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: nucleo_f446re
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: nucleo_f446ze
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: nucleo_f746zg
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: nucleo_f767zi
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: freertos
-            platform: esp32
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 1
-            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: zephyr
-            platform: olimex-stm32-e407
-            configuration: int32_publisher
-            transport_arguments: -t serial-usb
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: zephyr
-            platform: discovery_l475_iot1
-            configuration: int32_publisher
-            transport_arguments: -t serial-usb
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: zephyr
-            platform: nucleo_h743zi
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 3
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: zephyr
-            platform: nucleo_f746zg
-            configuration: int32_publisher
-            transport_arguments: -t serial -d 3
-            binary: 'firmware/build/zephyr/zephyr.bin'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: zephyr
-            platform: host
-            configuration: ping_pong
-            transport_arguments: -t udp -i 192.168.1.1 -p 8080
-            binary: 'firmware/build/zephyr/zephyr.exe'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: nuttx
-            platform: olimex-stm32-e407
-            configuration: drive_base
-            transport_arguments:
-            binary: 'firmware/NuttX/nuttx.bin'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: raspbian
-            platform: buster_v7
-            configuration: agent_lite
-            binary: 'firmware/bin/micro_ros_agent_lite'
-
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
-            rtos: raspbian
-            platform: buster_v7
-            configuration: weather_publisher
-            binary: 'firmware/bin/weather_publisher'
-
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: host
             platform: null
@@ -233,7 +78,7 @@ jobs:
             binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: generate_lib
             platform: null
@@ -243,7 +88,7 @@ jobs:
             binary: 'firmware/build/libmicroros.a'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: crazyflie21
@@ -252,7 +97,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: olimex-stm32-e407
@@ -261,7 +106,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446re
@@ -270,7 +115,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f446ze
@@ -279,7 +124,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f746zg
@@ -288,7 +133,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: nucleo_f767zi
@@ -297,7 +142,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: freertos
             platform: esp32
@@ -306,7 +151,7 @@ jobs:
             binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: zephyr
             platform: olimex-stm32-e407
@@ -315,7 +160,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: zephyr
             platform: discovery_l475_iot1
@@ -324,7 +169,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_h743zi
@@ -333,7 +178,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: zephyr
             platform: nucleo_f746zg
@@ -342,7 +187,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.bin'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: zephyr
             platform: host
@@ -351,7 +196,7 @@ jobs:
             binary: 'firmware/build/zephyr/zephyr.exe'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
@@ -359,7 +204,7 @@ jobs:
             binary: 'firmware/bin/micro_ros_agent_lite'
 
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
             rtos: raspbian
             platform: buster_v7
@@ -367,7 +212,157 @@ jobs:
             binary: 'firmware/bin/weather_publisher'
 
           - distro: rolling
-            branch: main
+            branch: rolling
+            image: ubuntu:jammy
+            rtos: mbed
+            platform: disco_l475vg_iot01a
+            binary: 'firmware/micro_ros_mbed/cmake_build/DISCO_L475VG_IOT01A/develop/GCC_ARM/micro_ros_mbed.bin'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: host
+            platform: null
+            configuration: null
+            transport_arguments: null
+            binary: 'install/micro_ros_demos_rclc/lib/micro_ros_demos_rclc/int32_publisher/int32_publisher'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: generate_lib
+            platform: null
+            configuration: null
+            transport_arguments: null
+            build_arguments: $(pwd)/src/micro_ros_setup/config/generate_lib/generic/demo_toolchain.cmake
+            binary: 'firmware/build/libmicroros.a'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: crazyflie21
+            configuration: crazyflie_position_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_crazyflie21_extensions/cf2.bin'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_olimex_e407_extensions/build/micro-ROS.elf'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f446re
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446re_extensions/build/micro-ROS.elf'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f446ze
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f446ze_extensions/build/micro-ROS.elf'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f746zg_extensions/build/micro-ROS.elf'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: nucleo_f767zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_nucleo_f767zi_extensions/build/micro-ROS.elf'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: freertos
+            platform: esp32
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 1
+            binary: 'firmware/freertos_apps/microros_esp32_extensions/build/int32_publisher.elf'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: olimex-stm32-e407
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: discovery_l475_iot1
+            configuration: int32_publisher
+            transport_arguments: -t serial-usb
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: nucleo_h743zi
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: nucleo_f746zg
+            configuration: int32_publisher
+            transport_arguments: -t serial -d 3
+            binary: 'firmware/build/zephyr/zephyr.bin'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: zephyr
+            platform: host
+            configuration: ping_pong
+            transport_arguments: -t udp -i 192.168.1.1 -p 8080
+            binary: 'firmware/build/zephyr/zephyr.exe'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: raspbian
+            platform: buster_v7
+            configuration: agent_lite
+            binary: 'firmware/bin/micro_ros_agent_lite'
+
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
+            rtos: raspbian
+            platform: buster_v7
+            configuration: weather_publisher
+            binary: 'firmware/bin/weather_publisher'
+
+          - distro: iron
+            branch: iron
             image: ubuntu:jammy
             rtos: mbed
             platform: disco_l475vg_iot01a
@@ -526,12 +521,12 @@ jobs:
     container:
       image: ${{ matrix.image }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.3.2
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -541,15 +536,6 @@ jobs:
           apt update
           apt upgrade -y
           # Install last version of CMake
-          if [ ${{ matrix.rtos }} = "mbed" ] &&  [ $(lsb_release -sr) = "20.04" ]; then
-            echo "Adding Kitware CMake repo to install latest CMake"
-            apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
-            wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-            apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-          else
-            echo "Using Ubuntu mainline CMake"
-          fi
-          apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
           rosdep update --rosdistro ${{ matrix.distro }}
           rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
@@ -581,15 +567,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - distro: foxy
-            branch: foxy
-            image: ubuntu:20.04
           - distro: rolling
-            branch: main
+            branch: rolling
             image: ubuntu:jammy
-          - distro: galactic
-            branch: galactic
-            image: ubuntu:20.04
+          - distro: iron
+            branch: iron
+            image: ubuntu:jammy
           - distro: humble
             branch: humble
             image: ubuntu:jammy
@@ -598,12 +581,12 @@ jobs:
     needs: micro_ros_build
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.3.2
+      - uses: ros-tooling/setup-ros@0.6.2
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
