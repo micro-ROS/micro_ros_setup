@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+5.0.0 (2023-06-12)
+------------------
 * Update to rolling repositories (`#649 <https://github.com/micro-ROS/micro_ros_setup/issues/649>`_)
 * Replace ros2 repo with micro-ROS fork (`#642 <https://github.com/micro-ROS/micro_ros_setup/issues/642>`_)
 * Support Segger J-Link to flash Olimex E407 (`#635 <https://github.com/micro-ROS/micro_ros_setup/issues/635>`_) (`#640 <https://github.com/micro-ROS/micro_ros_setup/issues/640>`_)
