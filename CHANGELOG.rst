@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.1.3 (2023-06-12)
+------------------
 * Update ros-tooling CI version (`#637 <https://github.com/micro-ROS/micro_ros_setup/issues/637>`_)
 * Support Segger J-Link to flash Olimex E407 (`#635 <https://github.com/micro-ROS/micro_ros_setup/issues/635>`_)
 * Fix nigthly build (`#634 <https://github.com/micro-ROS/micro_ros_setup/issues/634>`_)
