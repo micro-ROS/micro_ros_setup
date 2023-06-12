@@ -2,6 +2,15 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update ros-tooling CI version (`#637 <https://github.com/micro-ROS/micro_ros_setup/issues/637>`_)
+* Support Segger J-Link to flash Olimex E407 (`#635 <https://github.com/micro-ROS/micro_ros_setup/issues/635>`_)
+* Fix nigthly build (`#634 <https://github.com/micro-ROS/micro_ros_setup/issues/634>`_)
+* Remove galactic from CI (`#624 <https://github.com/micro-ROS/micro_ros_setup/issues/624>`_)
+* Add reference to micro-ROS book chapter.
+* Add RT-Thread to Readme (`#604 <https://github.com/micro-ROS/micro_ros_setup/issues/604>`_)
+
 3.1.2 (2022-09-28)
 ------------------
 * Fix humble repos (`#572 <https://github.com/micro-ROS/micro-ros-build/issues/572>`_)
