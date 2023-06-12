@@ -2,6 +2,19 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update to rolling repositories (`#649 <https://github.com/micro-ROS/micro_ros_setup/issues/649>`_)
+* Replace ros2 repo with micro-ROS fork (`#642 <https://github.com/micro-ROS/micro_ros_setup/issues/642>`_)
+* Support Segger J-Link to flash Olimex E407 (`#635 <https://github.com/micro-ROS/micro_ros_setup/issues/635>`_) (`#640 <https://github.com/micro-ROS/micro_ros_setup/issues/640>`_)
+* Fix nigthly build (`#634 <https://github.com/micro-ROS/micro_ros_setup/issues/634>`_) (`#639 <https://github.com/micro-ROS/micro_ros_setup/issues/639>`_)
+* Add rosidl_dynamic_typesupport to rolling (`#629 <https://github.com/micro-ROS/micro_ros_setup/issues/629>`_)
+* Deprecate galactic CI and fix Zephyr build (`#625 <https://github.com/micro-ROS/micro_ros_setup/issues/625>`_)
+* Remove galactic from CI (`#624 <https://github.com/micro-ROS/micro_ros_setup/issues/624>`_)
+* Fix ros2_tracing build (`#628 <https://github.com/micro-ROS/micro_ros_setup/issues/628>`_)
+* Add reference to micro-ROS book chapter. (`#612 <https://github.com/micro-ROS/micro_ros_setup/issues/612>`_)
+* Add RT-Thread to Readme (`#604 <https://github.com/micro-ROS/micro_ros_setup/issues/604>`_) (`#607 <https://github.com/micro-ROS/micro_ros_setup/issues/607>`_)
+
 4.0.2 (2022-09-28)
 ------------------
 * Add rosidl_core (`#573 <https://github.com/micro-ROS/micro-ros-build/issues/573>`_)
