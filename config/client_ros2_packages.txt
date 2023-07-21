@@ -15,3 +15,4 @@ keep:
   ros2/rcpputils
   ros2/rosidl_core
   ros2/ros2_tracing
+  ros2/rosidl_dynamic_typesupport

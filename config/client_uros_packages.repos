@@ -37,11 +37,3 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
     version: rolling
-  uros/rosidl_typesupport_microxrcedds:
-    type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: rolling
-  uros/rosidl_dynamic_typesupport:
-    type: git
-    url: https://github.com/ros2/rosidl_dynamic_typesupport.git
-    version: rolling
