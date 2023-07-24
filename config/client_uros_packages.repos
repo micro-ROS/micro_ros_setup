@@ -40,12 +40,4 @@ repositories:
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-<<<<<<< HEAD
     version: iron
-  uros/rosidl_dynamic_typesupport:
-    type: git
-    url: https://github.com/micro-ROS/rosidl_dynamic_typesupport.git
-    version: iron
-=======
-    version: rolling
->>>>>>> a20c5dc (Remove micro-ROS fork (#655))
