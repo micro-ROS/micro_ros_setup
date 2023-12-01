@@ -34,7 +34,11 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
+<<<<<<< HEAD
       - uses: ros-tooling/setup-ros@0.6.1
+=======
+      - uses: ros-tooling/setup-ros@0.7.0
+>>>>>>> fa7c612 (Fix empy dep (#678))
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -42,7 +46,8 @@ jobs:
       - name: Dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip
+          apt install -y python3-pip
+          pip3 install colcon-common-extensions
           rosdep update --rosdistro ${{ matrix.distro }}
           rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
 
@@ -528,7 +533,11 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
+<<<<<<< HEAD
       - uses: ros-tooling/setup-ros@0.6.1
+=======
+      - uses: ros-tooling/setup-ros@0.7.0
+>>>>>>> fa7c612 (Fix empy dep (#678))
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -538,6 +547,7 @@ jobs:
           apt update
           apt upgrade -y
           # Install last version of CMake
+<<<<<<< HEAD
           if [ ${{ matrix.rtos }} = "mbed" ] &&  [ $(lsb_release -sr) = "20.04" ]; then
             echo "Adding Kitware CMake repo to install latest CMake"
             apt install -y apt-transport-https ca-certificates gnupg software-properties-common wget
@@ -548,6 +558,10 @@ jobs:
           fi
           apt-get update
           apt install -y python3-colcon-metadata python3-pip cmake
+=======
+          apt install -y python3-pip
+          pip3 install colcon-common-extensions cmake
+>>>>>>> fa7c612 (Fix empy dep (#678))
           rosdep update --rosdistro ${{ matrix.distro }}
           rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
 
@@ -597,7 +611,11 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
+<<<<<<< HEAD
       - uses: ros-tooling/setup-ros@0.6.1
+=======
+      - uses: ros-tooling/setup-ros@0.7.0
+>>>>>>> fa7c612 (Fix empy dep (#678))
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -605,7 +623,8 @@ jobs:
       - name: dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip
+          apt install -y python3-pip
+          pip3 install colcon-common-extensions
           rosdep update --rosdistro ${{ matrix.distro }}
           rosdep install --rosdistro ${{ matrix.distro }} -y --from-paths src --ignore-src -y
           apt install -y ros-${{ matrix.distro }}-rmw-fastrtps-cpp
