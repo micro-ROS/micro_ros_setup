@@ -22,7 +22,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.2
+      - uses: ros-tooling/setup-ros@0.7.0
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -30,7 +30,8 @@ jobs:
       - name: Dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip
+          apt install -y python3-pip
+          pip3 install colcon-common-extensions
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
@@ -61,7 +62,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.2
+      - uses: ros-tooling/setup-ros@0.7.0
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -69,7 +70,8 @@ jobs:
       - name: dependencies
         run: |
           apt update
-          apt install -y python3-colcon-metadata python3-pip
+          apt install -y python3-pip
+          pip3 install colcon-common-extensions
           apt install -y ros-${{ env.ROS_DISTRO }}-rmw-fastrtps-cpp
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
@@ -207,7 +209,7 @@ jobs:
         with:
           path: src/micro_ros_setup
 
-      - uses: ros-tooling/setup-ros@0.6.2
+      - uses: ros-tooling/setup-ros@0.7.0
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -217,7 +219,8 @@ jobs:
           apt update
           apt upgrade -y
           apt-get update
-          apt install -y python3-colcon-metadata python3-pip cmake
+          apt install -y python3-pip
+          pip3 install colcon-common-extensions cmake
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
