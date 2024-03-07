@@ -29,11 +29,7 @@ jobs:
       image: ${{ matrix.image }}
 
     steps:
-<<<<<<< HEAD
       - uses: actions/checkout@v3.5.2
-=======
-      - uses: actions/checkout@v4
->>>>>>> 944843d (Fix rolling (#687))
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
@@ -528,11 +524,7 @@ jobs:
     container:
       image: ${{ matrix.image }}
     steps:
-<<<<<<< HEAD
       - uses: actions/checkout@v3.5.2
-=======
-      - uses: actions/checkout@v4
->>>>>>> 944843d (Fix rolling (#687))
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
@@ -602,11 +594,7 @@ jobs:
     needs: micro_ros_build
 
     steps:
-<<<<<<< HEAD
       - uses: actions/checkout@v3.5.2
-=======
-      - uses: actions/checkout@v4
->>>>>>> 944843d (Fix rolling (#687))
         with:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
