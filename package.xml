@@ -4,11 +4,16 @@
   <name>micro_ros_setup</name>
   <version>4.1.0</version>
   <description>Tools for setting up micro-ROS workspaces</description>
-  <maintainer email="pablogarrido@eprosima.com">Pablo Garrido</maintainer>
+  <maintainer email="ingo.luetkebohle@de.bosch.com">Ingo Lütkebohle</maintainer>
   <license>Apache-2.0</license>
 
+  <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>curl</depend>
   <depend>python3-yaml</depend>
+  <!-- these are needed to build fastrtps -->
+  <buildtool_depend>asio</buildtool_depend>
+  <buildtool_depend>tinyxml2</buildtool_depend>
+  <!-- end fastrtps deps -->
   <depend>clang-tidy</depend>
 
   <build_depend>flex</build_depend>
@@ -18,8 +23,10 @@
 
   <exec_depend>python3-vcstool</exec_depend>
 
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>
-
 </package>
