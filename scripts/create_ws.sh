@@ -40,7 +40,11 @@ then
 fi
 
 # ROS_DISTRO SPECIFIC
+<<<<<<< HEAD
 curl -s https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos |\
+=======
+curl -s https://raw.githubusercontent.com/ros2/ros2/rolling/ros2.repos |\
+>>>>>>> 944843d (Fix rolling (#687))
     ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
 vcs import --input ros2.repos --skip-existing
 vcs import --input $REPOS --skip-existing
