@@ -56,3 +56,8 @@ repositories:
     type: git
     url: https://github.com/ros2/unique_identifier_msgs
     version: rolling
+
+  ros2/test_interface_files:
+    type: git
+    url: https://github.com/ros2/test_interface_files
+    version: rolling
