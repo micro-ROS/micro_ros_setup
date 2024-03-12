@@ -26,8 +26,10 @@ pushd $FW_TARGETDIR >/dev/null
           git checkout v3.6.0
         cd ..
         west update
-	west blobs fetch hal_espressif
-	west zephyr-export
+        if [ "$PLATFORM" = "esp32_devkitc_wroom"] || [ "$PLATFORM" = "esp32c3_devkitm" ]; then
+	    west blobs fetch hal_espressif
+	    west zephyr-export
+        fi
     popd >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
@@ -70,8 +72,5 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/test_tracetools/COLCON_IGNORE
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
-
-    # Upgrade sphinx
-    #pip install --force-reinstall Sphinx==4.2.0
 
 popd >/dev/null
