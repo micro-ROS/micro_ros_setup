@@ -15,7 +15,7 @@ if ! (( $CMAKE_VERSION_MAJOR_NUMBER > 3 || \
 fi
 
 export PATH=~/.local/bin:"$PATH"
-export ZEPHYR_VERSION="0.16.3"
+export ZEPHYR_VERSION="0.16.5"
 export ARCH=$(uname -m)
 
 pushd $FW_TARGETDIR >/dev/null
