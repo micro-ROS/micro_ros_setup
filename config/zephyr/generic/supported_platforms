@@ -3,3 +3,6 @@ olimex-stm32-e407
 nucleo_f401re
 nucleo_h743zi
 nucleo_f746zg
+esp32_devkitc_wroom
+esp32c3_devkitm
+rpi_pico_w

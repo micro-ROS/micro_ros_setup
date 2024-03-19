@@ -4,6 +4,8 @@ set -e
 set -o nounset
 set -o pipefail
 
+UROS_EXTRA_FLASH_ARGS=""
+
 FW_TARGETDIR=$(pwd)/firmware
 PREFIX=$(ros2 pkg prefix micro_ros_setup)
 
@@ -15,6 +17,11 @@ else
     echo "Firmware folder not found. Please use ros2 run micro_ros_setup create_firmware_ws.sh to create a new project."
     exit 1
 fi
+
+if [[ -n "$@" ]]; then
+    UROS_EXTRA_FLASH_ARGS=("$@")
+fi
+export UROS_EXTRA_FLASH_ARGS
 
 # Flash specific firmware folder if needed
 if [ -d "$PREFIX/config/$RTOS/generic" ]; then

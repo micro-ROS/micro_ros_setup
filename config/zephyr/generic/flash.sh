@@ -70,7 +70,7 @@ else
 
         source $FW_TARGETDIR/zephyrproject/zephyr/zephyr-env.sh
 
-        west flash
+        west flash  ${UROS_EXTRA_FLASH_ARGS[@]}
 
     fi
 

@@ -15,7 +15,7 @@ if ! (( $CMAKE_VERSION_MAJOR_NUMBER > 3 || \
 fi
 
 export PATH=~/.local/bin:"$PATH"
-export ZEPHYR_VERSION="v0.12.4"
+export ZEPHYR_VERSION="0.16.5"
 export ARCH=$(uname -m)
 
 pushd $FW_TARGETDIR >/dev/null
@@ -23,35 +23,41 @@ pushd $FW_TARGETDIR >/dev/null
     west init zephyrproject
     pushd zephyrproject >/dev/null
         cd zephyr
-          git checkout zephyr-v2.6.0
+          git checkout v3.6.0
         cd ..
         west update
+        if [ "$PLATFORM" = "esp32_devkitc_wroom"] || [ "$PLATFORM" = "esp32c3_devkitm" ]; then
+	    west blobs fetch hal_espressif
+	    west zephyr-export
+        fi
     popd >/dev/null
 
     pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
 
-    if [ "$PLATFORM" = "host" ]; then
-        if [ "$ARCH" = "aarch64" ]; then
-            export TOOLCHAIN_VERSION=zephyr-sdk-0.13.1-linux-aarch64-setup.run
-            export ZEPHYR_VERSION="v0.13.1"
-        else
-            export TOOLCHAIN_VERSION=zephyr-sdk-0.12.4-x86_64-linux-setup.run
-        fi
-    else
-        if [ "$ARCH" = "aarch64" ]; then
-            export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.13.1-linux-aarch64-setup.run
-            export ZEPHYR_VERSION="v0.13.1"
-        else
-            export TOOLCHAIN_VERSION=zephyr-toolchain-arm-0.12.4-x86_64-linux-setup.run
-        fi
+    sdkfound=false
+    if [ -e ~/.zephyrrc ]; then
+	source ~/.zephyrrc
+	if [ -d $ZEPHYR_SDK_INSTALL_DIR ]; then
+	    ln -s $ZEPHYR_SDK_INSTALL_DIR zephyr-sdk
+	    sdkfound=true
+	fi
     fi
+    echo PLATFORM: $PLATFORM
+    if [ "$sdkfound" = false ]; then
+	export TOOLCHAIN_VERSION=zephyr-sdk-${ZEPHYR_VERSION}_linux-${ARCH}.tar.xz
 
-    wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/$ZEPHYR_VERSION/$TOOLCHAIN_VERSION
-    chmod +x $TOOLCHAIN_VERSION
-    ./$TOOLCHAIN_VERSION -- -d $(pwd)/zephyr-sdk -y
+	wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v$ZEPHYR_VERSION/$TOOLCHAIN_VERSION
+	chmod +x $TOOLCHAIN_VERSION
+	tar -xvf ./$TOOLCHAIN_VERSION
+	mv zephyr-sdk-${ZEPHYR_VERSION} zephyr-sdk
 
-    rm -rf $TOOLCHAIN_VERSION
+	rm -rf $TOOLCHAIN_VERSION
 
+    fi
+    pushd zephyr-sdk
+    ./setup.sh -t all -c -h
+    popd
+    echo FW_TARGET_DIR: ${FW_TARGET_DIR}
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
     export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
 
@@ -66,8 +72,5 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/test_tracetools/COLCON_IGNORE
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
-
-    # Upgrade sphinx
-    pip install --force-reinstall Sphinx==4.2.0
 
 popd >/dev/null
