@@ -18,6 +18,9 @@ export PATH=~/.local/bin:"$PATH"
 export ZEPHYR_VERSION="v0.12.4"
 export ARCH=$(uname -m)
 
+# Install west
+pip3 install --user -U west
+
 pushd $FW_TARGETDIR >/dev/null
 
     west init zephyrproject
