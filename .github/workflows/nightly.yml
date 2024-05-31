@@ -37,7 +37,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.7.0
+      - uses: ros-tooling/setup-ros@0.7.7
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -680,7 +680,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.7.0
+      - uses: ros-tooling/setup-ros@0.7.7
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
@@ -744,7 +744,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ matrix.branch }}
 
-      - uses: ros-tooling/setup-ros@0.7.0
+      - uses: ros-tooling/setup-ros@0.7.7
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ matrix.distro }}
