@@ -19,7 +19,7 @@ export ZEPHYR_VERSION="v0.12.4"
 export ARCH=$(uname -m)
 
 # Install west
-pip3 install --user -U west
+pip3 install --user -U west --break-system-packages
 
 pushd $FW_TARGETDIR >/dev/null
 
@@ -31,7 +31,7 @@ pushd $FW_TARGETDIR >/dev/null
         west update
     popd >/dev/null
 
-    pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
+    pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed --break-system-packages
 
     if [ "$PLATFORM" = "host" ]; then
         if [ "$ARCH" = "aarch64" ]; then
@@ -72,6 +72,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
 
     # Upgrade sphinx
-    pip install --force-reinstall Sphinx==4.2.0
+    pip install --force-reinstall Sphinx==4.2.0 --break-system-packages
 
 popd >/dev/null
