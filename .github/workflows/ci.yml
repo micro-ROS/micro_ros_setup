@@ -6,6 +6,8 @@ on:
       - 'README.md'
     branches:
       - '**'
+    workflow_call:
+
 env:
   ROS_DISTRO: jazzy
 
