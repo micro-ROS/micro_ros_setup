@@ -8,11 +8,6 @@ MAX_CHARACTERS = 80
 
 COMPONENTS = [
     {
-        "name": "renesas_e2_studio",
-        "description": "micro-ROS component for Renesas e2 studio and RA6M5: this package enables the integration of micro-ROS in Renesas e2 studio for RA6M5 and RA6T2 MCUs.",
-        "url" : "https://github.com/micro-ROS/micro_ros_renesas2estudio_component"
-    },
-    {
         "name": "esp_idf",
         "description": "micro-ROS component for ESP-IDF: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.",
         "url" : "https://github.com/micro-ROS/micro_ros_espidf_component"

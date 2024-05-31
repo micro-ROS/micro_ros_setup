@@ -7,14 +7,14 @@ on:
     branches:
       - '**'
 env:
-  ROS_DISTRO: rolling
+  ROS_DISTRO: jazzy
 
 jobs:
 
   micro_ros_build:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:jammy
+      image: ubuntu:22.04
     strategy:
       fail-fast: false
     steps:

@@ -18,5 +18,5 @@ pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
 popd >/dev/null
 
 pushd $FW_TARGETDIR >/dev/null
-    git clone -b rolling https://github.com/micro-ROS/raspbian_apps.git
+    git clone -b jazzy https://github.com/micro-ROS/raspbian_apps.git
 popd >/dev/null

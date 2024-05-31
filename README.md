@@ -30,7 +30,6 @@ This package provides tools and utils to crosscompile micro-ROS with just the co
 
 | RTOS                                                                                                                | Platform                                                                                                                                                                                 | Version                      | Example                      | Recommended Alternative                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [Azure RTOS](https://azure.microsoft.com/es-es/services/rtos/) / [FreeRTOS](https://www.freertos.org/) / Bare metal | [Renesas RA6M5](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra6m5-200mhz-arm-cortex-m33-trustzone-highest-integration-ethernet-and-can-fde) | Renesas e<sup>2</sup> studio | `renesas_ra ra6m5`           | **[micro-ROS component for Renesas e<sup>2</sup> studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)** |
 | [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f446re`     | **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**                       |
 | [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f446ze`     | **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**                       |
 | [FreeRTOS](https://www.freertos.org/)                                                                               | [ST Nucleo F746ZG](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html)  <sup>1</sup>                                                                                              | STM32CubeMX latest           | `freertos nucleo_f746zg`     | **[micro-ROS utils for STM32CubeMX and STM32CubeIDE](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)**                       |
@@ -64,7 +63,6 @@ ros2 run micro_ros_setup component --help
 
 micro-ROS standalone module for specific platforms are:
 
-- a standalone **[micro-ROS component for Renesas e<sup>2</sup> studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)**: this package enables the integration of micro-ROS in Renesas e<sup>2</sup> studio and RA6M5 MCU family.
 - a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
 - a standalone **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
@@ -89,6 +87,7 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | Galactic     | EOL       | `galactic` |
 | Humble       | Supported | `humble`   |
 | Iron         | Supported | `iron`     |
+| Jazzy        | Supported | `jazzy`    |
 | Rolling      | Supported | `rolling`  |
 
 Some other prerequisites needed for building a firmware using this package are:
@@ -115,7 +114,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 
 mkdir uros_ws && cd uros_ws
 
-git clone -b rolling https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 rosdep update && rosdep install --from-paths src --ignore-src -y
 

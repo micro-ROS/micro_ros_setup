@@ -7,5 +7,5 @@ repositories:
   freertos_apps:
     type: git
     url: https://github.com/micro-ROS/freertos_apps
-    version: rolling
+    version: jazzy
 

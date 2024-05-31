@@ -12,32 +12,32 @@ repositories:
   uros/rcl:
     type: git
     url: https://github.com/micro-ROS/rcl
-    version: rolling
+    version: jazzy
   uros/rclc:
     type: git
     url: https://github.com/ros2/rclc
-    version: master
+    version: jazzy
   uros/micro_ros_utilities:
     type: git
     url: https://github.com/micro-ROS/micro_ros_utilities
-    version: rolling
+    version: jazzy
   uros/rcutils:
     type: git
     url: https://github.com/micro-ROS/rcutils
-    version: rolling
+    version: jazzy
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: rolling
+    version: jazzy
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: rolling
+    version: jazzy
   uros/rosidl_typesupport:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport.git
-    version: rolling
+    version: jazzy
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: rolling
+    version: jazzy
