@@ -1,12 +1,11 @@
 name: CI
 
 on:
-  pull_request:
-    paths-ignore:
-      - 'README.md'
-    branches:
-      - '**'
   workflow_call:
+    inputs:
+      ci_target_ref:
+        required: true
+        type: string
 
 env:
   ROS_DISTRO: rolling
@@ -23,6 +22,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: src/micro_ros_setup
+          ref: ${{ inputs.ci_target_ref }}
 
       - uses: ros-tooling/setup-ros@0.7.0
         with:
@@ -63,6 +63,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: src/micro_ros_setup
+          ref: ${{ inputs.ci_target_ref }}
 
       - uses: ros-tooling/setup-ros@0.7.0
         with:
@@ -210,6 +211,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: src/micro_ros_setup
+          ref: ${{ inputs.ci_target_ref }}
 
       - uses: ros-tooling/setup-ros@0.7.0
         with:

@@ -10,6 +10,7 @@ on:
 
 jobs:
 
+<<<<<<< HEAD
   micro_ros_build:
     runs-on: ubuntu-latest
     strategy:
@@ -621,3 +622,24 @@ jobs:
       - name: installation
         run: |
             (test -f install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent) && true || false
+=======
+    Jazzy:
+        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@jazzy
+        with:
+            ci_target_ref: 'jazzy'
+
+    Rolling:
+        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@rolling
+        with:
+            ci_target_ref: 'rolling'
+
+    Humble:
+        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@humble
+        with:
+            ci_target_ref: 'humble'
+
+    Iron:
+        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@iron
+        with:
+            ci_target_ref: 'iron'
+>>>>>>> 3379e73 (Rework CI (#696))
