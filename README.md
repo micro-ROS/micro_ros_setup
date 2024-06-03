@@ -40,9 +40,7 @@ This package provides tools and utils to crosscompile micro-ROS with just the co
 | [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)  <sup>1</sup>                                                                                              | v2.6.0                       | `zephyr nucleo_f446re`       | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           |
 | [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST B-L475E-IOT01A](https://docs.zephyrproject.org/latest/boards/arm/disco_l475_iot1/doc/index.html)                                                                                     | v2.6.0                       | `zephyr discovery_l475_iot1` | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           |
 | [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>                                                                                               | v2.6.0                       | `zephyr nucleo_h743zi`       | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           |
-| [Zephyr](https://www.zephyrproject.org/)                                                                            | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)                                                                                         | v2.6.0                       | `zephyr host`                | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           |
-| [Mbed](https://os.mbed.com/)                                                                                        | [ST B-L475E-IOT01A](https://os.mbed.com/platforms/ST-Discovery-L475E-IOT01A/)                                                                                                            | v6.6                         | `mbed disco_l475vg_iot01a`   | **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**                                                      |
-| -                                                                                                                   | Static library (.a) and headers (.h) <sup>3</sup>                                                                                                                                        | -                            | `generate_lib`               |                                                                                                                                        |
+| [Zephyr](https://www.zephyrproject.org/)                                                                            | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)                                                                                         | v2.6.0                       | `zephyr host`                | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           || -                                                                                                                   | Static library (.a) and headers (.h) <sup>3</sup>                                                                                                                                        | -                            | `generate_lib`               |                                                                                                                                        |
 | Linux                                                                                                               | *Host <sup>2</sup>*                                                                                                                                                                      | Ubuntu 18.04/20.04           | `host`                       |                                                                                                                                        |
 | Android                                                                                                             | [AOSP](https://source.android.com) <sup>1</sup>                                                                                                                                          | Latest                       | `android generic`            |                                                                                                                                        |
 
@@ -161,17 +159,17 @@ Please note that each RTOS has its configuration approach that you might use for
 
 In summary, the supported configurations for transports are:
 
-|                               |     FreeRTOS      |       Zephyr       | Mbed  |
-| ----------------------------- | :---------------: | :----------------: | :---: |
-| Olimex STM32-E407             |   UART, Network   |     USB, UART      |   -   |
-| ST B-L475E-IOT01A             |         -         | USB, UART, Network | UART  |
-| Crazyflie 2.1                 | Custom Radio Link |         -          |   -   |
-| Espressif ESP32               |  UART, WiFI UDP   |         -          |   -   |
-| ST Nucleo F446RE <sup>1</sup> |       UART        |        UART        |   -   |
-| ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |   -   |
-| ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |   -   |
-| ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |   -   |
-| ST Nucleo F767ZI <sup>1</sup> |       UART        |         -          |   -   |
+|                               |     FreeRTOS      |       Zephyr       |
+| ----------------------------- | :---------------: | :----------------: |
+| Olimex STM32-E407             |   UART, Network   |     USB, UART      |
+| ST B-L475E-IOT01A             |         -         | USB, UART, Network |
+| Crazyflie 2.1                 | Custom Radio Link |         -          |
+| Espressif ESP32               |  UART, WiFI UDP   |         -          |
+| ST Nucleo F446RE <sup>1</sup> |       UART        |        UART        |
+| ST Nucleo F446ZE <sup>1</sup> |       UART        |         -          |
+| ST Nucleo H743ZI <sup>1</sup> |         -         |        UART        |
+| ST Nucleo F746ZG <sup>1</sup> |       UART        |        UART        |
+| ST Nucleo F767ZI <sup>1</sup> |       UART        |         -          |
 
 *<sup>1</sup> Community supported, may have lack of official support*
 
