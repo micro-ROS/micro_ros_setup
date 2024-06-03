@@ -33,7 +33,7 @@ jobs:
         run: |
           apt update
           apt install -y python3-pip
-          pip3 install colcon-common-extensions
+          pip3 install colcon-common-extensions --break-system-packages
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
@@ -74,7 +74,7 @@ jobs:
         run: |
           apt update
           apt install -y python3-pip
-          pip3 install colcon-common-extensions
+          pip3 install colcon-common-extensions --break-system-packages
           apt install -y ros-${{ env.ROS_DISTRO }}-rmw-fastrtps-cpp
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
@@ -224,7 +224,7 @@ jobs:
           apt upgrade -y
           apt-get update
           apt install -y python3-pip
-          pip3 install colcon-common-extensions cmake
+          pip3 install colcon-common-extensions cmake --break-system-packages
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 

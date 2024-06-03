@@ -16,7 +16,7 @@ export PATH=~/.local/bin:"$PATH"
 
 pushd $FW_TARGETDIR >/dev/null
 
-    pip3 install mbed-tools
+    pip3 install mbed-tools --break-system-packages
 
     # Import repos
     vcs import --input $PREFIX/config/$RTOS/generic/board.repos
