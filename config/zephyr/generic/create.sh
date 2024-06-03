@@ -18,6 +18,9 @@ export PATH=~/.local/bin:"$PATH"
 export ZEPHYR_VERSION="v0.12.4"
 export ARCH=$(uname -m)
 
+# Install west
+pip3 install --user -U west --break-system-packages
+
 pushd $FW_TARGETDIR >/dev/null
 
     west init zephyrproject
@@ -69,6 +72,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
 
     # Upgrade sphinx
-    pip install --force-reinstall Sphinx==4.2.0
+    pip install --force-reinstall Sphinx==4.2.0 --break-system-packages
 
 popd >/dev/null
