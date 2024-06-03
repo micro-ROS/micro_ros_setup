@@ -12,12 +12,20 @@ jobs:
 
     Jazzy:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@jazzy
+        with:
+            ci_target_ref: 'jazzy'
 
     Rolling:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@rolling
+        with:
+            ci_target_ref: 'rolling'
 
     Humble:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@humble
+        with:
+            ci_target_ref: 'humble'
 
     Iron:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@iron
+        with:
+            ci_target_ref: 'iron'
