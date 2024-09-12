@@ -44,7 +44,7 @@ jobs:
         run: |
             (test -f install/micro_ros_setup/lib/micro_ros_setup/build_firmware.sh) && true || false
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4.4.0
         with:
           name: micro_ros_build_${{ inputs.ci_target_ref }}
           path: install
@@ -75,7 +75,7 @@ jobs:
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: micro_ros_build_${{ inputs.ci_target_ref }}
           path: install
@@ -217,7 +217,7 @@ jobs:
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: micro_ros_build_${{ inputs.ci_target_ref }}
           path: install
