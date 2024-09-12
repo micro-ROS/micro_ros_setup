@@ -44,7 +44,7 @@ jobs:
         run: |
             (test -f install/micro_ros_setup/lib/micro_ros_setup/build_firmware.sh) && true || false
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4.4.0
         with:
           name: micro_ros_build_${{ inputs.ci_target_ref }}
           path: install
