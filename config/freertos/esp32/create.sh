@@ -6,6 +6,8 @@ pushd $FW_TARGETDIR >/dev/null
     # Install deps
     pip3 install catkin_pkg empy
 
+    pip3 install virtualenv
+
     # Install toolchain
     mkdir toolchain
 
