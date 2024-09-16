@@ -1,6 +1,8 @@
 . $PREFIX/config/utils.sh
 
 pushd $FW_TARGETDIR >/dev/null
+    source $FW_TARGETDIR/venv/bin/activate
+
     source $FW_TARGETDIR/zephyrproject/zephyr/zephyr-env.sh
 
     export ZEPHYR_TOOLCHAIN_VARIANT=zephyr

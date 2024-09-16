@@ -1,4 +1,13 @@
 pushd $FW_TARGETDIR >/dev/null
+    # Create a virtual environment
+    python3 -m venv $FW_TARGETDIR/venv
+    source $FW_TARGETDIR/venv/bin/activate
+
+    # Install deps
+    pip3 install catkin_pkg empy lark-parser colcon-common-extensions
+
+    pip3 install virtualenv
+
     # Install toolchain
     mkdir toolchain
 
@@ -19,14 +28,13 @@ pushd $FW_TARGETDIR >/dev/null
             echo "Error: python3-pip package must be installed before continuing..."
             exit 1
         fi
-        pip3 install virtualenv --break-system-packages
         python3 esp-idf/tools/idf_tools.py install-python-env
 
         eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
 
         . $IDF_PATH/export.sh
 
-        pip3 install catkin_pkg lark-parser colcon-common-extensions --break-system-packages
+        pip3 install catkin_pkg lark-parser colcon-common-extensions
 
     popd >/dev/null
 
