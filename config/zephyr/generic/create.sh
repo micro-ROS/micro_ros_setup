@@ -18,8 +18,6 @@ export PATH=~/.local/bin:"$PATH"
 export ZEPHYR_VERSION="v0.12.4"
 export ARCH=$(uname -m)
 
-<<<<<<< HEAD
-=======
 # Create a virtual environment
 python3 -m venv $FW_TARGETDIR/venv
 source $FW_TARGETDIR/venv/bin/activate
@@ -30,7 +28,6 @@ pip3 install west
 # Install requirements
 pip3 install catkin_pkg empy
 
->>>>>>> 38ae4b7 (Fix broken rosidl_cli (#726))
 pushd $FW_TARGETDIR >/dev/null
 
     west init zephyrproject
