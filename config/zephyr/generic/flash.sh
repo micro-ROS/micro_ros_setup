@@ -1,5 +1,7 @@
 pushd $FW_TARGETDIR > /dev/null
 
+source $FW_TARGETDIR/venv/bin/activate
+
 ZEPHYR_BUILD_DIR="$FW_TARGETDIR/build/zephyr"
 
 # Host platform (=native_posix) is special, as flashing is actually just executing the binary
