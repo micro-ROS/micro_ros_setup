@@ -1,4 +1,13 @@
 pushd $FW_TARGETDIR >/dev/null
+    # Create a virtual environment
+    python3 -m venv $FW_TARGETDIR/venv
+    source $FW_TARGETDIR/venv/bin/activate
+
+    # Install deps
+    pip3 install catkin_pkg empy lark-parser colcon-common-extensions
+
+    pip3 install virtualenv
+
     # Install toolchain
     mkdir toolchain
 
@@ -19,7 +28,10 @@ pushd $FW_TARGETDIR >/dev/null
             echo "Error: python3-pip package must be installed before continuing..."
             exit 1
         fi
+<<<<<<< HEAD
         pip3 install virtualenv
+=======
+>>>>>>> 38ae4b7 (Fix broken rosidl_cli (#726))
         python3 esp-idf/tools/idf_tools.py install-python-env
 
         eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
