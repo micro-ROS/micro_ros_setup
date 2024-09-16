@@ -4,7 +4,7 @@ pushd $FW_TARGETDIR >/dev/null
     source $FW_TARGETDIR/venv/bin/activate
 
     # Install deps
-    pip3 install catkin_pkg empy
+    pip3 install catkin_pkg empy lark-parser colcon-common-extensions
 
     pip3 install virtualenv
 
