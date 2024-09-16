@@ -26,6 +26,7 @@ pushd $FW_TARGETDIR >/dev/null
             echo "Error: python3-pip package must be installed before continuing..."
             exit 1
         fi
+        python3 esp-idf/tools/idf_tools.py install-python-env
 
         eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
 
