@@ -1,5 +1,8 @@
 EXTENSIONS_DIR=$FW_TARGETDIR/freertos_apps/microros_esp32_extensions
 
+# Source virtualenv
+source $FW_TARGETDIR/venv/bin/activate
+
 . $PREFIX/config/utils.sh
 
 export IDF_TOOLS_PATH=$FW_TARGETDIR/toolchain/espressif

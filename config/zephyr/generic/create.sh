@@ -18,8 +18,15 @@ export PATH=~/.local/bin:"$PATH"
 export ZEPHYR_VERSION="v0.12.4"
 export ARCH=$(uname -m)
 
+# Create a virtual environment
+python3 -m venv $FW_TARGETDIR/venv
+source $FW_TARGETDIR/venv/bin/activate
+
 # Install west
-pip3 install --user -U west --break-system-packages
+pip3 install west
+
+# Install requirements
+pip3 install catkin_pkg empy
 
 pushd $FW_TARGETDIR >/dev/null
 
@@ -31,7 +38,7 @@ pushd $FW_TARGETDIR >/dev/null
         west update
     popd >/dev/null
 
-    pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed --break-system-packages
+    pip3 install -r zephyrproject/zephyr/scripts/requirements.txt --ignore-installed
 
     if [ "$PLATFORM" = "host" ]; then
         if [ "$ARCH" = "aarch64" ]; then
@@ -72,6 +79,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
 
     # Upgrade sphinx
-    pip install --force-reinstall Sphinx==4.2.0 --break-system-packages
+    pip install --force-reinstall Sphinx==4.2.0
 
 popd >/dev/null
