@@ -26,7 +26,7 @@ pushd $FW_TARGETDIR >/dev/null
 
         . $IDF_PATH/export.sh
 
-        pip3 install catkin_pkg lark-parser colcon-common-extensions
+        pip3 install catkin_pkg lark-parser empy==3.3.4 colcon-common-extensions
 
     popd >/dev/null
 
