@@ -79,6 +79,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
 
     # Upgrade sphinx
-    pip install --force-reinstall Sphinx==4.2.0
+    pip install --force-reinstall docutils==0.16 Sphinx==4.2.0
 
 popd >/dev/null
