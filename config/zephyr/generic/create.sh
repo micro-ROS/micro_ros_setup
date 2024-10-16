@@ -68,6 +68,6 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
 
     # Upgrade sphinx
-    pip install --force-reinstall Sphinx==4.2.0
+    pip install --force-reinstall docutils==0.16 Sphinx==4.2.0
 
 popd >/dev/null
