@@ -61,6 +61,7 @@ ros2 run micro_ros_setup component --help
 
 micro-ROS standalone module for specific platforms are:
 
+- a standalone **[micro-ROS component for Renesas e2 studio and RA6M5](https://github.com/micro-ROS/micro_ros_renesas2estudio_component)**: this package enables the integration of micro-ROS in Renesas e2 studio and RA6M5 MCU family.
 - a standalone **[micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component)**: this package enables the integration of micro-ROS in any Espressif ESP32 IDF project.
 - a standalone **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**: this package enables the integration of micro-ROS in any Zephyr RTOS workspace.
 - a standalone **[micro-ROS module for Mbed RTOS](https://github.com/micro-ROS/micro_ros_mbed)**: this package enables the integration of micro-ROS in any Mbed RTOS workspace.
