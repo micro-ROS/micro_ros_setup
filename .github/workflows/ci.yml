@@ -46,9 +46,15 @@ jobs:
         run: |
             (test -f install/micro_ros_setup/lib/micro_ros_setup/build_firmware.sh) && true || false
 
+      - name: Sanitize Artifact Name
+        id: sanitize-name
+        run: |
+          sanitized_name=$(echo "${{ inputs.ci_target_ref }}" | sed 's/[\/:*?"<>|\\]/_/g')
+          echo "sanitized_name=$sanitized_name" >> $GITHUB_ENV
+
       - uses: actions/upload-artifact@v4.4.0
         with:
-          name: micro_ros_build_${{ inputs.ci_target_ref }}
+          name: micro_ros_build_${{ env.sanitized_name }}
           path: install
 
   micro_ros_agent:
