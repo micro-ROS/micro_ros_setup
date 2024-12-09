@@ -49,10 +49,11 @@ jobs:
         run: |
           sanitized_name=$(echo "${{ inputs.ci_target_ref }}" | sed 's/[\/:*?"<>|\\]/_/g')
           echo "sanitized_name=$sanitized_name" >> $GITHUB_ENV
+          echo "::set-output name=sanitized_name::$sanitized_name"
 
       - uses: actions/upload-artifact@v4.4.0
         with:
-          name: micro_ros_build_${{ env.sanitized_name }}
+          name: micro_ros_build_${{ steps.sanitize-name.outputs.sanitized_name }}
           path: install
 
   micro_ros_agent:
@@ -83,7 +84,7 @@ jobs:
 
       - uses: actions/download-artifact@v4.1.7
         with:
-          name: micro_ros_build_${{ inputs.ci_target_ref }}
+          name: micro_ros_build_${{ steps.sanitize-name.outputs.sanitized_name }}
           path: install
 
       # Workaround https://github.com/actions/upload-artifact/issues/38
@@ -225,7 +226,7 @@ jobs:
 
       - uses: actions/download-artifact@v4.1.7
         with:
-          name: micro_ros_build_${{ inputs.ci_target_ref }}
+          name: micro_ros_build_${{ steps.sanitize-name.outputs.sanitized_name }}
           path: install
 
       # Workaround https://github.com/actions/upload-artifact/issues/38
