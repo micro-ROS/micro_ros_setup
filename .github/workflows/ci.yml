@@ -86,6 +86,13 @@ jobs:
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
+      - name: Sanitize Artifact Name
+        id: sanitize-name
+        run: |
+          sanitized_name=$(echo "${{ inputs.ci_target_ref }}" | sed 's/[\/:*?"<>|\\]/_/g')
+          echo "sanitized_name=$sanitized_name" >> $GITHUB_ENV
+          echo "::set-output name=sanitized_name::$sanitized_name"
+
       - uses: actions/download-artifact@v4.1.7
         with:
           name: micro_ros_build_${{ steps.sanitize-name.outputs.sanitized_name }}
@@ -234,6 +241,13 @@ jobs:
           pip3 install colcon-common-extensions cmake
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
+
+      - name: Sanitize Artifact Name
+        id: sanitize-name
+        run: |
+          sanitized_name=$(echo "${{ inputs.ci_target_ref }}" | sed 's/[\/:*?"<>|\\]/_/g')
+          echo "sanitized_name=$sanitized_name" >> $GITHUB_ENV
+          echo "::set-output name=sanitized_name::$sanitized_name"
 
       - uses: actions/download-artifact@v4.1.7
         with:
