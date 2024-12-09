@@ -22,7 +22,7 @@ BUILD_DIR=$FW_TARGETDIR/build
 pushd $FW_TARGETDIR/mcu_ws >/dev/null
 
 	rm -rf build install log
-	
+
    	colcon build \
 		--merge-install \
 		--packages-ignore-regex=.*_cpp \
@@ -48,8 +48,8 @@ pushd $FW_TARGETDIR/mcu_ws >/dev/null
 	done ; \
 	ar rc libmicroros.a $(ls *.o *.obj 2> /dev/null); mkdir -p $BUILD_DIR; cp libmicroros.a $BUILD_DIR; ranlib $BUILD_DIR/libmicroros.a; \
     cp -R $FW_TARGETDIR/mcu_ws/install/include $BUILD_DIR/; \
-    rm $(find $BUILD_DIR/include -type f -not -name "*.h" -not -name "*.hpp") \
-    rm -rf $(find $BUILD_DIR/include -type d -empty) \
+    rm $(find $BUILD_DIR/include -type f -not -name "*.h" -not -name "*.hpp"); \
+    rm -rf $(find $BUILD_DIR/include -type d -empty); \
 	cd ..; rm -rf libmicroros;
 
 popd >/dev/null
