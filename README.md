@@ -24,7 +24,7 @@ This ROS 2 package is the entry point for building micro-ROS apps for different 
 
 # Supported platforms
 
-This package provides tools and utils to crosscompile micro-ROS with just the common ROS 2 tools for the following platforms platforms.
+This package provides tools and utils to crosscompile micro-ROS with just the common ROS 2 tools for the following platforms.
 
 **Note that this package provides basic support only, intended in particular for ROS developers who are new to microcontrollers. Micro-ROS [components for each platform](#standalone-build-system-tools) are available and provide a deeper and more flexible integration with the platform-specific build systems.**
 
