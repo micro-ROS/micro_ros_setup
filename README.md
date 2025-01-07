@@ -94,7 +94,7 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 Some other prerequisites needed for building a firmware using this package are:
 
 ```
-sudo apt install python3-rosdep
+sudo apt install python3-rosdep2
 ```
 
 Building for Android needs [Latest Android NDK](https://developer.android.com/ndk/downloads) to be installed and the following environment variables to be set:
