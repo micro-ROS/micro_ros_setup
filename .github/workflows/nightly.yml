@@ -24,8 +24,3 @@ jobs:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@humble
         with:
             ci_target_ref: 'humble'
-
-    Iron:
-        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@iron
-        with:
-            ci_target_ref: 'iron'
