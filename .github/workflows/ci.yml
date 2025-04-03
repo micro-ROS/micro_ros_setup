@@ -237,8 +237,8 @@ jobs:
           apt update
           apt upgrade -y
           apt-get update
-          apt install -y python3-pip
-          pip3 install colcon-common-extensions cmake
+          apt install -y python3-pip cmake
+          pip3 install colcon-common-extensions
           rosdep update --rosdistro ${{ env.ROS_DISTRO }}
           rosdep install --rosdistro ${{ env.ROS_DISTRO }} -y --from-paths src --ignore-src -y
 
