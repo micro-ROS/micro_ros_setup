@@ -24,7 +24,11 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
+<<<<<<< HEAD
       - uses: ros-tooling/setup-ros@0.7.0
+=======
+      - uses: ros-tooling/setup-ros@0.7.13
+>>>>>>> 262aa56 (Bump setup-ros (#777))
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -72,7 +76,11 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
+<<<<<<< HEAD
       - uses: ros-tooling/setup-ros@0.7.0
+=======
+      - uses: ros-tooling/setup-ros@0.7.13
+>>>>>>> 262aa56 (Bump setup-ros (#777))
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -227,7 +235,11 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
+<<<<<<< HEAD
       - uses: ros-tooling/setup-ros@0.7.0
+=======
+      - uses: ros-tooling/setup-ros@0.7.13
+>>>>>>> 262aa56 (Bump setup-ros (#777))
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
