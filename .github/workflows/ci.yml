@@ -24,7 +24,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
-      - uses: ros-tooling/setup-ros@0.7.9
+      - uses: ros-tooling/setup-ros@0.7.13
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -70,7 +70,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
-      - uses: ros-tooling/setup-ros@0.7.9
+      - uses: ros-tooling/setup-ros@0.7.13
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
@@ -219,7 +219,7 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
-      - uses: ros-tooling/setup-ros@0.7.9
+      - uses: ros-tooling/setup-ros@0.7.13
         with:
           use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
