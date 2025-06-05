@@ -8,7 +8,7 @@ on:
         type: string
 
 env:
-  ROS_DISTRO: rolling
+  ROS_DISTRO: kilted
 
 jobs:
 

@@ -10,6 +10,11 @@ on:
 
 jobs:
 
+    Kilted:
+        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@kilted
+        with:
+            ci_target_ref: 'kilted'
+
     Jazzy:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@jazzy
         with:
