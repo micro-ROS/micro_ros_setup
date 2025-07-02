@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+6.0.0 (2025-07-02)
+------------------
 * Bump kilted (`#780 <https://github.com/micro-ROS/micro_ros_setup/issues/780>`_)
 * Bump setup-ros (backport `#777 <https://github.com/micro-ROS/micro_ros_setup/issues/777>`_) (`#778 <https://github.com/micro-ROS/micro_ros_setup/issues/778>`_)
 * Fix rolling build (`#772 <https://github.com/micro-ROS/micro_ros_setup/issues/772>`_)
