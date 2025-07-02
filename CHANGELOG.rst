@@ -2,6 +2,30 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Bump kilted (`#780 <https://github.com/micro-ROS/micro_ros_setup/issues/780>`_)
+* Bump setup-ros (backport `#777 <https://github.com/micro-ROS/micro_ros_setup/issues/777>`_) (`#778 <https://github.com/micro-ROS/micro_ros_setup/issues/778>`_)
+* Fix rolling build (`#772 <https://github.com/micro-ROS/micro_ros_setup/issues/772>`_)
+* Remove Iron from nightly
+* Fix Olimex RMW Security common build (`#766 <https://github.com/micro-ROS/micro_ros_setup/issues/766>`_)
+* Correct Ubuntu version for ROS Jazzy (`#762 <https://github.com/micro-ROS/micro_ros_setup/issues/762>`_) (`#763 <https://github.com/micro-ROS/micro_ros_setup/issues/763>`_)
+* Update README.md (`#756 <https://github.com/micro-ROS/micro_ros_setup/issues/756>`_) (`#761 <https://github.com/micro-ROS/micro_ros_setup/issues/761>`_)
+* Remove non-header files from include folder (backport `#716 <https://github.com/micro-ROS/micro_ros_setup/issues/716>`_) (`#753 <https://github.com/micro-ROS/micro_ros_setup/issues/753>`_)
+* Sphinx dependency conflict fix (`#740 <https://github.com/micro-ROS/micro_ros_setup/issues/740>`_) (`#745 <https://github.com/micro-ROS/micro_ros_setup/issues/745>`_)
+* Fix broken rosidl_cli (`#726 <https://github.com/micro-ROS/micro_ros_setup/issues/726>`_)
+* Fix Nightly (`#719 <https://github.com/micro-ROS/micro_ros_setup/issues/719>`_) (`#723 <https://github.com/micro-ROS/micro_ros_setup/issues/723>`_)
+* Fix RCLC rolling (`#717 <https://github.com/micro-ROS/micro_ros_setup/issues/717>`_)
+* Fix RCLC rolling (`#708 <https://github.com/micro-ROS/micro_ros_setup/issues/708>`_)
+* Bump ubuntu on rolling (`#702 <https://github.com/micro-ROS/micro_ros_setup/issues/702>`_)
+* Fix Rolling agent (`#701 <https://github.com/micro-ROS/micro_ros_setup/issues/701>`_)
+* Fix artifacts
+* Rework CI (backport `#696 <https://github.com/micro-ROS/micro_ros_setup/issues/696>`_) (`#697 <https://github.com/micro-ROS/micro_ros_setup/issues/697>`_)
+* Fix rolling (`#687 <https://github.com/micro-ROS/micro_ros_setup/issues/687>`_)
+* Ignore lttngpy (`#682 <https://github.com/micro-ROS/micro_ros_setup/issues/682>`_)
+* Fix empy dep (`#678 <https://github.com/micro-ROS/micro_ros_setup/issues/678>`_) (`#680 <https://github.com/micro-ROS/micro_ros_setup/issues/680>`_)
+* Remove micro-ROS fork (`#655 <https://github.com/micro-ROS/micro_ros_setup/issues/655>`_)
+
 5.0.0 (2023-06-12)
 ------------------
 * Update to rolling repositories (`#649 <https://github.com/micro-ROS/micro_ros_setup/issues/649>`_)
