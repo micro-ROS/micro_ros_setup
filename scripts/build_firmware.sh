@@ -76,14 +76,15 @@ else
     . $PREFIX/config/$RTOS/$PLATFORM/build.sh
 fi
 
-######## Fix include paths  ########
-cd $FW_TARGETDIR/mcu_ws
-INCLUDE_ROS2_PACKAGES=$(colcon list | awk '{print $1}' | awk -v d=" " '{s=(NR==1?s:s d)$0}END{print s}')
+######## Fix include paths in mcu_ws  ########
+if [ -d "$FW_TARGETDIR/mcu_ws" ]; then
+    cd $FW_TARGETDIR/mcu_ws
+    INCLUDE_ROS2_PACKAGES=$(colcon list | awk '{print $1}' | awk -v d=" " '{s=(NR==1?s:s d)$0}END{print s}')
 
-for var in ${INCLUDE_ROS2_PACKAGES}; do
-    if [ -d "$FW_TARGETDIR/build/include/${var}/${var}" ]; then
-        rsync -r $FW_TARGETDIR/build/include/${var}/${var}/* $FW_TARGETDIR/build/include/${var}
-        rm -rf $FW_TARGETDIR/build/include/${var}/${var}
-    fi
-done
-
+    for var in ${INCLUDE_ROS2_PACKAGES}; do
+        if [ -d "$FW_TARGETDIR/build/include/${var}/${var}" ]; then
+            rsync -r $FW_TARGETDIR/build/include/${var}/${var}/* $FW_TARGETDIR/build/include/${var}
+            rm -rf $FW_TARGETDIR/build/include/${var}/${var}
+        fi
+    done
+fi
