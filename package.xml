@@ -13,6 +13,7 @@
   <depend>clang-tidy</depend>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_lint_auto</buildtool_depend>
   <build_depend>flex</build_depend>
   <build_depend>bison</build_depend>
   <build_depend>libncurses-dev</build_depend>
