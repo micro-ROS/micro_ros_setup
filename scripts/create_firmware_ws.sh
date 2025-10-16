@@ -102,6 +102,10 @@ popd >/dev/null
 . $(dirname $0)/clean_env.sh
 if [ $RTOS != "host" ]; then
     pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
+        # Fix failing build by ignoring rmw_test_fixture_implementation.
+        touch ros2/ament_cmake_ros/rmw_test_fixture_implementation/COLCON_IGNORE
+        # Fix failing build by ignoring rmw_test_fixture.
+        touch ros2/ament_cmake_ros/rmw_test_fixture/COLCON_IGNORE
         colcon build
         set +o nounset
         # source dev workspace
@@ -114,4 +118,3 @@ rosdep install --os=ubuntu:noble -y --from-paths $PREFIX/config/$RTOS/$TARGET_FO
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
-
