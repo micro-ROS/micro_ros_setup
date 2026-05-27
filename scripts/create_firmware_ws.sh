@@ -114,4 +114,3 @@ rosdep install --os=ubuntu:noble -y --from-paths $PREFIX/config/$RTOS/$TARGET_FO
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
-
