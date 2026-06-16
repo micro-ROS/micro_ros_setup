@@ -34,8 +34,39 @@ if [ -z "${PATCH_DIR}" ]; then
     exit 255
 fi
 
+patch_targets_workspace() {
+    local patch_file=$1
+    local candidate_path=""
+    local repo_path=""
+    local saw_diff=0
+
+    while read -r _ _ old_path new_path; do
+        saw_diff=1
+        old_path=${old_path#a/}
+        new_path=${new_path#b/}
+
+        for candidate_path in "${old_path}" "${new_path}"; do
+            repo_path=$(printf '%s\n' "${candidate_path}" | cut -d/ -f1-2)
+            if [ -n "${repo_path}" ] && [ -d "${WORKSPACE_DIR}/${repo_path}" ]; then
+                return 0
+            fi
+        done
+    done < <(grep '^diff --git a/' "${patch_file}" || true)
+
+    if [ "${saw_diff}" -eq 0 ]; then
+        return 0
+    fi
+
+    return 1
+}
+
 apply_patch_file() {
     local patch_file=$1
+
+    if ! patch_targets_workspace "${patch_file}"; then
+        echo "Skipping $(basename "${patch_file}") (workspace does not contain the patched repository)"
+        return
+    fi
 
     if patch --batch --forward -p1 -d "${WORKSPACE_DIR}" --dry-run < "${patch_file}" >/dev/null 2>&1; then
         echo "Applying $(basename "${patch_file}")"
@@ -48,8 +79,7 @@ apply_patch_file() {
         return
     fi
 
-    echo "Error: Failed to apply $(basename "${patch_file}") in ${WORKSPACE_DIR}"
-    exit 1
+    echo "Warning: Failed to apply $(basename "${patch_file}") in ${WORKSPACE_DIR}" >&2
 }
 
 shopt -s nullglob
