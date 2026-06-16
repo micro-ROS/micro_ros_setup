@@ -30,7 +30,7 @@ if [ ! -d "${WORKSPACE_DIR}" ]; then
 fi
 
 if [ -z "${PATCH_DIR}" ]; then
-    echo "Error: Patch directory '${PATCH_DIR}' does not exist"
+    echo "Error: Patch directory not found (searched: ${SCRIPT_DIR}/../../share/micro_ros_setup/patches, ${SCRIPT_DIR}/../share/micro_ros_setup/patches, ${SCRIPT_DIR}/../patches)"
     exit 255
 fi
 
