@@ -1,0 +1,40 @@
+diff --git a/ros2/rcl_interfaces/test_msgs/CMakeLists.txt b/ros2/rcl_interfaces/test_msgs/CMakeLists.txt
+index 433833b..b2472b8 100644
+--- a/ros2/rcl_interfaces/test_msgs/CMakeLists.txt
++++ b/ros2/rcl_interfaces/test_msgs/CMakeLists.txt
+@@ -17,9 +17,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+ endif()
+ 
+ find_package(ament_cmake REQUIRED)
++find_package(action_msgs REQUIRED)
+ find_package(builtin_interfaces REQUIRED)
+ find_package(rosidl_default_generators REQUIRED)
+ find_package(test_interface_files REQUIRED)
++find_package(unique_identifier_msgs REQUIRED)
+ 
+ # TODO(sloretz) Change to test_msgs_interfaces when ros2/rosidl_typesupport#120 is fixed
+ rosidl_generate_interfaces(test_msgs
+@@ -29,7 +31,7 @@ rosidl_generate_interfaces(test_msgs
+   ${test_interface_files_IDL_FILES}
+   "msg/Builtins.msg"
+   "action/NestedMessage.action"
+-  DEPENDENCIES builtin_interfaces
++  DEPENDENCIES builtin_interfaces unique_identifier_msgs
+   ADD_LINTER_TESTS
+ )
+ 
+diff --git a/ros2/rcl_interfaces/test_msgs/package.xml b/ros2/rcl_interfaces/test_msgs/package.xml
+index 67fe631..0f76490 100644
+--- a/ros2/rcl_interfaces/test_msgs/package.xml
++++ b/ros2/rcl_interfaces/test_msgs/package.xml
+@@ -17,8 +17,10 @@
+ 
+   <buildtool_depend>rosidl_default_generators</buildtool_depend>
+ 
++  <depend>action_msgs</depend>
+   <build_depend>builtin_interfaces</build_depend>
+   <build_depend>test_interface_files</build_depend>
++  <depend>unique_identifier_msgs</depend>
+ 
+   <exec_depend>builtin_interfaces</exec_depend>
+   <exec_depend>rosidl_default_runtime</exec_depend>

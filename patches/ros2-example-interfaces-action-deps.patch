@@ -1,0 +1,38 @@
+diff --git a/ros2/example_interfaces/CMakeLists.txt b/ros2/example_interfaces/CMakeLists.txt
+index e7dae2c..033eda0 100644
+--- a/ros2/example_interfaces/CMakeLists.txt
++++ b/ros2/example_interfaces/CMakeLists.txt
+@@ -12,7 +12,10 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+ endif()
+ 
+ find_package(ament_cmake REQUIRED)
++find_package(action_msgs REQUIRED)
++find_package(builtin_interfaces REQUIRED)
+ find_package(rosidl_default_generators REQUIRED)
++find_package(unique_identifier_msgs REQUIRED)
+ 
+ rosidl_generate_interfaces(${PROJECT_NAME}
+   "action/Fibonacci.action"
+@@ -48,6 +51,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
+   "srv/AddTwoInts.srv"
+   "srv/SetBool.srv"
+   "srv/Trigger.srv"
++  DEPENDENCIES builtin_interfaces unique_identifier_msgs
+ )
+ 
+ install(FILES mapping_rules.yaml DESTINATION share/${PROJECT_NAME})
+diff --git a/ros2/example_interfaces/package.xml b/ros2/example_interfaces/package.xml
+index f127a53..31f8653 100644
+--- a/ros2/example_interfaces/package.xml
++++ b/ros2/example_interfaces/package.xml
+@@ -17,6 +17,10 @@
+ 
+   <buildtool_depend>rosidl_default_generators</buildtool_depend>
+ 
++  <depend>action_msgs</depend>
++  <depend>builtin_interfaces</depend>
++  <depend>unique_identifier_msgs</depend>
++
+   <exec_depend>rosidl_default_runtime</exec_depend>
+ 
+   <member_of_group>rosidl_interface_packages</member_of_group>

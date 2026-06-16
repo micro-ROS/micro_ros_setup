@@ -39,7 +39,12 @@ install(
 )
 
 install(
+  DIRECTORY patches DESTINATION share/${PROJECT_NAME} USE_SOURCE_PERMISSIONS
+)
+
+install(
   PROGRAMS
+    scripts/apply_patches.sh
     scripts/create_ws.sh
     scripts/create_agent_ws.sh
     scripts/create_firmware_ws.sh
