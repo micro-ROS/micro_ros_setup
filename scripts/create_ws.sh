@@ -44,6 +44,6 @@ curl -s https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos |\
     ros2 run micro_ros_setup yaml_filter.py ${PACKAGES} > ros2.repos
 vcs import --input ros2.repos --skip-existing
 vcs import --input $REPOS --skip-existing
-"$(dirname "$0")/apply_patches.sh" "$(pwd)"
+bash "$(dirname "$0")/apply_patches.sh" "$(pwd)"
 
 popd >/dev/null
