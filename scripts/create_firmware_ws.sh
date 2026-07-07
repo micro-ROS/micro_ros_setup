@@ -114,3 +114,23 @@ rosdep install --os=ubuntu:noble -y --from-paths $PREFIX/config/$RTOS/$TARGET_FO
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
+
+if [ "$RTOS" == "host" ]; then
+    # Pre-build foundational message packages with their microxrcedds type supports
+    # already in the path. These are implicit dependencies of packages bundling
+    # actions/services (added by rosidl's action/service expansion) but aren't
+    # declared in those packages' package.xml, so build order isn't otherwise
+    # guaranteed when they're rebuilt from source alongside their dependents.
+    #
+    # Build order matters:
+    #   builtin_interfaces      - no workspace deps
+    #   unique_identifier_msgs  - no workspace deps (UUID.msg only)
+    #   service_msgs            - depends on builtin_interfaces (ServiceEventInfo.msg)
+    #   action_msgs             - depends on all three above; has CancelGoal.srv
+    colcon build --packages-select builtin_interfaces unique_identifier_msgs service_msgs action_msgs \
+        --metas src --cmake-args -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON
+    set +o nounset
+    . install/local_setup.bash
+    set -o nounset
+fi
+
