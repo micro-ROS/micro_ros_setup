@@ -128,12 +128,26 @@ if [ "$RTOS" == "host" ]; then
     #   service_msgs            - depends on builtin_interfaces (ServiceEventInfo.msg)
     #   action_msgs             - depends on all three above; has CancelGoal.srv
     #
-    # Installing to the same prefix the rest of the workspace
+    # Installing to the same prefix the rest of the workspace 
     # TODO: if it works allow customized installation path
     INSTALL_BASE_ARGS=()
     if [ -n "${VULCANEXUS_DISTRO:-}" ]; then
         INSTALL_BASE_ARGS=(--install-base "/opt/vulcanexus/$VULCANEXUS_DISTRO")
     fi
+    # Build the microxrcedds typesupport generator from freshly imported source
+    # first. Otherwise when builtin_interfaces and the others are configured,
+    # they generate without any microxrcedds typesupport, so every downstream consumer
+    # fails to link against their (nonexistent) microxrcedds typesupport.
+    colcon build --packages-up-to rosidl_typesupport_microxrcedds_c rosidl_typesupport_microxrcedds_cpp \
+        "${INSTALL_BASE_ARGS[@]}" --metas src --cmake-args -DBUILD_TESTING=OFF
+    # Re-source needed
+    set +o nounset
+    if [ -n "${VULCANEXUS_DISTRO:-}" ]; then
+        . "/opt/vulcanexus/$VULCANEXUS_DISTRO/local_setup.bash"
+    else
+        . install/local_setup.bash
+    fi
+    set -o nounset
     colcon build --packages-select builtin_interfaces unique_identifier_msgs service_msgs action_msgs \
         "${INSTALL_BASE_ARGS[@]}" --metas src --cmake-args -DBUILD_TESTING=OFF
 fi
