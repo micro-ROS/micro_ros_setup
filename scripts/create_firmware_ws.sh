@@ -128,9 +128,6 @@ if [ "$RTOS" == "host" ]; then
     #   service_msgs            - depends on builtin_interfaces (ServiceEventInfo.msg)
     #   action_msgs             - depends on all three above; has CancelGoal.srv
     colcon build --packages-select builtin_interfaces unique_identifier_msgs service_msgs action_msgs \
-        --metas src --cmake-args -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON
-    set +o nounset
-    . install/local_setup.bash
-    set -o nounset
+        --metas src --cmake-args -DBUILD_TESTING=OFF
 fi
 
