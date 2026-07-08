@@ -34,7 +34,7 @@ print_available_platforms () {
 if [ $# -ge 1 ]; then
     RTOS=$1
 else
-    echo "Syntax: ros2 run micro_ros_setup create_firmware_ws.sh <package> [<platform>]"
+    echo "Syntax: ros2 run micro_ros_setup create_firmware_ws.sh <package> [<platform>] [<install-base>]"
     print_available_platforms
     exit 1
 fi
@@ -43,6 +43,12 @@ if [ $# -ge 2 ]; then
     PLATFORM=$2
 else
     PLATFORM=generic
+fi
+
+if [ $# -ge 3 ]; then
+    INSTALL_BASE=$3
+else
+    INSTALL_BASE=
 fi
 
 # Checking if firmware exists
@@ -116,39 +122,28 @@ rosdep install --os=ubuntu:noble -y --from-paths $PREFIX/config/$RTOS/$TARGET_FO
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
 
 if [ "$RTOS" == "host" ]; then
-    # Pre-build foundational message packages with their microxrcedds type supports
-    # already in the path. These are implicit dependencies of packages bundling
-    # actions/services (added by rosidl's action/service expansion) but aren't
-    # declared in those packages' package.xml, so build order isn't otherwise
-    # guaranteed when they're rebuilt from source alongside their dependents.
-    #
-    # Build order matters:
+    # Pre-build foundational message packages (in dependency order) since
+    # action/service-bundling packages need them but don't declare it in
+    # package.xml, so build order isn't otherwise guaranteed. Build order matters:
     #   builtin_interfaces      - no workspace deps
     #   unique_identifier_msgs  - no workspace deps (UUID.msg only)
     #   service_msgs            - depends on builtin_interfaces (ServiceEventInfo.msg)
     #   action_msgs             - depends on all three above; has CancelGoal.srv
     #
-    # Installing to the same prefix the rest of the workspace 
-    # TODO: if it works allow customized installation path
-    INSTALL_BASE_ARGS=()
-    if [ -n "${VULCANEXUS_DISTRO:-}" ]; then
-        INSTALL_BASE_ARGS=(--install-base "/opt/vulcanexus/$VULCANEXUS_DISTRO")
-    fi
-    # Build the microxrcedds typesupport generator from freshly imported source
-    # first. Otherwise when builtin_interfaces and the others are configured,
-    # they generate without any microxrcedds typesupport, so every downstream consumer
-    # fails to link against their (nonexistent) microxrcedds typesupport.
+    # Shared --install-base (3rd script arg) avoids a race where colcon
+    # wouldn't block dependents on a reconfigure of an already-built package.
+    #
+    # Build the microxrcedds typesupport generator first, or builtin_interfaces
+    # etc. below would configure without microxrcedds typesupport and never
+    # pick it up later (a same-install-base reconfigure is a near no-op).
     colcon build --packages-up-to rosidl_typesupport_microxrcedds_c rosidl_typesupport_microxrcedds_cpp \
-        "${INSTALL_BASE_ARGS[@]}" --metas src --cmake-args -DBUILD_TESTING=OFF
-    # Re-source needed
+        ${INSTALL_BASE:+--install-base "$INSTALL_BASE"} --metas src --cmake-args -DBUILD_TESTING=OFF
+    # Re-source: typesupport backends are only detected via AMENT_PREFIX_PATH
+    # at configure time, and colcon doesn't update the shell's env itself.
     set +o nounset
-    if [ -n "${VULCANEXUS_DISTRO:-}" ]; then
-        . "/opt/vulcanexus/$VULCANEXUS_DISTRO/local_setup.bash"
-    else
-        . install/local_setup.bash
-    fi
+    . "${INSTALL_BASE:-install}/local_setup.bash"
     set -o nounset
     colcon build --packages-select builtin_interfaces unique_identifier_msgs service_msgs action_msgs \
-        "${INSTALL_BASE_ARGS[@]}" --metas src --cmake-args -DBUILD_TESTING=OFF
+        ${INSTALL_BASE:+--install-base "$INSTALL_BASE"} --metas src --cmake-args -DBUILD_TESTING=OFF
 fi
 
