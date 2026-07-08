@@ -127,7 +127,14 @@ if [ "$RTOS" == "host" ]; then
     #   unique_identifier_msgs  - no workspace deps (UUID.msg only)
     #   service_msgs            - depends on builtin_interfaces (ServiceEventInfo.msg)
     #   action_msgs             - depends on all three above; has CancelGoal.srv
+    #
+    # Installing to the same prefix the rest of the workspace
+    # TODO: if it works allow customized installation path
+    INSTALL_BASE_ARGS=()
+    if [ -n "${VULCANEXUS_DISTRO:-}" ]; then
+        INSTALL_BASE_ARGS=(--install-base "/opt/vulcanexus/$VULCANEXUS_DISTRO")
+    fi
     colcon build --packages-select builtin_interfaces unique_identifier_msgs service_msgs action_msgs \
-        --metas src --cmake-args -DBUILD_TESTING=OFF
+        "${INSTALL_BASE_ARGS[@]}" --metas src --cmake-args -DBUILD_TESTING=OFF
 fi
 
