@@ -2,4 +2,4 @@ repositories:
   zephyr_apps:
     type: git
     url: https://github.com/micro-ROS/zephyr_apps
-    version: jazzy
+    version: 5.0.1
