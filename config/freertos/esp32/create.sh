@@ -32,6 +32,10 @@ pushd $FW_TARGETDIR >/dev/null
 
         eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
 
+        # ESP-IDF v4.1 tooling imports pkg_resources, which setuptools dropped in release 81.
+        # Its requirements.txt only pins setuptools>=21, so pin it back here.
+        python3 -m pip install "setuptools<81" pyyaml
+
         . $IDF_PATH/export.sh
 
         pip3 install catkin_pkg lark-parser colcon-common-extensions
