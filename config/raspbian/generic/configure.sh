@@ -3,7 +3,12 @@
 pushd $FW_TARGETDIR >/dev/null
     rm -rf mcu_ws/*
     cp raspbian_apps/toolchain.cmake mcu_ws/
+<<<<<<< HEAD
     curl -s https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos |\
+=======
+    # ROS_DISTRO SPECIFIC
+    curl -s https://raw.githubusercontent.com/ros2/ros2/kilted/ros2.repos |\
+>>>>>>> 461010c (Fix CI (#826))
         ros2 run micro_ros_setup yaml_filter.py raspbian_apps/$CONFIG_NAME/ros2_repos.filter > ros2.repos
     vcs import --input ros2.repos mcu_ws/ && rm ros2.repos
 
