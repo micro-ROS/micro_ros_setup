@@ -5,7 +5,7 @@
   <version>3.1.3</version>
   <description>Tools for setting up micro-ROS workspaces</description>
   <maintainer email="eugeniocollado@eprosima.com">Eugenio Collado</maintainer>
-  <maintainer email="carlosespinoza@eprosima.com">Carlos Espinoza</maintainer>
+  <maintainer email="davidlaseca@eprosima.com">David Laseca</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
