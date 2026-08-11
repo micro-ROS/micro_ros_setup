@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+6.1.0 (2026-08-11)
+------------------
 * Fix CI (`#826 <https://github.com/micro-ROS/micro_ros_setup/issues/826>`_)
 * Update maintainers (`#825 <https://github.com/micro-ROS/micro_ros_setup/issues/825>`_)
 * Fix dead Zephyr board doc link for B-L475E-IOT01A (`#821 <https://github.com/micro-ROS/micro_ros_setup/issues/821>`_)
