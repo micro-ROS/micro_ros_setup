@@ -2,6 +2,14 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix CI (`#826 <https://github.com/micro-ROS/micro_ros_setup/issues/826>`_)
+* Update maintainers (`#825 <https://github.com/micro-ROS/micro_ros_setup/issues/825>`_)
+* Fix dead Zephyr board doc link for B-L475E-IOT01A (`#821 <https://github.com/micro-ROS/micro_ros_setup/issues/821>`_)
+* Fix include path (`#790 <https://github.com/micro-ROS/micro_ros_setup/issues/790>`_)
+* Fix ament_cmake dependency (`#795 <https://github.com/micro-ROS/micro_ros_setup/issues/795>`_)
+
 6.0.0 (2025-07-02)
 ------------------
 * Bump kilted (`#780 <https://github.com/micro-ROS/micro_ros_setup/issues/780>`_)
