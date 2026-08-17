@@ -62,7 +62,7 @@ fi
 # source dev_ws
 if [ $RTOS != "host" ]; then
     set +o nounset
-    . $FW_TARGETDIR/dev_ws/install/setup.bash
+    . $FW_TARGETDIR/dev_ws/install/local_setup.bash
     set -o nounset
 fi
 
