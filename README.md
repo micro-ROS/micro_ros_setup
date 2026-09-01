@@ -122,6 +122,19 @@ colcon build
 source install/local_setup.bash
 ```
 
+If you are building inside a minimal Docker image such as `ros:jazzy-ros-core-noble`,
+refresh the APT package index in the same `RUN` step before invoking `rosdep install`.
+The official ROS images clear `/var/lib/apt/lists/*`, so skipping `apt-get update`
+can make `rosdep` fail when it tries to install system packages such as
+`libcurl4-openssl-dev`.
+
+```dockerfile
+RUN apt-get update && \
+    . /opt/ros/$ROS_DISTRO/setup.sh && \
+    rosdep update && \
+    rosdep install --from-paths src --ignore-src -y
+```
+
 Once the package is built, the firmware scripts are ready to run.
 
 You can find tutorials for moving your first steps with micro-ROS on an RTOS in the [micro-ROS webpage](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
