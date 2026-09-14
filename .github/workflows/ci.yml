@@ -6,6 +6,11 @@ on:
       ci_target_ref:
         required: true
         type: string
+  # To enable manual trigger
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
 
 env:
   ROS_DISTRO: rolling
