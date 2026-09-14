@@ -14,6 +14,7 @@ pushd $FW_TARGETDIR >/dev/null
 
     # ignore broken packages
     touch mcu_ws/ros2/rcl_logging/rcl_logging_spdlog/COLCON_IGNORE
+    touch mcu_ws/ros2/rcl_logging/rcl_logging_implementation/COLCON_IGNORE
     touch mcu_ws/ros2/rcl/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
     touch mcu_ws/ros2/rcpputils/COLCON_IGNORE
@@ -22,6 +23,7 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_buffer_py/COLCON_IGNORE
+    touch mcu_ws/ros2/rosidl/rosidl_buffer_backend_registry/COLCON_IGNORE
     touch mcu_ws/ros2/rmw/rmw_security_common/COLCON_IGNORE
 
 popd >/dev/null
