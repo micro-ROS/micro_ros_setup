@@ -6,6 +6,10 @@ on:
       ci_target_ref:
         required: true
         type: string
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Manual trigger"
 
 env:
   ROS_DISTRO: rolling

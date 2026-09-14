@@ -77,6 +77,7 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/uros/rcl/rcl_yaml_param_parser/COLCON_IGNORE
     touch mcu_ws/uros/rclc/rclc_examples/COLCON_IGNORE
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
+    touch mcu_ws/ros2/rosidl/rosidl_buffer_py/COLCON_IGNORE
 
     # Upgrade sphinx
     pip install --force-reinstall docutils==0.16 Sphinx==4.2.0
