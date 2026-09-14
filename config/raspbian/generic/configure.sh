@@ -11,6 +11,8 @@ pushd $FW_TARGETDIR >/dev/null
     if [ -d mcu_ws/ros2/rosidl ]; then
         touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
         touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
+        touch mcu_ws/ros2/rosidl/rosidl_buffer_py/COLCON_IGNORE
+        touch mcu_ws/ros2/rosidl/rosidl_buffer_backend_registry/COLCON_IGNORE
     fi
 
     vcs import --input raspbian_apps/$CONFIG_NAME/app.repos mcu_ws/
