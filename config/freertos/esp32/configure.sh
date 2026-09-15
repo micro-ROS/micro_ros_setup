@@ -57,6 +57,11 @@ UROS_APP_FOLDER="$FW_TARGETDIR/freertos_apps/apps/$UROS_APP"
 export IDF_TOOLS_PATH=$FW_TARGETDIR/toolchain/espressif
 export IDF_PATH=$FW_TARGETDIR/toolchain/esp-idf
 
+# ESP-IDF v4.1 vendors third-party trees (mbedtls) whose cmake_minimum_required
+# predates 3.5, which CMake 4 rejects outright. Restore the old floor until the
+# pinned ESP-IDF is bumped.
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
 eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
 
 . $IDF_PATH/export.sh
