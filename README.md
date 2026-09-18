@@ -42,7 +42,7 @@ This package provides tools and utils to crosscompile micro-ROS with just the co
 | [Zephyr](https://www.zephyrproject.org/)                                                                            | [ST Nucleo H743ZI](https://www.st.com/en/evaluation-tools/nucleo-h743zi.html) <sup>1</sup>                                                                                               | v2.6.0                       | `zephyr nucleo_h743zi`       | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           |
 | [Zephyr](https://www.zephyrproject.org/)                                                                            | [Zephyr emulator](https://docs.zephyrproject.org/2.3.0/boards/posix/native_posix/doc/index.html)                                                                                         | v2.6.0                       | `zephyr host`                | **[micro-ROS module for Zephyr RTOS](https://github.com/micro-ROS/micro_ros_zephyr_module)**                                           |
 | -                                                                                                                   | Static library (.a) and headers (.h) <sup>3</sup>                                                                                                                                        | -                            | `generate_lib`               |                                                                                                                                        |
-| Linux                                                                                                               | *Host <sup>2</sup>*                                                                                                                                                                      | Ubuntu 18.04/20.04           | `host`                       |                                                                                                                                        |
+| Linux                                                                                                               | *Host <sup>2</sup>*                                                                                                                                                                      | Ubuntu 26.04                 | `host`                       |                                                                                                                                        |
 | Android                                                                                                             | [AOSP](https://source.android.com) <sup>1</sup>                                                                                                                                          | Latest                       | `android generic`            |                                                                                                                                        |
 
 *<sup>1</sup> Community supported, may have lack of official support*
@@ -86,7 +86,9 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | Foxy         | EOL       | `foxy`     |
 | Galactic     | EOL       | `galactic` |
 | Humble       | Supported | `humble`   |
-| Iron         | Supported | `iron`     |
+| Iron         | EOL       | `iron`     |
+| Jazzy        | Supported | `jazzy`    |
+| Kilted       | Supported | `kilted`   |
 | Rolling      | Supported | `rolling`  |
 
 Some other prerequisites needed for building a firmware using this package are:
@@ -113,7 +115,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 
 mkdir uros_ws && cd uros_ws
 
-git clone -b rolling https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 rosdep update && rosdep install --from-paths src --ignore-src -y
 
