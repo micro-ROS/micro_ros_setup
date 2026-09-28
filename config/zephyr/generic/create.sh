@@ -80,6 +80,10 @@ pushd $FW_TARGETDIR >/dev/null
     touch mcu_ws/ros2/ros2_tracing/lttngpy/COLCON_IGNORE
     # TEMPORARY: rosidl_buffer_py does not exist at the pinned ros2/rosidl commit
     # touch mcu_ws/ros2/rosidl/rosidl_buffer_py/COLCON_IGNORE
+    # TEMPORARY: nothing requires these at the pinned ros2/rosidl commit, and they are
+    # C++ with exceptions, so they cannot build here
+    touch mcu_ws/ros2/rosidl/rosidl_buffer/COLCON_IGNORE
+    touch mcu_ws/ros2/rosidl/rosidl_buffer_backend/COLCON_IGNORE
     touch mcu_ws/ros2/rosidl/rosidl_buffer_backend_registry/COLCON_IGNORE
 
     # Upgrade sphinx
