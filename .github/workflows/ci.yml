@@ -13,6 +13,11 @@ on:
 
 env:
   ROS_DISTRO: rolling
+  # Pinned to avoid a flaky api.github.com lookup for the latest release
+  # Keep it updated with the latest version from
+  # https://github.com/ros-infrastructure/ros-apt-source/releases
+  # (an outdated version stops working when the ROS repository key changes)
+  ROS_APT_SOURCE_VERSION: 1.3.0
 
 jobs:
 
@@ -27,6 +32,14 @@ jobs:
         with:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
+
+      # Installing the ROS apt source beforehand makes setup-ros skip its
+      # api.github.com lookup, which is often rate-limited on shared runners
+      - name: Install ROS apt source
+        run: |
+          apt-get update && apt-get install -y ca-certificates curl
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
@@ -77,6 +90,14 @@ jobs:
         with:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
+
+      # Installing the ROS apt source beforehand makes setup-ros skip its
+      # api.github.com lookup, which is often rate-limited on shared runners
+      - name: Install ROS apt source
+        run: |
+          apt-get update && apt-get install -y ca-certificates curl
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
@@ -231,6 +252,14 @@ jobs:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
 
+      # Installing the ROS apt source beforehand makes setup-ros skip its
+      # api.github.com lookup, which is often rate-limited on shared runners
+      - name: Install ROS apt source
+        run: |
+          apt-get update && apt-get install -y ca-certificates curl
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          apt-get install -y /tmp/ros2-apt-source.deb
+
       - uses: ros-tooling/setup-ros@0.7.19
         with:
           # Rolling binaries for Ubuntu Resolute are only published to the
@@ -280,13 +309,13 @@ jobs:
           report() { echo "$1" | tee -a $GITHUB_STEP_SUMMARY; }
           command -v readelf >/dev/null || apt-get install -y binutils
           report "### ${{ matrix.rtos }} ${{ matrix.platform }} ${{ matrix.configuration }}"
-          objs=$(find . -path '*rclc*' -name 'sleep.c.o*')
+          objs=$(find . -path '*rclc*' \( -name 'sleep.c.o' -o -name 'sleep.c.obj' \))
           if [ -z "$objs" ]; then
             report "- rclc is not built for this target"
             exit 0
           fi
           for obj in $objs; do
-            calls=$(readelf -sW "$obj" | grep -oE 'UND +(nanosleep|usleep)' | awk '{print $2}' | sort -u | tr '\n' ' ')
+            calls=$(readelf -sW "$obj" | grep -oE 'UND +(nanosleep|usleep)' | awk '{print $2}' | sort -u | tr '\n' ' ' || true)
             report "- \`$obj\` calls: **${calls:-none}**"
           done
           binary="${{ matrix.binary }}"
@@ -294,9 +323,9 @@ jobs:
           [ "$elf" != "$binary" ] && elf="$elf.elf"
           if [[ "$elf" == *.a ]] || ! readelf -h "$elf" >/dev/null 2>&1; then
             report "- no final ELF to inspect"
-          elif readelf -d "$elf" 2>/dev/null | grep -q NEEDED; then
+          elif readelf -d "$elf" 2>/dev/null | grep NEEDED >/dev/null; then
             report "- \`$elf\` is dynamically linked, resolved against libc at load time"
-          elif readelf -sW "$elf" | grep -qw rclc_sleep_ms; then
+          elif readelf -sW "$elf" | grep -w rclc_sleep_ms >/dev/null; then
             report "- \`rclc_sleep_ms\` is linked into \`$elf\`"
           else
             report "- \`rclc_sleep_ms\` is NOT in \`$elf\`: discarded, link not exercised"
