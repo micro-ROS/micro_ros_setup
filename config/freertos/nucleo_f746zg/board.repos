@@ -2,4 +2,5 @@ repositories:
   freertos_apps:
     type: git
     url: https://github.com/micro-ros/freertos_apps
-    version: rolling
+    # TEMPORARY: test nanosleep() support, revert before merging
+    version: feature/add_nanosleep_function
