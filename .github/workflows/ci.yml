@@ -300,37 +300,6 @@ jobs:
           ros2 run micro_ros_setup configure_firmware.sh ${{ matrix.configuration }} ${{ matrix.transport_arguments }}
           ros2 run micro_ros_setup build_firmware.sh ${{ matrix.build_arguments }}
 
-      # TEMPORARY: report which 'rclc_sleep_ms' implementation each target compiles
-      # and whether it reaches the final binary, revert before merging
-      - name: Report rclc_sleep_ms backend
-        if: ${{ !cancelled() }}
-        shell: bash
-        run: |
-          report() { echo "$1" | tee -a $GITHUB_STEP_SUMMARY; }
-          command -v readelf >/dev/null || apt-get install -y binutils
-          report "### ${{ matrix.rtos }} ${{ matrix.platform }} ${{ matrix.configuration }}"
-          objs=$(find . -path '*rclc*' \( -name 'sleep.c.o' -o -name 'sleep.c.obj' \))
-          if [ -z "$objs" ]; then
-            report "- rclc is not built for this target"
-            exit 0
-          fi
-          for obj in $objs; do
-            calls=$(readelf -sW "$obj" | grep -oE 'UND +(nanosleep|usleep)' | awk '{print $2}' | sort -u | tr '\n' ' ' || true)
-            report "- \`$obj\` calls: **${calls:-none}**"
-          done
-          binary="${{ matrix.binary }}"
-          elf="${binary%.bin}"
-          [ "$elf" != "$binary" ] && elf="$elf.elf"
-          if [[ "$elf" == *.a ]] || ! readelf -h "$elf" >/dev/null 2>&1; then
-            report "- no final ELF to inspect"
-          elif readelf -d "$elf" 2>/dev/null | grep NEEDED >/dev/null; then
-            report "- \`$elf\` is dynamically linked, resolved against libc at load time"
-          elif readelf -sW "$elf" | grep -w rclc_sleep_ms >/dev/null; then
-            report "- \`rclc_sleep_ms\` is linked into \`$elf\`"
-          else
-            report "- \`rclc_sleep_ms\` is NOT in \`$elf\`: discarded, link not exercised"
-          fi
-
       - name: Check binaries
         run: |
           (test -f ${{ matrix.binary }}) && true || false
