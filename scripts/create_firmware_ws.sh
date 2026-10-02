@@ -95,6 +95,12 @@ pushd $FW_TARGETDIR >/dev/null
         mkdir mcu_ws
         ros2 run micro_ros_setup create_ws.sh mcu_ws $PREFIX/config/client_ros2_packages.txt $PREFIX/config/$RTOS/$TARGET_FOLDER/client_uros_packages.repos
         cp $PREFIX/config/$RTOS/$TARGET_FOLDER/client-colcon.meta mcu_ws/colcon.meta || :
+
+        # TEMPORARY: pin ros2/rosidl to the last commit before ros2/rosidl#942, which made
+        # rosidl_runtime_c (C) depend on rosidl_buffer (C++, throws std::runtime_error)
+        if [ -d mcu_ws/ros2/rosidl ]; then
+            git -C mcu_ws/ros2/rosidl reset --hard 5f4ace0288ecf942307ed62b9239ab5986884676
+        fi
     fi
 popd >/dev/null
 
