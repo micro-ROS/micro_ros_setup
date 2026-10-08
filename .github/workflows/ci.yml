@@ -6,9 +6,18 @@ on:
       ci_target_ref:
         required: true
         type: string
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Manual trigger"
 
 env:
   ROS_DISTRO: rolling
+  # Pinned to avoid a flaky api.github.com lookup for the latest release
+  # Keep it updated with the latest version from
+  # https://github.com/ros-infrastructure/ros-apt-source/releases
+  # (an outdated version stops working when the ROS repository key changes)
+  ROS_APT_SOURCE_VERSION: 1.3.0
 
 jobs:
 
@@ -23,6 +32,14 @@ jobs:
         with:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
+
+      # Installing the ROS apt source beforehand makes setup-ros skip its
+      # api.github.com lookup, which is often rate-limited on shared runners
+      - name: Install ROS apt source
+        run: |
+          apt-get update && apt-get install -y ca-certificates curl
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
@@ -73,6 +90,14 @@ jobs:
         with:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
+
+      # Installing the ROS apt source beforehand makes setup-ros skip its
+      # api.github.com lookup, which is often rate-limited on shared runners
+      - name: Install ROS apt source
+        run: |
+          apt-get update && apt-get install -y ca-certificates curl
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
@@ -226,6 +251,14 @@ jobs:
         with:
           path: src/micro_ros_setup
           ref: ${{ inputs.ci_target_ref }}
+
+      # Installing the ROS apt source beforehand makes setup-ros skip its
+      # api.github.com lookup, which is often rate-limited on shared runners
+      - name: Install ROS apt source
+        run: |
+          apt-get update && apt-get install -y ca-certificates curl
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:

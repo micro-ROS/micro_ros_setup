@@ -9,6 +9,11 @@ pushd $FW_TARGETDIR >/dev/null
     export ZEPHYR_SDK_INSTALL_DIR=$FW_TARGETDIR/zephyr-sdk
     export PATH=~/.local/bin:"$PATH"
 
+    # Zephyr v2.6.0 vendors third-party modules (civetweb) whose
+    # cmake_minimum_required predates 3.5, which CMake 4 rejects outright.
+    # Restore the old floor until the pinned Zephyr is bumped.
+    export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
 
     # Retrieve user app
     unset UROS_APP

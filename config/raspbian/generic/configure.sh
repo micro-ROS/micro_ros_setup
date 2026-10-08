@@ -8,9 +8,22 @@ pushd $FW_TARGETDIR >/dev/null
         ros2 run micro_ros_setup yaml_filter.py raspbian_apps/$CONFIG_NAME/ros2_repos.filter > ros2.repos
     vcs import --input ros2.repos mcu_ws/ && rm ros2.repos
 
+    # TEMPORARY: pin ros2/rosidl to the last commit before ros2/rosidl#942, which made
+    # rosidl_runtime_c (C) depend on rosidl_buffer (C++, throws std::runtime_error)
+    if [ -d mcu_ws/ros2/rosidl ]; then
+        git -C mcu_ws/ros2/rosidl reset --hard 5f4ace0288ecf942307ed62b9239ab5986884676
+    fi
+
     if [ -d mcu_ws/ros2/rosidl ]; then
         touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_c/COLCON_IGNORE
         touch mcu_ws/ros2/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE
+        # TEMPORARY: rosidl_buffer_py does not exist at the pinned ros2/rosidl commit
+        # touch mcu_ws/ros2/rosidl/rosidl_buffer_py/COLCON_IGNORE
+        # TEMPORARY: nothing requires these at the pinned ros2/rosidl commit, and they are
+        # C++ with exceptions, so they cannot build here
+        touch mcu_ws/ros2/rosidl/rosidl_buffer/COLCON_IGNORE
+        touch mcu_ws/ros2/rosidl/rosidl_buffer_backend/COLCON_IGNORE
+        touch mcu_ws/ros2/rosidl/rosidl_buffer_backend_registry/COLCON_IGNORE
     fi
 
     vcs import --input raspbian_apps/$CONFIG_NAME/app.repos mcu_ws/
