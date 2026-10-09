@@ -12,7 +12,7 @@ on:
         description: "Manual trigger"
 
 env:
-  ROS_DISTRO: rolling
+  ROS_DISTRO: lyrical
   # Pinned to avoid a flaky api.github.com lookup for the latest release
   # Keep it updated with the latest version from
   # https://github.com/ros-infrastructure/ros-apt-source/releases
@@ -38,16 +38,12 @@ jobs:
       - name: Install ROS apt source
         run: |
           apt-get update && apt-get install -y ca-certificates curl
-          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
           apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
-          # Rolling binaries for Ubuntu Resolute are only published to the
-          # ros2-testing repository; the main repository currently ships
-          # Lyrical only
-          # Revert once Rolling syncs to the main repository
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: Dependencies
@@ -96,16 +92,12 @@ jobs:
       - name: Install ROS apt source
         run: |
           apt-get update && apt-get install -y ca-certificates curl
-          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
           apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
-          # Rolling binaries for Ubuntu Resolute are only published to the
-          # ros2-testing repository; the main repository currently ships
-          # Lyrical only
-          # Revert once Rolling syncs to the main repository
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: dependencies
@@ -257,16 +249,12 @@ jobs:
       - name: Install ROS apt source
         run: |
           apt-get update && apt-get install -y ca-certificates curl
-          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-testing-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
+          curl -fL -o /tmp/ros2-apt-source.deb https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.resolute_all.deb
           apt-get install -y /tmp/ros2-apt-source.deb
 
       - uses: ros-tooling/setup-ros@0.7.19
         with:
-          # Rolling binaries for Ubuntu Resolute are only published to the
-          # ros2-testing repository; the main repository currently ships
-          # Lyrical only
-          # Revert once Rolling syncs to the main repository
-          use-ros2-testing: true
+          use-ros2-testing: false
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: Dependencies
