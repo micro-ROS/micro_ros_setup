@@ -10,6 +10,11 @@ on:
 
 jobs:
 
+    Lyrical:
+        uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@lyrical
+        with:
+            ci_target_ref: 'lyrical'
+
     Kilted:
         uses: micro-ROS/micro_ros_setup/.github/workflows/ci.yml@kilted
         with:
