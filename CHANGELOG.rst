@@ -2,6 +2,41 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Bump lyrical (`#841 <https://github.com/micro-ROS/micro_ros_setup/issues/841>`_)
+* Add Lyrical to CI (`#838 <https://github.com/micro-ROS/micro_ros_setup/issues/838>`_)
+* Fix raspbian build after upstream change (`#839 <https://github.com/micro-ROS/micro_ros_setup/issues/839>`_)
+* Repare CI for embedded targets (`#836 <https://github.com/micro-ROS/micro_ros_setup/issues/836>`_)
+* Bump ubuntu on rolling (`#833 <https://github.com/micro-ROS/micro_ros_setup/issues/833>`_)
+* Fix CI issues (backport `#826 <https://github.com/micro-ROS/micro_ros_setup/issues/826>`_) (`#832 <https://github.com/micro-ROS/micro_ros_setup/issues/832>`_)
+* Update maintainers (backport `#825 <https://github.com/micro-ROS/micro_ros_setup/issues/825>`_) (`#829 <https://github.com/micro-ROS/micro_ros_setup/issues/829>`_)
+* Fix dead Zephyr board doc link for B-L475E-IOT01A (`#821 <https://github.com/micro-ROS/micro_ros_setup/issues/821>`_) (`#822 <https://github.com/micro-ROS/micro_ros_setup/issues/822>`_)
+* Fix include path (backport `#781 <https://github.com/micro-ROS/micro_ros_setup/issues/781>`_) (backport `#790 <https://github.com/micro-ROS/micro_ros_setup/issues/790>`_) (`#800 <https://github.com/micro-ROS/micro_ros_setup/issues/800>`_)
+* Fix ament_cmake dependency (`#795 <https://github.com/micro-ROS/micro_ros_setup/issues/795>`_) (`#796 <https://github.com/micro-ROS/micro_ros_setup/issues/796>`_)
+* Update maintainers (`#785 <https://github.com/micro-ROS/micro_ros_setup/issues/785>`_) (`#786 <https://github.com/micro-ROS/micro_ros_setup/issues/786>`_)
+* Bump setup-ros (backport `#777 <https://github.com/micro-ROS/micro_ros_setup/issues/777>`_) (`#778 <https://github.com/micro-ROS/micro_ros_setup/issues/778>`_)
+* Fix rolling build (`#772 <https://github.com/micro-ROS/micro_ros_setup/issues/772>`_)
+* Remove Iron from nightly
+* Fix Olimex RMW Security common build (`#766 <https://github.com/micro-ROS/micro_ros_setup/issues/766>`_)
+* Correct Ubuntu version for ROS Jazzy (`#762 <https://github.com/micro-ROS/micro_ros_setup/issues/762>`_) (`#763 <https://github.com/micro-ROS/micro_ros_setup/issues/763>`_)
+* Update README.md (`#756 <https://github.com/micro-ROS/micro_ros_setup/issues/756>`_) (`#761 <https://github.com/micro-ROS/micro_ros_setup/issues/761>`_)
+* Remove non-header files from include folder (backport `#716 <https://github.com/micro-ROS/micro_ros_setup/issues/716>`_) (`#753 <https://github.com/micro-ROS/micro_ros_setup/issues/753>`_)
+* Sphinx dependency conflict fix (`#740 <https://github.com/micro-ROS/micro_ros_setup/issues/740>`_) (`#745 <https://github.com/micro-ROS/micro_ros_setup/issues/745>`_)
+* Fix broken rosidl_cli (`#726 <https://github.com/micro-ROS/micro_ros_setup/issues/726>`_)
+* Fix Nightly (`#719 <https://github.com/micro-ROS/micro_ros_setup/issues/719>`_) (`#723 <https://github.com/micro-ROS/micro_ros_setup/issues/723>`_)
+* Fix RCLC rolling (`#717 <https://github.com/micro-ROS/micro_ros_setup/issues/717>`_)
+* Fix RCLC rolling (`#708 <https://github.com/micro-ROS/micro_ros_setup/issues/708>`_)
+* Bump ubuntu on rolling (`#702 <https://github.com/micro-ROS/micro_ros_setup/issues/702>`_)
+* Fix Rolling agent (`#701 <https://github.com/micro-ROS/micro_ros_setup/issues/701>`_)
+* Fix artifacts
+* Rework CI (backport `#696 <https://github.com/micro-ROS/micro_ros_setup/issues/696>`_) (`#697 <https://github.com/micro-ROS/micro_ros_setup/issues/697>`_)
+* Allow CI workflow call
+* Fix rolling (`#687 <https://github.com/micro-ROS/micro_ros_setup/issues/687>`_)
+* Ignore lttngpy (`#682 <https://github.com/micro-ROS/micro_ros_setup/issues/682>`_)
+* Fix empy dep (`#678 <https://github.com/micro-ROS/micro_ros_setup/issues/678>`_) (`#680 <https://github.com/micro-ROS/micro_ros_setup/issues/680>`_)
+* Remove micro-ROS fork (`#655 <https://github.com/micro-ROS/micro_ros_setup/issues/655>`_)
+
 5.0.0 (2023-06-12)
 ------------------
 * Update to rolling repositories (`#649 <https://github.com/micro-ROS/micro_ros_setup/issues/649>`_)
