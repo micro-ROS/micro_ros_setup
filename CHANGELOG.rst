@@ -2,8 +2,8 @@
 Changelog for package micro_ros_setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+7.0.0 (2026-10-09)
+------------------
 * Bump lyrical (`#841 <https://github.com/micro-ROS/micro_ros_setup/issues/841>`_)
 * Add Lyrical to CI (`#838 <https://github.com/micro-ROS/micro_ros_setup/issues/838>`_)
 * Fix raspbian build after upstream change (`#839 <https://github.com/micro-ROS/micro_ros_setup/issues/839>`_)
