@@ -89,6 +89,7 @@ This package targets the **ROS 2** installation. ROS 2 supported distributions a
 | Iron         | EOL       | `iron`     |
 | Jazzy        | Supported | `jazzy`    |
 | Kilted       | Supported | `kilted`   |
+| Lyrical      | Supported | `lyrical`  |
 | Rolling      | Supported | `rolling`  |
 
 Some other prerequisites needed for building a firmware using this package are:
