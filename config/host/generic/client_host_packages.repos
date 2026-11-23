@@ -17,23 +17,23 @@ repositories:
   uros/micro_ros_msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
-    version: jazzy
+    version: 5.0.3
   uros/rmw_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rmw-microxrcedds.git
-    version: jazzy
+    version: 5.0.2
   uros/rosidl_typesupport_microxrcedds:
     type: git
     url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: jazzy
+    version: 5.0.2
   uros/micro-ROS-demos:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-demos.git
-    version: jazzy
+    version: 5.0.2
   uros/micro_ros_utilities:
     type: git
     url: https://github.com/micro-ROS/micro_ros_utilities
-    version: jazzy
+    version: v5.0.2
 
 # Required messages packages
 
