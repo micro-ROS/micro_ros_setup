@@ -19,7 +19,8 @@ pushd $FW_TARGETDIR >/dev/null
             echo "Error: python3-pip package must be installed before continuing..."
             exit 1
         fi
-        pip3 install virtualenv --break-system-packages
+        # virtualenv>=21.14.6 needs packaging>=26.3, which can't replace Noble's Debian packaging 24.0.
+        pip3 install "virtualenv<21.14.6" --break-system-packages
         python3 esp-idf/tools/idf_tools.py install-python-env
 
         eval $(python3 $FW_TARGETDIR/toolchain/esp-idf/tools/idf_tools.py export --prefer-system)
